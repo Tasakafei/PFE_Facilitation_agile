@@ -9,7 +9,7 @@ var app = angular.module('facilitation', [
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
       .when("/", {
-        template: "BALBALABLAB"
+        template: "home.html"
       })
       .when("/catalogue", {
           templateUrl: "components/catalogue/catalogue.html",

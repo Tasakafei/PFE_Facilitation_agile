@@ -8,6 +8,6 @@
 
 var app = angular.module('facilitation.catalogue', ['ngRoute']);
 
-app.controller('catalogueCtrl', ['$scope', function($scope) {
+app.controller('catalogueCtrl', ['$scope', $http, function($scope, $http) {
     console.log("catalogueCtrl");
 }]);

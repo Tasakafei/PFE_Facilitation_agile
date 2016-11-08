@@ -22,7 +22,7 @@ var workshops = [
             {
                 description: "iteration #1",
                 timer: "180",
-                naration: "Il était une fois ..."
+                narration: "Il était une fois ..."
             }
         ]
     },
@@ -38,12 +38,12 @@ var workshops = [
             {
                 titre: "iteration #1",
                 timer: "240",
-                naration: "Il était une fois ..."
+                narration: "Il était une fois ..."
             },
             {
                 titre: "iteration #2",
                 timer: "180",
-                naration: " ... ",
+                narration: " ... ",
                 changes : "Rajouter des cartes"
             }
         ]
@@ -53,3 +53,5 @@ var workshops = [
 function getWorkshopsFunc() {
     return workshops;
 }
+
+exports.catalogue = catalogue;
