@@ -5,14 +5,17 @@
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
 
-var database = {
+var catalogue = {
     getWorkshops: getWorkshopsFunc
 };
 
-function getWorkshopsFunc() {
-    var result = [{
+var workshops = [
+    {
         title: "Paperplanes",
         description: "Atelier avec des avions en papiers",
+        equipments: [
+            "papier", "stylos"
+        ],
         max_participants: "-1",
         min_participants: "12",
         iterations: [
@@ -22,7 +25,31 @@ function getWorkshopsFunc() {
                 naration: "Il était une fois ..."
             }
         ]
-    }];
+    },
+    {
+        title: "Legos prehistoire",
+        description: "Construction de legos respectant des specs. Chaque spec à une valeur pour le client et sont plus ou moins dures à remplir",
+        equipments: [
+            "legos avec au minimum 4 couleurs pour de la difficulté", "cartes : http://www.trucbiduledecartes.fr"
+        ],
+        max_participants: "-1",
+        min_participants: "12",
+        iterations: [
+            {
+                titre: "iteration #1",
+                timer: "240",
+                naration: "Il était une fois ..."
+            },
+            {
+                titre: "iteration #2",
+                timer: "180",
+                naration: " ... ",
+                changes : "Rajouter des cartes"
+            }
+        ]
+    }
+];
 
-    return result;
+function getWorkshopsFunc() {
+    return workshops;
 }
