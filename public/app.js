@@ -9,7 +9,13 @@ var app = angular.module('facilitation', [
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
       .when("/", {
-        template: "home.html"
+        templateUrl: "home.html"
+      })
+      .when("/detail", {
+          templateUrl: "detail.html"
+      })
+      .when("/importer", {
+          templateUrl: "importer.html"
       })
       .when("/catalogue", {
           templateUrl: "components/catalogue/catalogue.html",

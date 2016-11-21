@@ -1,3 +1,84 @@
-<span>
-     {{catalogue.data}}
-</span>
+<div class="container search" ng-controller="catalogueCtrl">
+    <!-- Titre page -->
+    <div class="page-header">
+        <h3>Catalogue des ateliers</h3>
+    </div>
+    <!-- Recherche -->
+    <div class="row search-bar">
+        <div class="col-xs-12 col-md-10 col-md-push-1 no-padding">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Rechercher...">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+            </div>
+        </div>
+    </div>
+
+
+    {{dataCatalogue}}
+
+    <div class="row">
+        <!-- Résultat -->
+        <div class="col-xs-12 col-md-10 col-md-push-1 no-padding">
+            <a href="#">
+                <div class="col-xs-12 thumbnail">
+                    <!-- Photo -->
+                    <div class="col-xs-4 col-sm-3 no-padding-r">
+                        <img class="img-responsive img-padding" src="img/img.jpg">
+                    </div>
+                    <div class="col-xs-8 col-sm-9">
+                        <!-- Titre -->
+                        <div class="col-xs-12 no-padding">
+                            <div class="col-xs-6 no-padding">
+                                <h4>Nom de l'atelier</h4>
+                            </div>
+                            <div class="col-xs-6 padding-t text-right">
+                                <span class="label label-primary">Primary</span>
+                                <span class="label label-success">Success</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 no-padding">
+                            <!-- Note -->
+                            <div>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 no-padding">
+                            <div>
+                                <!-- Temps de l'atelier -->
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 50m
+                            </div>
+                        </div>
+                        <!-- Detail -->
+                        <p class="hidden-xs">Description de l'atelier (courte) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie, sapien a tincidunt porttitor, justo orci interdum eros, at dictum neque nulla eget lacus. Nunc ut odio sit amet nibh volutpat hendrerit a ac elit. In semper vestibulum auctor. Proin sit amet ex id lectus efficitur porta. Vivamus ut turpis sit amet leo efficitur pulvinar.</p>
+                    </div>
+                </div>
+            </a>
+            <!-- Page nav -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination pull-right">
+                    <li class="disabled">
+                        <a aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
