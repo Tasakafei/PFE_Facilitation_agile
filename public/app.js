@@ -3,7 +3,8 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('facilitation', [
     'ngRoute',
-    'facilitation.catalogue'
+    'facilitation.catalogue',
+    'facilitation.catalogue.dataProvider'
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
