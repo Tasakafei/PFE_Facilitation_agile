@@ -22,6 +22,10 @@ app.config(['$routeProvider', function($routeProvider) {
           templateUrl: "components/catalogue/catalogue.html",
           controller: "catalogueCtrl"
       })
+      .when("/feedBack", {
+          templateUrl: "feedBack.html"
+
+      })
       .otherwise({
           redirectTo: '/'
       });
