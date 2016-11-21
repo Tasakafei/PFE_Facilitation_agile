@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 
 // Workshop
 var WorkshopSchema = new mongoose.Schema({
-    title: {type: String, default: "Titre par défaut"},
+    title: String,
+    author: String,
     workshop_type: {type: String, default: "Production"},
     goals: [String],
     participants_max: {type: Number, default: -1},
@@ -19,7 +20,12 @@ var WorkshopSchema = new mongoose.Schema({
     synopsis: {type: String, default: null},
     preparation_time: {type: Number, default: 30},
     content: {
-        steps: [{type: mongoose.Schema.Types.ObjectId, ref: 'WorkshopStep'}],
+        steps: [{
+            title: String,
+            description: {type: String, default: null},
+            timing: Number,
+            duration: Number
+        }],
         source: {type: String, default: null},
         folklore: {type: String, default:null},
         educational_aims: [String],
@@ -29,4 +35,4 @@ var WorkshopSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Workshop', WorkshopSchema);
+exports.Workshop = mongoose.model('Workshop', WorkshopSchema);

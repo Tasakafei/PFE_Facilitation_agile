@@ -6,7 +6,6 @@
  ***********************************************/
 var mongoose = require('mongoose');
 require('./schemas/workshop');
-require('./schemas/step');
 var Workshop = mongoose.model('Workshop');
 
 var Promise = require('promise');
@@ -17,14 +16,18 @@ module.exports = {
 };
 
 function saveWorkshopFct (workshop) {
-    console.log("Save workshop");
+    var test = workshop;
     return new Promise(function (resolve, reject) {
-        var workshop = new Workshop(workshop);
-        workshop.save(function(err, workshop) {
+        var newWorkshop = new Workshop(test);
+        newWorkshop.save(function(err, data) {
             if (err) {
-                return reject(err)
+                console.log(err);
+                reject(err);
+            }else {
+
+                console.log("succ");
+                resolve(data);
             }
-            return resolve(workshop);
         })
     })
 }

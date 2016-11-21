@@ -38,11 +38,20 @@ EXAMPLE :
  }
  */
 router.post('/', function(req, res, next) {
-    catalogue.saveWorkshop(req.body).then(function (result) {
-        return res.json({
-            state: "success",
-            data: result
-        });
+    catalogue.saveWorkshop(req.body)
+        .then(function (result) {
+            console.log("YOOO");
+            return res.json({
+                state: "success",
+                data: result
+            });
+        })
+        .then(function (error) {
+            console.log(error);
+            res.json({
+                state: "error",
+                data: error
+            })
     });
 });
 
