@@ -28,12 +28,12 @@ EXAMPLE :
  synopsis: "BLBALBAA,
  preparation_time: 10,
  content: {
- source: ,
- folklore: String,
- educational_aims: [String],
- equipment: [String],
- logistics: [String],
- participants_profil: [String]
+     source: ,
+     folklore: String,
+     educational_aims: [String],
+     equipment: [String],
+     logistics: [String],
+     participants_profil: [String]
  }
  }
  */
