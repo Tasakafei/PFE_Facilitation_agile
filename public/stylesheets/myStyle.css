@@ -110,6 +110,11 @@ p.title {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.labels span {
+    margin-left: 2px;
+}
+
 @media (max-width: 768px) {
     .container.search {
         margin-left: 10px;
@@ -117,11 +122,20 @@ p.title {
     }
 }
 
-/*  --------- Form  --------- */
-textarea.form-control {
-    max-width: 100%;
+@media (max-width: 991px) {
+    .labels {
+        padding-left: 0;
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+    .labels span:first-child {
+        margin-left: 0;
+    }
+    h4.labelsTitle {
+        margin-bottom: 5px;
+    }
+    .labels {
+        padding-bottom: 7px;
+    }
 }
-
-/*  --------- Detail  --------- */
-
 

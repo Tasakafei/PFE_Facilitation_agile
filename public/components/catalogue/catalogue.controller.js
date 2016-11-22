@@ -18,6 +18,21 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         $scope.data = dataResponse;
         // VOILA !
     });
+
+    $scope.getLabelColor = function (label) {
+        if(label == "Travail itératif") {
+            return "label-success";
+        } else if(label == "Amélioration continue") {
+            return "label-primary";
+        } else if(label == "Prévisions") {
+            return "label-info";
+        } else if(label == "Rétrospective") {
+            return "label-warning";
+        } else {
+            return "label-default";
+        }
+
+    };
 });
 
 
