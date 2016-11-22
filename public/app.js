@@ -4,7 +4,8 @@
 var app = angular.module('facilitation', [
     'ngRoute',
     'facilitation.catalogue',
-    'facilitation.catalogue.dataProvider'
+    'facilitation.catalogue.dataProvider',
+    'facilitation.timer'
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -29,6 +30,10 @@ app.config(['$routeProvider', function($routeProvider) {
       .when("/catalogue/:catalogueId", {
           templateUrl: "components/workshop/workshop.html",
           controller: "workshopCtrl"
+      })
+      .when("/timer",{
+          templateUrl: "components/timer/timer.html",
+          controller: "timerCtrl"
       })
       .otherwise({
           redirectTo: '/'
