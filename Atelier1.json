@@ -2,13 +2,14 @@
   "title": "Paper Plane Factory",
   "author": "Sébastien Mosser",
   "time_max": 60,
+  "synopsis" : "L’armée de l’air norvégienne cherche à remplacer un sous-ensemble de sa flotte. Chaque équipe (de 3-4 participants) représente un constructeur aérien, dont l’objectif est de remporter le marché. L’armée achètera auprès du constructeur capable de fabriquer le plus d’avion possible, de la manière la plus prévisible possible.",
   "content" : {
     "steps": [
       {
-      "title": "Intro",
-      "description": "Présenter le folklore de l’atelier, les notions travaillées, pourquoi c’est important dans leur projet. Parler du fait que l’atelier est une métaphore, qu’ils retireront de cet atelier ce qu’ils auront investi dedans.",
-      "timing": 0,
-      "duration": 5
+        "title": "Intro",
+        "description": "Présenter le folklore de l’atelier, les notions travaillées, pourquoi c’est important dans leur projet. Parler du fait que l’atelier est une métaphore, qu’ils retireront de cet atelier ce qu’ils auront investi dedans.",
+        "timing": 0,
+        "duration": 5
       },
       {
         "title": "Essai",
@@ -66,8 +67,7 @@
       },
       {
         "title": "Fin de l’atelier",
-        "timing": 56,
-        "duration": 0
+        "timing": 56
       }
     ],
     "source": "http://agileway.com.br/2009/11/16/the-airplane-factory-game/ ",

@@ -12,9 +12,23 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
     $scope.workshop = "";
     var currentId = $routeParams.catalogueId;
         CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
-            $scope.workshop = dataResponse;
+            $scope.workshop = dataResponse.data[0];
 
         });
 
+    $scope.getLabelColor = function (label) {
+        if(label == "Travail itératif") {
+            return "label-success";
+        } else if(label == "Amélioration continue") {
+            return "label-primary";
+        } else if(label == "Prévisions") {
+            return "label-info";
+        } else if(label == "Rétrospective") {
+            return "label-warning";
+        } else {
+            return "label-default";
+        }
+
+    };
 });
 
