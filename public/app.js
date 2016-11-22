@@ -17,7 +17,8 @@ app.config(['$routeProvider', function($routeProvider) {
           templateUrl: "detail.html"
       })
       .when("/importer", {
-          templateUrl: "importer.html"
+          templateUrl: "importer.html",
+          controller:"importationCtrl"
       })
       .when("/catalogue", {
           templateUrl: "components/catalogue/catalogue.html",

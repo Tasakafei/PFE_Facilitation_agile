@@ -1,3 +1,66 @@
-TEST : WORKSHOP DATA </br>
-
-{{workshop}}
+<div class="container detail">
+    <!-- Titre page -->
+    <div class="page-header">
+        <h3>{{workshop.title}}</h3>
+    </div>
+    <div class="row">
+        <!-- Detail -->
+        <div class="col-xs-12 no-padding">
+            <!-- image -->
+            <div class="col-xs-12 col-sm-5">
+                <img class="img-responsive center-block" src="img/img.jpg">
+            </div>
+            <!-- Info atelier -->
+            <div class="col-xs-12 col-sm-7">
+                <h4>Informations pratiques</h4>
+                <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label {{getLabelColor(category)}}">{{category}}</span>
+                <p> Note :
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> <br />
+                    Durée de l'atelier : {{workshop.time_min}} minutes<br />
+                    Auteur: {{workshop.author}}<br />
+                    Source : {{workshop.content.source}}<br /> <br />
+                </p>
+            </div>
+            <!-- Description -->
+            <div class="col-xs-12" >
+                <h4>Description de l'atelier</h4>
+                <p class="text-justify">
+                    {{workshop.content.folklore}}
+                </p>
+            </div>
+            <!-- Materiel -->
+            <div class="col-xs-12">
+                <h4>Matériel & Setup de la salle</h4>
+                <ul>
+                    <li ng-repeat="equipment in workshop.content.equipment">{{equipment}}</li>
+                </ul>
+            </div>
+            <!-- Conducteur -->
+            <div class="col-xs-12" >
+                <h4>Conducteur de l'atelier</h4>
+                <table class="table table-bordered table-striped">
+                    <colgroup>
+                        <col class="col-xs-1">
+                        <col class="col-xs-2">
+                        <col class="col-xs-9">
+                    </colgroup>
+                    <thead><tr>
+                        <th class="text-center">Timing</th>
+                        <th class="text-center">Phase</th>
+                        <th class="text-center">Description</th>
+                    </tr>
+                    </thead> <tbody>
+                        <tr ng-repeat="step in workshop.content.steps">
+                            <td class="text-center">{{step.timing}}</td>
+                            <td class="text-center">{{step.title}}<br />{{step.duration}} minutes</td>
+                            <td>{{step.description}}</td>
+                        </tr>
+                </tbody> </table>
+            </div>
+        </div>
+    </div>
+</div>

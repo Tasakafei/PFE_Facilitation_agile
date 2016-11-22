@@ -113,9 +113,7 @@ router.post('/', function(req, res, next) {
 /** GET workshop **/
 router.get('/:id', function(req, res, next) {
     var id = req.params.id;
-    console.log(id);
     catalogue.getWorkshop(id).then(function (data) {
-        console.log(data);
         if (data) {
             res.json({
                 state: "success",
