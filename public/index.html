@@ -36,7 +36,8 @@
               <li><a href="#/importer">Importer</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-user"> Login / Register</span></a></li>
+              <li><a href="#/" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-user"></span> S'incrire</a></li>
+              <li><a href="#/" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
             </ul>
           </div>
         </div>
@@ -46,6 +47,82 @@
 
     <div ng-view></div>
 
+
+    <!-- Modal -->
+    <!-- Connexion -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Se connecter</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <form class="form-horizontal col-xs-10 col-xs-offset-1">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="userName" placeholder="Nom utilisateur">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="mdp" placeholder="Mot de passe">
+                </div>
+                <div class="form-group">
+                  <div class="col-xs-12 text-center">
+                    <a href="#" type="button" class="btn btn-default" data-dismiss="modal">Connexion</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Inscription -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel2">S'incrire</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <form class="form-horizontal col-xs-10 col-xs-offset-1">
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">Pseudo</label>
+                  <div class="col-xs-9">
+                    <input type="text" class="form-control" id="pseudo" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">Email</label>
+                  <div class="col-xs-9">
+                    <input type="email" class="form-control" id="email" placeholder="@">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">Mot de passe</label>
+                  <div class="col-xs-9">
+                    <input type="password" class="form-control" id="mdp1" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">Répétez</label>
+                  <div class="col-xs-9">
+                    <input type="password" class="form-control" id="mdp2" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-xs-12 text-center">
+                    <a href="#" type="button" class="btn btn-default" data-dismiss="modal">Inscription</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="footer text-center">
       <div class="container">
@@ -63,6 +140,9 @@
     <script src="components/workshop/workshop.controller.js"></script>
 
     <script src="importationController.js"></script>
+
+    <script src="libraries/jquery.min.js"></script>
+    <script src="libraries/bootstrap.js"></script>
 
   </body>
 </html>
