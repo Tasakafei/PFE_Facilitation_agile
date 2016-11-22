@@ -25,6 +25,10 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
             return "label-info";
         } else if(label == "Rétrospective") {
             return "label-warning";
+        } else if(label == "TaF - WiP") {
+            return "label-purple"
+        } else if(label == "Lead time vs Throughput") {
+            return "label-yellow"
         } else {
             return "label-default";
         }
