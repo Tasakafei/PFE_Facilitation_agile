@@ -18,6 +18,7 @@ app.controller('importationCtrl', function ($scope,$http) {
         var lecture = new FileReader();
         lecture.onloadend = function (evenement) {
             var donnees = evenement.target.result;
+
 //traitement
             console.log(donnees);
         }
