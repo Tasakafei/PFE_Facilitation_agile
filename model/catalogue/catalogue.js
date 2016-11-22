@@ -7,12 +7,14 @@
 var mongoose = require('mongoose');
 require('./schemas/workshop');
 var Workshop = mongoose.model('Workshop');
+var ObjectID = require('mongodb').ObjectID;
 
 var Promise = require('promise');
 
 module.exports = {
     saveWorkshop: saveWorkshopFct,
-    getWorkshops: getWorkshopsFct
+    getWorkshops: getWorkshopsFct,
+    getWorkshop: getWorkshopFct
 };
 
 function saveWorkshopFct (workshop) {
@@ -24,8 +26,6 @@ function saveWorkshopFct (workshop) {
                 console.log(err);
                 reject(err);
             }else {
-
-                console.log("succ");
                 resolve(data);
             }
         })
@@ -35,9 +35,16 @@ function saveWorkshopFct (workshop) {
 function getWorkshopsFct () {
     return new Promise(function (resolve, reject) {
         Workshop.find({}, function(req, res) {
-            console.log(res);
             resolve(res);
         });
     })
 }
 
+function getWorkshopFct (id) {
+    return new Promise(function (resolve, reject) {
+        var object = new ObjectID(id);
+        Workshop.find({_id: object}, function(req, res) {
+            resolve(res);
+        });
+    })
+}

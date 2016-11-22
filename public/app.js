@@ -26,6 +26,10 @@ app.config(['$routeProvider', function($routeProvider) {
           templateUrl: "feedBack.html"
 
       })
+      .when("/catalogue/:catalogueId", {
+          templateUrl: "components/workshop/workshop.html",
+          controller: "workshopCtrl"
+      })
       .otherwise({
           redirectTo: '/'
       });

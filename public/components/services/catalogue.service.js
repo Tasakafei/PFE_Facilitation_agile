@@ -17,9 +17,21 @@ app.service('CatalogueDataProvider', function ($http) {
             // With the data succesfully returned, call our callback
             callbackFunc(data);
         }).error(function(){
-            alert("error");
+            alert("error : echec de la récupération du catalogue !");
         });
-    }
+    };
 
+
+    delete $http.defaults.headers.common['X-Requested-With'];
+    this.getWorkshop = function(idWorkshop, callbackFunc) {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/v1/catalogue/'+idWorkshop
+        }).success(function(data) {
+            callbackFunc(data)
+        }).error(function() {
+            alert("error : workshop inexistant !")
+        })
+    };
 });
 
