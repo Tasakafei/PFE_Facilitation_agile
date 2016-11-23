@@ -12,8 +12,16 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
     $scope.workshop = "";
     var currentId = $routeParams.catalogueId;
         CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
-            $scope.workshop = dataResponse.data[0];
 
+            /*
+            for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
+                console.log(dataResponse.data[0].content.steps[i].description);
+                dataResponse.data[0].content.steps[i].description = dataResponse.data[0].content.steps[i].description.replace("--", "<li>");
+                dataResponse.data[0].content.steps[i].description = dataResponse.data[0].content.steps[i].description.replace("$$", "<ul>");
+            }
+            */
+
+            $scope.workshop = dataResponse.data[0];
         });
 
     $scope.getLabelColor = function (label) {
@@ -58,3 +66,9 @@ app.controller('CommenterCtrl', function ($scope,$http) {
 
 });
 
+
+app.filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }]);
