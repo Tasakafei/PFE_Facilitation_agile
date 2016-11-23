@@ -41,6 +41,10 @@ app.controller('detailCtrl', function ($scope,$http) {
     $scope.count = 0;
     $scope.voter = function () {
         $scope.count++;
+        if($scope.count > 5){
+            $scope.count = 5 ;
+        }
+
     }
 
 
