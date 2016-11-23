@@ -5,7 +5,7 @@
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
 
-var app = angular.module('facilitation.catalogue.dataProvider', []);
+var app = angular.module('facilitation');
 app.service('CatalogueDataProvider', function ($http) {
 
     delete $http.defaults.headers.common['X-Requested-With'];

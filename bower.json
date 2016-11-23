@@ -1,0 +1,20 @@
+{
+  "name": "pfe_facilitation",
+  "description": "PFE",
+  "main": "",
+  "authors": [
+    "Alexandre CAZALA <alexandre.cazala@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Trigunale/PFE_Facilitation_agile",
+  "dependencies": {
+    "angular-http-auth": "*"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

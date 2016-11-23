@@ -6,7 +6,7 @@
  ***********************************************/
 'use strict';
 
-var app = angular.module('facilitation.catalogue');
+var app = angular.module('facilitation');
 
 app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routeParams) {
     $scope.workshop = "";

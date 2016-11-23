@@ -6,10 +6,7 @@
  ***********************************************/
 'use strict';
 
-var app = angular.module('facilitation.catalogue', [
-    'ngRoute',
-    'facilitation.catalogue.dataProvider'
-]);
+var app = angular.module('facilitation');
 
 app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
 
