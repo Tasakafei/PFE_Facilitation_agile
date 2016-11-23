@@ -23,6 +23,10 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         console.log(msg);
     });
 
+    socket.on('start_timer', function(){
+        $scope.startTimer(30);
+    });
+
     var timer;
     $scope.startTimer = function (timeAmount) {
         if(angular.isDefined(timer)) return;

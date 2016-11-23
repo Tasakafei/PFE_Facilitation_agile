@@ -8,7 +8,10 @@
   "license": "MIT",
   "homepage": "https://github.com/Trigunale/PFE_Facilitation_agile",
   "dependencies": {
-    "angular-http-auth": "*"
+    "angular-http-auth": "*",
+    "humanize-duration": "^3.9.1",
+    "angularjs-humanize-duration": "^0.1.0",
+    "moment": "^2.17.0"
   },
   "ignore": [
     "**/.*",
@@ -16,5 +19,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "humanize-duration": "~3.3.0"
+  }
 }

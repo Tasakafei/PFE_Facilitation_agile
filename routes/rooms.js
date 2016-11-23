@@ -29,5 +29,14 @@ module.exports = function (io) {
             io.to(room).emit('stop_timer');
         });
 
+        socket.on('test_com', function(message){
+            console.log('Testing socket');
+            socket.emit('test_com',message);
+        });
+
+        socket.on('disconnect', function () {
+            console.log('socket disconnected');
+        });
+
     });
 };
