@@ -44,6 +44,14 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
     };
 });
 
+/* To interpret HTML balise in JSON */
+app.filter('to_trusted', ['$sce', function($sce){
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    };
+}]);
+
+/*
 app.controller('detailCtrl', function ($scope,$http) {
 
     $scope.count = 0;
@@ -52,23 +60,15 @@ app.controller('detailCtrl', function ($scope,$http) {
         if($scope.count > 5){
             $scope.count = 5 ;
         }
-
     }
-
 });
 
 app.controller('CommenterCtrl', function ($scope,$http) {
     $scope.showMe = false;
     $scope.commenter =function(){
         $scope.showMe = !$scope.showMe;
-
     }
-
-
 });
+*/
 
-app.filter('to_trusted', ['$sce', function($sce){
-        return function(text) {
-            return $sce.trustAsHtml(text);
-        };
-    }]);
+

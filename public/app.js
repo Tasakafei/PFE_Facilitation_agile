@@ -20,8 +20,8 @@ app.config(['$routeProvider', function($routeProvider) {
           templateUrl: "components/catalogue/catalogue.html",
           controller: "catalogueCtrl"
       })
-      .when("/feedBack", {
-          templateUrl: "feedBack.html"
+      .when("/feedback", {
+          templateUrl: "components/feedback/feedback.html"
 
       })
       .when("/catalogue/:catalogueId", {
