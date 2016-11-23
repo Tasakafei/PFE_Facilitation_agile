@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var WorkshopSchema = new mongoose.Schema({
     title: String,
     author: String,
+    photo : String,
     workshop_type: {type: String, default: "Production"},
     goals: [String],
     participants_max: {type: Number, default: -1},
@@ -29,7 +30,7 @@ var WorkshopSchema = new mongoose.Schema({
         source: {type: String, default: null},
         folklore: {type: String, default:null},
         educational_aims: [String],
-        equipment: [String],
+        equipment: String,
         logistics: [String],
         participants_profil: [String]
     }

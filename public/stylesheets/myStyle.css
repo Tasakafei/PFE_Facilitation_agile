@@ -20,6 +20,28 @@ body {
 }
 
 /* --------- Basic --------- */
+
+.label-purple {
+    background-color: #9b59b6;
+}
+.label-yellow {
+    background-color: #FFFF9D;
+    color: #000;
+}
+.label-green {
+    background-color: #79BD8F;
+    color: #000;
+}
+.label-green2 {
+    background-color: #BEEB9F;
+    color: #000;
+}
+.label-green3 {
+    background-color: #00A388;
+}
+.label-success {
+    color: #000;
+}
 .add-padding {
     padding-left: 15px !important;
     padding-right: 15px !important;
