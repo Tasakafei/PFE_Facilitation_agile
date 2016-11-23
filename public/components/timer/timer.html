@@ -1,7 +1,17 @@
 <div class="container" ng-controller="timerCtrl">
-    <timer id="timer" interval="1000" countdown="30">
+    <!--<timer id="timer" interval="1000" countdown="30">
         {{hours}} hour{{hoursS}}, {{minutes}} minute{{minutesS}}, {{seconds}} second{{secondsS}}.
     </timer>
     <br />
     <button ng-click="startTimer()">APAMÉ</button>
+
+    <span countdown="" date="January 1, 2017 12:00:00">&nbsp;</span>-->
+
+    {{humanizeDurationTimer(countDown,'s')}}
+
+    <br />
+    <button ng-click="startTimer(30)">Start your timer bro</button>
+    <button ng-click="joinRoom()">Connect to room</button>
+    <button ng-click="leaveRoom()">Leave room</button>
+
 </div>
