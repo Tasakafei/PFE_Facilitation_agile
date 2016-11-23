@@ -13,7 +13,7 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: "home.html"
       })
       .when("/importer", {
-          templateUrl: "importer.html",
+          templateUrl: "components/importer/importer.html",
           controller:"importationCtrl"
       })
       .when("/catalogue", {
