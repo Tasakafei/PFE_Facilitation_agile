@@ -1,0 +1,58 @@
+{
+  "title": "The Ball Flow Game",
+  "author": "Sébastien Mosser",
+  "photo": "http://users.polytech.unice.fr/~sl200103/atelier2.jpg",
+  "time_max": 60,
+  "synopsis" : "Les participants sont des mages, qui doivent enchanter des balles avant qu’elles ne soient vendue sur le chemin de traverse. On doit fabriquer des lots de 20 balles. Pour enchanter une balle, il suffit que chaque mage de l’équipe lui apporte un peu de sa magie, en la touchant.",
+  "content" : {
+    "steps": [
+      {
+        "title": "Intro",
+        "description": "Présenter le folklore de l’atelier, les notions travaillées, pourquoi c’est important dans leur projet. Parler du fait que l’atelier est une métaphore, qu’ils retireront de cet atelier ce qu’ils auront investi dedans.",
+        "timing": 0,
+        "duration": 5
+      },
+      {
+        "title": "Round #1",
+        "description": "<ul><li>Laisser l’équipe s’auto-organiser (2 minutes)</li> <li>Lancer le chrono du round dans le fichier Excel</li> <li>Donner les balles une par une au participant jouant l’elfe</li> <ul><li>Celui-ci dit “IN” quand il envoi une balle dans le flow</li> <li>Il dit “OUT” quand il ressort une balle du flow</li></ul> <li>Quand les 20 balles sont passées, on arrête le chrono</li> <li>Regarder les métriques (lead time et cumulative flow) avec le groupe.</li></ul>",
+        "timing": 5,
+        "duration": 10
+      },
+      {
+        "title": "Round #2",
+        "description": "<ul><li>Laisser quelques minutes pour s’auto-organiser. Identifier les hypothèses faite pour s’améliorer, et l’effet attendu sur les métriques</li> <li>Rejouer le round comme précédemment</li></ul>",
+        "timing": 15,
+        "duration": 8
+      },
+      {
+        "title": "Round #3",
+        "description": "<ul><li>Laisser quelques minutes pour s’auto-organiser. Identifier les hypothèses faite pour s’améliorer, et l’effet attendu sur les métriques</li> <li>Rejouer le round</li> <ul><li>Utiliser des balles exotiques au lieu de certaines balles utilisées classiquement. Des balles de golfs (qui ressemblent aux balles de ping pong).</li></ul></ul>",
+        "timing": 23,
+        "duration": 8
+      },
+      {
+        "title": "Round #4",
+        "description": "<ul><li>Laisser quelques minutes pour s’auto-organiser. Identifier les hypothèses faite pour s’améliorer, et l’effet attendu sur les métriques</li> <li>Rejouer le round</li> <ul><li>Utiliser des mini-ballons pour représenter des demandes urgentes du client.</li></ul></ul>",
+        "timing": 29,
+        "duration": 8
+      },
+      {
+        "description": "<b>Si le temps le permet ajouter une 5ème itération (ça dépend des équipes)</b>"
+      },
+      {
+        "title": "Débrief",
+        "description": "<ul><li>Quel lien avec un vrai projet de développement ?</li> <li>Changement de type de balle ?</li> <li>Lean time contre iteration time ? Comment limiter le WiP ?</li> <li>Intégration des demandes urgente du client dans le dèv ?</li> <li>Amélioration continue sur les itérations ?</li> <li>Lien entre balle et tâche ?</li> <li>Lot et itération ?</li></ul>",
+        "timing": 37,
+        "duration": 15
+      },
+      {
+        "description": "<b>Fin de l’atelier</b>",
+        "timing": 52
+      }
+    ],
+    "source": "http://availagility.co.uk/2011/07/19/running-the-ball-flow-game/",
+    "folklore": "Les participants sont des mages, qui doivent enchanter des balles avant qu’elles ne soient vendue sur le chemin de traverse. <b>On doit fabriquer des lots de 20 balles.</b> Pour enchanter une balle, il suffit que chaque mage de l’équipe lui apporte un peu de sa magie, en la touchant. Mais la magie est régi par des règles immuables: <ul><li>si deux mages touchent la balle en même temps, elle perd tout enchantement;</li> <li>si deux mages côte à côte se passent une balle directement, leurs champs électro-magnético-magiques s’annulent et la balle est immédiatement désenchantée, il faut recommencer tout le processus;</li> <li>Pour entrer et sortir du processus d’enchantement, un elfe donne la balle au premier mage et la récupère après que le dernier l’ait enchanté. </li></ul><b>L’objectif n’est pas de traiter le plus de balles possible dans un temps donné, mais bien de traiter des lots de 20 balles. C’est le temps de traitement d’une balle qui nous intéresse, pas le temps de traitement du lot.</b>",
+    "educational_aims" : ["Amélioration continue", "TaF - WiP", "Lead time vs Throughput"],
+    "equipment": "<ul><li>Salle vide (en tout cas avec de la place)</li> <li>~16 participants par atelier</li> <li>20 balles de ping pong par groupe</li> <li>Quelques balles exotiques (golf, mini-ballon de basket, boule de pétanque)</li> <li>Un bac pour stocker les balles une fois enchantées</li> <li>un ordinateur portable avec le fichier excel de suivi (macros activées)</li> <ul><li>Ctrl-B: démarre le chrono du round courant</li> <li>Ctrl-I: capture l’entrée d’une balle dans l’équipe</li> <li>Ctrl-O: capture la sortie d’une balle de l’équipe</li> <li>Ctrl-E: arrête le chrono du round courant</li></ul></ul>"
+  }
+}
