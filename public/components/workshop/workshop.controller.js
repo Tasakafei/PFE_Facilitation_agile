@@ -47,6 +47,14 @@ app.controller('detailCtrl', function ($scope,$http) {
 
     }
 
+});
+app.controller('CommenterCtrl', function ($scope,$http) {
+    $scope.showMe = false;
+    $scope.commenter =function(){
+        $scope.showMe = !$scope.showMe;
+
+    }
+
 
 });
 
