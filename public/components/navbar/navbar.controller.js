@@ -30,9 +30,19 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
                 if (!err) {
                     $location.path('/');
+
+                    $scope.$emit('notify', {
+                        type: 'success',
+                        title: 'Vous avez bien été connecté !',
+                    });
                 } else {
                     angular.forEach(err.errors, function(error, field) {
                         console.log("ERROR : " + error + " : "+ field);
+
+                        $scope.$emit('notify', {
+                            type: 'error',
+                            title: 'Impossible de se connecter.',
+                        });
                     })
                 }
             });
@@ -49,10 +59,21 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
                 if (!err) {
                     $location.path('/');
+
+                    $scope.$emit('notify', {
+                        type: 'success',
+                        title: 'Votre compte a bien été créé.',
+                    });
+
                 } else {
                     angular.forEach(err.errors, function(error, field) {
                         console.log("ERROR : " + error + " : "+ field);
                     })
+
+                    $scope.$emit('notify', {
+                        type: 'error',
+                        title: 'Votre compte n\'a pas pu être créé.',
+                    });
                 }
             }
         );
@@ -62,13 +83,14 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
         Auth.logout(function(err) {
             if(!err) {
                 $location.path('/');
+
+                $scope.$emit('notify', {
+                    type: 'info',
+                    title: 'Déconnecté !',
+                });
             }
         });
     }
 });
-
-
-
-
 
 
