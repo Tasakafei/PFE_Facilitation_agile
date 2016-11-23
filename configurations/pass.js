@@ -13,10 +13,12 @@ var mongoose = require('mongoose'),
 
 // Serialize sessions
 passport.serializeUser(function(user, done) {
+    console.log("==================== SERIALIZEUSER ====================");
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
+    console.log("==================== DESERIALIZEUSER ====================");
     User.findOne({ _id: id }, function (err, user) {
         done(err, user);
     });

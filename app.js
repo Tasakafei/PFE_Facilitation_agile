@@ -6,12 +6,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+
 var LocalStrategy = require('passport-local').Strategy;
 
-var users = require('./routes/users');
-var catalogue = require('./routes/catalogue');
 
 require('./model/mongo_connection');
+require('./model/account/user');
+var pass = require('./configurations/pass');
+var users = require('./routes/users');
+var catalogue = require('./routes/catalogue');
 var app = express();
 
 
@@ -28,26 +31,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/')));
 
-app.use('/users', users);
-
-app.use('/api/v1/catalogue', catalogue);
-// catch 404 and forward to error handler
-
 // required for passport
 app.use(require('express-session')({
-  secret: 'keyboard cat',
+  secret: 'MEAN',
   resave: false,
   saveUninitialized: false
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-// Passport config
-var Account = require('./model/account/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+app.use('/auth', users);
 
+app.use('/api/v1/catalogue', catalogue);
+// catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

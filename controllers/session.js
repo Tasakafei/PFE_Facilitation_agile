@@ -26,7 +26,7 @@ exports.logout = function (req, res) {
         req.logout();
         res.send(200);
     } else {
-        res.send(400, "Not logged in");
+        res.status(400).send("Not logged in");
     }
 };
 
@@ -35,6 +35,7 @@ exports.logout = function (req, res) {
  *  requires: {email, password}
  */
 exports.login = function (req, res, next) {
+    console.log("yoooo");
     passport.authenticate('local', function(err, user, info) {
         var error = err || info;
         if (error) { return res.json(400, error); }
