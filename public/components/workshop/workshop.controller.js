@@ -56,6 +56,8 @@ app.controller('detailCtrl', function ($scope,$http) {
     }
 
 });
+
+
 app.controller('CommenterCtrl', function ($scope,$http) {
     $scope.showMe = false;
     $scope.commenter =function(){
@@ -65,6 +67,11 @@ app.controller('CommenterCtrl', function ($scope,$http) {
 
 
 });
+
+
+
+
+
 
 
 app.filter('to_trusted', ['$sce', function($sce){
