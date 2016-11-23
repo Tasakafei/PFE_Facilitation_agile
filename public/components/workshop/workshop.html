@@ -8,7 +8,7 @@
         <div class="col-xs-12 no-padding">
             <!-- image -->
             <div class="col-xs-12 col-sm-5">
-                <img class="img-responsive center-block" src="img/img.jpg">
+                <img class="img-responsive center-block" src="{{workshop.photo}}">
             </div>
             <!-- Info atelier -->
             <div class="col-xs-12 col-sm-7">
@@ -38,7 +38,7 @@
                 <div ng-bind-html="workshop.content.equipment | to_trusted"></div>
             </div>
             <!-- Conducteur -->
-            <td class="col-xs-12" >
+            <div class="col-xs-12" >
                 <h4>Conducteur de l'atelier</h4>
                 <table class="table table-bordered table-striped">
                     <colgroup>

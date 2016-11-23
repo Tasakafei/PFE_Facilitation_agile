@@ -1,6 +1,7 @@
 {
   "title": "The Ball Flow Game",
   "author": "Sébastien Mosser",
+  "photo": "http://users.polytech.unice.fr/~sl200103/atelier2.jpg",
   "time_max": 60,
   "synopsis" : "Les participants sont des mages, qui doivent enchanter des balles avant qu’elles ne soient vendue sur le chemin de traverse. On doit fabriquer des lots de 20 balles. Pour enchanter une balle, il suffit que chaque mage de l’équipe lui apporte un peu de sa magie, en la touchant.",
   "content" : {
