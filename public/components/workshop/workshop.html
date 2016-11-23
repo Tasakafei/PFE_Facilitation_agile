@@ -28,19 +28,17 @@
             <!-- Description -->
             <div class="col-xs-12" >
                 <h4>Description de l'atelier</h4>
-                <p class="text-justify">
-                    {{workshop.content.folklore}}
+                <p class="text-justify" ng-bind-html="workshop.content.folklore | to_trusted">
+
                 </p>
             </div>
             <!-- Materiel -->
             <div class="col-xs-12">
                 <h4>Matériel & Setup de la salle</h4>
-                <ul>
-                    <li ng-repeat="equipment in workshop.content.equipment">{{equipment}}</li>
-                </ul>
+                <div ng-bind-html="workshop.content.equipment | to_trusted"></div>
             </div>
             <!-- Conducteur -->
-            <div class="col-xs-12" >
+            <td class="col-xs-12" >
                 <h4>Conducteur de l'atelier</h4>
                 <table class="table table-bordered table-striped">
                     <colgroup>
@@ -57,7 +55,7 @@
                         <tr ng-repeat="step in workshop.content.steps">
                             <td class="text-center">{{step.timing}}</td>
                             <td class="text-center">{{step.title}}<br />{{step.duration}} minutes</td>
-                            <td>{{step.description}}</td>
+                            <td ng-bind-html="step.description | to_trusted"></td> <!-- ng-bind-html="step.description | to_trusted" -->
                         </tr>
                 </tbody> </table>
             </div>

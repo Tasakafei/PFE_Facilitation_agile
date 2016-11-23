@@ -12,9 +12,6 @@ app.config(['$routeProvider', function($routeProvider) {
       .when("/", {
         templateUrl: "home.html"
       })
-      .when("/detail", {
-          templateUrl: "detail.html"
-      })
       .when("/importer", {
           templateUrl: "importer.html",
           controller:"importationCtrl"
