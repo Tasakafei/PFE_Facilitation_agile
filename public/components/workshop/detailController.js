@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by user on 23/11/16.
- */
+ *!/
 
 app.controller('detailCtrl', function ($scope,$http) {
 
@@ -10,4 +11,4 @@ app.controller('detailCtrl', function ($scope,$http) {
     }
 
 
-});
+});*/

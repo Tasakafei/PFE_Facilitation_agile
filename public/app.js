@@ -13,8 +13,8 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: "home.html"
       })
       .when("/detail", {
-          templateUrl: "detail.html",
-          controller:"detailCtrl"
+          templateUrl: "detail.html"
+          //controller:"detailCtrl"
       })
       .when("/importer", {
           templateUrl: "importer.html",

@@ -36,3 +36,13 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
     };
 });
 
+app.controller('detailCtrl', function ($scope,$http) {
+
+    $scope.count = 0;
+    $scope.voter = function () {
+        $scope.count++;
+    }
+
+
+});
+
