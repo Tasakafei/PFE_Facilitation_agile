@@ -69,7 +69,7 @@ body {
 a {
     color: #333;
 }
-a:hover {
+a:focus, a:hover {
     color: #333;
 }
 @media (max-width: 991px) {

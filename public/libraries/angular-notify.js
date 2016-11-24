@@ -28,9 +28,11 @@ AngularNotifyModule.directive('notifybar', [
 					title.innerHTML = notifyData.title;
 					notifyContainer.appendChild(title);
 					if( typeof notifyData.content == 'string' && notifyData.content.length !== 0 ){
-						var content = document.createElement('p');
+						var content = document.createElement('a');
 						content.className += ' content';
-						content.innerHTML = notifyData.content;
+						content.setAttribute('href', notifyData.content);
+						content.innerHTML = '<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>  Lien vers votre atelier';
+
 						notifyContainer.appendChild(content);
 					}
 					var closeBtn = document.createElement('button');
