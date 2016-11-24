@@ -30,7 +30,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 $scope.errors = {};
 
                 if (!err) {
-                    $location.path('/');
+                    //$location.path('/');
 
                     $scope.$emit('notify', {
                         type: 'success',
@@ -60,7 +60,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 $scope.errors = {};
 
                 if (!err) {
-                    $location.path('/');
+                    //$location.path('/');
 
                     $scope.$emit('notify', {
                         type: 'success',
@@ -85,7 +85,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
     function logOutFct() {
         Auth.logout(function(err) {
             if(!err) {
-                $location.path('/');
+                //$location.path('/');
 
                 $scope.$emit('notify', {
                     type: 'info',

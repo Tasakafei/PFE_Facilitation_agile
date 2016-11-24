@@ -72,6 +72,9 @@ a {
 a:focus, a:hover {
     color: #333;
 }
+a:hover {
+    cursor: pointer;
+}
 @media (max-width: 991px) {
     .padding-t-sm {
         padding-top: 22px !important;

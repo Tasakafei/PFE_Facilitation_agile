@@ -12,10 +12,13 @@
             </div>
             <!-- Info atelier -->
             <div class="col-xs-12 col-sm-7">
-                <div class="col-xs-9 no-padding">
+                <div class="col-xs-12 no-padding hidden-sm text-center padding-t">
+                    <button type="button" class="btn btn-default favorite" ng-click="addToFavorite()">Ajouter aux favoris</button>
+                </div>
+                <div class="col-xs-12 col-sm-8 no-padding">
                     <h4>Informations pratiques</h4>
                 </div>
-                <div class="col-xs-3 no-padding-r text-right">
+                <div class="col-sm-4 no-padding-r text-right hidden-xs">
                     <button type="button" class="btn btn-default favorite" ng-click="addToFavorite()">Ajouter aux favoris</button>
                 </div>
                 <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label {{getLabelColor(category)}}">{{category}}</span>

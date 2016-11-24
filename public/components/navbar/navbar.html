@@ -22,8 +22,8 @@
                     <li ng-class="{ active: isActive('/feedback')}"><a href="#/feedback">Feedback</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-hide="currentUser"><a href="#/" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-user"></span> S'incrire</a></li>
-                    <li ng-hide="currentUser"><a href="#/" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+                    <li ng-hide="currentUser"><a data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-user"></span> S'incrire</a></li>
+                    <li ng-hide="currentUser"><a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
                     <li class="dropdown" ng-show="currentUser">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> {{currentUser.username}}
@@ -32,7 +32,7 @@
                             <li><a href="#/profile">Profile <i class="pull-right fa fa-wrench"></i></a></li>
                             <li><a href="#/favorites">Playlists <i class="pull-right fa fa-list"></i></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#/" ng-click="logOut()">Sign out <i class="pull-right fa fa-sign-out"></i></a></li>
+                            <li><a ng-click="logOut()">Sign out <i class="pull-right fa fa-sign-out"></i></a></li>
                         </ul>
                     </li>
                 </ul>
