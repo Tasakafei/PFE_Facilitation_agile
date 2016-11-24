@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha"
+    "test": "mocha",
+    "postinstall": "bower install"
   },
   "dependencies": {
     "Promise": "^1.0.5",
