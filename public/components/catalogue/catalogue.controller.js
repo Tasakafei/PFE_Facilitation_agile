@@ -41,6 +41,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
 
         });
 
+
     };
 });
 
