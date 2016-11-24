@@ -91,6 +91,10 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
             }
         });
     }
+
+    $scope.isActive = function (viewLocation) {
+        return viewLocation === $location.path();
+    };
 });
 
 

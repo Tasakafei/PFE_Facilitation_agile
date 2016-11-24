@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 // Workshop
 var WorkshopSchema = new mongoose.Schema({
     title: String,
-    author: String,
+    author: {type: String, default: "Anonyme"},
     photo : String,
     workshop_type: {type: String, default: "Production"},
     goals: [String],
@@ -27,10 +27,10 @@ var WorkshopSchema = new mongoose.Schema({
             timing: Number,
             duration: Number
         }],
-        source: {type: String, default: null},
+        source: {type: String, default: "Aucune source"},
         folklore: {type: String, default:null},
         educational_aims: [String],
-        equipment: String,
+        equipment: {type: String, default: "Aucun équipement requis"},
         logistics: [String],
         participants_profil: [String]
     }

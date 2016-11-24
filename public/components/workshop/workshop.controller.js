@@ -13,13 +13,20 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
     var currentId = $routeParams.catalogueId;
         CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
-            /*
+
             for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
-                console.log(dataResponse.data[0].content.steps[i].description);
-                dataResponse.data[0].content.steps[i].description = dataResponse.data[0].content.steps[i].description.replace("--", "<li>");
-                dataResponse.data[0].content.steps[i].description = dataResponse.data[0].content.steps[i].description.replace("$$", "<ul>");
+                if(dataResponse.data[0].content.steps[i].duration)
+                    dataResponse.data[0].content.steps[i].duration = dataResponse.data[0].content.steps[i].duration + " minutes";
+
+                if(dataResponse.data[0].content.steps[i].timing) {
+                    var d = new Date(dataResponse.data[0].content.steps[i].timing * 60000); //en miniseconde
+                    var time = d.toUTCString().split(" ")
+                    time = time[4].split(":")
+
+                    dataResponse.data[0].content.steps[i].timing =  time[0]+":"+time[1];
+                }
             }
-            */
+
 
             $scope.workshop = dataResponse.data[0];
         });

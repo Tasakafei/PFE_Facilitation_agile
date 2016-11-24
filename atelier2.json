@@ -37,7 +37,7 @@
         "duration": 8
       },
       {
-        "description": "<b>Si le temps le permet ajouter une 5ème itération (ça dépend des équipes)</b>"
+        "description": "<center><b>Si le temps le permet ajouter une 5ème itération (ça dépend des équipes)</b></center>"
       },
       {
         "title": "Débrief",
@@ -46,7 +46,7 @@
         "duration": 15
       },
       {
-        "description": "<b>Fin de l’atelier</b>",
+        "description": "<center><b>Fin de l’atelier</b></center>",
         "timing": 52
       }
     ],

@@ -54,8 +54,8 @@
                     </thead> <tbody>
                         <tr ng-repeat="step in workshop.content.steps">
                             <td class="text-center">{{step.timing}}</td>
-                            <td class="text-center">{{step.title}}<br />{{step.duration}} minutes</td>
-                            <td ng-bind-html="step.description | to_trusted"></td> <!-- ng-bind-html="step.description | to_trusted" -->
+                            <td class="text-center">{{step.title}}<br />{{step.duration}}</td>
+                            <td ng-bind-html="step.description | to_trusted"></td>
                         </tr>
                 </tbody> </table>
             </div>
