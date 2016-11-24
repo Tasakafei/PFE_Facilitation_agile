@@ -9,9 +9,10 @@ app.controller('importationCtrl', function ($scope,$http) {
         var lecture = new FileReader();
         lecture.onloadend = function (evenement) {
             var donnees = evenement.target.result;
+            var type = fichier.name.split(".");
 
             //Check if the file is a JSON
-            if(fichier.type == "application/json") {
+            if(type[1] == "json") {
 
                 var data = JSON.parse(donnees);
 
