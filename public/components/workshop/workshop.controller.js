@@ -60,15 +60,31 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
     }
 
     function addToFavoriteFct() {
-        var res = FavoriteWorkshops.addToFavoriteWorkshops($scope.currentUser.username, currentId);
-        res.success(function(data, status, headers, config) {
+
+        if($scope.currentUser) {
+            var res = FavoriteWorkshops.addToFavoriteWorkshops($scope.currentUser.username, currentId);
+            res.success(function (data, status, headers, config) {
                 $scope.message = data;
-                console.log(data);
-                alert("Success");
-        });
-        res.error(function(data, status, headers, config) {
-            alert( "failure message: " + JSON.stringify({data: data}));
-        });
+
+                $scope.$emit('notify', {
+                    type: 'success',
+                    title: 'L\'atelier a bien été ajouté.',
+                });
+            });
+            res.error(function (data, status, headers, config) {
+
+                $scope.$emit('notify', {
+                    type: 'error',
+                    title: 'L\'atelier n\'a pas pu être ajouté.',
+                });
+            });
+        }
+        else {
+            $scope.$emit('notify', {
+                type: 'info',
+                title: 'Vous devez être connecté.',
+            });
+        }
     }
 
 });
