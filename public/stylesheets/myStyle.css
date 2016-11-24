@@ -168,3 +168,17 @@ p.workshopTitle {
 span.label {
     margin-right: 2px;
 }
+
+/* Form dropdown */
+/*
+select {
+    background-image: url(../img/dropdown.png) !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-size: 11px;
+    background-position-x: calc(100% - 10px);
+}
+*/
