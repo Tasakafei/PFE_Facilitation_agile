@@ -168,7 +168,12 @@ p.workshopTitle {
 span.label {
     margin-right: 2px;
 }
-
+a:focus.link, a:hover.link {
+    color: #23527c;
+}
+a.link {
+    color: #337ab7;
+}
 /* Form dropdown */
 /*
 select {
