@@ -13,6 +13,7 @@ var LocalStrategy = require('passport-local').Strategy;
 require('./model/mongo_connection');
 require('./model/account/user');
 var pass = require('./configurations/pass');
+var auth = require('./routes/auth');
 var users = require('./routes/users');
 var catalogue = require('./routes/catalogue');
 var app = express();
@@ -40,7 +41,8 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-app.use('/auth', users);
+app.use('/auth', auth);
+app.use('/users', users);
 
 app.use('/api/v1/catalogue', catalogue);
 // catch 404 and forward to error handler

@@ -45,33 +45,33 @@
 
 <!-- Modal -->
 <!-- Connexion -->
-<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
-    <!--<div class="modal-dialog" role="document">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-                <!--<h4 class="modal-title" id="myModalLabel">Se connecter</h4>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-                <!--<div class="row">-->
-                    <!--<form class="form-horizontal col-xs-10 col-xs-offset-1">-->
-                        <!--<div class="form-group">-->
-                            <!--<input type="text" class="form-control" id="userName" ng-model="username" placeholder="Nom utilisateur">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<input type="password" class="form-control" id="mdp" ng-model="password" placeholder="Mot de passe">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<div class="col-xs-12 text-center">-->
-                                <!--<a href="#" type="button" class="btn btn-default" data-dismiss="modal">Connexion</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</form>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Se connecter</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal col-xs-10 col-xs-offset-1">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="userName" ng-model="user.email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="mdp" ng-model="user.password" placeholder="Mot de passe">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12 text-center">
+                                <a href="#" type="button" class="btn btn-default" data-dismiss="modal" ng-click="logIn()">Connexion</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Inscription -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

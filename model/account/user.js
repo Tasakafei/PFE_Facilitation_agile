@@ -6,9 +6,9 @@
  ***********************************************/
 'use strict';
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    crypto = require('crypto');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var crypto = require('crypto');
 
 var UserSchema = new Schema({
     email: {
@@ -26,7 +26,15 @@ var UserSchema = new Schema({
     name: String,
     admin: Boolean,
     guest: Boolean,
-    provider: String
+    provider: String,
+    workshops_favorites: [{
+        added_at: Date,
+        favorite: {
+            type: Schema.ObjectId,
+            ref: 'Workshop',
+            required: true
+        }
+    }]
 });
 
 /**
@@ -65,8 +73,10 @@ UserSchema.path('email').validate(function (email) {
 UserSchema.path('email').validate(function(value, respond) {
     mongoose.models["User"].findOne({email: value}, function(err, user) {
         if(err) throw err;
+        console.log("=======================");
         if(user) return respond(false);
         respond(true);
+
     });
 }, 'The specified email address is already in use.');
 
@@ -83,6 +93,11 @@ UserSchema.path('username').validate(function(value, respond) {
  */
 
 UserSchema.pre('save', function(next) {
+    console.log("===============================");
+    console.log("===============================");
+    console.log("===============================");
+    console.log("===============================");
+    console.log("===============================");
     if (!this.isNew) {
         return next();
     }
@@ -125,7 +140,16 @@ UserSchema.methods = {
         if (!password || !this.salt) return '';
         var salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
-    }
+    },
+
+    addToFavorite: function(workshopId) {
+        mongoose.models["Workshop"].findOne({_id: ObjectId(workshop) }, function(err, workshop) {
+            if(err) throw err;
+            if(workshop) {
+                this.workshops_favorites.push(workshop._id);
+            }
+        });
+    },
 };
 
 mongoose.model('User', UserSchema);

@@ -22,6 +22,7 @@ exports.create = function (req, res, next) {
 
     newUser.save(function(err) {
         if (err) {
+            console.log(err);
             return res.status(400).json(err);
         }
 
@@ -71,4 +72,50 @@ exports.exists = function (req, res, next) {
             res.json({exists: false});
         }
     });
-}
+};
+
+exports.addToFavoriteWorkshops = function (req, res, next) {
+    var username = req.body.username;
+    var workshop = req.body.workshop;
+
+    User.findOneAndUpdate(
+        { username : username },
+        {
+            $push:
+            {"workshops_favorites":
+                {
+                    added_at: Date.now(),
+                    favorite: ObjectId(workshop)
+                }
+            }
+        },
+        { safe: true, new: true },
+        function(err, model) {
+            if (err) {
+                res.json({status: "error", data: err});
+            } else {
+                res.json({status: "success", data: "success"})
+            }
+        }
+    );
+};
+
+exports.getFavoriteWorkshops = function(req, res, next) {
+    console.log("===============================================");
+    console.log("===============================================");
+    var user = req.user;
+    console.log("===============================================");
+    console.log("===============================================");
+    console.log(user);
+    User.findOne({ _id : user._id }, function (err, user) {
+        if (err) {
+            return next(new Error('Failed to load User ' + username));
+        }
+
+        if(user) {
+            res.json(user.workshops_favorites);
+        } else {
+            res.json({exists: false});
+        }
+    });
+};
