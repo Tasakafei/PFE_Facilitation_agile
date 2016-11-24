@@ -34,6 +34,14 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         }
 
     };
+    $scope.rechercher=function(){
+        $scope.$emit('notify', {
+            type: 'success',
+            title: 'recherche en cours',
+
+        });
+
+    };
 });
 
 
