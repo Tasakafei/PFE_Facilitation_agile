@@ -13,14 +13,19 @@ app.controller('importationCtrl', function ($scope,$http) {
             var res = $http.post('/api/v1/catalogue', donnees);
             res.success(function(data, status, headers, config) {
                 $scope.message = data;
-                alert("Succes");
+
+                $scope.$emit('notify', {
+                    type: 'success',
+                    title: 'L\'atelier a bien été importé.',
+                });
             });
             res.error(function(data, status, headers, config) {
-                alert( "failure message: " + JSON.stringify({data: data}));
+                $scope.$emit('notify', {
+                    type: 'error',
+                    title: 'L\'atelier n\'a pas pu être importé.',
+                });
             });
         }
         lecture.readAsText(fichier, 'UTF-8')
     }
 });
-
-

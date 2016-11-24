@@ -7,6 +7,9 @@
 
     <title>My AngularJS App</title>
 
+    <!-- Notif -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/angular-notify-material.css" id="notifyTheme">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css" />
     <!-- <link rel="stylesheet" href="stylesheets/sandstone.css" /> -->
     <link rel="stylesheet" href="stylesheets/myStyle.css" />
@@ -16,6 +19,7 @@
   <body ng-controller="MainCtrl">
     <nav-bar></nav-bar>
 
+    <div notifybar style="position:absolute;top:0;right:0"></div>
     <div ng-view></div>
 
     <div class="footer text-center">
@@ -61,6 +65,8 @@
     <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
 
     <script src="libraries/jquery.min.js"></script>
+    <!-- https://github.com/cheiron1990/angular-notify -->
+    <script src="libraries/angular-notify.js"></script>
     <script src="libraries/bootstrap.js"></script>
 
     <script src="libraries/socket.io.min.js"></script>

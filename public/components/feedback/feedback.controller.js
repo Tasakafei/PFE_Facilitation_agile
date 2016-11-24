@@ -20,6 +20,12 @@ app.controller('feedbackCtrl', ['$scope', function($scope) {
             console.log($scope.com);
             $scope.com = '';
         }
+
+        $scope.$emit('notify', {
+            type: 'success',
+            title: 'Note envoyée !',
+        });
     };
 
 }]);
+
