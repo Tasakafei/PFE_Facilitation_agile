@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-cd ../configurations/env
+cd ../configurations/
 while read line;
 do export "$line";
-done < server.env
+done < env.env
 
 echo [SUCCESS] Environment variables exported !

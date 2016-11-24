@@ -7,8 +7,7 @@
   padding: 16px 16px 16px 0;
   margin: 16px;
   position: relative;
-  z-index: 999;
-  margin-top: 65px;}
+  z-index: 999;}
   .angular-notify .title {
     font-size: 16px;
     font-weight: 400;
@@ -136,6 +135,10 @@
           animation-direction: normal;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards; }
+
+.angular-notify:first-child {
+  margin-top: 65px;
+}
 
 @media (max-width: 768px) {
   .angular-notify {
