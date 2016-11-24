@@ -22,4 +22,6 @@ install:
   - npm install
 
 script:
+- cd scripts
+- . environment_variables_script.sh
 - npm test
