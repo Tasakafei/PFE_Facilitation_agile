@@ -19,6 +19,7 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
     // Scope methods
     $scope.getLabelColor = getLabelColorFct;
     $scope.addToFavorite = addToFavoriteFct;
+    $scope.addToInstances = addToInstancesFct;
 
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
@@ -61,25 +62,48 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
     function addToFavoriteFct() {
 
-        if($scope.currentUser) {
+        if ($scope.currentUser) {
             var res = FavoriteWorkshops.addToFavoriteWorkshops($scope.currentUser.username, currentId);
             res.success(function (data, status, headers, config) {
                 $scope.message = data;
-
                 $scope.$emit('notify', {
                     type: 'success',
-                    title: 'L\'atelier a bien été ajouté.',
+                    title: 'L\'atelier a bien été ajouté.'
                 });
             });
             res.error(function (data, status, headers, config) {
-
                 $scope.$emit('notify', {
                     type: 'error',
-                    title: 'L\'atelier n\'a pas pu être ajouté.',
+                    title: 'L\'atelier n\'a pas pu être ajouté.'
                 });
             });
+        } else {
+            $scope.$emit('notify', {
+                type: 'info',
+                title: 'Vous devez être connecté.'
+            });
         }
-        else {
+    }
+
+    function addToInstancesFct() {
+        if ($scope.currentUser) {
+        var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId);
+
+
+        res.success(function(data, status, headers, config) {
+            $scope.message = data;
+            $scope.$emit('notify', {
+                type: 'success',
+                title: 'L\'atelier a bien été ajouté.'
+            });
+        });
+        res.error(function(data, status, headers, config) {
+            $scope.$emit('notify', {
+                type: 'error',
+                title: 'L\'atelier n\'a pas pu être ajouté.'
+            });
+        });
+        } else {
             $scope.$emit('notify', {
                 type: 'info',
                 title: 'Vous devez être connecté.',

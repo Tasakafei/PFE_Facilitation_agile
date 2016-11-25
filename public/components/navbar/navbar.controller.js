@@ -34,7 +34,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
                     $scope.$emit('notify', {
                         type: 'success',
-                        title: 'Vous avez bien été connecté !',
+                        title: 'Vous avez bien été connecté !'
                     });
                 } else {
                     angular.forEach(err.errors, function(error, field) {
@@ -44,7 +44,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
                     $scope.$emit('notify', {
                         type: 'error',
-                        title: 'Impossible de se connecter.',
+                        title: 'Impossible de se connecter.'
                     });
                 }
             });

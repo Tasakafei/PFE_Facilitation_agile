@@ -39,8 +39,12 @@ app.config(function($routeProvider) {
           controller: "timerCtrl"
       })
       .when("/favoriteWorkshops", {
-          templateUrl: "components/favorite_workshops/favorite.html",
+          templateUrl: "components/favorite_workshops/favorite/favorite.html",
           controller: "favoriteCtrl"
+      })
+      .when("/instances", {
+          templateUrl: "components/favorite_workshops/menu/menu.html",
+          controller: "menuCtrl"
       })
       .otherwise({
           redirectTo: '/'
