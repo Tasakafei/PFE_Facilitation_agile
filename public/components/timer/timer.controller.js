@@ -3,9 +3,9 @@
  */
 'use strict';
 
-var app = angular.module('facilitation.timer', ['socketio.service']);
+var app = angular.module('facilitation.timer', ['socketio.service', 'timer.service']);
 
-app.controller('timerCtrl', function($scope, $interval, socket){
+app.controller('timerCtrl', function($scope, $interval, socket, TimerService){
 
     $scope.joinRoom = function(){
         socket.emit('join_room', 'roomTest');
@@ -41,66 +41,30 @@ app.controller('timerCtrl', function($scope, $interval, socket){
 
     // TODO : separate timer from socket events (using a service ?)
 
-    var timer, ispaused = false;
+    var ispaused = false;
     $scope.startTimer = function (timeAmount) {
         ispaused = false;
-        if(angular.isDefined(timer)) return;
-        $scope.countDown = timeAmount;
-        $scope.lastTimeAmount = timeAmount;
-        runTimer();
+        TimerService.startTimer(timeAmount);
     };
 
     $scope.pauseTimer = function () {
         ispaused = true;
-        stopTimer();
+        TimerService.stopTimer();
     };
 
     $scope.resumeTimer = function(){
         if(!ispaused) return;
         ispaused = false;
-        runTimer();
+        TimerService.runTimer();
     };
 
     $scope.resetTimer = function(){
         ispaused = false
-        stopTimer();
-        $scope.countDown = $scope.lastTimeAmount;
-        $scope.$apply();
-    };
-
-
-    function runTimer(){
-        timer = $interval(function(){
-            $scope.countDown--;
-            if($scope.countDown == 0) stopTimer();
-            $scope.$apply();
-        }, 1000);
-    };
-
-    function stopTimer() {
-        if (angular.isDefined(timer)) {
-            $interval.cancel(timer);
-            timer = undefined;
-        }
+        TimerService.resetTimer();
     };
 
     $scope.humanizeDurationTimer = function(input, units) {
-        // units is a string with possible values of y, M, w, d, h, m, s, ms
-        if (input == 0) {
-            return 0;
-        } else {
-            var duration = moment().startOf('day').add(input, units);
-            var format = "";
-            if (duration.hour() > 0) {
-                format += "H[h] ";
-            }
-            if (duration.minute() > 0) {
-                format += "m[m] ";
-            }
-            if (duration.second() > 0) {
-                format += "s[s] ";
-            }
-            return duration.format(format);
-        }
+        return TimerService.humanizeDurationTimer(input, units);
     };
+
 });
