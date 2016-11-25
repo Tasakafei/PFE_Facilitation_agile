@@ -177,6 +177,20 @@ a:focus.link, a:hover.link {
 a.link {
     color: #337ab7;
 }
+
+.detail .com-start {
+    line-height: 39px;
+}
+.detail .com {
+    padding: 0 40px;
+    margin-top: 50px;
+}
+.detail .small {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px
+}
+
 /* Form dropdown */
 /*
 select {
