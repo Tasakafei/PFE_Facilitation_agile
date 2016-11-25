@@ -21,15 +21,16 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
     $scope.logOut = logOutFct;
 
     /* Implémentation */
-    function logInFct (username, password) {
-        Auth.logIn('password', {
-            'email': $scope.user.email
+    function logInFct () {
+        Auth.login('password', {
+                'email': $scope.user.email,
+                'password': $scope.user.password
             },
             function(err) {
                 $scope.errors = {};
 
                 if (!err) {
-                    $location.path('/');
+                    //$location.path('/');
 
                     $scope.$emit('notify', {
                         type: 'success',
@@ -38,12 +39,13 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 } else {
                     angular.forEach(err.errors, function(error, field) {
                         console.log("ERROR : " + error + " : "+ field);
+                    });
+                    $scope.error.other = err.message;
 
-                        $scope.$emit('notify', {
-                            type: 'error',
-                            title: 'Impossible de se connecter.',
-                        });
-                    })
+                    $scope.$emit('notify', {
+                        type: 'error',
+                        title: 'Impossible de se connecter.',
+                    });
                 }
             });
     }
@@ -58,7 +60,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 $scope.errors = {};
 
                 if (!err) {
-                    $location.path('/');
+                    //$location.path('/');
 
                     $scope.$emit('notify', {
                         type: 'success',
@@ -77,12 +79,13 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 }
             }
         );
+        $scope.user = {};
     }
 
     function logOutFct() {
         Auth.logout(function(err) {
             if(!err) {
-                $location.path('/');
+                //$location.path('/');
 
                 $scope.$emit('notify', {
                     type: 'info',

@@ -72,6 +72,9 @@ a {
 a:focus, a:hover {
     color: #333;
 }
+a:hover {
+    cursor: pointer;
+}
 @media (max-width: 991px) {
     .padding-t-sm {
         padding-top: 22px !important;
@@ -168,3 +171,22 @@ p.workshopTitle {
 span.label {
     margin-right: 2px;
 }
+a:focus.link, a:hover.link {
+    color: #23527c;
+}
+a.link {
+    color: #337ab7;
+}
+/* Form dropdown */
+/*
+select {
+    background-image: url(../img/dropdown.png) !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-size: 11px;
+    background-position-x: calc(100% - 10px);
+}
+*/

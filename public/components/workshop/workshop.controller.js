@@ -8,10 +8,19 @@
 
 var app = angular.module('facilitation');
 
-app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routeParams) {
-    $scope.workshop = "";
+app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, FavoriteWorkshops, $routeParams, $http) {
+
+    // Local vars
     var currentId = $routeParams.catalogueId;
-        CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
+
+    // Scope vars
+    $scope.workshop = "";
+
+    // Scope methods
+    $scope.getLabelColor = getLabelColorFct;
+    $scope.addToFavorite = addToFavoriteFct;
+
+    CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
 
             for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
@@ -28,10 +37,10 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
             }
 
 
-            $scope.workshop = dataResponse.data[0];
-        });
+        $scope.workshop = dataResponse.data[0];
+    });
 
-    $scope.getLabelColor = function (label) {
+    function getLabelColorFct (label) {
         if(label == "Travail itératif") {
             return "label-success";
         } else if(label == "Amélioration continue") {
@@ -48,7 +57,36 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, $routePa
             return "label-default";
         }
 
-    };
+    }
+
+    function addToFavoriteFct() {
+
+        if($scope.currentUser) {
+            var res = FavoriteWorkshops.addToFavoriteWorkshops($scope.currentUser.username, currentId);
+            res.success(function (data, status, headers, config) {
+                $scope.message = data;
+
+                $scope.$emit('notify', {
+                    type: 'success',
+                    title: 'L\'atelier a bien été ajouté.',
+                });
+            });
+            res.error(function (data, status, headers, config) {
+
+                $scope.$emit('notify', {
+                    type: 'error',
+                    title: 'L\'atelier n\'a pas pu être ajouté.',
+                });
+            });
+        }
+        else {
+            $scope.$emit('notify', {
+                type: 'info',
+                title: 'Vous devez être connecté.',
+            });
+        }
+    }
+
 });
 
 /* To interpret HTML balise in JSON */

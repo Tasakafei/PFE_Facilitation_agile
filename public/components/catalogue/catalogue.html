@@ -7,7 +7,7 @@
     <div class="row search-bar">
         <div class="col-xs-12 no-padding">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Rechercher...">
+                <input type="text" ng-model="search" class="form-control" placeholder="Rechercher...">
                 <span class="input-group-btn">
                 <button class="btn btn-default" ng-click="rechercher" type="button"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -17,7 +17,7 @@
     <div class="row">
         <!-- Résultat -->
         <div class="col-xs-12 no-padding">
-            <div ng-repeat="workshop in data.data">
+            <div ng-repeat="workshop in data.data | filter:search">
                 <a href="/#/catalogue/{{workshop._id}}">
                     <div class="col-xs-12 thumbnail">
                         <!-- Photo -->

@@ -19,12 +19,12 @@
   <body ng-controller="MainCtrl">
     <nav-bar></nav-bar>
 
-    <div notifybar style="position:absolute;top:0;right:0"></div>
+    <div notifybar style="position:absolute;top:50px;right:0"></div>
     <div ng-view></div>
 
     <div class="footer text-center">
       <div class="container">
-        <p>Footer</p>
+        <p>Serious game - 2016</p>
       </div>
     </div>
     <script src="libraries/angular.min.js"></script>
@@ -48,18 +48,17 @@
     <script src="components/home/home.controller.js"></script>
 
     <script src="components/services/catalogue.service.js"></script>
-    <script src="components/services/account.service.js"></script>
     <script src="components/services/account.auth.factory.js"></script>
     <script src="components/services/account.session.factory.js"></script>
+    <script src="components/services/favorite.service.js"></script>
     <script src="components/services/account.user.factory.js"></script>
     <script src="components/catalogue/catalogue.controller.js"></script>
     <script src="components/workshop/workshop.controller.js"></script>
     <script src="components/timer/timer.controller.js"></script>
 
     <script src="components/importer/importationController.js"></script>
-
-    <script src="components/importer/importationController.js"></script>
     <script src="components/feedback/feedback.controller.js"></script>
+    <script src="components/favorite_workshops/favorite.controller.js"></script>
 
 
     <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>

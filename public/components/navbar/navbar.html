@@ -22,8 +22,8 @@
                     <li ng-class="{ active: isActive('/feedback')}"><a href="#/feedback">Feedback</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-hide="currentUser"><a href="#/" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-user"></span> S'incrire</a></li>
-                    <li ng-hide="currentUser"><a href="#/" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+                    <li ng-hide="currentUser"><a data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-user"></span> S'incrire</a></li>
+                    <li ng-hide="currentUser"><a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
                     <li class="dropdown" ng-show="currentUser">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> {{currentUser.username}}
@@ -32,7 +32,7 @@
                             <li><a href="#/profile">Profile <i class="pull-right fa fa-wrench"></i></a></li>
                             <li><a href="#/favorites">Playlists <i class="pull-right fa fa-list"></i></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#/" ng-click="logOut()">Sign out <i class="pull-right fa fa-sign-out"></i></a></li>
+                            <li><a ng-click="logOut()">Sign out <i class="pull-right fa fa-sign-out"></i></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -45,33 +45,39 @@
 
 <!-- Modal -->
 <!-- Connexion -->
-<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
-    <!--<div class="modal-dialog" role="document">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-                <!--<h4 class="modal-title" id="myModalLabel">Se connecter</h4>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-                <!--<div class="row">-->
-                    <!--<form class="form-horizontal col-xs-10 col-xs-offset-1">-->
-                        <!--<div class="form-group">-->
-                            <!--<input type="text" class="form-control" id="userName" ng-model="username" placeholder="Nom utilisateur">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<input type="password" class="form-control" id="mdp" ng-model="password" placeholder="Mot de passe">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<div class="col-xs-12 text-center">-->
-                                <!--<a href="#" type="button" class="btn btn-default" data-dismiss="modal">Connexion</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</form>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Se connecter</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal col-xs-10 col-xs-offset-1">
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Email</label>
+                            <div class="col-xs-9">
+                                <input type="text" class="form-control" id="userName" ng-model="user.email" placeholder="@">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Mot de passe</label>
+                            <div class="col-xs-9">
+                            <input type="password" class="form-control" id="mdp" ng-model="user.password" placeholder="**********">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12 text-center">
+                                <a href="#" type="button" class="btn btn-default" data-dismiss="modal" ng-click="logIn()">Connexion</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Inscription -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -86,7 +92,7 @@
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Pseudo</label>
                             <div class="col-xs-9">
-                                <input type="text" ng-model="user.username" class="form-control" id="pseudo" placeholder="">
+                                <input type="text" ng-model="user.username" class="form-control" id="pseudo" placeholder="Pseudo">
                             </div>
                         </div>
                         <div class="form-group">
@@ -98,7 +104,7 @@
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Mot de passe</label>
                             <div class="col-xs-9">
-                                <input type="password" ng-model="user.password" class="form-control" id="mdp1" placeholder="">
+                                <input type="password" ng-model="user.password" class="form-control" id="mdp1" placeholder="**********">
                             </div>
                         </div>
                         <div class="form-group">

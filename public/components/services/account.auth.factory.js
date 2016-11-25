@@ -25,6 +25,7 @@ angular.module('facilitation')
                     $rootScope.currentUser = user;
                     return cb();
                 }, function(err) {
+                    console.log(err);
                     return cb(err.data);
                 });
             },

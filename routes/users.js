@@ -2,18 +2,9 @@ var express = require('express');
 var router = express.Router();
 var auth = require('../configurations/auth');
 var users = require('../controllers/users');
-var session = require('../controllers/session');
 
 /*** User routes ***/
-router.post('/users', users.create);
-router.get('/users/:userId', users.show);
-
-// Check if username is available
-router.get('/check_username/:username', users.exists);
-
-/*** Session routes ***/
-router.get('/session', auth.ensureAuthenticated, session.session);
-router.post('/session', session.login);
-router.delete('/session', session.logout);
+router.post('/favorites', auth.ensureAuthenticated, users.addToFavoriteWorkshops);
+router.get('/favorites', auth.ensureAuthenticated, users.getFavoriteWorkshops);
 
 module.exports = router;

@@ -136,10 +136,6 @@
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards; }
 
-.angular-notify:first-child {
-  margin-top: 65px;
-}
-
 @media (max-width: 768px) {
   .angular-notify {
     width: 250px;
