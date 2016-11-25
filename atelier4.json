@@ -1,0 +1,51 @@
+{
+  "title": "Icebreaker Agile",
+  "author": "agile_france",
+  "time_max": 15	,
+  "synopsis" : "Les participants expérimentent l’auto-organisation, la limitation du temps (le timeboxing) ainsi que la possibilité d’échouer à atteindre l’objectif prévu pour une itération.",
+  "content" : {
+    "steps": [
+      {
+        "title": "Intro",
+        "description": "Les images sont étalées au sol ou sur une table autour de laquelle les participants peuvent facilement se déplacer. Je propose aux participants d’expérimenter les méthodes agiles en 3 itérations.",
+        "timing": 0,
+        "duration": 5
+      },
+      {
+        "title": "Round #1",
+        "description": [" Pour cela je leur demande de choisir 3 images chacun représentant pour eux les méthodes agiles et leurs bénéfices.", "ls ont 1 minute. Et bien sur ils ne doivent pas endommager les cartes…", "La minute passe très vite et la question que je leur pose à l’issue de cette première « itération » est : êtes-vous satisfait de votre choix ? Ce premier ressenti est généralement peu enthousiaste et l’évaluation « chiffrée » à l’aide d’un vote à 5 doigts (satisfaction nulle 0, satisfaction maximale 5) est faible."],
+        "timing": 0,
+        "duration": 1
+      },
+      {
+        "title": "Round #2",
+        "description": ["Je leur propose donc une deuxième itération, toujours 1 minute, mais ou cette fois ils devront choisir trois images par binome. ", "evoir s’accorder sur leur choix au sein de chaque binome génère des discussions animées ! La satisfaction à l’issue de la deuxième itération est meilleure… Mais ce n’est pas encore parfait."],
+        "timing": 0,
+        "duration": 1
+      },
+      {
+        "title": "Round #3",
+        "description": ["Essayons donc une troisième itération au cours de laquelle cette fois le groupe aura 1 minute pour choisir 3 images. Je préviens le groupe que je choisirai au hasard à la fin 3 personnes qui présenteront chacune le sens d’une des 3 images. L’agitation est beaucoup plus grande, et les comportements variables suivant les groupes et leurs histoires, il est bien sur passionnant d’observer leurs modes de fonctionnement. Ce sera très utile pour la suite.", "*L’itération est toujours trop courte pour que le groupe parvienne à un résultat (même si je dois parfois aider un peu le chronomètre…)","C’est donc un échec… Je propose alors au groupe d’investir une minute supplémentaire pour une 4ème itération… Le groupe valide cet investissement pour pouvoir réussir.","Et cette fois au bout d’une minute le groupe présente ses 3 images illustrant les méthodes agiles et leurs apports."],
+        "timing": 0,
+        "duration": 1
+      },
+      {
+
+      },
+      {
+        "title": "Débrief",
+        "description": ["Que le groupe se connaisse ou pas, l’exercice permet de démarrer la journée. Les participants expriment par leur choix ce que représente les méthodes agiles pour eux et partagent ces représentations avec le groupe.","Ils expérimentent l’auto-organisation, la limitation du temps (le timeboxing) ainsi que la possibilité d’échouer à atteindre l’objectif prévu pour une itération."],
+        "timing": 0,
+        "duration": 15
+      },
+      {
+        "description": "Fin de l’atelier",
+        "timing": 18
+      }
+    ],
+    "source": "hhttp://www.agilegamesfrance.fr/index.php?title=Icebreaker_Agile",
+    "folklore": "Les images sont étalées au sol ou sur une table autour de laquelle les participants peuvent facilement se déplacer. Je propose aux participants d’expérimenter les méthodes agiles en 3 itérations.",
+    "educational_aims" : ["Amélioration continue",  "Lead time vs Throughput"],
+    "equipment": ["Salle vide ", "entre 4 et 16 participants par atelier ", "30 images "]
+  }
+}
