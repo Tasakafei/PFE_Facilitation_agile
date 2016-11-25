@@ -40,10 +40,19 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             title: 'recherche en cours',
 
         });
+    };
 
+    var bool = false;
 
+    $scope.dropDown = function() {
+        if(!bool) {
+            $('#avancedSearch').addClass('open');
+            bool = true;
+        } else {
+            $('#avancedSearch').removeClass('open');
+            bool = false;
+        }
     };
 });
-
 
 

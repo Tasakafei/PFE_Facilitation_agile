@@ -1,4 +1,4 @@
-<div class="container search" ng-controller="catalogueCtrl">
+<div class="container search" ng-controller="catalogueCtrl" ng-click="test()">
     <!-- Titre page -->
     <div class="page-header">
         <h3>Catalogue des ateliers</h3>
@@ -7,10 +7,26 @@
     <div class="row search-bar">
         <div class="col-xs-12 no-padding">
             <div class="input-group">
+                <span id="avancedSearch" class="input-group-btn">
+                    <button ng-click="dropDown()" type="button" class="btn btn-default dropdown-toggle">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="add-padding">Cochez les notions que vous recherchez</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="checkbox add-padding">
+                            <label><input type="checkbox" value="">Option 1</label>
+                        </li>
+                        <li class="checkbox add-padding">
+                            <label><input type="checkbox" value="">Option 2</label>
+                        </li>
+                    </ul>
+                </span>
                 <input type="text" ng-model="search" class="form-control" placeholder="Rechercher...">
                 <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="rechercher" type="button"><span class="glyphicon glyphicon-search"></span></button>
-              </span>
+                    <button class="btn btn-default" ng-click="rechercher" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
             </div>
         </div>
     </div>

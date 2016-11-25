@@ -89,12 +89,6 @@ a:hover {
         padding-top: 15px !important;
     }
 }
-@media (min-width: 1920px) {
-    .no-padding-l-xl {
-        padding-left: 0;
-    }
-
-}
 
 /* --------- Index --------- */
 p.workshopTitle {
@@ -108,7 +102,7 @@ p.workshopTitle {
     font-size: 16px;
 }
 
-/*  --------- Search  --------- */
+/* --------- Search --------- */
 .search .row:first-child {
     padding-bottom: 20px;
 }
@@ -164,7 +158,7 @@ p.workshopTitle {
     }
 }
 
-/* Workshop */
+/* --------- Workshop --------- */
 .steps {
     min-height: 40px;
 }
@@ -190,8 +184,16 @@ a.link {
     padding-right: 15px;
     padding-top: 10px
 }
+p.lineHeight {
+    Line-Height: 18pt;
+}
+/* --------- Form --------- */
 
-/* Form dropdown */
+input[type=file] {
+    padding-top: 7px;
+}
+
+/* --------- Form dropdown --------- */
 /*
 select {
     background-image: url(../img/dropdown.png) !important;
