@@ -23,8 +23,8 @@ app.controller('timerCtrl', function($scope, $interval, socket, TimerService){
         console.log(msg);
     });
 
-    socket.on('start_timer', function(){
-        $scope.startTimer(30);
+    socket.on('start_timer', function(duration){
+        $scope.startTimer(duration);
     });
 
     socket.on('resume_timer', function(){

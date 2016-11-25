@@ -22,9 +22,9 @@ module.exports = function (io) {
         });
 
         // Dispatch in the specified room the order to LAUNCH the timer
-        socket.on('launch_timer', function(room){
+        socket.on('launch_timer', function(timerInfo){
             console.log("LAUNCH TIMER");
-            io.to(room).emit('start_timer');
+            io.to(timerInfo.workshop).emit('start_timer', timerInfo.duration);
         });
 
         // Dispatch in the specified room the order to PAUSE the timer
