@@ -27,18 +27,57 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         $scope.startTimer(30);
     });
 
-    var timer;
+    socket.on('resume_timer', function(){
+        $scope.resumeTimer();
+    });
+
+    socket.on('pause_timer', function(){
+        $scope.pauseTimer();
+    });
+
+    socket.on('stop_timer', function(){
+        $scope.resetTimer();
+    });
+
+    // TODO : separate timer from socket events (using a service ?)
+
+    var timer, ispaused = false;
     $scope.startTimer = function (timeAmount) {
+        ispaused = false;
         if(angular.isDefined(timer)) return;
         $scope.countDown = timeAmount;
+        $scope.lastTimeAmount = timeAmount;
+        runTimer();
+    };
+
+    $scope.pauseTimer = function () {
+        ispaused = true;
+        stopTimer();
+    };
+
+    $scope.resumeTimer = function(){
+        if(!ispaused) return;
+        ispaused = false;
+        runTimer();
+    };
+
+    $scope.resetTimer = function(){
+        ispaused = false
+        stopTimer();
+        $scope.countDown = $scope.lastTimeAmount;
+        $scope.$apply();
+    };
+
+
+    function runTimer(){
         timer = $interval(function(){
             $scope.countDown--;
-            if($scope.countDown == 0) $scope.stopTimer();
+            if($scope.countDown == 0) stopTimer();
             $scope.$apply();
         }, 1000);
     };
 
-    $scope.stopTimer = function() {
+    function stopTimer() {
         if (angular.isDefined(timer)) {
             $interval.cancel(timer);
             timer = undefined;
