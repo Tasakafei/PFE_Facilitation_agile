@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var WorkshopSchema = new mongoose.Schema({
     title: String,
     author: {type: String, default: "Anonyme"},
-    photo : String,
+    photo : {type: String, default: "../../img/default.jpg"},
     workshop_type: {type: String, default: "Production"},
     goals: [String],
     participants_max: {type: Number, default: -1},

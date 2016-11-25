@@ -3,6 +3,9 @@
     <div class="page-header">
         <h3>{{workshop.title}}</h3>
     </div>
+    <button type="button" class="btn btn-default" ng-click="addToFavorite()">Ajouter aux favoris</button>
+
+    <button type="button" class="btn btn-default" ng-click="addToInstances()">Cloner l'atelier</button>
     <div class="row">
         <!-- Detail -->
         <div class="col-xs-12 no-padding">
@@ -21,8 +24,9 @@
                 <div class="col-sm-4 no-padding-r text-right hidden-xs">
                     <button type="button" class="btn btn-default favorite" ng-click="addToFavorite()">Ajouter aux favoris</button>
                 </div>
-                <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label {{getLabelColor(category)}}">{{category}}</span>
-                <p> Note :
+               <p class="lineHeight">
+                   <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label {{getLabelColor(category)}}">{{category}}</span><br />
+                   Note :
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
@@ -35,7 +39,7 @@
             </div>
             <!-- Description -->
             <div class="col-xs-12" >
-                <h4>Description de l'atelier</h4>
+                <h4>Description de l'atelier<div class="line center-block"></div></h4>
                 <p class="text-justify" ng-bind-html="workshop.content.folklore | to_trusted">
 
                 </p>

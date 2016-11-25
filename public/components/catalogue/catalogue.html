@@ -1,4 +1,4 @@
-<div class="container search" ng-controller="catalogueCtrl">
+<div class="container search" ng-controller="catalogueCtrl" ng-click="test()">
     <!-- Titre page -->
     <div class="page-header">
         <h3>Catalogue des ateliers</h3>
@@ -7,17 +7,103 @@
     <div class="row search-bar">
         <div class="col-xs-12 no-padding">
             <div class="input-group">
+                <span id="avancedSearch" class="input-group-btn">
+                    <button ng-click="dropDown()" type="button" class="btn btn-default dropdown-toggle">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="add-padding">Cochez les notions que vous recherchez</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="checkbox add-padding">
+                            <label><input type="checkbox" value="">Option 1</label>
+                        </li>
+                        <li class="checkbox add-padding">
+                            <label><input type="checkbox" value="">Option 2</label>
+                        </li>
+                    </ul>
+                </span>
                 <input type="text" ng-model="search" class="form-control" placeholder="Rechercher...">
                 <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="rechercher" type="button"><span class="glyphicon glyphicon-search"></span></button>
-              </span>
+                    <button class="btn btn-default" ng-click="rechercher" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
             </div>
         </div>
     </div>
-    <div class="row">
+    <form >
+        advanced research:
+        <input type="checkbox" ng-model="myVar">
+    </form>
+    <div ng-show="myVar" ng-controller="ExampleController">
+        <label ng-repeat="prop in props">
+            <input type="checkbox" checklist-model="atelier.props" checklist-value="prop"> {{ prop }}
+        </label>
+    </div>
+    <!--<div ng-show="myVar"> -->
+       <!-- c1 : <input type="checkbox" ng-model="checkboxModel.value1">
+        c2 : <input type="checkbox"ng-model="checkboxModel.value2" ng-true-value="'YES'" ng-false-value="'NO'" >
+        C3: <input type="checkbox" ng-model="checkboxModel.value3">
+    </div>
+    value1 = {{ checkboxModel.value1 }}<br/>
+    value2 = {{ checkboxModel.value2 }} <br/>
+
+
+-->
+
+
+
+        <!--
+        <div ng-controller="CheckCtrl">
+
+            <label ng-repeat=choix in tableauChoix>
+                <input type=checkbox name=elementsChoisis[] value={{choix.nom}} ng-model=choix.selectionne> {{choix.nom}}
+            </label>
+            &lt;!&ndash;<ul class="checkboxes">
+                <li ng-repeat="(key, text) in availableTypes">
+                    <label>
+                        <input type="checkbox"
+                               name="filterType"
+                               ng-click="toggleTypeSelection({  key })"
+                               ng-checked="isTypeChecked({  key })">
+                        {{ text }}
+                    </label>
+                </li>
+            </ul>&ndash;&gt;
+        </div>-->
+
+   <!-- <div ng-controller="AppCtrl">
+    <form>
+        advanced research:
+        <input type="checkbox" ng-model="myVar">
+    </form>
+    <div ng-show="myVar">
+       &lt;!&ndash; c1 : <input type="checkbox" ng-model = "c1">
+        c2 : <input type="checkbox" >
+        C3: <input type="checkbox" >&ndash;&gt;
+
+        <md-checkbox aria-label="Select All"
+                     ng-checked="isChecked()"
+                     md-indeterminate="isIndeterminate()"
+                     ng-click="toggleAll()">
+            <span ng-if="isChecked()">Un-</span>Select All
+        </md-checkbox>
+
+        <div  ng-repeat="item in items">
+            <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                {{ item }}
+            </md-checkbox>
+        </div>
+
+
+</div>
+
+</div>-->
+
+
+        <div class="row">
         <!-- Résultat -->
         <div class="col-xs-12 no-padding">
-            <div ng-repeat="workshop in data.data | filter:search">
+            <div ng-repeat="workshop in data.data | filter:search |filter : c1">
                 <a href="/#/catalogue/{{workshop._id}}">
                     <div class="col-xs-12 thumbnail">
                         <!-- Photo -->

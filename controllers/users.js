@@ -11,6 +11,8 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     ObjectId = mongoose.Types.ObjectId;
 
+var WorkshopInstance = mongoose.model("WorkshopInstance");
+
 /**
  * Create user
  * requires: {username, password, email}
@@ -85,7 +87,7 @@ exports.addToFavoriteWorkshops = function (req, res, next) {
             {"workshops_favorites":
                 {
                     added_at: Date.now(),
-                    favorite: ObjectId(workshop)
+                    _id: ObjectId(workshop)
                 }
             }
         },
@@ -101,12 +103,6 @@ exports.addToFavoriteWorkshops = function (req, res, next) {
 };
 
 exports.getFavoriteWorkshops = function(req, res, next) {
-    console.log("===============================================");
-    console.log("===============================================");
-    var user = req.user;
-    console.log("===============================================");
-    console.log("===============================================");
-    console.log(user);
     User.findOne({ _id : user._id }, function (err, user) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
@@ -118,4 +114,79 @@ exports.getFavoriteWorkshops = function(req, res, next) {
             res.json({exists: false});
         }
     });
+};
+
+exports.getWorkshopInstances = function (req, res, next) {
+
+};
+
+exports.addWorkshopInstance = function (req, res, next) {
+    var user = { username: req.body.username };
+    var workshop = req.body.workshopId;
+    if (!user) {
+        res.status("404").json({status: "error", data: "NOT_FOUND"});
+    } else {
+        User.findOne(
+            {username: user.username},
+            function (err, user) {
+                if (err) {
+                    res.json({status: "error", data: err});
+                } else {
+                    mongoose.model("Workshop").findOne({_id: ObjectId(workshop)}, function(err, workshop) {
+                        if (err) {
+                            throw err;
+                        }
+                        if (workshop) {
+                            var instance = new WorkshopInstance();
+                            instance.title = "Instance de l'atelier "+ workshop.title;
+                            instance.nbParticipants = 0;
+                            var facilitator = {
+                                name: user.username,
+                                _id: user._id
+                            };
+                            instance.facilitators.push(facilitator);
+                            instance.status = "CREATED";
+                            console.log(workshop);
+                            for (var i = 0; i < workshop.content.steps.length; ++i) {
+                                var wsStep = workshop.content.steps[i];
+                                instance.steps[i] = {
+                                    title: wsStep.title,
+                                    description: wsStep.description,
+                                    timing: {
+                                        theorical: wsStep.timing,
+                                        practical: 0
+                                    }
+                                };
+                            }
+                            instance.workshopId = workshop._id;
+                            instance.save();
+                            console.log(instance);
+                            var toAdd = {
+                                title: workshop.title,
+                                _id: instance._id
+                            };
+                            User.findOneAndUpdate(
+                                { username : user.username },
+                                {
+                                    $push:
+                                    { "workshops_instances": toAdd }
+                                },
+                                { safe: true, new: true },
+                                function(err, model) {
+                                    if (err) {
+                                        res.json({status: "error", data: err});
+                                    } else {
+                                        res.json({status: "success", data: "success"})
+                                    }
+                                }
+                            );
+                            //User.user.workshops_instances.push(toAdd);
+                            //user.save();
+                        }
+                    });
+
+                }
+            }
+        );
+    }
 };

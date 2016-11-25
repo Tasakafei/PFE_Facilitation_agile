@@ -9,18 +9,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var WorkshopInstance = mongoose.model("WorkshopInstance");
 
 var UserSchema = new Schema({
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    username: {
-        type: String,
-        unique: true,
-        required: true
-    },
+    email: {type: String, unique: true, required: true},
+    username: {type: String, unique: true, required: true},
     hashedPassword: String,
     salt: String,
     name: String,
@@ -28,10 +21,19 @@ var UserSchema = new Schema({
     guest: Boolean,
     provider: String,
     workshops_favorites: [{
-        added_at: Date,
-        favorite: {
+        added_at: {type: Date, default: Date.now},
+        _id: {
             type: Schema.ObjectId,
             ref: 'Workshop',
+            required: true
+        }
+    }],
+    workshops_instances: [{
+        title: {type: String, required: true},
+        added_at: {type: Date, default: Date.now},
+        id: {
+            type: Schema.ObjectId,
+            ref: 'WorkshopInstance',
             required: true
         }
     }]
@@ -93,11 +95,6 @@ UserSchema.path('username').validate(function(value, respond) {
  */
 
 UserSchema.pre('save', function(next) {
-    console.log("===============================");
-    console.log("===============================");
-    console.log("===============================");
-    console.log("===============================");
-    console.log("===============================");
     if (!this.isNew) {
         return next();
     }
@@ -140,16 +137,8 @@ UserSchema.methods = {
         if (!password || !this.salt) return '';
         var salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
-    },
+    }
 
-    addToFavorite: function(workshopId) {
-        mongoose.models["Workshop"].findOne({_id: ObjectId(workshop) }, function(err, workshop) {
-            if(err) throw err;
-            if(workshop) {
-                this.workshops_favorites.push(workshop._id);
-            }
-        });
-    },
 };
 
 mongoose.model('User', UserSchema);
