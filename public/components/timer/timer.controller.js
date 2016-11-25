@@ -39,8 +39,6 @@ app.controller('timerCtrl', function($scope, $interval, socket, TimerService){
         $scope.resetTimer();
     });
 
-    // TODO : separate timer from socket events (using a service ?)
-
     var ispaused = false;
     $scope.startTimer = function (timeAmount) {
         ispaused = false;
