@@ -22,7 +22,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 io = io.listen(server, {log: false})
-require('../routes/rooms.js')(io);
+require('../controllers/rooms.js')(io);
 /**
  * Listen on provided port, on all network interfaces.
  */
