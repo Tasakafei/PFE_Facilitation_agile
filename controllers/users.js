@@ -103,6 +103,7 @@ exports.addToFavoriteWorkshops = function (req, res, next) {
 };
 
 exports.getFavoriteWorkshops = function(req, res, next) {
+    var user = req.user;
     User.findOne({ _id : user._id }, function (err, user) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
