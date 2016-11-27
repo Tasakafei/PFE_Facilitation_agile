@@ -1,4 +1,4 @@
-<div class="container search" ng-controller="catalogueCtrl" ng-click="test()">
+<div class="container search" ng-controller="catalogueCtrl">
     <!-- Titre page -->
     <div class="page-header">
         <h3>Catalogue des ateliers</h3>
@@ -21,6 +21,7 @@
                         <li class="checkbox add-padding">
                             <label><input type="checkbox" value="">Option 2</label>
                         </li>
+                       <button type="button" class="btn btn-default center-block" ng-click="close()">Fermer</button>
                     </ul>
                 </span>
                 <input type="text" ng-model="search" class="form-control" placeholder="Rechercher...">

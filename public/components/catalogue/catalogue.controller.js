@@ -53,6 +53,10 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             bool = false;
         }
     };
+    $scope.close = function() {
+        $('#avancedSearch').removeClass('open');
+        bool = false;
+    };
 });
 app.controller('ExampleController', function($scope) {
     $scope.props = [
