@@ -22,6 +22,11 @@ var UserSchema = new Schema({
     provider: String,
     workshops_favorites: [{
         added_at: {type: Date, default: Date.now},
+        title: String,
+        photo : {type: String, default: "../../img/default.jpg"},
+        educational_aims: [String],
+        time_min: {type: Number, default: 60},
+        synopsis: {type: String, default: null},
         _id: {
             type: Schema.ObjectId,
             ref: 'Workshop',

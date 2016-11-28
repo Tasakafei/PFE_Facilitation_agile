@@ -13,6 +13,7 @@ var LocalStrategy = require('passport-local').Strategy;
 require('./model/mongo_connection');
 require('./model/instances/workshop-instance');
 require('./model/account/user');
+require('./model/catalogue/schemas/workshop');
 var pass = require('./configurations/pass');
 var auth = require('./routes/auth');
 var users = require('./routes/users');

@@ -12,8 +12,8 @@ var users = require('../controllers/users');
 
 /*** User routes ***/
 router.post('/favorites', auth.ensureAuthenticated, users.addToFavoriteWorkshops);
-router.get('/favorites', auth.ensureAuthenticated, users.getFavoriteWorkshops);
-router.post('/instances', users.addWorkshopInstance);
-router.get('/instances', users.getFavoriteWorkshops);
+router.get('/favorites', auth.ensureAuthenticated,  users.getFavoriteWorkshops);
+router.post('/instances', auth.ensureAuthenticated, users.addWorkshopInstance);
+router.get('/instances', auth.ensureAuthenticated, users.getFavoriteWorkshops);
 
 module.exports = router;

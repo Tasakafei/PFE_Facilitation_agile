@@ -5,7 +5,6 @@
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
 var mongoose = require('mongoose');
-require('./schemas/workshop');
 var Workshop = mongoose.model('Workshop');
 var ObjectID = require('mongodb').ObjectID;
 

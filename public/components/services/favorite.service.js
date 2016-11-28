@@ -16,7 +16,7 @@ app.service('FavoriteWorkshops', function ($http) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { username: username, workshop: workshopId }
+            data: { workshop: workshopId }
         };
         return $http(req);
     };
@@ -57,20 +57,7 @@ app.service('FavoriteWorkshops', function ($http) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { username: username, workshopId: workshop }
-        };
-        return $http(req);
-
-    };
-
-    delete $http.defaults.headers.common['X-Requested-With'];
-    this.saveWorkshopInstance = function(workshop, callbackFunc) {
-        var req = {
-            method: 'PUT',
-            url: '/users/instances',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            data: { workshopId: workshop }
         };
         return $http(req);
 
