@@ -7,11 +7,11 @@ var app = angular.module('facilitation.timer', ['socketio.service']);
 
 app.controller('timerCtrl', function($scope, $interval, socket){
 
-    $scope.joinRoom = function(){
+    $scope.joinRoom = function(room){
         socket.emit('join_room', 'roomTest');
     };
 
-    $scope.leaveRoom = function(){
+    $scope.leaveRoom = function(room){
         socket.emit('leave_room', 'roomTest');
     };
 
