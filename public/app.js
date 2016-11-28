@@ -43,7 +43,7 @@ app.config(function($routeProvider) {
           controller: "favoriteCtrl"
       })
       .when("/instances", {
-          templateUrl: "components/favorite_workshops/menu/menu.html",
+          templateUrl: "components/favorite_workshops/instances/instances.html",
           controller: "menuCtrl"
       })
       .otherwise({

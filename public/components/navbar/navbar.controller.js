@@ -29,6 +29,8 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
             function(err) {
                 $scope.errors = {};
 
+                $('#myModal').modal('hide');
+
                 if (!err) {
                     //$location.path('/');
 
@@ -58,6 +60,8 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
             },
             function(err) {
                 $scope.errors = {};
+
+                $('#myModal2').modal('hide');
 
                 if (!err) {
                     //$location.path('/');

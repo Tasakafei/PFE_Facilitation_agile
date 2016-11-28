@@ -14,7 +14,7 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
 
     getWorkshopsInstances();
     function getWorkshopsInstances() {
-        FavoriteWorkshops.getWorkshopsInstances()
+        FavoriteWorkshops.getInstancesWorkshop()
             .success(function(data, status, headers, config) {
             $scope.instances = data;
             })
@@ -22,6 +22,25 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
             alert( "failure message: " + JSON.stringify({data: data}));
         });
     }
+
+    $scope.getLabelColor = function (label) {
+        if(label == "Travail itératif") {
+            return "label-success";
+        } else if(label == "Amélioration continue") {
+            return "label-primary";
+        } else if(label == "Prévisions") {
+            return "label-info";
+        } else if(label == "Rétrospective") {
+            return "label-warning";
+        } else if(label == "TaF - WiP") {
+            return "label-purple"
+        } else if(label == "Lead time vs Throughput") {
+            return "label-yellow"
+        } else {
+            return "label-default";
+        }
+
+    };
 });
 
 
