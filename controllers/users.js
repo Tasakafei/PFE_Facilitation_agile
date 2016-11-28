@@ -230,6 +230,10 @@ function addWorkshopInstanceImpl(req, res, next) {
                             instance.workshopId = workshop._id;
                             instance.save();
                             var toAdd = {
+                                photo : workshop.photo,
+                                educational_aims: workshop.content.educational_aims,
+                                time_min: workshop.time_min,
+                                synopsis: workshop.synopsis,
                                 title: workshop.title,
                                 _id: instance._id
                             };
