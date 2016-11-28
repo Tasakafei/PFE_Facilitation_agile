@@ -176,13 +176,14 @@ function getFavoriteWorkshopsImpl(req, res, next) {
 function getWorkshopInstancesImpl(req, res, next) {
     var user = req.user;
     //var user = { username: req.body.username };
-    User.findOne({ username : user.username }, function (err, user) {
+    User.findOne({ username : user.username }, function (err, userData) {
         if (err) {
-            return next(new Error('Failed to load User ' + username));
+            return next(new Error('Failed to load User ' + user.username));
         }
 
         if(user) {
-            res.json({status: "success", data: user.workshops_instances});
+            console.log(userData.workshops_instances);
+            res.json({status: "success", data: userData.workshops_instances});
         } else {
             res.json({status: "error", data: "USER_NOT_FOUND"});
         }
