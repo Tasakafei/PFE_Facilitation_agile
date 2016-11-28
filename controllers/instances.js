@@ -12,71 +12,29 @@ var ObjectId = mongoose.Types.ObjectId;
 
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 
-exports.addWorkshopInstance = function (req, res, next) {
-    var user = { username: req.body.username };
-    var workshop = req.body.workshopId;
-    if (!user) {
-        res.status("404").json({status: "error", data: "NOT_FOUND"});
-    } else {
-        User.findOne(
-            {username: user.username},
-            function (err, user) {
-                if (err) {
-                    res.json({status: "error", data: err});
-                } else {
-                    mongoose.model("Workshop").findOne({_id: ObjectId(workshop)}, function(err, workshop) {
-                        if (err) {
-                            throw err;
-                        }
-                        if (workshop) {
-                            var instance = new WorkshopInstance();
-                            instance.title = "Instance de l'atelier "+ workshop.title;
-                            instance.nbParticipants = 0;
-                            var facilitator = {
-                                name: user.username,
-                                _id: user._id
-                            };
-                            instance.facilitators.push(facilitator);
-                            instance.status = "CREATED";
-                            for (var i = 0; i < workshop.content.steps.length; ++i) {
-                                var wsStep = workshop.content.steps[i];
-                                instance.steps[i] = {
-                                    title: wsStep.title,
-                                    description: wsStep.description,
-                                    timing: {
-                                        theorical: wsStep.timing,
-                                        practical: 0
-                                    }
-                                };
-                            }
-                            instance.workshopId = workshop._id;
-                            instance.save();
-                            var toAdd = {
-                                title: workshop.title,
-                                _id: instance._id
-                            };
-                            User.findOneAndUpdate(
-                                { username : user.username },
-                                {
-                                    $push:
-                                    { "workshops_instances": toAdd }
-                                },
-                                { safe: true, new: true },
-                                function(err, model) {
-                                    if (err) {
-                                        res.json({status: "error", data: err});
-                                    } else {
-                                        res.json({status: "success", data: "success"})
-                                    }
-                                }
-                            );
-                            //User.user.workshops_instances.push(toAdd);
-                            //user.save();
-                        }
-                    });
-
+exports.addFeedbackToInstance = function (req, res, next) {
+    var workshopInstanceId = req.params.instanceId;
+    console.log(workshopInstanceId);
+    var feedback = req.body.feedback;
+    WorkshopInstance.findOne(ObjectId(workshopInstanceId) , function(err, model) {
+        console.log("===============\nHERE\n===================");
+        if (err) {
+            res.json({status: "error", data: err});
+        } else {
+            if (req.user) {
+                for(var i = 0; i < model.facilitators.length; ++i) {
+                    if (model.facilitators[i]._id == req.user._id) {
+                        model.feedbacks.facilitators.push(feedback);
+                        model.save();
+                        res.json({status: "success", data: "success"});
+                        return;
+                    }
                 }
             }
-        );
-    }
+
+            model.feedbacks.participants.push(feedback);
+            model.save();
+            res.json({status: "success", data: "success"});
+        }
+    });
 };

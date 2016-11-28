@@ -7,10 +7,10 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('../configurations/auth');
-var users = require('../controllers/users');
+var instances = require('../controllers/instances');
 
 /*** User routes ***/
-router.post('/:idWorkshop', users.addToFavoriteWorkshops);
-router.get('/:idWorkshop',/* auth.ensureAuthenticated,*/ users.getFavoriteWorkshops);
+router.post('/:instanceId', instances.addFeedbackToInstance);
+//router.get('/:idWorkshop',/* auth.ensureAuthenticated,*/ users.getFavoriteWorkshops);
 
 module.exports = router;

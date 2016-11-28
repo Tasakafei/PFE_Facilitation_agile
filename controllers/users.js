@@ -81,13 +81,10 @@ exports.addToFavoriteWorkshops = function (req, res, next) {
     var user = req.user;
     //var username = req.body.username;
     var workshop = req.body.workshop;
-    console.log("CALLED");
     Workshop.findOne(ObjectId(workshop),  function(err, model) {
         if (err) {
-            console.log("ERROR");
             res.json({status: "error", data: err});
         } else {
-            console.log("PAS ERROR");
             User.findOneAndUpdate(
                 { username : user.username },
                 {

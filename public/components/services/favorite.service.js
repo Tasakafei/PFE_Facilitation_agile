@@ -50,7 +50,7 @@ app.service('FavoriteWorkshops', function ($http) {
 
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.addWorkshopInstance = function(username, workshop, callbackFunc) {
+    this.addWorkshopInstance = function(username, workshop) {
         var req = {
             method: 'POST',
             url: '/users/instances',
@@ -62,5 +62,17 @@ app.service('FavoriteWorkshops', function ($http) {
         return $http(req);
 
     };
+
+    this.addFeedbackToInstance = function(feedback, instanceId) {
+        var req = {
+            method: 'POST',
+            url: '/api/v1/feedback/'+instanceId,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: { feedback: feedback }
+        };
+        return $http(req);
+    }
 });
 

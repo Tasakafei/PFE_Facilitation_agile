@@ -26,7 +26,7 @@ app.config(function($routeProvider) {
           templateUrl: "components/catalogue/catalogue.html",
           controller: "catalogueCtrl"
       })
-      .when("/feedback", {
+      .when("/feedback/:instanceId", {
           templateUrl: "components/feedback/feedback.html"
 
       })

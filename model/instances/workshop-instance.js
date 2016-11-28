@@ -20,12 +20,14 @@ var WorkshopInstanceSchema = new Schema({
     }],
     feedbacks:{
         participants: [{
-            vote: "Number",
-            comments: [String]
+            voteDimension1: Number,
+            voteDimension2: Number,
+            comment: {type: String, default: ""}
         }],
         facilitators: [{
-            vote: "Number",
-            comments: [String]
+            voteDimension1: Number,
+            voteDimension2: Number,
+            comment: {type: String, default: ""}
         }]
     },
     photos: [String],

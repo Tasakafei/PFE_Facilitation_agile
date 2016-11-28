@@ -18,6 +18,7 @@ var pass = require('./configurations/pass');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
 var catalogue = require('./routes/catalogue');
+var feedback = require('./routes/feedback');
 var app = express();
 
 
@@ -45,8 +46,8 @@ app.use(passport.session()); // persistent login sessions
 
 app.use('/auth', auth);
 app.use('/users', users);
-
 app.use('/api/v1/catalogue', catalogue);
+app.use('/api/v1/feedback', feedback);
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
