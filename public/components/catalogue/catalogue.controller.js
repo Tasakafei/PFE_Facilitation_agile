@@ -13,6 +13,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
     //$scope.dataCatalogue = null;
     $scope.dataCatalogue = CatalogueDataProvider.getWorkshops(function (dataResponse) {
         $scope.data = dataResponse;
+        console.log($scope.data);
         // VOILA !
     });
 

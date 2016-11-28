@@ -5,7 +5,9 @@
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
 var mongoose = require('mongoose');
-
+var WorkshopInstance = mongoose.model("WorkshopInstance");
+var Schema = mongoose.Schema;
+var Promise = require('promise');
 // Workshop
 var WorkshopSchema = new mongoose.Schema({
     title: String,
@@ -33,7 +35,41 @@ var WorkshopSchema = new mongoose.Schema({
         equipment: {type: String, default: "Aucun équipement requis"},
         logistics: [String],
         participants_profil: [String]
-    }
+    },
+    instances: [{
+        type: Schema.ObjectId,
+        ref: 'WorkshopInstance'
+    }]
 });
+
+
+/**
+ * Methods
+ */
+
+WorkshopSchema.methods = {
+
+    getMeanUserGrade: function(password) {
+        return new Promise(function (resolve, reject) {
+            var total = 0;
+
+            WorkshopInstance.find({
+                '_id': {$in: this.instances}
+            }, 'feedbacks.participants', function (err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log(docs);
+                    resolve(docs)
+                }
+            });
+            /*var nbVotes = this.feedbacks.participants.length;
+             for ( var i = 0; i < nbVotes; ++i) {
+             total+= this.feedbacks.participants[i].vote;
+             }
+             return (total / nbVotes);*/
+        });
+    }
+};
 
 exports.Workshop = mongoose.model('Workshop', WorkshopSchema);

@@ -237,6 +237,8 @@ function addWorkshopInstanceImpl(req, res, next) {
                                 title: workshop.title,
                                 _id: instance._id
                             };
+                            workshop.instances.push(instance._id);
+                            workshop.save();
                             User.findOneAndUpdate(
                                 { username : user.username },
                                 {
