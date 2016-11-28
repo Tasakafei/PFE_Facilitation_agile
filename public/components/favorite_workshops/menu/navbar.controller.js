@@ -15,4 +15,3 @@ app.controller('menuCtrl', function ($scope, $location) {
     };
 });
 
-

@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/angular-notify-material.css" id="notifyTheme">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" href="stylesheets/simple-sidebar.css" />
     <!-- <link rel="stylesheet" href="stylesheets/sandstone.css" /> -->
     <link rel="stylesheet" href="stylesheets/myStyle.css" />
 
@@ -74,6 +75,14 @@
 
     <script src="libraries/socket.io.min.js"></script>
     <script src="components/services/socketio.service.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+      function sidebar() {
+        $("#wrapper").toggleClass("toggled");
+        $(".sidebar-icon").toggleClass("sidebar-on");
+      }
+    </script>
 
   </body>
 </html>
