@@ -23,7 +23,7 @@ exports.addFeedbackToInstance = function (req, res, next) {
         } else {
             if (req.user) {
                 for(var i = 0; i < model.facilitators.length; ++i) {
-                    if (model.facilitators[i]._id == req.user._id) {
+                    if (model.facilitators[i].name == req.user.username) {
                         model.feedbacks.facilitators.push(feedback);
                         model.save();
                         res.json({status: "success", data: "success"});

@@ -16,4 +16,9 @@ router.get('/favorites', auth.ensureAuthenticated,  users.getFavoriteWorkshops);
 router.post('/instances', auth.ensureAuthenticated, users.addWorkshopInstance);
 router.get('/instances', auth.ensureAuthenticated, users.getFavoriteWorkshops);
 
+router.post('/unauth/:username/favorites', users.unauthaddToFavoriteWorkshops);
+router.get('/unauth/:username/favorites', users.unauthgetFavoriteWorkshops);
+router.post('/unauth/:username/instances', users.unauthaddWorkshopInstance);
+router.get('/unauth/:username/instances', users.unauthgetFavoriteWorkshops);
+
 module.exports = router;

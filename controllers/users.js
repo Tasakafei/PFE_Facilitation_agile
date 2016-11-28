@@ -19,7 +19,57 @@ var Workshop = mongoose.model("Workshop");
  * requires: {username, password, email}
  * returns: {email, password}
  */
-exports.create = function (req, res, next) {
+exports.create = createImpl;
+
+/**
+ *  Show profile
+ *  returns {username, profile}
+ */
+exports.show = showImpl;
+
+/**
+ *  Username exists
+ *  returns {exists}
+ */
+exports.exists = existsImpl;
+
+/**
+ * Add a workshops to favorites of the logged User;
+ *
+ */
+exports.addToFavoriteWorkshops = addToFavoriteWorkshopsImpl;
+
+/**
+ * Retrieve favorites workshops from logged user
+ * @type {getFavoriteWorkshopsImpl}
+ * returns favorite_workshops
+ */
+exports.getFavoriteWorkshops =  getFavoriteWorkshopsImpl;
+
+/**
+ * Retrieve workshop instances of the user
+ * @type {getWorkshopInstancesImpl}
+ */
+exports.getWorkshopInstances = getWorkshopInstancesImpl;
+
+/**
+ * Instanciate a new workshopInstance
+ * @type {addWorkshopInstanceImpl}
+ */
+exports.addWorkshopInstance = addWorkshopInstanceImpl;
+
+exports.unauthgetWorkshopInstances = unauthgetWorkshopInstancesImpl;
+
+exports.unauthaddToFavoriteWorkshops = unauthaddToFavoriteWorkshopsImpl;
+
+exports.unauthgetFavoriteWorkshops = unauthgetFavoriteWorkshopsImpl;
+
+exports.unauthaddWorkshopInstance = unauthaddWorkshopInstanceImpl;
+/*********************************************************
+ * IMPLEMENTATION                                        *
+ *********************************************************/
+
+function createImpl(req, res, next) {
     var newUser = new User(req.body);
     newUser.provider = 'local';
 
@@ -37,13 +87,10 @@ exports.create = function (req, res, next) {
             return res.json(newUser.user_info);
         });
     });
-};
+}
 
-/**
- *  Show profile
- *  returns {username, profile}
- */
-exports.show = function (req, res, next) {
+
+function showImpl(req, res, next) {
     var userId = req.params.userId;
 
     User.findById(ObjectId(userId), function (err, user) {
@@ -56,13 +103,9 @@ exports.show = function (req, res, next) {
             res.send(404, 'USER_NOT_FOUND')
         }
     });
-};
+}
 
-/**
- *  Username exists
- *  returns {exists}
- */
-exports.exists = function (req, res, next) {
+function existsImpl (req, res, next) {
     var username = req.params.username;
     User.findOne({ username : username }, function (err, user) {
         if (err) {
@@ -75,9 +118,9 @@ exports.exists = function (req, res, next) {
             res.json({exists: false});
         }
     });
-};
+}
 
-exports.addToFavoriteWorkshops = function (req, res, next) {
+function addToFavoriteWorkshopsImpl (req, res, next) {
     var user = req.user;
     //var username = req.body.username;
     var workshop = req.body.workshop;
@@ -113,11 +156,11 @@ exports.addToFavoriteWorkshops = function (req, res, next) {
         }
     })
 
-};
+}
 
-exports.getFavoriteWorkshops = function(req, res, next) {
+function getFavoriteWorkshopsImpl(req, res, next) {
     var user = req.user;
-    User.findOne({ _id : user._id }, function (err, user) {
+    User.findOne({ username : user.username }, function (err, user) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
         }
@@ -128,12 +171,12 @@ exports.getFavoriteWorkshops = function(req, res, next) {
             res.json({status:"error", data: "USER_NOT_FOUND"});
         }
     });
-};
+}
 
-exports.getWorkshopInstances = function (req, res, next) {
+function getWorkshopInstancesImpl(req, res, next) {
     var user = req.user;
     //var user = { username: req.body.username };
-    User.findOne({ _id : user.username }, function (err, user) {
+    User.findOne({ username : user.username }, function (err, user) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
         }
@@ -144,9 +187,9 @@ exports.getWorkshopInstances = function (req, res, next) {
             res.json({status: "error", data: "USER_NOT_FOUND"});
         }
     });
-};
+}
 
-exports.addWorkshopInstance = function (req, res, next) {
+function addWorkshopInstanceImpl(req, res, next) {
     var user = req.user;
     var workshop = req.body.workshopId;
     if (!user) {
@@ -213,4 +256,24 @@ exports.addWorkshopInstance = function (req, res, next) {
             }
         );
     }
-};
+}
+
+function unauthgetWorkshopInstancesImpl(req, res, next) {
+    req.user = { username: req.params.username};
+    return this.getWorkshopInstancesImpl(req, res, next);
+}
+
+function unauthaddToFavoriteWorkshopsImpl(req, res, next) {
+    req.user = { username: req.body.username};
+    return this.addToFavoriteWorkshopsImpl(req, res, next);
+}
+
+function unauthgetFavoriteWorkshopsImpl(req, res, next) {
+    req.user = { username: req.params.username};
+    return getFavoriteWorkshopsImpl(req, res, next);
+}
+
+function unauthaddWorkshopInstanceImpl(req, res, next) {
+    req.user = { username: req.body.username};
+    return this.addWorkshopInstanceImpl(req, res, next);
+}
