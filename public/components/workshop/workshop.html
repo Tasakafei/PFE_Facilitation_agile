@@ -15,9 +15,9 @@
                 <div class="col-xs-8 no-padding">
                     <h4>Informations pratiques</h4>
                 </div>
-                <div class="col-xs-4 no-padding text-right">
-                    <button type="button" class="btn btn-default" ng-click="addToInstances()"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
-                    <button type="button" class="btn btn-default favorite" ng-click="addToFavorite()"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
+                <div class="col-xs-4 no-padding text-right" ng-controller="TooltipCtrl">
+                    <button type="button" class="btn btn-default" ng-click="addToInstances()" uib-tooltip="Ajouter pour lancer un atelier" tooltip-placement="top"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default favorite" ng-click="addToFavorite()" uib-tooltip="Ajouter aux favoris" tooltip-placement="top"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button></a>
                 </div>
                <p class="lineHeight">
                    <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label {{getLabelColor(category)}}">{{category}}</span><br />
