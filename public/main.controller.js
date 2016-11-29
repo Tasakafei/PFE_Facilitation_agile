@@ -11,13 +11,15 @@ angular.module('facilitation')
     .controller('MainCtrl', function ($scope) {
     })
     .filter('range', function() {
-    return function(input, total) {
-        total = parseInt(total);
+        return function(input, total) {
+            total = parseInt(total);
 
-        for (var i=0; i<total; i++) {
-            input.push(i);
+            for (var i=0; i<total; i++) {
+                input.push(i);
+            }
+
+            return input;
         }
+    })
 
-        return input;
-    };
-});
+;

@@ -16,90 +16,38 @@
                         <li class="add-padding">Cochez les notions que vous recherchez</li>
                         <li role="separator" class="divider"></li>
                         <li class="checkbox add-padding" >
-                            <label><input id="a" type="checkbox" value="Previsions" ng-model="answers[Previsions]" ng-change="stateChanged(Previsions)" >Prévisions</label>
+                            <label><input id="a" type="checkbox" ng-model="educational_aims_search.value1" ng-true-value="'Prévisions'" ng-false-value="''">Prévisions</label>
                         </li>
                         <li class="checkbox add-padding">
-                            <label><input type="checkbox" value="" ng-model="answers[Amelioartion_continue]"ng-change="stateChanged4(Amelioartion_continue)" ng-checked="false">Amélioartion continue</label>
+                            <label><input type="checkbox" ng-model="educational_aims_search.value2" ng-true-value="'Amélioration continue'" ng-false-value="''">Amélioration continue</label>
                         </li>
                         <li class="checkbox add-padding">
-                            <label><input id="b" type="checkbox" value="Retrospective" ng-model="answers[Retrospective]" ng-change="stateChanged2(Retrospective)" ng-checked="false">Rétrospective</label>
+                            <label><input id="b" type="checkbox" value="Retrospective" ng-model="educational_aims_search.value3" ng-true-value="'Rétrospective'" ng-false-value="''">Rétrospective</label>
                         </li>
                         <li class="checkbox add-padding">
-                            <label><input type="checkbox" value="" ng-model="answers[Travail_iterative]" ng-change="stateChanged5(Travail_iterative)" ng-checked="false" >Travail itérative</label>
+                            <label><input type="checkbox" value="" ng-model="educational_aims_search.value4" ng-true-value="'Travail itératif'" ng-false-value="''">Travail itératif</label>
                         </li>
                         <li class="checkbox add-padding">
-                            <label><input type="checkbox" value="" ng-model="answers[Lead_time_vs_Throufhtput]" ng-change="stateChanged6(Lead_time_vs_Throufhtput)" ng-checked="false">Lead time vs Throufhput</label>
+                            <label><input type="checkbox" value="" ng-model="educational_aims_search.value5" ng-true-value="'Lead time vs Throughput'" ng-false-value="''">Lead time vs Throughput</label>
                         </li>
                         <li class="checkbox add-padding">
-                            <label><input id="c" type="checkbox" value="TaF_WiP" ng-model="answers[TaF_WiP]" ng-change="stateChanged3(TaF_WiP)" >TaF WiP</label>
+                            <label><input id="c" type="checkbox" value="TaF_WiP" ng-model="educational_aims_search.value6" ng-true-value="'TaF - WiP'" ng-false-value="''">TaF WiP</label>
                         </li>
                        <button type="button" class="btn btn-default center-block" ng-click="close()">Fermer</button>
                     </ul>
                 </span>
-                <input type="text" ng-model="search" class="form-control" placeholder="Rechercher...">
+                <input type="text" ng-model="query" class="form-control" placeholder="Rechercher...">
                 <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="rechercher" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
         </div>
     </div>
-    <!--<div ng-show="myVar"> -->
-    <!-- c1 : <input type="checkbox" ng-model="checkboxModel.value1">
-     c2 : <input type="checkbox"ng-model="checkboxModel.value2" ng-true-value="'YES'" ng-false-value="'NO'" >
-     C3: <input type="checkbox" ng-model="checkboxModel.value3">
- </div>
- value1 = {{ checkboxModel.value1 }}<br/>
- value2 = {{ checkboxModel.value2 }} <br/>
--->
-
-
-
-    <!--
-    <div ng-controller="CheckCtrl">
-        <label ng-repeat=choix in tableauChoix>
-            <input type=checkbox name=elementsChoisis[] value={{choix.nom}} ng-model=choix.selectionne> {{choix.nom}}
-        </label>
-        &lt;!&ndash;<ul class="checkboxes">
-            <li ng-repeat="(key, text) in availableTypes">
-                <label>
-                    <input type="checkbox"
-                           name="filterType"
-                           ng-click="toggleTypeSelection({  key })"
-                           ng-checked="isTypeChecked({  key })">
-                    {{ text }}
-                </label>
-            </li>
-        </ul>&ndash;&gt;
-    </div>-->
-
-    <!-- <div ng-controller="AppCtrl">
-     <form>
-         advanced research:
-         <input type="checkbox" ng-model="myVar">
-     </form>
-     <div ng-show="myVar">
-        &lt;!&ndash; c1 : <input type="checkbox" ng-model = "c1">
-         c2 : <input type="checkbox" >
-         C3: <input type="checkbox" >&ndash;&gt;
-         <md-checkbox aria-label="Select All"
-                      ng-checked="isChecked()"
-                      md-indeterminate="isIndeterminate()"
-                      ng-click="toggleAll()">
-             <span ng-if="isChecked()">Un-</span>Select All
-         </md-checkbox>
-         <div  ng-repeat="item in items">
-             <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
-                 {{ item }}
-             </md-checkbox>
-         </div>
- </div>
- </div>-->
-
 
     <div class="row">
         <!-- Résultat -->
         <div class="col-xs-12 no-padding">
-            <div ng-repeat="elem in data.data |filter : search | filter:Previsions |filter:TaF_WiP ">
+            <div ng-repeat="elem in data.data |filter : search ">
                 <a href="/#/catalogue/{{elem.workshop._id}}">
                     <div class="col-xs-12 thumbnail">
                         <!-- Photo -->
