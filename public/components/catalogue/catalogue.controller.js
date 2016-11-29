@@ -29,7 +29,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
 
         }
         $scope.answers[Previsions]=false;
-       // $scope.Previsions=' ';
+        // $scope.Previsions=' ';
 
 
     }
@@ -41,7 +41,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         if($scope.answers[Retrospective]){ //If it is checked
             alert('Retro');
             $scope.Retrospective='Rétrospective';
-           // $scope.answers[Retrospective]=true;
+            // $scope.answers[Retrospective]=true;
             console.log("retros2");
 
         }
@@ -53,7 +53,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         if($scope.answers[TaF_WiP]){ //If it is checked
             alert('TaF_WiP');
             $scope.TaF_WiP='TaF - WiP';
-           // $scope.answers[TaF_WiP]=true;
+            // $scope.answers[TaF_WiP]=true;
             console.log("taf_wip");
             $scope.resultant="TaF - WiP";
 
@@ -70,7 +70,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         if($scope.answers[Amelioartion_continue]){ //If it is checked
             alert('Amelioartion_continue');
             $scope.Amelioartion_continue='Amélioartion continue';
-          //  $scope.answers[Amelioartion_continue]=true;
+            //  $scope.answers[Amelioartion_continue]=true;
             console.log("Amelioartion_continue");
 
         }
@@ -83,7 +83,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         if($scope.answers[Travail_iterative]){ //If it is checked
             alert('ATravail_iterative');
             $scope.Travail_iterative='Travail itérative';
-           // $scope.answers[Travail_iterative]=true;
+            // $scope.answers[Travail_iterative]=true;
             console.log("Travail_iterative");
 
         }
@@ -97,7 +97,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         if($scope.answers[Lead_time_vs_Throufhtput]){ //If it is checked
             alert('Lead_time_vs_Throufhtput');
             $scope.Lead_time_vs_Throufhtput='Lead time vs Throufhtput';
-           // $scope.answers[Lead_time_vs_Throufhtput]=true;
+            // $scope.answers[Lead_time_vs_Throufhtput]=true;
             console.log("Lead_time_vs_Throufhtput");
 
         }
@@ -172,28 +172,26 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         bool = false;
 
         /*if($scope.Previsions){
-            $scope.Previsions='Prévisions'
-            console.log("previsions")
-        }else{
-            $scope.Previsions='a';
-        }*/
+         $scope.Previsions='Prévisions'
+         console.log("previsions")
+         }else{
+         $scope.Previsions='a';
+         }*/
 
-       /* if($scope.Retrospective){
-            $scope.Retrospective='Rétrospective'
-            console.log("Rétrospective")
-        }else{
-            $scope.Retrospective='a';
-
-        }*/
+        /* if($scope.Retrospective){
+         $scope.Retrospective='Rétrospective'
+         console.log("Rétrospective")
+         }else{
+         $scope.Retrospective='a';
+         }*/
 
         /*if($scope.TaF_WiP){
-            $scope.TaF_WiP="TaF - WiP"
-            console.log("Taf wip")
-        }
-        else{
-            $scope.TaF_WiP='a';
-
-        }*/
+         $scope.TaF_WiP="TaF - WiP"
+         console.log("Taf wip")
+         }
+         else{
+         $scope.TaF_WiP='a';
+         }*/
 
 
 
@@ -208,88 +206,80 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
 
 
 /*
-app.controller('ExampleController', function($scope) {
-    $scope.props = [
-        'c1',
-        'c2',
-        'c3',
-        'c4'
-    ];
-    $scope.atelier = {
-        props: ['atelier']
-    };
-
-});
-*/
+ app.controller('ExampleController', function($scope) {
+ $scope.props = [
+ 'c1',
+ 'c2',
+ 'c3',
+ 'c4'
+ ];
+ $scope.atelier = {
+ props: ['atelier']
+ };
+ });
+ */
 
 /*app.filter('myfilter', function() {
-   // var types = workshop.content.educational_aims;
-    return function( items,types) {
-        var filtered = [];
-
-        angular.forEach(items, function(item) {
-            if(types.prévisions == false && types.Travail == false) {
-                filtered.push(item);
-            }
-            else if(types.prévisions == true && types.Travail == false && item.workshop.content.educational_aims == 'Travail'){
-                filtered.push(item);
-            }
-            else if(types.prévisions == true && types.Travail == false && item.workshop.content.educational_aims == 'prévisions'){
-                filtered.push(item);
-            }
-        });
-
-        return filtered;
-    };
-});
-
-app.controller('ExampleController', function($scope, $filter)
-{
-
-    $scope.types = {Travail: false, prévisions:false};
-
-
-
-    $scope.search=[];
-    /!*$scope.hotels = [
-        {
-            name: 'the taj hotel',
-            star: 5,
-            type: 'luxury',
-            price: 5675
-        },
-        {
-            name: 'vivanta Palace',
-            star: 5,
-            type: 'luxury',
-            price: 8670
-        },
-        {
-            name: 'aviary',
-            star: 4,
-            type: 'double suite',
-            price: 3000
-        },
-        {
-            name: 'dummy',
-            star: 4,
-            type: 'dummy',
-            price: 33333100
-        },
-        {
-            name: 'good guest',
-            star: 3,
-            type: 'double suite',
-            price: 3500
-        },
-        {
-            name: 'the ramada',
-            star: 3,
-            type: 'luxury',
-            price: 7500
-        }
-    ];*!/
-});*/
+ // var types = workshop.content.educational_aims;
+ return function( items,types) {
+ var filtered = [];
+ angular.forEach(items, function(item) {
+ if(types.prévisions == false && types.Travail == false) {
+ filtered.push(item);
+ }
+ else if(types.prévisions == true && types.Travail == false && item.workshop.content.educational_aims == 'Travail'){
+ filtered.push(item);
+ }
+ else if(types.prévisions == true && types.Travail == false && item.workshop.content.educational_aims == 'prévisions'){
+ filtered.push(item);
+ }
+ });
+ return filtered;
+ };
+ });
+ app.controller('ExampleController', function($scope, $filter)
+ {
+ $scope.types = {Travail: false, prévisions:false};
+ $scope.search=[];
+ /!*$scope.hotels = [
+ {
+ name: 'the taj hotel',
+ star: 5,
+ type: 'luxury',
+ price: 5675
+ },
+ {
+ name: 'vivanta Palace',
+ star: 5,
+ type: 'luxury',
+ price: 8670
+ },
+ {
+ name: 'aviary',
+ star: 4,
+ type: 'double suite',
+ price: 3000
+ },
+ {
+ name: 'dummy',
+ star: 4,
+ type: 'dummy',
+ price: 33333100
+ },
+ {
+ name: 'good guest',
+ star: 3,
+ type: 'double suite',
+ price: 3500
+ },
+ {
+ name: 'the ramada',
+ star: 3,
+ type: 'luxury',
+ price: 7500
+ }
+ ];*!/
+ });*/
 
 
 /*
@@ -298,20 +288,14 @@ app.controller('ExampleController', function($scope, $filter)
  value1 : false,
  value2 : 'YES'
  };
-
  }]);
-
-
  it('should change state', function() {
  var value1 = element(by.binding('checkboxModel.value1'));
  var value2 = element(by.binding('checkboxModel.value2'));
-
  expect(value1.getText()).toContain('true');
  expect(value2.getText()).toContain('YES');
-
  element(by.model('checkboxModel.value1')).click();
  element(by.model('checkboxModel.value2')).click();
-
  expect(value1.getText()).toContain('false');
  expect(value2.getText()).toContain('NO');
  });
@@ -320,21 +304,17 @@ app.controller('ExampleController', function($scope, $filter)
 
 /*
  app.controller('CheckCtrl',function($scope){
-
  $scope.types = [];
-
  $scope.availableTypes = {
  'apple': 'Pomme',
  'peach': 'Peche',
  'pear':  'Poire'
  }
-
  // Dit si une case est cochée
  // en testant si le tableau types contient la propriété testée.
  $scope.isTypeChecked = function(typeName){
  return $scope.types.indexOf(typeName) > -1;
  }
-
  // Coche ou décoche une case
  // en ajoutant ou supprimant une propriété du tableau types
  $scope.toggleTypeSelection = function(typeName){
@@ -346,7 +326,6 @@ app.controller('ExampleController', function($scope, $filter)
  $scope.types.push(typeName);
  }
  }
-
  });
  */
 /*app.controller('CheckCtrl', ['$scope', 'filterFilter', function CheckCtrl($scope, filterFilter) {
@@ -383,20 +362,16 @@ app.controller('ExampleController', function($scope, $filter)
  list.push(item);
  }
  };
-
  $scope.exists = function (item, list) {
  return list.indexOf(item) > -1;
  };
-
  $scope.isIndeterminate = function() {
  return ($scope.selected.length !== 0 &&
  $scope.selected.length !== $scope.items.length);
  };
-
  $scope.isChecked = function() {
  return $scope.selected.length === $scope.items.length;
  };
-
  $scope.toggleAll = function() {
  if ($scope.selected.length === $scope.items.length) {
  $scope.selected = [];
@@ -405,9 +380,4 @@ app.controller('ExampleController', function($scope, $filter)
  }
  };
  });
-
-
-
-
  */
-
