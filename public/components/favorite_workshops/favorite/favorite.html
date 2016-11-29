@@ -22,7 +22,7 @@
                                         <h4 class="labelsTitle">{{workshop.title}}</h4>
                                     </div>
                                     <div class="col-xs-12 col-md-6 padding-t labels hidden-xs no-padding bugSpan">
-                                        <span ng-repeat="category in workshop.educational_aims" class="bugSpan2 label {{getLabelColor(category)}}">{{category}}</span>
+                                        <span ng-repeat="category in workshop.educational_aims | orderBy" class="bugSpan2 label {{getLabelColor(category)}}">{{category}}</span>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 no-padding">
