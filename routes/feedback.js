@@ -11,6 +11,5 @@ var instances = require('../controllers/instances');
 
 /*** User routes ***/
 router.post('/:instanceId', instances.addFeedbackToInstance);
-//router.get('/:idWorkshop',/* auth.ensureAuthenticated,*/ users.getFavoriteWorkshops);
 
 module.exports = router;

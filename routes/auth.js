@@ -11,8 +11,9 @@ router.get('/users/:userId', users.show);
 // Check if username is available
 router.get('/check_username/:username', users.exists);
 router.post('/favorites', users.addToFavoriteWorkshops);
+
 /*** Session routes ***/
-router.get('/session', auth.ensureAuthenticated, session.session);
+router.get('/session', session.session);
 router.post('/session', session.login);
 router.delete('/session', session.logout);
 

@@ -49,7 +49,7 @@ app.config(function($routeProvider, $locationProvider) {
       .when("/instances/:idInstance/qrcode", {
           templateUrl: "components/qrcode/qrcode.html",
           controller: "qrcodeCtrl"
-      })
+      });
     $locationProvider.html5Mode(true);
 });
 
@@ -66,7 +66,7 @@ app.run(function ($rootScope, $location, Auth) {
 
     // On catching 401 errors, redirect to the login page.
     $rootScope.$on('event:auth-loginRequired', function() {
-        $location.path('/');
+        $location.path('/blabalabl');
         return false;
     });
 });
