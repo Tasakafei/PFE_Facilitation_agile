@@ -57,7 +57,6 @@ function getWorkshopsFct () {
 
 function getMeanWorkshop(data, i, callback) {
     getMeanInstance(data.instances, i).then(function (result) {
-        console.log("getMeanWorkshop");
         var votes = {
             rank: i,
             dim1: result.dim1,
@@ -65,15 +64,12 @@ function getMeanWorkshop(data, i, callback) {
             participants: result.participants,
             facilitators: result.facilitators
         };
-        console.log("GET MEAN FINISH");
-
         callback(votes);
     })
 }
 
 function getMeanInstance(instancesToCheck, i) {
     return new Promise(function (resolve, reject) {
-        console.log("GET MEAN INSTANCE");
 
         WorkshopInstance.find({
             '_id': {$in: instancesToCheck}
@@ -96,7 +92,6 @@ function getMeanInstance(instancesToCheck, i) {
 
                         for (var k = 0; k < docs[instanceI].feedbacks.participants.length; ++k) {
                             (function () {
-                                console.log("Feedback participant");
                                 votes.dim1 += docs[instanceI].feedbacks.participants[k].voteDimension1;
                                 votes.dim2 += docs[instanceI].feedbacks.participants[k].voteDimension2;
                                 votes.participants += (docs[instanceI].feedbacks.participants[k].voteDimension1 + docs[instanceI].feedbacks.participants[k].voteDimension2) / 2;
@@ -107,7 +102,6 @@ function getMeanInstance(instancesToCheck, i) {
 
                         for (var l = 0; l < docs[instanceI].feedbacks.facilitators.length; ++l) {
                             (function () {
-                                console.log("feedback facilitator");
                                 votes.dim1 += docs[instanceI].feedbacks.facilitators[l].voteDimension1;
                                 votes.dim2 += docs[instanceI].feedbacks.facilitators[l].voteDimension2;
                                 votes.facilitators += (docs[instanceI].feedbacks.facilitators[l].voteDimension1 + docs[instanceI].feedbacks.facilitators[l].voteDimension2) / 2;

@@ -14,10 +14,8 @@ var WorkshopInstance = mongoose.model("WorkshopInstance");
 
 exports.addFeedbackToInstance = function (req, res, next) {
     var workshopInstanceId = req.params.instanceId;
-    console.log(workshopInstanceId);
     var feedback = req.body.feedback;
     WorkshopInstance.findOne(ObjectId(workshopInstanceId) , function(err, model) {
-        console.log("===============\nHERE\n===================");
         if (err) {
             res.json({status: "error", data: err});
         } else {

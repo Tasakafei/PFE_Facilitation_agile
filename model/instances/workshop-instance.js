@@ -37,6 +37,10 @@ var WorkshopInstanceSchema = new Schema({
         timing: {
             theorical: Number,
             practical: Number
+        },
+        duration: {
+            theorical: Number,
+            practical: Number
         }
     }],
     workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true }
