@@ -10,8 +10,7 @@ var app = angular.module('facilitation');
 
 app.controller('qrcodeCtrl', function ($scope, $routeParams, $location) {
     // Scope vars
-    $scope.feedbackLink = location.protocol+"//"+location.host+"/feedback/"+$routeParams.idInstance;
-    console.log($scope.feedbackLink);
+    $scope.feedbackLink = location.protocol+"//"+location.host+"/#/feedback/"+$routeParams.idInstance;
 });
 
 
