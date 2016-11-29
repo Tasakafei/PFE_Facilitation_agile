@@ -14,7 +14,7 @@ var app = angular.module('facilitation', [
     'facilitation.qrcode'
 ]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
   $routeProvider
       .when("/", {
           templateUrl: "components/home/home.html"
