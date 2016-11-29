@@ -84,7 +84,6 @@ UserSchema.path('email').validate(function (email) {
 UserSchema.path('email').validate(function(value, respond) {
     mongoose.models["User"].findOne({email: value}, function(err, user) {
         if(err) throw err;
-        console.log("=======================");
         if(user) return respond(false);
         respond(true);
 

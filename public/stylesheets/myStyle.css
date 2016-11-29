@@ -68,6 +68,9 @@ body {
 .padding-t {
     padding-top: 10px;
 }
+.padding-b {
+    padding-bottom: 10px;
+}
 .page-header {
     margin-top: 20px;
 }
@@ -209,4 +212,15 @@ select {
     appearance: none;
     background-size: 11px;
     background-position-x: calc(100% - 10px);
+}
+
+/* Instance */
+.qrcode-off {
+    display: none;
+}
+.qrcode-on {
+    display: block;
+}
+canvas.qrcode {
+    width: 204px;
 }

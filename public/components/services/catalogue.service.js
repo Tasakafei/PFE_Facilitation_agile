@@ -12,11 +12,12 @@ app.service('CatalogueDataProvider', function ($http) {
     this.getWorkshops = function(callbackFunc) {
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/v1/catalogue'
+            url: '/api/v1/catalogue'
         }).success(function(data){
             // With the data succesfully returned, call our callback
             callbackFunc(data);
-        }).error(function(){
+        }).error(function(err){
+            console.log(err);
             alert("error : echec de la récupération du catalogue !");
         });
     };
@@ -26,7 +27,7 @@ app.service('CatalogueDataProvider', function ($http) {
     this.getWorkshop = function(idWorkshop, callbackFunc) {
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/v1/catalogue/'+idWorkshop
+            url: '/api/v1/catalogue/'+idWorkshop
         }).success(function(data) {
             callbackFunc(data)
         }).error(function() {
