@@ -31,7 +31,7 @@
                             <label><input type="checkbox" value="" ng-model="answers[Lead_time_vs_Throufhtput]" ng-change="stateChanged6(Lead_time_vs_Throufhtput)" ng-checked="false">Lead time vs Throufhput</label>
                         </li>
                         <li class="checkbox add-padding">
-                            <label><input id="c" type="checkbox" value="TaF_WiP" ng-model="Previsions[TaF_WiP]" ng-change="stateChanged3(TaF_WiP)" >TaF WiP</label>
+                            <label><input id="c" type="checkbox" value="TaF_WiP" ng-model="answers[TaF_WiP]" ng-change="stateChanged3(TaF_WiP)" >TaF WiP</label>
                         </li>
                        <button type="button" class="btn btn-default center-block" ng-click="close()">Fermer</button>
                     </ul>
@@ -107,7 +107,7 @@
         <div class="row">
         <!-- Résultat -->
         <div class="col-xs-12 no-padding">
-            <div ng-repeat="elem in data.data |filter : search | filter:resultant">
+            <div ng-repeat="elem in data.data |filter : search | filter:Previsions |filter:TaF_WiP ">
                 <a href="/#/catalogue/{{elem.workshop._id}}">
                     <div class="col-xs-12 thumbnail">
                         <!-- Photo -->

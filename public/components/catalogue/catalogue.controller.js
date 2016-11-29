@@ -28,6 +28,8 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             console.log("Previsions");
 
         }
+        $scope.answers[Previsions]=false;
+       // $scope.Previsions=' ';
 
 
     }
@@ -56,6 +58,9 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             $scope.resultant="TaF - WiP";
 
         }
+        $scope.answers[TaF_WiP]=false;
+        //$scope.TaF_WiP='';
+
 
     }
 
