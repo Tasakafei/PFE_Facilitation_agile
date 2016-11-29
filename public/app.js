@@ -29,11 +29,6 @@ app.config(function($routeProvider) {
       })
       .when("/feedback/:instanceId", {
           templateUrl: "components/feedback/feedback.html"
-
-      })
-      .when("/#/feedback/:instanceId", {
-          templateUrl: "components/feedback/feedback.html"
-
       })
       .when("/catalogue/:catalogueId", {
           templateUrl: "components/workshop/workshop.html",
@@ -55,6 +50,7 @@ app.config(function($routeProvider) {
           templateUrl: "components/qrcode/qrcode.html",
           controller: "qrcodeCtrl"
       })
+    $locationProvider.html5Mode(true);
 });
 
 app.run(function ($rootScope, $location, Auth) {
