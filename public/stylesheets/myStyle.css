@@ -11,6 +11,9 @@ body {
 .navbar.navbar-default {
     z-index: 1000;
 }
+.dropdown-menu i.pull-right {
+    padding-top: 3px;
+}
 .footer {
     position: absolute;
     bottom: 0;

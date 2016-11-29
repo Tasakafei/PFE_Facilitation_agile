@@ -126,19 +126,23 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 no-padding">
                                 <!-- Note -->
-                                <i class="fa fa-star"></i>
+                                <div class="col-xs-12 no-padding">
+                                    Participants :
 
-                                votes participants :
-                                <div>
-                                    <i class="fa fa-star" data-ng-repeat="i in [] | range:elem.votes.participants"></i>
-                                    <i class="fa fa-star-half-o" ng-if="(elem.votes.participants%1) > 0"></i>
-                                    <i class="fa fa-star-o" data-ng-repeat="i in [] | range:5-elem.votes.participants"></i>
+                                    <i ng-if="elem.votes.participants" ng-class="{ 'fa fa-star': $index<=elem.votes.participants, 'fa fa-star-o': $index>elem.votes.participants }" data-ng-repeat="i in [] | range:5"></i>
+                                    <span ng-if="!elem.votes.participants">Aucunes notes</span>
+                                    <!--<i ng-if="!elem.votes.participants" class="fa fa-star" data-ng-repeat="i in [] | range:5"></i>-->
+
+                                    <!--<i class="fa fa-star-half-o" ng-if="(elem.votes.participants%1) > 0"></i>-->
+                                    <!--<i class="fa fa-star-o" data-ng-repeat="i in [] | range:5-elem.votes.participants"></i>-->
                                 </div>
-                                votes facilitateurs :
-                                <div>
-                                    <i class="fa fa-star" data-ng-repeat="i in [] | range:elem.votes.facilitators"></i>
-                                    <i class="fa fa-star-half-o" ng-if="(elem.votes.facilitators%1) > 0"></i>
-                                    <i class="fa fa-star-o" data-ng-repeat="i in [] | range:5-elem.votes.facilitators"></i>
+                                <div class="col-xs-12 no-padding">
+                                    Facilitateurs :
+                                    <i ng-if="elem.votes.facilitators" ng-class="{ 'fa fa-star': $index<=elem.votes.facilitators, 'fa fa-star-o': $index>elem.votes.facilitators }" data-ng-repeat="i in [] | range:5"></i>
+                                    <span ng-if="!elem.votes.facilitators">Aucunes notes</span>
+                                    <!--<i class="fa fa-star" data-ng-repeat="i in [] | range:elem.votes.facilitators"></i>-->
+                                    <!--<i class="fa fa-star-half-o" ng-if="(elem.votes.facilitators%1) > 0"></i>-->
+                                    <!--<i class="fa fa-star-o" data-ng-repeat="i in [] | range:5-elem.votes.facilitators"></i>-->
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 no-padding">
@@ -148,7 +152,7 @@
                                 </div>
                             </div>
                             <!-- Detail -->
-                            <p class="hidden-xs">{{elem.workshop.synopsis}}</p>
+                            <p class="col-xs-12 hidden-xs no-padding padding-t">{{elem.workshop.synopsis}}</p>
                         </div>
                     </div>
                 </a>

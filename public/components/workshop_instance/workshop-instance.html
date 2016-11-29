@@ -4,10 +4,11 @@
         <h3>{{workshopInstance.data.title}}</h3>
     </div>
     <div class="row">
-        <div class="col-xl-12">
-            <!-- Your instance page : <p>{{workshopInstance}}</p> -->
+        <div class="col-md-6 col-xs-12 padding-b">
             <timer></timer>
-            <a href="#/feedback/{{workshopInstance.data._id}}">Ici PD</a>
+        </div>
+        <div class="col-md-6 col-xs-12 padding-b">
+            <a href="#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
         </div>
     </div>
 </div>
