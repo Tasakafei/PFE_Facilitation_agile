@@ -11,14 +11,14 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="#/"><!--<span class="logo"><img alt="Brand" src="img/favicon.png">-->Serious game<!--</span>--> </a>
+                <a class="navbar-brand" href="/"><!--<span class="logo"><img alt="Brand" src="img/favicon.png">-->Serious game<!--</span>--> </a>
             </div>
 
             <div class="collapse navbar-collapse" id="js-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li ng-class="{ active: isActive('/')}"><a href="#/">Accueil</a></li>
-                    <li ng-class="{ active: isActive('/catalogue')}"><a href="#/catalogue">Catalogue</a></li>
-                    <li ng-class="{ active: isActive('/importer')}"><a href="#/importer">Importer</a></li>
+                    <li ng-class="{ active: isActive('/')}"><a href="/">Accueil</a></li>
+                    <li ng-class="{ active: isActive('/catalogue')}"><a href="/catalogue">Catalogue</a></li>
+                    <li ng-class="{ active: isActive('/importer')}"><a href="/importer">Importer</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-hide="currentUser"><a data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-user"></span> S'incrire</a></li>
@@ -28,9 +28,9 @@
                            aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> {{currentUser.username}}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#/profile"><i class="pull-right fa fa-wrench"></i>Profile</a></li>
-                            <li><a href="#/favoriteWorkshops"><i class="pull-right fa fa-heart-o"></i>Favoris</a></li>
-                            <li><a href="#/instances"> <i class="pull-right fa fa-list"></i>Préparés</a></li>
+                            <li><a href="/profile"><i class="pull-right fa fa-wrench"></i>Profile</a></li>
+                            <li><a href="/favoriteWorkshops"><i class="pull-right fa fa-heart-o"></i>Favoris</a></li>
+                            <li><a href="/instances"> <i class="pull-right fa fa-list"></i>Préparés</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a ng-click="logOut()"><i class="pull-right fa fa-sign-out"></i>Se déconnecter</a></li>
                         </ul>
