@@ -52,7 +52,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
             // UPLOAD THE PHOTOS.
             var request = {
                 method: 'POST',
-                url: '/api/v1/',
+                url: '/api/v1/feedback',
                 data: formdata,
                 headers: {
                     'Content-Type': undefined
