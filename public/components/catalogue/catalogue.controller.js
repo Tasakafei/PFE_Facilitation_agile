@@ -44,24 +44,24 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
     });
 
     $scope.getLabelColor = function (label) {
-        if(label == "Travail itératif") {
+        if (label == "Travail itératif") {
             return "label-success";
-        } else if(label == "Amélioration continue") {
+        } else if (label == "Amélioration continue") {
             return "label-primary";
-        } else if(label == "Prévisions") {
+        } else if (label == "Prévisions") {
             return "label-info";
-        } else if(label == "Rétrospective") {
+        } else if (label == "Rétrospective") {
             return "label-warning";
-        } else if(label == "TaF - WiP") {
+        } else if (label == "TaF - WiP") {
             return "label-purple"
-        } else if(label == "Lead time vs Throughput") {
+        } else if (label == "Lead time vs Throughput") {
             return "label-yellow"
         } else {
             return "label-default";
         }
 
     };
-    $scope.rechercher=function(){
+    $scope.rechercher = function () {
         $scope.$emit('notify', {
             type: 'success',
             title: 'recherche en cours',
@@ -71,8 +71,8 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
 
     var bool = false;
 
-    $scope.dropDown = function() {
-        if(!bool) {
+    $scope.dropDown = function () {
+        if (!bool) {
             $('#avancedSearch').addClass('open');
             bool = true;
         } else {
@@ -80,11 +80,11 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             bool = false;
         }
         $scope.checkboxModel = {
-            value1 : 'paper',
-            value2 : 'YES'
+            value1: 'paper',
+            value2: 'YES'
         };
     };
-    $scope.close = function() {
+    $scope.close = function () {
         $('#avancedSearch').removeClass('open');
         bool = false;
     };
