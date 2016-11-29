@@ -11,6 +11,7 @@ var app = angular.module('facilitation', [
     'http-auth-interceptor',
     'angularNotify',
     'socketio.service',
+    'facilitation.qrcode'
 ]);
 
 app.config(function($routeProvider) {
@@ -45,6 +46,10 @@ app.config(function($routeProvider) {
       .when("/instances/:idInstance", {
           templateUrl: "components/workshop_instance/workshop-instance.html",
           controller: "instanceCtrl"
+      })
+      .when("/instances/:idInstance/qrcode", {
+          templateUrl: "components/qrcode/qrcode.html",
+          controller: "qrcodeCtrl"
       })
       .otherwise({
           redirectTo: '/'
