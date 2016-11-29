@@ -16,7 +16,8 @@ app.service('CatalogueDataProvider', function ($http) {
         }).success(function(data){
             // With the data succesfully returned, call our callback
             callbackFunc(data);
-        }).error(function(){
+        }).error(function(err){
+            console.log(err);
             alert("error : echec de la récupération du catalogue !");
         });
     };
