@@ -52,7 +52,7 @@ app.config(function($routeProvider) {
           controller: "qrcodeCtrl"
       })
       .otherwise({
-          redirectTo: '/'
+          redirectTo: '/instances'
       });
 
 });
