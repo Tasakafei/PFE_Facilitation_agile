@@ -3,16 +3,16 @@
  */
 'use strict';
 
-var app = angular.module('facilitation.timer', ['socketio.service']);
+var app = angular.module('facilitation');
 
 app.controller('timerCtrl', function($scope, $interval, socket){
 
     $scope.joinRoom = function(room){
-        socket.emit('join_room', 'roomTest');
+        socket.emit('join_room', room);
     };
 
     $scope.leaveRoom = function(room){
-        socket.emit('leave_room', 'roomTest');
+        socket.emit('leave_room', room);
     };
 
     socket.on('new_user', function(msg){

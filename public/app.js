@@ -9,8 +9,8 @@ var app = angular.module('facilitation', [
     'ngRoute',
     'ui.bootstrap',
     'http-auth-interceptor',
-    'facilitation.timer',
     'angularNotify',
+    'socketio.service',
 ]);
 
 app.config(function($routeProvider) {

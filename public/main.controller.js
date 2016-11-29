@@ -20,4 +20,4 @@ angular.module('facilitation')
 
         return input;
     };
-});;
+});

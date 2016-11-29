@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams, $http) {
+app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams, $http, socket) {
 
     // Local vars
     var currentId = $routeParams.idInstance;
@@ -16,20 +16,17 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     // Scope vars
     $scope.workshopInstance = "";
 
+
     FavoriteWorkshops.getWorkshopInstance(currentId).then(function (dataResponse) {
 
-        console.log(dataResponse.data);
         $scope.workshopInstance = dataResponse.data;
+
     });
 
-});
+    console.log("AAAAAA");
+    socket.emit('join_room', currentId);
 
-/* To interpret HTML balise in JSON */
-app.filter('to_trusted', ['$sce', function($sce){
-    return function(text) {
-        return $sce.trustAsHtml(text);
-    };
-}]);
+});
 
 
 

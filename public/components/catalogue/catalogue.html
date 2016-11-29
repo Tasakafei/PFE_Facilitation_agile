@@ -107,7 +107,7 @@
         <div class="row">
         <!-- Résultat -->
         <div class="col-xs-12 no-padding">
-            <<div ng-repeat="workshop in data.data |filter : search | filter:resultant">
+            <div ng-repeat="elem in data.data |filter : search | filter:resultant">
                 <a href="/#/catalogue/{{elem.workshop._id}}">
                     <div class="col-xs-12 thumbnail">
                         <!-- Photo -->
@@ -126,19 +126,19 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 no-padding">
                                 <!-- Note -->
+                                <i class="fa fa-star"></i>
+
                                 votes participants :
                                 <div>
                                     <i class="fa fa-star" data-ng-repeat="i in [] | range:elem.votes.participants"></i>
                                     <i class="fa fa-star-half-o" ng-if="(elem.votes.participants%1) > 0"></i>
                                     <i class="fa fa-star-o" data-ng-repeat="i in [] | range:5-elem.votes.participants"></i>
-
                                 </div>
                                 votes facilitateurs :
                                 <div>
                                     <i class="fa fa-star" data-ng-repeat="i in [] | range:elem.votes.facilitators"></i>
                                     <i class="fa fa-star-half-o" ng-if="(elem.votes.facilitators%1) > 0"></i>
                                     <i class="fa fa-star-o" data-ng-repeat="i in [] | range:5-elem.votes.facilitators"></i>
-
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 no-padding">
