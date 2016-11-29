@@ -50,7 +50,7 @@ app.config(function($routeProvider, $locationProvider) {
           templateUrl: "components/qrcode/qrcode.html",
           controller: "qrcodeCtrl"
       });
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
 });
 
 app.run(function ($rootScope, $location, Auth) {
