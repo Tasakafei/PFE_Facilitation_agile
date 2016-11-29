@@ -4,12 +4,12 @@
 
 var app = angular.module('facilitation');
 
-app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams) {
+app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams, $http) {
     var currentId = $routeParams.instanceId;
     $scope.instanceData = {};
 
     //Photo
-    document.getElementById('InputPhotos').addEventListener('change', function(){
+    /*document.getElementById('InputPhotos').addEventListener('change', function(){
         for(var i = 0; i < this.files.length; i++){
             var file =  this.files[i];
             // Test only...
@@ -21,6 +21,15 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams)
             console.groupEnd();
         }
     }, false);
+
+*/
+    var formdata = new FormData();
+    $scope.getTheFiles = function ($files) {
+        angular.forEach($files, function (value, key) {
+            formdata.append(key, value);
+        });
+    };
+
 
     $scope.submit = function () {
 
@@ -39,6 +48,31 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams)
             console.log(this.files);
             console.log("=================");
             var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
+
+            // UPLOAD THE PHOTOS.
+            var request = {
+                method: 'POST',
+                url: '/api/v1/',
+                data: formdata,
+                headers: {
+                    'Content-Type': undefined
+                }
+            };
+            console.log("photo enregistée");
+            alert("photo enregistrée");
+
+            // SEND THE PHOTOS.
+            $http(request)
+                .success(function (d) {
+                    alert(d);
+                })
+                .error(function () {
+                });
+            console.log("photo envoyée");
+            alert("photo envoyée");
+
+
+
             res.success(function (data, status, headers, config) {
                 //$scope.message = data;
                 $scope.$emit('notify', {
@@ -57,4 +91,17 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams)
     };
 
 });
+app.directive('ngFiles', ['$parse', function ($parse) {
+
+    function fn_link(scope, element, attrs) {
+        var onChange = $parse(attrs.ngFiles);
+        element.on('change', function (event) {
+            onChange(scope, { $files: event.target.files });
+        });
+    };
+
+    return {
+        link: fn_link
+    }
+}])
 
