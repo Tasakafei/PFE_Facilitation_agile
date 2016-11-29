@@ -16,17 +16,28 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     // Scope vars
     $scope.workshopInstance = "";
 
-
     FavoriteWorkshops.getWorkshopInstance(currentId).then(function (dataResponse) {
 
         $scope.workshopInstance = dataResponse.data;
 
     });
 
-    console.log("AAAAAA");
     socket.emit('join_room', currentId);
 
 });
 
+var bool = true;
+function afficherQrcode() {
+
+    if(bool) {
+        $('.qrcode-off').addClass('qrcode-on');
+        $('.qrcode-on').removeClass('qrcode-off');
+        bool = false;
+    } else {
+        $('.qrcode-on').addClass('qrcode-off');
+        $('.qrcode-off').removeClass('qrcode-on');
+        bool = true;
+    }
+}
 
 
