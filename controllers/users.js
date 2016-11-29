@@ -293,25 +293,30 @@ function getWorkshopInstanceImpl(req, res, next) {
 
 function unauthgetWorkshopInstancesImpl(req, res, next) {
     req.user = { username: req.params.username};
+    res.set('Access-Control-Allow-Origin','*');
     return getWorkshopInstancesImpl(req, res, next);
 }
 
 function unauthaddToFavoriteWorkshopsImpl(req, res, next) {
     req.user = { username: req.body.username};
+    res.set('Access-Control-Allow-Origin','*');
     return addToFavoriteWorkshopsImpl(req, res, next);
 }
 
 function unauthgetFavoriteWorkshopsImpl(req, res, next) {
     req.user = { username: req.params.username};
+    res.set('Access-Control-Allow-Origin','*');
     return getFavoriteWorkshopsImpl(req, res, next);
 }
 
 function unauthaddWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
+    res.set('Access-Control-Allow-Origin','*');
     return addWorkshopInstanceImpl(req, res, next);
 }
 
 function unauthgetWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
+    res.set('Access-Control-Allow-Origin','*');
     return getWorkshopInstanceImpl(req, res, next);
 }
