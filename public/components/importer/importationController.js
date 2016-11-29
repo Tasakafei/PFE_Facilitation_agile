@@ -27,7 +27,7 @@ app.controller('importationCtrl', function ($scope,$http) {
                         $scope.$emit('notify', {
                             type: 'success',
                             title: 'L\'atelier a bien été importé.',
-                            content: 'http://localhost:3000/#/catalogue/'+data.data._id +'$$Lien vers votre atelier'
+                            content: '/#/catalogue/'+data.data._id +'$$Lien vers votre atelier'
                         });
                     });
                     res.error(function(data, status, headers, config) {
