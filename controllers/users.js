@@ -289,12 +289,12 @@ function getWorkshopInstanceImpl(req, res, next) {
 
 function unauthgetWorkshopInstancesImpl(req, res, next) {
     req.user = { username: req.params.username};
-    return this.getWorkshopInstancesImpl(req, res, next);
+    return getWorkshopInstancesImpl(req, res, next);
 }
 
 function unauthaddToFavoriteWorkshopsImpl(req, res, next) {
     req.user = { username: req.body.username};
-    return this.addToFavoriteWorkshopsImpl(req, res, next);
+    return addToFavoriteWorkshopsImpl(req, res, next);
 }
 
 function unauthgetFavoriteWorkshopsImpl(req, res, next) {
@@ -304,10 +304,10 @@ function unauthgetFavoriteWorkshopsImpl(req, res, next) {
 
 function unauthaddWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
-    return this.addWorkshopInstanceImpl(req, res, next);
+    return addWorkshopInstanceImpl(req, res, next);
 }
 
 function unauthgetWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
-    return this.getWorkshopInstanceImpl(req, res, next);
+    return getWorkshopInstanceImpl(req, res, next);
 }
