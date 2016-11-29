@@ -8,9 +8,11 @@
             <timer></timer>
         </div>
         <div class="col-md-6 col-xs-12 padding-b">
-            <a href="#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
-
-            <a href="#/instances/{{workshopInstance.data._id}}/qrcode">QrCode</a>
+            <a href="#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a><br /><br />
+            <button type="button" class="btn btn-default" onclick="afficherQrcode()">Afficher QRCode</button><br /><br />
+            <div ng-controller="qrcodeCtrl" class="qrcode-off">
+                <qrcode size="315" data="{{feedbackLink}}" href="{{feedbackLink}}"></qrcode>
+            </div>
         </div>
     </div>
 </div>
