@@ -59,15 +59,9 @@ WorkshopSchema.methods = {
                 if (err) {
                     reject(err);
                 } else {
-                    console.log(docs);
                     resolve(docs)
                 }
             });
-            /*var nbVotes = this.feedbacks.participants.length;
-             for ( var i = 0; i < nbVotes; ++i) {
-             total+= this.feedbacks.participants[i].vote;
-             }
-             return (total / nbVotes);*/
         });
     }
 };

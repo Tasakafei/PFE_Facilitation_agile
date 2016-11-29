@@ -187,7 +187,6 @@ function getWorkshopInstancesImpl(req, res, next) {
         }
 
         if(user) {
-            console.log(userData.workshops_instances);
             res.json({status: "success", data: userData.workshops_instances});
         } else {
             res.json({status: "error", data: "USER_NOT_FOUND"});
