@@ -228,7 +228,11 @@ function addWorkshopInstanceImpl(req, res, next) {
                                     description: wsStep.description,
                                     timing: {
                                         theorical: wsStep.timing,
-                                        practical: 0
+                                        practical: -1
+                                    },
+                                    duration: {
+                                        theorical: wsStep.duration,
+                                        practical: -1
                                     }
                                 };
                             }
