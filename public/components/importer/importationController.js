@@ -17,7 +17,7 @@ app.controller('importationCtrl', function ($scope,$http) {
                 var data = JSON.parse(donnees);
 
                 //Check if the JSON file got what we expect in
-                if( data.title && data.time_max && data.synopsis && data.content.folklore && data.content.educational_aims && data.content.steps) {
+                if( data.title && data.duration && data.synopsis && data.content.folklore && data.content.educational_aims && data.content.steps) {
 
                     //Post
                     var res = $http.post('/api/v1/catalogue', donnees);

@@ -18,8 +18,7 @@ var WorkshopSchema = new mongoose.Schema({
     participants_max: {type: Number, default: -1},
     participants_min: {type: Number, default: 3},
     public_targeted: {type: String, default: "Tous"},
-    time_min: {type: Number, default: 60},
-    time_max: {type: Number, default: 180},
+    duration: Number,
     synopsis: {type: String, default: null},
     preparation_time: {type: Number, default: 30},
     content: {

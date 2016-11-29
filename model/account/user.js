@@ -25,7 +25,7 @@ var UserSchema = new Schema({
         title: String,
         photo : {type: String, default: "../../img/default.jpg"},
         educational_aims: [String],
-        time_min: {type: Number, default: 60},
+        duration: Number,
         synopsis: {type: String, default: null},
         _id: {
             type: Schema.ObjectId,
@@ -37,7 +37,7 @@ var UserSchema = new Schema({
         title: {type: String, required: true},
         photo : {type: String, default: "../../img/default.jpg"},
         educational_aims: [String],
-        time_min: {type: Number, default: 60},
+        duration: Number,
         synopsis: {type: String, default: null},
         added_at: {type: Date, default: Date.now},
         id: {

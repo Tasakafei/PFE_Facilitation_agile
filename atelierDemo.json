@@ -1,14 +1,14 @@
 {
-  "title": "Paper Plane Factory",
+  "title": "Birdie-Birdie",
   "author": "Sébastien Mosser",
-  "photo": "https://pfe-facilitation.herokuapp.com/img/atelier1.jpg",
+  "photo": "https://pfe-facilitation.herokuapp.com/img/atelierDemo.jpg",
   "duration": 60,
   "synopsis" : "L’armée de l’air norvégienne cherche à remplacer un sous-ensemble de sa flotte. Chaque équipe (de 3-4 participants) représente un constructeur aérien, dont l’objectif est de remporter le marché. L’armée achètera auprès du constructeur capable de fabriquer le plus d’avion possible, de la manière la plus prévisible possible.",
   "content" : {
     "steps": [
       {
         "title": "Intro",
-        "description": "Présenter le folklore de l’atelier, les notions travaillées, pourquoi c’est important dans leur projet. Parler du fait que l’atelier est une métaphore, qu’ils retireront de cet atelier ce qu’ils auront investi dedans.",
+        "description": "Attention, atelier fake, juste pour test demo ! Présenter le folklore de l’atelier, les notions travaillées, pourquoi c’est important dans leur projet. Parler du fait que l’atelier est une métaphore, qu’ils retireront de cet atelier ce qu’ils auront investi dedans.",
         "timing": 0,
         "duration": 5
       },
@@ -73,7 +73,7 @@
     ],
     "source": "http://agileway.com.br/2009/11/16/the-airplane-factory-game/ ",
     "folklore": "L’armée de l’air norvégienne cherche à remplacer un sous-ensemble de sa flotte. Chaque équipe (de 3-4 participants) représente un constructeur aérien, dont l’objectif est de remporter le marché. L’armée achètera auprès du constructeur capable de fabriquer le plus d’avion possible, de la manière la plus prévisible possible.",
-    "educational_aims" : ["Travail itératif", "Amélioration continue", "Prévisions", "Rétrospective"],
+    "educational_aims" : ["Travail itératif", "Amélioration continue", "Prévisions"],
     "equipment": "<ul><li>Autant d’îlots de tables (2 tables == un site de prod) que d’équipes (6 ou 7 max)</li> <li>Une “piste d’essai” au fond de la salle (tables en long)</li> <li>Un stock de matières premières (brouillons d’examen) sur le devant de la salle</li> <li>Une feuille “plan d’avion” par équipe</li> <li>Un ordi + vidéoprojecteur pour remplir l’excel de suivi et afficher le chrono</li> <li>Quelques feuilles de couleur différentes pour les dernières itérations</li> <li>Balle de parole pour le débrief final</li> <li>Grosses poubelles pour jeter les avions construits</li></ul>"
   }
 }
