@@ -15,10 +15,12 @@ router.post('/favorites', auth.ensureAuthenticated, users.addToFavoriteWorkshops
 router.get('/favorites', auth.ensureAuthenticated,  users.getFavoriteWorkshops);
 router.post('/instances', auth.ensureAuthenticated, users.addWorkshopInstance);
 router.get('/instances', auth.ensureAuthenticated, users.getWorkshopInstances);
+router.get('/instances/:instanceId', auth.ensureAuthenticated, users.getWorkshopInstance);
 
 router.post('/unauth/:username/favorites', users.unauthaddToFavoriteWorkshops);
 router.get('/unauth/:username/favorites', users.unauthgetFavoriteWorkshops);
 router.post('/unauth/:username/instances', users.unauthaddWorkshopInstance);
 router.get('/unauth/:username/instances', users.unauthgetWorkshopInstances);
+router.get('/unauth/:username/instances/:instanceId', users.unauthgetWorkshopInstance);
 
 module.exports = router;

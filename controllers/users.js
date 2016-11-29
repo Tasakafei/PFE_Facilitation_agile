@@ -58,6 +58,9 @@ exports.getWorkshopInstances = getWorkshopInstancesImpl;
  */
 exports.addWorkshopInstance = addWorkshopInstanceImpl;
 
+exports.getWorkshopInstance = getWorkshopInstanceImpl;
+
+
 exports.unauthgetWorkshopInstances = unauthgetWorkshopInstancesImpl;
 
 exports.unauthaddToFavoriteWorkshops = unauthaddToFavoriteWorkshopsImpl;
@@ -65,6 +68,8 @@ exports.unauthaddToFavoriteWorkshops = unauthaddToFavoriteWorkshopsImpl;
 exports.unauthgetFavoriteWorkshops = unauthgetFavoriteWorkshopsImpl;
 
 exports.unauthaddWorkshopInstance = unauthaddWorkshopInstanceImpl;
+
+exports.unauthgetWorkshopInstance = unauthgetWorkshopInstanceImpl;
 /*********************************************************
  * IMPLEMENTATION                                        *
  *********************************************************/
@@ -265,6 +270,23 @@ function addWorkshopInstanceImpl(req, res, next) {
     }
 }
 
+function getWorkshopInstanceImpl(req, res, next) {
+    var user = req.user;
+    var instanceId = req.params.instanceId;
+    //var user = { username: req.body.username };
+    WorkshopInstance.findOne(ObjectId(instanceId) , function (err, instanceWorkshop) {
+        if (err) {
+            return next(new Error('Failed to load User ' + user.username));
+        }
+
+        if(user) {
+            res.json({status: "success", data: instanceWorkshop});
+        } else {
+            res.json({status: "error", data: "INSTANCE_NOT_FOUND"});
+        }
+    });
+}
+
 function unauthgetWorkshopInstancesImpl(req, res, next) {
     req.user = { username: req.params.username};
     return this.getWorkshopInstancesImpl(req, res, next);
@@ -283,4 +305,9 @@ function unauthgetFavoriteWorkshopsImpl(req, res, next) {
 function unauthaddWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
     return this.addWorkshopInstanceImpl(req, res, next);
+}
+
+function unauthgetWorkshopInstanceImpl(req, res, next) {
+    req.user = { username: req.body.username};
+    return this.getWorkshopInstanceImpl(req, res, next);
 }

@@ -34,10 +34,6 @@ app.config(function($routeProvider) {
           templateUrl: "components/workshop/workshop.html",
           controller: "workshopCtrl"
       })
-      .when("/timer",{
-          templateUrl: "components/timer/timer.html",
-          controller: "timerCtrl"
-      })
       .when("/favoriteWorkshops", {
           templateUrl: "components/favorite_workshops/favorite/favorite.html",
           controller: "favoriteCtrl"
@@ -45,6 +41,10 @@ app.config(function($routeProvider) {
       .when("/instances", {
           templateUrl: "components/favorite_workshops/instances/instances.html",
           controller: "menuCtrl"
+      })
+      .when("/instances/:idInstance", {
+          templateUrl: "components/workshop_instance/workshop-instance.html",
+          controller: "instanceCtrl"
       })
       .otherwise({
           redirectTo: '/'
