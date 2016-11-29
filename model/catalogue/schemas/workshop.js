@@ -12,7 +12,7 @@ var Promise = require('promise');
 var WorkshopSchema = new mongoose.Schema({
     title: String,
     author: {type: String, default: "Anonyme"},
-    photo : {type: String, default: "../../img/default.jpg"},
+    photo : {type: String, default: "https://pfe-facilitation.herokuapp.com/img/default.jpg"},
     workshop_type: {type: String, default: "Production"},
     goals: [String],
     participants_max: {type: Number, default: -1},
