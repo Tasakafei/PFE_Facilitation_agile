@@ -68,7 +68,8 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
                 $scope.message = data;
                 $scope.$emit('notify', {
                     type: 'success',
-                    title: 'L\'atelier a bien été ajouté.'
+                    title: 'L\'atelier a bien été ajouté.',
+                    content: 'http://localhost:3000/#/favoriteWorkshops $$Voir mes ateliers favoris'
                 });
             });
             res.error(function (data, status, headers, config) {
@@ -94,7 +95,8 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
             $scope.message = data;
             $scope.$emit('notify', {
                 type: 'success',
-                title: 'L\'atelier a bien été ajouté.'
+                title: 'L\'atelier a bien été ajouté.',
+                content: 'http://localhost:3000/#/instances $$Voir mes ateliers préparés'
             });
         });
         res.error(function(data, status, headers, config) {

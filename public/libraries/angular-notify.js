@@ -30,8 +30,11 @@ AngularNotifyModule.directive('notifybar', [
 					if( typeof notifyData.content == 'string' && notifyData.content.length !== 0 ){
 						var content = document.createElement('a');
 						content.className += ' content';
-						content.setAttribute('href', notifyData.content);
-						content.innerHTML = '<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>  Lien vers votre atelier';
+
+						var res = notifyData.content.split("$$");
+
+						content.setAttribute('href', res[0]);
+						content.innerHTML = '<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> '+ res[1];
 
 						notifyContainer.appendChild(content);
 					}
