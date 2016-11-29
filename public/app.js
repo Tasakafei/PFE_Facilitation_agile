@@ -17,7 +17,7 @@ var app = angular.module('facilitation', [
 app.config(function($routeProvider) {
   $routeProvider
       .when("/", {
-        templateUrl: "components/home/home.html"
+          templateUrl: "components/home/home.html"
       })
       .when("/importer", {
           templateUrl: "components/importer/importer.html",
@@ -66,7 +66,7 @@ app.run(function ($rootScope, $location, Auth) {
 
     // On catching 401 errors, redirect to the login page.
     $rootScope.$on('event:auth-loginRequired', function() {
-        $location.path('/login');
+        $location.path('/');
         return false;
     });
 });
