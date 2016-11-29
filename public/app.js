@@ -51,10 +51,6 @@ app.config(function($routeProvider) {
           templateUrl: "components/qrcode/qrcode.html",
           controller: "qrcodeCtrl"
       })
-      .otherwise({
-          redirectTo: '/instances'
-      });
-
 });
 
 app.run(function ($rootScope, $location, Auth) {
