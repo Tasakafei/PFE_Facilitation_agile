@@ -2,7 +2,7 @@
   "title": "Paper Plane Factory",
   "author": "Sébastien Mosser",
   "photo": "https://pfe-facilitation.herokuapp.com/img/atelier1.jpg",
-  "time_max": 60,
+  "duration": 60,
   "synopsis" : "L’armée de l’air norvégienne cherche à remplacer un sous-ensemble de sa flotte. Chaque équipe (de 3-4 participants) représente un constructeur aérien, dont l’objectif est de remporter le marché. L’armée achètera auprès du constructeur capable de fabriquer le plus d’avion possible, de la manière la plus prévisible possible.",
   "content" : {
     "steps": [

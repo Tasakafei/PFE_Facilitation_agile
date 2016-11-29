@@ -1,7 +1,7 @@
 {
   "title": "Icebreaker Agile",
   "author": "agile_france",
-  "time_max": 15	,
+  "duration": 15,
   "synopsis" : "Les participants expérimentent l’auto-organisation, la limitation du temps (le timeboxing) ainsi que la possibilité d’échouer à atteindre l’objectif prévu pour une itération.",
   "content" : {
     "steps": [

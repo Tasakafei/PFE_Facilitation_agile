@@ -142,7 +142,7 @@ function addToFavoriteWorkshopsImpl (req, res, next) {
                         title: model.title,
                         photo : model.photo,
                         educational_aims: model.content.educational_aims,
-                        time_min: model.time_min,
+                        duration: model.duration,
                         synopsis: model.synopsis,
                         added_at: Date.now(),
                         _id: ObjectId(workshop)
@@ -240,7 +240,7 @@ function addWorkshopInstanceImpl(req, res, next) {
                             var toAdd = {
                                 photo : workshop.photo,
                                 educational_aims: workshop.content.educational_aims,
-                                time_min: workshop.time_min,
+                                duration: workshop.duration,
                                 synopsis: workshop.synopsis,
                                 title: workshop.title,
                                 _id: instance._id
