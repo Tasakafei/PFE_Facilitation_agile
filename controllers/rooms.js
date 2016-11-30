@@ -11,7 +11,8 @@ module.exports = function (io) {
         socket.on('join_room', function(room){
             console.log('JOIN ROOM');
             socket.join(room);
-            io.to(room).emit('new_user','New user logged in !');
+            //io.to(room).emit('new_user','New user logged in !');
+            io.to(socket.id).emit('join_success','Successfully synchronized');
         });
 
         // Leave the specified room (workshop)
