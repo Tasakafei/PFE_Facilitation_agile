@@ -220,7 +220,7 @@ canvas.qrcode {
 }
 
 /* -- Thème -- */
-.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .sidebar-nav li a, .footer {
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .sidebar-nav li a, .footer, .navbar-default .navbar-nav>li>a:focus {
     color: #fff;
 }
 
