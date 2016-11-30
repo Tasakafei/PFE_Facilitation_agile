@@ -14,10 +14,10 @@ var app = angular.module('facilitation', [
     'facilitation.qrcode'
 ]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
   $routeProvider
       .when("/", {
-        templateUrl: "components/home/home.html"
+          templateUrl: "components/home/home.html"
       })
       .when("/importer", {
           templateUrl: "components/importer/importer.html",
@@ -29,7 +29,6 @@ app.config(function($routeProvider) {
       })
       .when("/feedback/:instanceId", {
           templateUrl: "components/feedback/feedback.html"
-
       })
       .when("/catalogue/:catalogueId", {
           templateUrl: "components/workshop/workshop.html",
@@ -50,11 +49,8 @@ app.config(function($routeProvider) {
       .when("/instances/:idInstance/qrcode", {
           templateUrl: "components/qrcode/qrcode.html",
           controller: "qrcodeCtrl"
-      })
-      .otherwise({
-          redirectTo: '/'
       });
-
+    // $locationProvider.html5Mode(true);
 });
 
 app.run(function ($rootScope, $location, Auth) {
@@ -70,7 +66,7 @@ app.run(function ($rootScope, $location, Auth) {
 
     // On catching 401 errors, redirect to the login page.
     $rootScope.$on('event:auth-loginRequired', function() {
-        $location.path('/login');
+        $location.path('/');
         return false;
     });
 });
