@@ -49,7 +49,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
             console.log("=================");
             var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
 
-            // UPLOAD THE PHOTOS.
+            /*// UPLOAD THE PHOTOS.
             var request = {
                 method: 'POST',
                 url: '/api/v1/feedback',
@@ -59,17 +59,17 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
                 }
             };
             console.log("photo enregistée");
-            alert("photo enregistrée");
+            alert("photo enregistrée");*/
 
             // SEND THE PHOTOS.
-            $http(request)
+            /*$http(request)
                 .success(function (d) {
                     alert(d);
                 })
                 .error(function () {
-                });
-            console.log("photo envoyée");
-            alert("photo envoyée");
+                });*/
+            //console.log("photo envoyée");
+            //alert("photo envoyée");
 
 
 
