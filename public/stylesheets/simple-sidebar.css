@@ -27,12 +27,12 @@
     position: absolute;
     left: 250px;
     width: 0;
-    height: calc(100% - 110px);
+    height: calc(100% - 111px);
     margin-left: -250px;
     overflow-y: auto;
     background-color: #f8f8f8;
     border: 1px solid #e7e7e7;
-    top: 51px;
+    top: 52px;
     overflow-x: hidden;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
