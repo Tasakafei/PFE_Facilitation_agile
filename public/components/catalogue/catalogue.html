@@ -70,10 +70,11 @@
                                 <div class="col-xs-12 col-md-6 no-padding">
                                     <h4 class="labelsTitle">{{elem.workshop.title}}</h4>
                                 </div>
-                                <div class="col-xs-12 col-md-6 padding-t labels hidden-xs no-padding">
-                                    <span ng-repeat="category in elem.workshop.content.educational_aims | orderBy"
-                                          class="label {{getLabelColor(category)}}">{{category}}</span>
-                                </div>
+                                <div class="col-xs-12 col-md-6 padding-t labels no-padding">
+                                    <span ng-repeat="category in elem.workshop.content.educational_aims | orderBy" >
+                                            <span class="label {{getLabelColor(category)}}">{{category}}</span>
+                                    </span>
+                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 no-padding">
                                 <!-- Note -->
@@ -93,7 +94,7 @@
                                     <span ng-if="!elem.votes.facilitators">Aucunes notes</span>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 no-padding">
+                            <div class="col-xs-12 col-sm-6 no-padding padding-t">
                                 <div>
                                     <!-- Temps de l'atelier -->
                                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>

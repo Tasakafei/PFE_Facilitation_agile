@@ -20,7 +20,7 @@
                     <button type="button" class="btn btn-default favorite" ng-click="addToFavorite()" uib-tooltip="Ajouter aux favoris" tooltip-placement="top"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button></a>
                 </div>
                <p class="lineHeight">
-                   <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label {{getLabelColor(category)}}">{{category}}</span><br />
+                   <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label labelWorkshop {{getLabelColor(category)}}">{{category}}</span><br />
                    Note :
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>

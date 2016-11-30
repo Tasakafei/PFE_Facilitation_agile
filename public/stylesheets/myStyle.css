@@ -138,13 +138,6 @@ p.workshopTitle {
     padding-bottom: 10px;
 }
 
-.labels span {
-    margin-left: 2px;
-}
-.labels span:first-child {
-    margin-left: 0;
-}
-
 @media (max-width: 768px) {
     .container.search {
         margin-left: 10px;
@@ -170,9 +163,6 @@ p.workshopTitle {
 .steps {
     min-height: 40px;
 }
-span.label {
-    margin-right: 2px;
-}
 a:focus.link, a:hover.link {
     color: #23527c;
 }
@@ -194,6 +184,10 @@ a.link {
 }
 p.lineHeight {
     Line-Height: 18pt;
+}
+
+span.labelWorkshop {
+    margin-right: 2px;
 }
 /* --------- Form --------- */
 

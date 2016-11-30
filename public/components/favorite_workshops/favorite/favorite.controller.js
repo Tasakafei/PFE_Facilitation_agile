@@ -41,43 +41,6 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
         }
 
     };
-
-    /*
-    //TODO : Move it
-    setTimeout(function(){
-
-        var divDuSpan = document.getElementsByClassName('bugSpan');
-
-        for(var i = 0; i < divDuSpan.length; i++) {
-            var aSpan = divDuSpan[i].getElementsByClassName('bugSpan2');
-            console.log(divDuSpan[i].offsetWidth);
-            console.log(aSpan);
-
-            var cptWidth = 0;
-
-            for(var y = 0; y < aSpan.length; y++) {
-                console.log(aSpan[y].offsetWidth);
-                cptWidth += aSpan[y].offsetWidth;
-
-                if(divDuSpan[i].offsetWidth < cptWidth) {
-
-                    console.log("Ca dépasse");
-                    console.log(y);
-                    console.log(aSpan);
-                    console.log(aSpan[y]);
-
-                    var br = document.createElement("br");
-                    //Ajout du br dans la div
-                    divDuSpan[i].appendChild(br);
-
-                    //Swap
-                    aSpan[y].parentNode.insertBefore(aSpan[y], br);
-                    break;
-                }
-            }
-        }
-    }, 100);
-    */
 });
 
 
