@@ -1,51 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var catalogue = require("../model/catalogue/catalogue.js");
-
+var catalogueController = require("../controllers/catalogue");
 /** GET workshops listing. **/
-router.get('/', function(req, res, next) {
-    catalogue.getWorkshops().then(function (data) {
-        res.json({
-            state: "success",
-            data: data
-        });
-    });
-});
+router.get('/', catalogueController.getAllWorkshops);
 
-router.post('/', function(req, res, next) {
-    catalogue.saveWorkshop(req.body)
-        .then(function (result) {
-            return res.json({
-                state: "success",
-                data: result
-            });
-        })
-        .then(function (error) {
-            console.log(error);
-            res.json({
-                state: "error",
-                data: error
-            })
-    });
-});
+/** POST Create new workshop **/
+router.post('/', catalogueController.createNewWorkshop);
 
-/** GET workshop **/
-router.get('/:id', function(req, res, next) {
-    var id = req.params.id;
-    catalogue.getWorkshop(id).then(function (data) {
-        if (data) {
-            res.json({
-                state: "success",
-                data: data
-            });
-        } else {
-            res.json({
-                state: "error",
-                data: "NOT_FOUND"
-            })
-        }
-    });
+/** GET a specific workshop **/
+router.get('/:id', catalogueController.getWorkshop);
 
-});
+/** DELETE a specific workshop **/
+router.delete('/:id', catalogueController.removeWorkshop);
+
 
 module.exports = router;
