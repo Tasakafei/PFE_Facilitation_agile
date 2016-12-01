@@ -27,6 +27,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
             }
         )
             .success(function (response) {
+
                 console.log('success', response);
             })
             .error(function (response) {
@@ -73,6 +74,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
     $scope.submit = function () {
 
         if ($scope.note_u && $scope.note_a) {
+
             console.log($scope.note_u);
             console.log($scope.note_a);
             console.log($scope.com);
@@ -118,6 +120,11 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
                     type: 'success',
                     title: 'Feedback enregistré'
                 });
+
+                //Redirection after vote
+                var url = window.location.href;
+                url = url.split("feedback");
+                window.location.replace(url[0]+'thankYou');
             });
 
         } else {

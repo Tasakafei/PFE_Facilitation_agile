@@ -30,6 +30,9 @@ app.config(function($routeProvider, $locationProvider) {
       .when("/feedback/:instanceId", {
           templateUrl: "components/feedback/feedback.html"
       })
+      .when("/thankYou", {
+          templateUrl: "components/feedback/thankYou.html"
+      })
       .when("/catalogue/:catalogueId", {
           templateUrl: "components/workshop/workshop.html",
           controller: "workshopCtrl"

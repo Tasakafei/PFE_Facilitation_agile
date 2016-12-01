@@ -8,7 +8,6 @@ var mongoose = require('mongoose');
 var Workshop = mongoose.model('Workshop');
 var ObjectID = require('mongodb').ObjectID;
 var WorkshopInstance = mongoose.model("WorkshopInstance");
-var async = require('async');
 var Promise = require('promise');
 
 module.exports = {
