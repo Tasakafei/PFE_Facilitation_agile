@@ -12,10 +12,10 @@ var ObjectId = mongoose.Types.ObjectId;
 
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 
-exports.addPhotosToInstance = addPhotosToInstanceImpl;
+exports.UploadPhoto = UploadPhotoImpl;
 exports.addFeedbackToInstance = addFeedbackToInstanceImpl;
 
-function addPhotosToInstanceImpl(req, res, next) {
+function UploadPhotoImpl(req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     console.log("=========== PHOTO ===========");
