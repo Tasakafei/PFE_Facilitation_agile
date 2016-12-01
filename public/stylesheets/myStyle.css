@@ -220,6 +220,9 @@ select {
 canvas.qrcode {
     width: 204px;
 }
+.btn-right {
+    float: right;
+}
 
 /* ThankYou */
 p#thank {

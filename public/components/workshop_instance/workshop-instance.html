@@ -8,7 +8,10 @@
             <timer></timer>
         </div>
         <div class="col-md-6 col-xs-12 padding-b">
-            <a href="/#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a><br /><br />
+            <a href="/#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
+
+            <a data-toggle="modal" data-target="#confirmationModal"><button type="button" class="btn btn-danger btn-right" uib-tooltip="Supprimer l'instance" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a><br /><br />
+
             <button type="button" class="btn btn-default" onclick="afficherQrcode()">Afficher QRCode</button><br /><br />
             <div ng-controller="qrcodeCtrl" class="qrcode-off">
                 <qrcode size="315" data="{{feedbackLink}}" href="{{feedbackLink}}"></qrcode>
@@ -17,8 +20,25 @@
     </div>
 </div>
 
-
-
+<!-- Modal -->
+<!-- Confirmation -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel2">Supprimer l'instance de l'atelier</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>Êtes vous sûr(e) de vouloir supprimer <b>l'instance</b> de cet atelier ?</p><br/>
+                <button data-dismiss="modal" type="button" class="btn btn-default">Non</button>
+                <span class="add-padding"></span>
+                <button data-dismiss="modal" type="button" class="btn btn-default" ng-click="deleteInstance()">Oui</button>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
