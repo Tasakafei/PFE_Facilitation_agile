@@ -16,7 +16,7 @@ exports.UploadPhoto = UploadPhotoImpl;
 exports.UploadPhotos = UploadPhotosImpl;
 exports.addFeedbackToInstance = addFeedbackToInstanceImpl;
 
-function UploadPhotoImpl(req, res, next) {
+function UploadPhotosImpl(req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     console.log("=========== PHOTO ===========");
