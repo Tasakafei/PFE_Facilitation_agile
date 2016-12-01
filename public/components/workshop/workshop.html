@@ -21,7 +21,9 @@
                     <h4>Informations pratiques</h4>
                 </div>
                 <p class="lineHeight">
-                   <span ng-repeat="category in workshop.content.educational_aims | orderBy" class="label labelWorkshop {{getLabelColor(category)}}">{{category}}</span><br />
+                    <span ng-repeat="category in workshop.content.educational_aims | orderBy">
+                        <span class="label {{getLabelColor(category)}}">{{category}}</span>
+                    </span><br />
                    Note :
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
