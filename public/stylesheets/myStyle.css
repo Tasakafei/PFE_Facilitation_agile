@@ -227,12 +227,12 @@ p#thank {
 }
 
 /* ================ Thème ======================== */
-.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .sidebar-nav li a, .footer, .navbar-default .navbar-nav>li>a:focus {
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .sidebar-nav li a, .footer, .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a {
     color: #fff;
 }
 
 /* Hover/focus */
-.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover, #sidebar-wrapper .active, .sidebar-nav li a:hover {
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover, #sidebar-wrapper .active, .sidebar-nav li a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
     color: #18bc9c;
     background-color: #1a242f;
 }
@@ -249,13 +249,13 @@ p#thank {
 }
 
 /* Menu icon */
-.sidebar-toggle {
+.sidebar-toggle, .navbar-default .navbar-toggle {
     background-color: #1a242f;
     border-color: #1a242f;
 }
 
 /* Nav */
-.navbar-default, .dropdown-menu .divider, #sidebar-wrapper, .sidebar-on, .footer  {
+.navbar-default, .dropdown-menu .divider, #sidebar-wrapper, .sidebar-on, .footer, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover  {
     background-color: #2c3e50;
 }
 
@@ -265,7 +265,7 @@ p#thank {
 }
 
 /* border for  nav */
-.navbar-default, #sidebar-wrapper {
+.navbar-default, #sidebar-wrapper, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: #1a242f;
 }
 
@@ -308,7 +308,7 @@ a:focus.link, a:hover.link, .close {
     border-radius: initial;
 }
 
-#sidebar-wrapper .icon-bar, .sidebar-icon .icon-bar {
+#sidebar-wrapper .icon-bar, .sidebar-icon .icon-bar, .navbar-default .navbar-toggle .icon-bar {
     background-color: #c5c5c5;
 }
 
@@ -328,8 +328,11 @@ a:focus.link, a:hover.link, .close {
     opacity: 0.9;
 }
 
-.sidebar-toggle:hover, .sidebar-toggle:focus {
+.sidebar-toggle:hover, .sidebar-toggle:focus, .sidebar-phone {
     background-color: #2c3e50;
     border-color: #1a242f;
 }
 
+.sidebar-phone:hover, .sidebar-phone:focus {
+    background-color: #1a242f;
+}
