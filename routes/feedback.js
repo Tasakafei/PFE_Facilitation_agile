@@ -9,7 +9,7 @@ var router = express.Router();
 var auth = require('../configurations/auth');
 var instances = require('../controllers/instances');
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: '/uploads/' });
 
 
 /*** User routes ***/
