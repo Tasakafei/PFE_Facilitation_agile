@@ -14,6 +14,6 @@ var upload = multer({ dest: '../uploads/' });
 
 /*** User routes ***/
 router.post('/:instanceId', instances.addFeedbackToInstance);
-router.post('/:instanceId/picture', upload.single('photo'), instances.UploadPhoto);
+router.post('/:instanceId/picture', upload.single('photo.jpg'), instances.UploadPhoto);
 router.post('/:instanceId/picture', instances.UploadPhoto);
 module.exports = router;
