@@ -219,7 +219,14 @@ canvas.qrcode {
     width: 204px;
 }
 
-/* -- Thème -- */
+/* ThankYou */
+p#thank {
+    margin-top: 37vh;
+    transform: translateY(-50%);
+    font-size: 3em;
+}
+
+/* ================ Thème ======================== */
 .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .sidebar-nav li a, .footer, .navbar-default .navbar-nav>li>a:focus {
     color: #fff;
 }
