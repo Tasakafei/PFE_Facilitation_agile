@@ -46,6 +46,12 @@ module.exports = function (io) {
             io.to(room).emit('stop_timer');
         });
 
+        // Dispatch in the specified room the information that the instance is finished
+        socket.on('end_of_instance', function(room){
+            console.log('END OF INSTANCE');
+            io.to(room).emit('end_of_instance');
+        });
+
         // Case when the socket is disconnected
         socket.on('disconnect', function () {
             console.log('socket disconnected');
