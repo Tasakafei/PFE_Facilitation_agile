@@ -7,6 +7,44 @@ var app = angular.module('facilitation');
 app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams, $http) {
     var currentId = $routeParams.instanceId;
     $scope.instanceData = {};
+    //the image
+    $scope.uploadme;
+
+    $scope.uploadImage = function() {
+        var fd = new FormData();
+        var imgBlob = dataURItoBlob($scope.uploadme);
+        fd.append('file', imgBlob);
+        console.log("-----------");
+        console.log(imgBlob);
+        console.log("-------------");
+        $http.post(
+            "/api/v1/feedback/"+currentId+"/picture",
+            fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                }
+            }
+        )
+            .success(function (response) {
+                console.log('success', response);
+            })
+            .error(function (response) {
+                console.log('error', response);
+            });
+    }
+    //you need this function to convert the dataURI
+    function dataURItoBlob(dataURI) {
+        var binary = atob(dataURI.split(',')[1]);
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        var array = [];
+        for (var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        return new Blob([new Uint8Array(array)], {
+            type: mimeString
+        });
+    }
 
     //Photo
     /*document.getElementById('InputPhotos').addEventListener('change', function(){
@@ -22,13 +60,14 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
         }
     }, false);
 
+
 */
-    var formdata = new FormData();
+   /* var formdata = new FormData();
     $scope.getTheFiles = function ($files) {
         angular.forEach($files, function (value, key) {
             formdata.append(key, value);
         });
-    };
+    };*/
 
 
     $scope.submit = function () {
@@ -49,8 +88,8 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
             console.log("=================");
             var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
 
-            /*// UPLOAD THE PHOTOS.
-            var request = {
+            // UPLOAD THE PHOTOS.
+            /*var request = {
                 method: 'POST',
                 url: '/api/v1/feedback',
                 data: formdata,
@@ -59,17 +98,17 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
                 }
             };
             console.log("photo enregistée");
-            alert("photo enregistrée");*/
+            alert("photo enregistrée");
 
             // SEND THE PHOTOS.
-            /*$http(request)
+            $http(request)
                 .success(function (d) {
                     alert(d);
                 })
                 .error(function () {
-                });*/
+                });
             //console.log("photo envoyée");
-            //alert("photo envoyée");
+            //alert("photo envoyée");*/
 
 
 
@@ -91,17 +130,25 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
     };
 
 });
-app.directive('ngFiles', ['$parse', function ($parse) {
-
-    function fn_link(scope, element, attrs) {
-        var onChange = $parse(attrs.ngFiles);
-        element.on('change', function (event) {
-            onChange(scope, { $files: event.target.files });
-        });
-    };
-
-    return {
-        link: fn_link
+//your directive
+app.directive("fileread", [
+    function() {
+        return {
+            scope: {
+                fileread: "="
+            },
+            link: function(scope, element, attributes) {
+                element.bind("change", function(changeEvent) {
+                    var reader = new FileReader();
+                    reader.onload = function(loadEvent) {
+                        scope.$apply(function() {
+                            scope.fileread = loadEvent.target.result;
+                        });
+                    }
+                    reader.readAsDataURL(changeEvent.target.files[0]);
+                });
+            }
+        }
     }
-}])
+]);
 
