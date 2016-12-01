@@ -186,10 +186,6 @@ p.lineHeight {
     Line-Height: 18pt;
 }
 
-span.labelWorkshop {
-    margin-right: 2px;
-}
-
 @media (min-width: 768px) {
     .text-right-sm {
         text-align: right;
