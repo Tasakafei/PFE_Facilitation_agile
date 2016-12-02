@@ -513,10 +513,6 @@ var qrcode = function() {
         return bytes;
     };
 
-    //---------------------------------------------------------------------
-    // qrcode.createStringToBytes
-    //---------------------------------------------------------------------
-
     /**
      * @param unicodeData base64 string of byte array.
      * [16bit Unicode],[16bit Bytes], ...

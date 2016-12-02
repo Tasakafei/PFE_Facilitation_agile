@@ -236,3 +236,8 @@ p#thank {
     transform: translateY(-50%);
     font-size: 3em;
 }
+
+.thumbnail:hover {
+    background-color: #eaeaea;
+    transition: 0.25s;
+}
