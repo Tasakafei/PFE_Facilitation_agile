@@ -9,8 +9,13 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
     $scope.instanceData = {};
     //the image
    // var u = $scope.uploadme;
-    $scope.uploadme;
-    //$scope.tableau= [];
+  //  $scope.uploadme;
+  //  $scope.tableau= [];
+   // $scope.file ;
+   // $scope.push(file);
+
+
+
 /*
     $scope.uploadImage = function() {
         var fd = new FormData();
@@ -49,22 +54,42 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
         });
     }
 
+
+
+    $scope.imagesToDisplay = [];
     //Photo
-    /*document.getElementById('InputPhotos').addEventListener('change', function(){
+    document.getElementById('InputPhotos').addEventListener('change', function(){
         for(var i = 0; i < this.files.length; i++){
             var file =  this.files[i];
+           // $scope.tableau.push(file);
+
+            var reader = new FileReader();
+            reader.onload = function(loadEvent) {
+                $scope.$apply(function() {
+                    $scope.imagesToDisplay.push(loadEvent.target.result);
+                });
+            }
+            reader.readAsDataURL(this.files[i]);
             // Test only...
             console.group("File "+i);
-            console.log("name : " + file.name);
+            /*console.log("name : " + file.name);
             console.log("size : " + file.size);
             console.log("type : " + file.type);
             console.log("date : " + file.lastModified);
-            console.groupEnd();
+            console.groupEnd(); */
+            console.log("images to display = " + $scope.imagesToDisplay);
+
         }
+
     }, false);
 
 
-*/
+
+
+    //$scope.files = this.files;
+   // console.log($scope.files);
+
+
    /* var formdata = new FormData();
     $scope.getTheFiles = function ($files) {
         angular.forEach($files, function (value, key) {
@@ -75,6 +100,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
 
     $scope.submit = function () {
 
+        console.log("le tableau est : " + $scope.tableau);
         if ($scope.note_u && $scope.note_a) {
 
             console.log($scope.note_u);
@@ -93,13 +119,16 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
 
 
             var fd = new FormData();
-            var imgBlob = dataURItoBlob($scope.uploadme);
-            fd.append('file', imgBlob);
+            for(var i = 0;i < $scope.imagesToDisplay.length ;i++) {
+                var imgBlob = dataURItoBlob($scope.imagesToDisplay[i]);
+                fd.append('photos', imgBlob);
+            }
             console.log("-----------");
             console.log(imgBlob);
             console.log("-------------");
+
             $http.post(
-                "/api/v1/feedback/"+currentId+"/picture",
+                "/api/v1/feedback/"+currentId+"/photos",
                 fd, {
                     transformRequest: angular.identity,
                     headers: {

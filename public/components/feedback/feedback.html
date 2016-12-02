@@ -44,17 +44,13 @@
                 <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Photos</label>
                     <div class="col-sm-6 col-md-4 col-md-push-2">
-                        <input type="file" fileread="uploadme" name="file" multiple="multiple"/> <!--  accept="image/*" -->
-                        <img src="{{uploadme}}" width="100" height="50" alt="Image preview...">
+                        <input id = "InputPhotos" type="file" name="file" multiple="multiple"/> <!--  accept="image/*" -->
+                        <img ng-repeat="image in imagesToDisplay" src="{{image}}" width="100" height="50" alt="Image preview...">
 
-                      <!--  <ul>
-                            <li ng-repeat="element in tableau">{{element}}</li>
-                        </ul>
-                        -->
 
                         <p>
                             Image dataURI:
-                        <pre>{{uploadme}}</pre>
+                        <pre ng-repeat="image in imagesToDisplay" >{{ image }}</pre>
                         </p>
                         <br/>
                        <!-- <button ng-click="uploadImage()">upload image</button> -->
