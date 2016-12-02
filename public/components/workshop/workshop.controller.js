@@ -15,6 +15,7 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
     // Scope vars
     $scope.workshop = "";
+    $scope.timingArray = "";
 
     // Scope methods
     $scope.getLabelColor = getLabelColorFct;
@@ -24,20 +25,30 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
+        var timingArray = dataResponse.data[0].content.steps.map(function(step, index){
+            var stepArray = dataResponse.data[0].content.steps.slice(0, index);
+            return stepArray.reduce(function (accumulateur, currentStep) {
+                if(currentStep.duration) return accumulateur + currentStep.duration;
+                else return accumulateur;
+            }, 0);
+        });
 
-            for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
-                if(dataResponse.data[0].content.steps[i].duration)
-                    dataResponse.data[0].content.steps[i].duration = dataResponse.data[0].content.steps[i].duration + " minutes";
+        for(var i = 0; i<timingArray.length; i++) {
+            var d = new Date(timingArray[i]* 60000); //en miniseconde
+            var time = d.toUTCString().split(" ")
+            time = time[4].split(":")
 
-                if(dataResponse.data[0].content.steps[i].timing) {
-                    var d = new Date(dataResponse.data[0].content.steps[i].timing * 60000); //en miniseconde
-                    var time = d.toUTCString().split(" ")
-                    time = time[4].split(":")
+            timingArray[i] =  time[0]+":"+time[1];
+        }
+        console.log(timingArray);
+        $scope.timingArray = timingArray;
 
-                    dataResponse.data[0].content.steps[i].timing =  time[0]+":"+time[1];
-                }
+
+        for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
+            if(dataResponse.data[0].content.steps[i].duration) {
+                dataResponse.data[0].content.steps[i].duration = dataResponse.data[0].content.steps[i].duration + " minutes";
             }
-
+        }
 
         $scope.workshop = dataResponse.data[0];
     });
@@ -145,25 +156,5 @@ app.filter('to_trusted', ['$sce', function($sce){
         return $sce.trustAsHtml(text);
     };
 }]);
-
-/*
-app.controller('detailCtrl', function ($scope,$http) {
-
-    $scope.count = 0;
-    $scope.voter = function () {
-        $scope.count++;
-        if($scope.count > 5){
-            $scope.count = 5 ;
-        }
-    }
-});
-
-app.controller('CommenterCtrl', function ($scope,$http) {
-    $scope.showMe = false;
-    $scope.commenter =function(){
-        $scope.showMe = !$scope.showMe;
-    }
-});
-*/
 
 
