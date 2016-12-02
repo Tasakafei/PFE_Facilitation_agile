@@ -28,10 +28,34 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     socket.emit('join_room', currentId);
 
     function deleteInstance() {
+        /*
         $scope.$emit('notify', {
             type: 'warning',
             title: 'La fonctionnalité n\'est pas encore disponible.'
         });
+        */
+
+        var res = $http.delete('/users/instances/'+currentId);
+        res.success(function(data, status, headers, config) {
+
+            $scope.$emit('notify', {
+                type: 'success',
+                title: 'L\'instance de l\'atelier a bien été supprimée.',
+            });
+
+            //Redirection after vote
+            var url = window.location.href;
+            url = url.split("instances");
+            window.location.replace(url[0]+'instances');
+
+        });
+        res.error(function(data, status, headers, config) {
+            $scope.$emit('notify', {
+                type: 'error',
+                title: 'L\'instance de l\'atelier n\'a pas pu être supprimée.',
+            });
+        });
+
     }
 
 });
