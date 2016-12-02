@@ -16,7 +16,7 @@ exports.UploadPhoto = UploadPhotoImpl;
 exports.UploadPhotos = UploadPhotosImpl;
 exports.addFeedbackToInstance = addFeedbackToInstanceImpl;
 
-function UploadPhotosImpl(req, res, next) {
+function UploadPhotoImpl(req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     console.log("=========== PHOTO ===========");
@@ -25,7 +25,7 @@ function UploadPhotosImpl(req, res, next) {
     var workshopInstanceId = req.params.instanceId;
 }
 
-function UploadPhotoImpl(req, res, next) {
+function UploadPhotosImpl(req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     console.log("=========== PHOTOS ===========");
