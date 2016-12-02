@@ -28,6 +28,12 @@ module.exports = function (io) {
             io.to(timerInfo.workshop).emit('start_timer', timerInfo.duration);
         });
 
+        // Dispatch in the specified room the order to RESTART the timer
+        socket.on('restart_timer', function(timerInfo){
+            console.log("RESTART TIMER");
+            io.to(timerInfo.workshop).emit('restart_timer', timerInfo.duration);
+        });
+
         // Dispatch in the specified room the order to PAUSE the timer
         socket.on('pause_timer', function(room){
             console.log("PAUSE TIMER");
@@ -44,6 +50,12 @@ module.exports = function (io) {
         socket.on('stop_timer', function(room){
             console.log("STOP TIMER");
             io.to(room).emit('stop_timer');
+        });
+
+        // Dispatch in the specified room the information that the instance is finished
+        socket.on('end_of_instance', function(room){
+            console.log('END OF INSTANCE');
+            io.to(room).emit('end_of_instance');
         });
 
         // Case when the socket is disconnected
