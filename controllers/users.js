@@ -62,6 +62,8 @@ exports.getWorkshopInstance = getWorkshopInstanceImpl;
 
 exports.deleteFavoriteWorkshops = deleteFavoriteWorkshopsImpl;
 
+exports.deleteInstanceWorkshop = deleteInstanceWorkshopImpl;
+
 exports.unauthgetWorkshopInstances = unauthgetWorkshopInstancesImpl;
 
 exports.unauthaddToFavoriteWorkshops = unauthaddToFavoriteWorkshopsImpl;
@@ -73,6 +75,8 @@ exports.unauthaddWorkshopInstance = unauthaddWorkshopInstanceImpl;
 exports.unauthgetWorkshopInstance = unauthgetWorkshopInstanceImpl;
 
 exports.unauthdeleteFavoriteWorkshops = unauthdeleteFavoriteWorkshopsImpl;
+
+exports.unauthdeleteInstanceWorkshop = unauthdeleteInstanceWorkshopImpl;
 /*********************************************************
  * IMPLEMENTATION                                        *
  *********************************************************/
@@ -316,6 +320,52 @@ function deleteFavoriteWorkshopsImpl(req, res, next) {
     );
 }
 
+function deleteInstanceWorkshopImpl(req, res, next) {
+    var user = req.user;
+    var instanceId = req.params.instanceId;
+    User.findOneAndUpdate(
+        { username : user.username },
+        {
+            $pull: {
+                "workshops_instances": {
+                    _id: instanceId
+                }
+            }
+        },
+        { new: true , safe: true},
+        function(err, model) {
+            if (err) {
+                res.json({status: "error", data: err});
+            } else {
+                WorkshopInstance.remove({ _id: model._id }, function(err, model) {
+                    if (err) {
+                        res.json({status: "error", data: err});
+                    } else {
+                        Workshop.findOneAndUpdate(
+                            { _id: model.workshopId},
+                            {
+                                $pull: {
+                                    "workshops_instances": {
+                                        _id: instanceId
+                                    }
+                                }
+                            },
+                            { new: true , safe: true},
+                            function(err, model) {
+                                if (err) {
+                                    res.json({status: "error", data: err});
+                                } else {
+                                    res.json({status: "success", data: model})
+                                }
+                            }
+                        )
+                    }
+                });
+            }
+        }
+    );
+}
+
 function unauthdeleteFavoriteWorkshopsImpl(req, res, next) {
     req.user = { username: req.params.username};
     res.set('Access-Control-Allow-Origin','*');
@@ -349,4 +399,10 @@ function unauthgetWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
     res.set('Access-Control-Allow-Origin','*');
     return getWorkshopInstanceImpl(req, res, next);
+}
+
+function unauthdeleteInstanceWorkshopImpl(req, res, next) {
+    req.user = { username: req.params.username};
+    res.set('Access-Control-Allow-Origin','*');
+    return deleteInstanceWorkshopImpl(req, res, next);
 }

@@ -15,31 +15,47 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
     // Scope vars
     $scope.workshop = "";
+    $scope.timingArray = "";
 
     // Scope methods
     $scope.getLabelColor = getLabelColorFct;
     $scope.addToFavorite = addToFavoriteFct;
     $scope.addToInstances = addToInstancesFct;
     $scope.deleteWorkshop = deleteWorkshop;
+    $scope.deleteFavorite = deleteFavorite;
 
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
+        var timingArray = dataResponse.data[0].content.steps.map(function(step, index){
+            var stepArray = dataResponse.data[0].content.steps.slice(0, index);
+            return stepArray.reduce(function (accumulateur, currentStep) {
+                if(currentStep.duration) return accumulateur + currentStep.duration;
+                else return accumulateur;
+            }, 0);
+        });
 
-            for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
-                if(dataResponse.data[0].content.steps[i].duration)
-                    dataResponse.data[0].content.steps[i].duration = dataResponse.data[0].content.steps[i].duration + " minutes";
+        for(var i = 0; i<timingArray.length; i++) {
+            var d = new Date(timingArray[i]* 60000); //en miniseconde
+            var time = d.toUTCString().split(" ")
+            time = time[4].split(":")
 
-                if(dataResponse.data[0].content.steps[i].timing) {
-                    var d = new Date(dataResponse.data[0].content.steps[i].timing * 60000); //en miniseconde
-                    var time = d.toUTCString().split(" ")
-                    time = time[4].split(":")
+            timingArray[i] =  time[0]+":"+time[1];
+        }
+        $scope.timingArray = timingArray;
 
-                    dataResponse.data[0].content.steps[i].timing =  time[0]+":"+time[1];
-                }
+
+        for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
+            if(dataResponse.data[0].content.steps[i].duration) {
+                dataResponse.data[0].content.steps[i].duration = dataResponse.data[0].content.steps[i].duration + " minutes";
             }
-
-
+        }
         $scope.workshop = dataResponse.data[0];
+
+        if(dataResponse.isFavorite) {
+            $('.favorite-false').css("display", "none");
+            $('.favorite-true').css("display", "inline-block");
+        }
+
     });
 
     function getLabelColorFct (label) {
@@ -67,6 +83,10 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
             var res = FavoriteWorkshops.addToFavoriteWorkshops($scope.currentUser.username, currentId);
             res.success(function (data, status, headers, config) {
                 $scope.message = data;
+
+                $('.favorite-false').css("display", "none");
+                $('.favorite-true').css("display", "inline-block");
+
                 $scope.$emit('notify', {
                     type: 'success',
                     title: 'L\'atelier a bien été ajouté.',
@@ -87,10 +107,31 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
         }
     }
 
+    function deleteFavorite() {
+        var res = $http.delete('/users/favorites/'+currentId);
+        res.success(function(data, status, headers, config) {
+
+            $scope.$emit('notify', {
+                type: 'success',
+                title: 'L\'atelier a bien été retiré de vos favoris.',
+            });
+
+            $('.favorite-false').css("display", "inline-block");
+            $('.favorite-true').css("display", "none");
+
+        });
+        res.error(function(data, status, headers, config) {
+            $scope.$emit('notify', {
+                type: 'error',
+                title: 'L\'atelier n\'a pas pu être retiré de vos favoris.',
+            });
+        });
+
+    }
+
     function addToInstancesFct() {
         if ($scope.currentUser) {
         var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId);
-
 
         res.success(function(data, status, headers, config) {
             $scope.message = data;
@@ -123,7 +164,7 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
                 title: 'L\'atelier a bien été supprimé.',
             });
 
-            //Redirection after vote
+            //Redirection
             var url = window.location.href;
             url = url.split("catalogue");
             window.location.replace(url[0]+'catalogue');
@@ -145,25 +186,5 @@ app.filter('to_trusted', ['$sce', function($sce){
         return $sce.trustAsHtml(text);
     };
 }]);
-
-/*
-app.controller('detailCtrl', function ($scope,$http) {
-
-    $scope.count = 0;
-    $scope.voter = function () {
-        $scope.count++;
-        if($scope.count > 5){
-            $scope.count = 5 ;
-        }
-    }
-});
-
-app.controller('CommenterCtrl', function ($scope,$http) {
-    $scope.showMe = false;
-    $scope.commenter =function(){
-        $scope.showMe = !$scope.showMe;
-    }
-});
-*/
 
 

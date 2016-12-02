@@ -73,10 +73,26 @@ function getWorkshopImpl(req, res, next) {
     var id = req.params.id;
     catalogue.getWorkshop(id).then(function (data) {
         if (data) {
+            if (req.user) {
+                var user = req.user;
+                for (var i = 0; i < user.workshops_favorites.length; ++i) {
+                    var t1 = user.workshops_favorites[i]._id.toString();
+                    var t2 = data[0]._id.toString();
+                    if (t1 == t2) {
+                        res.json({
+                            state: "success",
+                            data: data,
+                            isFavorite: true
+                        });
+                        console.log("isPresent");
+                        return;
+                    }
+                }
+            }
             res.json({
                 state: "success",
                 data: data
-            });
+            })
         } else {
             res.json({
                 state: "error",

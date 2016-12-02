@@ -17,7 +17,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
     /* Scope Methods */
     $scope.logIn = logInFct;
     $scope.register = registerFct;
-
+    $scope.isActive = isActive;
     $scope.logOut = logOutFct;
 
     /* Implémentation */
@@ -38,6 +38,13 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                         type: 'success',
                         title: 'Vous avez bien été connecté !'
                     });
+
+                    //Redirection with notif
+                    var url = window.location.href;
+                    var url2 = url.split("catalogue");
+                    window.location.replace(url2[0]);
+                    window.location.replace(url);
+
                 } else {
                     angular.forEach(err.errors, function(error, field) {
                         console.log("ERROR : " + error + " : "+ field);
@@ -90,16 +97,27 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
         Auth.logout(function(err) {
             if(!err) {
                 //$location.path('/');
-
                 $scope.$emit('notify', {
                     type: 'info',
                     title: 'Déconnecté !',
+                });
+
+                //Redirection with notif
+                var url = window.location.href;
+                var url2 = url.split("catalogue");
+                window.location.replace(url2[0]);
+                window.location.replace(url);
+
+            } else {
+                $scope.$emit('notify', {
+                    type: 'warning',
+                    title: 'Échec de déconnection !',
                 });
             }
         });
     }
 
-    $scope.isActive = function (viewLocation) {
+    function isActive(viewLocation) {
         return viewLocation === $location.path();
     };
 });

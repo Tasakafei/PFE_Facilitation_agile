@@ -3,7 +3,11 @@
  */
 
 app.controller('importationCtrl', function ($scope,$http) {
-    $scope.importer = function () {
+
+    // Scope methods
+    $scope.importer = importer;
+
+    function importer() {
 
         var fichier = document.getElementById('InputJSON').files[0];
         var lecture = new FileReader();

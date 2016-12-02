@@ -9,13 +9,22 @@
 var app = angular.module('facilitation');
 
 app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
+
+    // Scope methods
+    $scope.searchEduc = searchEduc;
+    $scope.searchTitle = searchTitle;
+    $scope.getLabelColor = getLabelColor;
+    $scope.dropDown = dropDown;
+    $scope.rechercher = rechercher;
+    $scope.close = close;
+
     $scope.educational_aims_search = {
         value1: '',
         value2: '',
         value3: '',
         value4: ''
     };
-    $scope.searchEduc = function (row) {
+    function searchEduc(row) {
         var isSet = false;
         for (var educ in row.workshop.content.educational_aims) {
             for (var toCheck in $scope.educational_aims_search) {
@@ -30,7 +39,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         return isSet != true;
     };
 
-    $scope.searchTitle = function (row) {
+    function searchTitle(row) {
         return angular.lowercase(row.workshop.title).indexOf(angular.lowercase($scope.query) || '') !== -1;
     };
 
@@ -43,7 +52,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         // VOILA !
     });
 
-    $scope.getLabelColor = function (label) {
+    function getLabelColor(label) {
         if (label == "Travail itératif") {
             return "label-success";
         } else if (label == "Amélioration continue") {
@@ -61,7 +70,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         }
 
     };
-    $scope.rechercher = function () {
+    function rechercher() {
         $scope.$emit('notify', {
             type: 'success',
             title: 'recherche en cours',
@@ -71,7 +80,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
 
     var bool = false;
 
-    $scope.dropDown = function () {
+    function dropDown() {
         if (!bool) {
             $('#avancedSearch').addClass('open');
             bool = true;
@@ -84,7 +93,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             value2: 'YES'
         };
     };
-    $scope.close = function () {
+    function close() {
         $('#avancedSearch').removeClass('open');
         bool = false;
     };

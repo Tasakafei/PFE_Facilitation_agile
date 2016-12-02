@@ -12,6 +12,9 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
 
     $scope.instances = [];
 
+    // Scope methods
+    $scope.getLabelColor = getLabelColor;
+
     getWorkshopsInstances();
     function getWorkshopsInstances() {
         FavoriteWorkshops.getInstancesWorkshop()
@@ -23,7 +26,7 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
         });
     }
 
-    $scope.getLabelColor = function (label) {
+    function getLabelColor(label) {
         if(label == "Travail itératif") {
             return "label-success";
         } else if(label == "Amélioration continue") {
