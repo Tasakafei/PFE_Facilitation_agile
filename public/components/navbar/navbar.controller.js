@@ -90,10 +90,15 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
         Auth.logout(function(err) {
             if(!err) {
                 //$location.path('/');
-
                 $scope.$emit('notify', {
                     type: 'info',
                     title: 'Déconnecté !',
+                });
+
+            } else {
+                $scope.$emit('notify', {
+                    type: 'warning',
+                    title: 'Échec de déconnection !',
                 });
             }
         });
