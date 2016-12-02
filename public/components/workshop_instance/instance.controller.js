@@ -10,6 +10,9 @@ var app = angular.module('facilitation');
 
 app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams, $http, socket) {
 
+    // Scope methods
+    $scope.deleteInstance = deleteInstance;
+
     // Local vars
     var currentId = $routeParams.idInstance;
 
@@ -23,6 +26,13 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     });
 
     socket.emit('join_room', currentId);
+
+    function deleteInstance() {
+        $scope.$emit('notify', {
+            type: 'warning',
+            title: 'La fonctionnalité n\'est pas encore disponible.'
+        });
+    }
 
 });
 

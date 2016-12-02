@@ -20,6 +20,7 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
     $scope.getLabelColor = getLabelColorFct;
     $scope.addToFavorite = addToFavoriteFct;
     $scope.addToInstances = addToInstancesFct;
+    $scope.deleteWorkshop = deleteWorkshop;
 
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
@@ -111,6 +112,29 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
                 title: 'Vous devez être connecté.',
             });
         }
+    }
+
+    function deleteWorkshop() {
+        var res = $http.delete('/api/v1/catalogue/'+currentId);
+        res.success(function(data, status, headers, config) {
+
+            $scope.$emit('notify', {
+                type: 'success',
+                title: 'L\'atelier a bien été supprimé.',
+            });
+
+            //Redirection after vote
+            var url = window.location.href;
+            url = url.split("catalogue");
+            window.location.replace(url[0]+'catalogue');
+
+        });
+        res.error(function(data, status, headers, config) {
+            $scope.$emit('notify', {
+                type: 'error',
+                title: 'L\'atelier n\'a pas pu être supprimé.',
+            });
+        });
     }
 
 });

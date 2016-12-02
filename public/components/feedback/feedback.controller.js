@@ -121,12 +121,10 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
                     title: 'Feedback enregistré'
                 });
 
-
                 //Redirection after vote
                 var url = window.location.href;
                 url = url.split("feedback");
-                var redir = 'window.location.replace("'+url[0]+'thankYou");';
-                setTimeout(redir, 1500);
+                window.location.replace(url[0]+'thankYou');
             });
 
         } else {
