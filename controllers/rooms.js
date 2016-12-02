@@ -28,6 +28,12 @@ module.exports = function (io) {
             io.to(timerInfo.workshop).emit('start_timer', timerInfo.duration);
         });
 
+        // Dispatch in the specified room the order to RESTART the timer
+        socket.on('restart_timer', function(timerInfo){
+            console.log("RESTART TIMER");
+            io.to(timerInfo.workshop).emit('restart_timer', timerInfo.duration);
+        });
+
         // Dispatch in the specified room the order to PAUSE the timer
         socket.on('pause_timer', function(room){
             console.log("PAUSE TIMER");

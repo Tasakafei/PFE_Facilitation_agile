@@ -27,6 +27,10 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         $scope.startTimer(duration);
     });
 
+    socket.on('restart_timer', function (duration) {
+        $scope.restartTimer(duration);
+    });
+
     socket.on('resume_timer', function(){
         $scope.resumeTimer();
     });
@@ -65,11 +69,19 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         $scope.countDown = $scope.lastTimeAmount;
     };
 
+    $scope.restartTimer = function (timeAmount) {
+        stopTimer();
+        if(timeAmount < 0) timeAmount = 0;
+        $scope.startTimer(timeAmount);
+    };
 
     function runTimer(){
         timer = $interval(function(){
             $scope.countDown--;
-            if($scope.countDown == 0) stopTimer();
+            if($scope.countDown <= 0){
+                $scope.countDown = 0;
+                stopTimer();
+            }
         }, 1000);
     };
 
