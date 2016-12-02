@@ -15,7 +15,7 @@
                 <div class="col-xs-12 col-sm-5 no-padding col-sm-push-7 text-right-sm" ng-controller="TooltipCtrl">
                     <button type="button" class="btn btn-default" ng-click="addToInstances()" uib-tooltip="Ajouter pour lancer un atelier" tooltip-placement="top"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
                     <button type="button" class="btn btn-default favorite" ng-click="addToFavorite()" uib-tooltip="Ajouter aux favoris" tooltip-placement="top"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
-                    <a data-toggle="modal" data-target="#confirmationModal"><button style="margin-left: 20px" type="button" class="btn favorite btn-danger" uib-tooltip="Supprimer l'atelier" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a>
+                    <a data-toggle="modal" data-target="#confirmationModal"><button style="margin-left: 20px" type="button" class="btn btn-danger" uib-tooltip="Supprimer l'atelier" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a>
                 </div>
                 <div class="col-xs-12 col-sm-7 no-padding col-sm-pull-5">
                     <h4>Informations pratiques</h4>
@@ -63,7 +63,7 @@
                     </tr>
                     </thead> <tbody>
                         <tr ng-repeat="step in workshop.content.steps">
-                            <td class="text-center">{{step.timing}}</td>
+                            <td class="text-center">{{timingArray[$index]}}</td>
                             <td class="text-center">{{step.title}}<br />{{step.duration}}</td>
                             <td ng-bind-html="step.description | to_trusted"></td>
                         </tr>

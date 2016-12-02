@@ -13,14 +13,19 @@ var users = require('../controllers/users');
 /*** User routes ***/
 router.post('/favorites', auth.ensureAuthenticated, users.addToFavoriteWorkshops);
 router.get('/favorites', auth.ensureAuthenticated,  users.getFavoriteWorkshops);
+router.delete('/favorites/:favoriteId', auth.ensureAuthenticated, users.deleteFavoriteWorkshops);
 router.post('/instances', auth.ensureAuthenticated, users.addWorkshopInstance);
 router.get('/instances', auth.ensureAuthenticated, users.getWorkshopInstances);
 router.get('/instances/:instanceId', auth.ensureAuthenticated, users.getWorkshopInstance);
+router.delete('/instances/:instanceId', auth.ensureAuthenticated, users.deleteInstanceWorkshop);
 
+/*** TEMPORARY ROUTES (TO_DELETE WHEN ACCOUNTS ARE INTEGRATED TO THE TAB) ***/
 router.post('/unauth/:username/favorites', users.unauthaddToFavoriteWorkshops);
 router.get('/unauth/:username/favorites', users.unauthgetFavoriteWorkshops);
 router.post('/unauth/:username/instances', users.unauthaddWorkshopInstance);
 router.get('/unauth/:username/instances', users.unauthgetWorkshopInstances);
 router.get('/unauth/:username/instances/:instanceId', users.unauthgetWorkshopInstance);
+router.delete('/unauth/:username/favorites/:favoriteId', users.unauthdeleteFavoriteWorkshops);
+router.delete('/unauth/:username/instances/:instanceId', users.unauthdeleteInstanceWorkshop);
 
 module.exports = router;
