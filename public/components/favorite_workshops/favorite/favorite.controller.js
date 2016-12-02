@@ -12,7 +12,11 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
 
     $scope.favoriteWorkshops = [];
 
+    // Scope methods
+    $scope.getLabelColor = getLabelColor;
+
     getFavoriteWorkshops();
+
     function getFavoriteWorkshops() {
         FavoriteWorkshops.getFavoriteWorkshops()
             .success(function(data, status, headers, config) {
@@ -23,7 +27,7 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
         });
     }
 
-    $scope.getLabelColor = function (label) {
+    function getLabelColor(label) {
         if(label == "Travail itératif") {
             return "label-success";
         } else if(label == "Amélioration continue") {

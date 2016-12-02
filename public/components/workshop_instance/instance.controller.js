@@ -12,6 +12,7 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
 
     // Scope methods
     $scope.deleteInstance = deleteInstance;
+    $scope.afficherQrcode = afficherQrcode;
 
     // Local vars
     var currentId = $routeParams.idInstance;
@@ -58,20 +59,22 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
 
     }
 
+    var bool = true;
+    function afficherQrcode() {
+
+        if(bool) {
+            $('.qrcode-off').addClass('qrcode-on');
+            $('.qrcode-on').removeClass('qrcode-off');
+            bool = false;
+        } else {
+            $('.qrcode-on').addClass('qrcode-off');
+            $('.qrcode-off').removeClass('qrcode-on');
+            bool = true;
+        }
+    }
+
+
 });
 
-var bool = true;
-function afficherQrcode() {
-
-    if(bool) {
-        $('.qrcode-off').addClass('qrcode-on');
-        $('.qrcode-on').removeClass('qrcode-off');
-        bool = false;
-    } else {
-        $('.qrcode-on').addClass('qrcode-off');
-        $('.qrcode-off').removeClass('qrcode-on');
-        bool = true;
-    }
-}
 
 
