@@ -60,7 +60,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
     };
 
     $scope.resetTimer = function(){
-        ispaused = false
+        ispaused = false;
         stopTimer();
         $scope.countDown = $scope.lastTimeAmount;
     };
