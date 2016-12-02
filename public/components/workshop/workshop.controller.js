@@ -40,7 +40,6 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
             timingArray[i] =  time[0]+":"+time[1];
         }
-        console.log(timingArray);
         $scope.timingArray = timingArray;
 
 

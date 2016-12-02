@@ -10,7 +10,10 @@ var app = angular.module('facilitation');
 
 app.controller('menuCtrl', function ($scope, $location) {
 
-    $scope.isActive = function (viewLocation) {
+    // Scope methods
+    $scope.isActive = isActive;
+
+    function isActive(viewLocation) {
         return viewLocation === $location.path();
     };
 });
