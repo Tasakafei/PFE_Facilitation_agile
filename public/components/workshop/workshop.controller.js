@@ -22,6 +22,7 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
     $scope.addToFavorite = addToFavoriteFct;
     $scope.addToInstances = addToInstancesFct;
     $scope.deleteWorkshop = deleteWorkshop;
+    $scope.deleteFavorite = deleteFavorite;
 
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
@@ -48,8 +49,13 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
                 dataResponse.data[0].content.steps[i].duration = dataResponse.data[0].content.steps[i].duration + " minutes";
             }
         }
-
         $scope.workshop = dataResponse.data[0];
+
+        if(dataResponse.isFavorite) {
+            $('.favorite-false').css("display", "none");
+            $('.favorite-true').css("display", "inline-block");
+        }
+
     });
 
     function getLabelColorFct (label) {
@@ -77,6 +83,10 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
             var res = FavoriteWorkshops.addToFavoriteWorkshops($scope.currentUser.username, currentId);
             res.success(function (data, status, headers, config) {
                 $scope.message = data;
+
+                $('.favorite-false').css("display", "none");
+                $('.favorite-true').css("display", "inline-block");
+
                 $scope.$emit('notify', {
                     type: 'success',
                     title: 'L\'atelier a bien été ajouté.',
@@ -97,10 +107,31 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
         }
     }
 
+    function deleteFavorite() {
+        var res = $http.delete('/users/favorites/'+currentId);
+        res.success(function(data, status, headers, config) {
+
+            $scope.$emit('notify', {
+                type: 'success',
+                title: 'L\'atelier a bien été retiré de vos favoris.',
+            });
+
+            $('.favorite-false').css("display", "inline-block");
+            $('.favorite-true').css("display", "none");
+
+        });
+        res.error(function(data, status, headers, config) {
+            $scope.$emit('notify', {
+                type: 'error',
+                title: 'L\'atelier n\'a pas pu être retiré de vos favoris.',
+            });
+        });
+
+    }
+
     function addToInstancesFct() {
         if ($scope.currentUser) {
         var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId);
-
 
         res.success(function(data, status, headers, config) {
             $scope.message = data;
@@ -133,7 +164,7 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
                 title: 'L\'atelier a bien été supprimé.',
             });
 
-            //Redirection after vote
+            //Redirection
             var url = window.location.href;
             url = url.split("catalogue");
             window.location.replace(url[0]+'catalogue');

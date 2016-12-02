@@ -185,6 +185,12 @@ a.link {
 p.lineHeight {
     Line-Height: 18pt;
 }
+.favorite-true {
+    display: none;
+}
+.favorite-false {
+    display: inline-block;
+}
 
 @media (min-width: 768px) {
     .text-right-sm {
