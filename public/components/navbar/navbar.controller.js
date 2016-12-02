@@ -38,6 +38,13 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                         type: 'success',
                         title: 'Vous avez bien été connecté !'
                     });
+
+                    //Redirection with notif
+                    var url = window.location.href;
+                    var url2 = url.split("catalogue");
+                    window.location.replace(url2[0]);
+                    window.location.replace(url);
+
                 } else {
                     angular.forEach(err.errors, function(error, field) {
                         console.log("ERROR : " + error + " : "+ field);
@@ -94,6 +101,12 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                     type: 'info',
                     title: 'Déconnecté !',
                 });
+
+                //Redirection with notif
+                var url = window.location.href;
+                var url2 = url.split("catalogue");
+                window.location.replace(url2[0]);
+                window.location.replace(url);
 
             } else {
                 $scope.$emit('notify', {
