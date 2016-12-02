@@ -9,66 +9,55 @@
       {
         "title": "Intro",
         "description": "Attention, atelier fake, juste pour test demo ! Présenter le folklore de l’atelier, les notions travaillées, pourquoi c’est important dans leur projet. Parler du fait que l’atelier est une métaphore, qu’ils retireront de cet atelier ce qu’ils auront investi dedans.",
-        "timing": 0,
         "duration": 5
       },
       {
         "title": "Essai",
         "description": "“Fabrique moi un avion”. Chaque constructeur a 2 minutes pour construire un avion. Éluder les questions posées par les équipes, en insistant sur le fait que c’est eux les constructeurs d’avion.",
-        "timing": 5,
         "duration": 2
       },
       {
         "title": "Debrief",
         "description": "Regarder les avions fabriqués. Rejeter les avions pour des raisons de plus ou moins bonne fois: <ul><li>Est-ce qu’il vole ?</li> <li>Est-ce qu’il a un cockpit pour mettre le pilote ?</li> <li>Est-ce qu’il y a une porte pour faire rentrer les gens ?</li> <li>Est-ce qu’il y a des hublots pour voir dehors ?</li> <li>Est-ce qu’on peut peindre mon logo sur les ailes ?</li> <li>...</li></ul>",
-        "timing": 7,
         "duration": 5
       },
       {
         "title": "Prototype",
         "description": "<ol><li>Distribuer la spécification de l’avion commandé par l’armée.</li> <li>Laisser 2 minutes pour  fabriquer un avion.</li> <li>Une fois fini, laisser une minute pour donner une estimation de combien d’avion pourront être construit en deux minutes.</li> <li>Noter l’estimé dans l’excel de suivi</li></ol>",
-        "timing": 13,
         "duration": 5
       },
       {
         "title": "Itération 1",
         "description": "Annoncer un jeu de contraintes imprévues: <ul><li>Pas le droit de stocker des matières premières sur le site;</li> <li>Une chaîne de production (pas de construction en parallèle)</li> <li>12 hublots (6 de chaque côté)</li> <li>Un cockpit et au moins une porte</li> <li>Logo de la compagnie sur les ailes</li> <li>L’avion doit supporter un vol d’essai sur la piste</li> <li>On peut garder un avion “incomplet” sur la chaîne d’une itération à l’autre</li></ul> Revoir les estimations. Lancer la phase de construction (2 minutes). Récupérer les nombres d’avion livrés, les noter dans le excel.<br /><br />  Laisser 2 minutes de débriefing interne aux équipes. Ils doivent donner à la fin une nouvelle estimation pour l’itération suivante. Rappeler que le contrat sera remporté par le constructeur qui construit le plus d’avion, mais aussi de la manière la plus prévisible (donc avec les meilleurs estimations). Jeter les avions construits pendant le débriefing (ménage en cours de route).<br /><br />  Les pousser à s’améliorer en donnant le record obtenu (44 avions construits en 5 itérations)",
-        "timing": 18,
         "duration": 8
       },
       {
         "title": "Itération 2",
         "description": "<ol><li>Phase de construction (2 minutes)</li> <li>Noter le nb de produits livrés</li> <li>Phase de débrief (2 minutes)</li> <li>Noter les estimations</li></ul>",
-        "timing": 26,
         "duration": 5
       },
       {
         "title": "Itération 3",
         "description": "<ol><li>Phase de construction (2 minutes)</li> <li>Noter le nb de produits livrés</li> <li>Phase de débrief (2 minutes)</li> <li>Noter les estimations</li></ol> <i>Ajouter pendant le débrief quelques feuilles de couleur différentes</i>",
-        "timing": 31,
         "duration": 5
       },
       {
         "title": "Itération 4",
         "description": "<ol><li>Phase de construction (2 minutes)</li> <li>Noter le nb de produits livrés. Annoncer au choix :</li> <ol type=\"a\"><li>“Les avions de couleurs ≠ ne sont pas conforme”</li> <li>ou “Les avions de couleurs ≠ compte double”</li></ol> <li>Phase de débrief (2 minutes)</li> <li>Noter les estimations</li></ol>",
-        "timing": 36,
         "duration": 5
       },
       {
         "title": "Itération 5",
         "description": "<ol><li>Phase de construction (2 minutes)</li> <li>Noter le nb de produits livrés</li> <li>Phase de débrief (2 minutes)</li> <li>Noter les estimations</li></ul>",
-        "timing": 41,
         "duration": 5
       },
       {
         "title": "Debrief",
         "description": "Mettre tous les participants debout en rond dans la salle (où dehors s’il fait beau). Utiliser une balle de parole pour  faire circuler la parole dans le groupe. Questions potentielle pour alimenter le débat: <ul><li>Est-ce que la création du prototype a aidée ?</li> <li>Comment ont évolués les estimations des prototypes ?</li> <li>Rôle des rétrospective dans le processus ?</li> <li>Comment avoir vécu les contraintes qui apparaissent ?</li> <li>Sentiment vis à vis des différents cycles ?</li> <li>Rôle dans l’équipe ? Évolution avec les rétrospectives ?</li> <li>Lien avec</li></ul>",
-        "timing": 46,
         "duration": 10
       },
       {
-        "description": "<center><b>Fin de l’atelier</center></b>",
-        "timing": 56
+        "description": "<center><b>Fin de l’atelier</center></b>"
       }
     ],
     "source": "http://agileway.com.br/2009/11/16/the-airplane-factory-game/ ",

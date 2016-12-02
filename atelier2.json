@@ -9,31 +9,26 @@
       {
         "title": "Intro",
         "description": "Présenter le folklore de l’atelier, les notions travaillées, pourquoi c’est important dans leur projet. Parler du fait que l’atelier est une métaphore, qu’ils retireront de cet atelier ce qu’ils auront investi dedans.",
-        "timing": 0,
         "duration": 5
       },
       {
         "title": "Round #1",
         "description": "<ul><li>Laisser l’équipe s’auto-organiser (2 minutes)</li> <li>Lancer le chrono du round dans le fichier Excel</li> <li>Donner les balles une par une au participant jouant l’elfe</li> <ul><li>Celui-ci dit “IN” quand il envoi une balle dans le flow</li> <li>Il dit “OUT” quand il ressort une balle du flow</li></ul> <li>Quand les 20 balles sont passées, on arrête le chrono</li> <li>Regarder les métriques (lead time et cumulative flow) avec le groupe.</li></ul>",
-        "timing": 5,
         "duration": 10
       },
       {
         "title": "Round #2",
         "description": "<ul><li>Laisser quelques minutes pour s’auto-organiser. Identifier les hypothèses faite pour s’améliorer, et l’effet attendu sur les métriques</li> <li>Rejouer le round comme précédemment</li></ul>",
-        "timing": 15,
         "duration": 8
       },
       {
         "title": "Round #3",
         "description": "<ul><li>Laisser quelques minutes pour s’auto-organiser. Identifier les hypothèses faite pour s’améliorer, et l’effet attendu sur les métriques</li> <li>Rejouer le round</li> <ul><li>Utiliser des balles exotiques au lieu de certaines balles utilisées classiquement. Des balles de golfs (qui ressemblent aux balles de ping pong).</li></ul></ul>",
-        "timing": 23,
         "duration": 8
       },
       {
         "title": "Round #4",
         "description": "<ul><li>Laisser quelques minutes pour s’auto-organiser. Identifier les hypothèses faite pour s’améliorer, et l’effet attendu sur les métriques</li> <li>Rejouer le round</li> <ul><li>Utiliser des mini-ballons pour représenter des demandes urgentes du client.</li></ul></ul>",
-        "timing": 29,
         "duration": 8
       },
       {
@@ -42,12 +37,10 @@
       {
         "title": "Débrief",
         "description": "<ul><li>Quel lien avec un vrai projet de développement ?</li> <li>Changement de type de balle ?</li> <li>Lean time contre iteration time ? Comment limiter le WiP ?</li> <li>Intégration des demandes urgente du client dans le dèv ?</li> <li>Amélioration continue sur les itérations ?</li> <li>Lien entre balle et tâche ?</li> <li>Lot et itération ?</li></ul>",
-        "timing": 37,
         "duration": 15
       },
       {
-        "description": "<center><b>Fin de l’atelier</b></center>",
-        "timing": 52
+        "description": "<center><b>Fin de l’atelier</b></center>"
       }
     ],
     "source": "http://availagility.co.uk/2011/07/19/running-the-ball-flow-game/",

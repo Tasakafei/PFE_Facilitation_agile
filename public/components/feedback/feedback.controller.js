@@ -8,8 +8,10 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
     var currentId = $routeParams.instanceId;
     $scope.instanceData = {};
     //the image
+   // var u = $scope.uploadme;
     $scope.uploadme;
-
+    //$scope.tableau= [];
+/*
     $scope.uploadImage = function() {
         var fd = new FormData();
         var imgBlob = dataURItoBlob($scope.uploadme);
@@ -33,7 +35,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
             .error(function (response) {
                 console.log('error', response);
             });
-    }
+    }*/
     //you need this function to convert the dataURI
     function dataURItoBlob(dataURI) {
         var binary = atob(dataURI.split(',')[1]);
@@ -88,6 +90,40 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
             console.log("=================");
             console.log(this.files);
             console.log("=================");
+
+
+            var fd = new FormData();
+            var imgBlob = dataURItoBlob($scope.uploadme);
+            fd.append('file', imgBlob);
+            console.log("-----------");
+            console.log(imgBlob);
+            console.log("-------------");
+            $http.post(
+                "/api/v1/feedback/"+currentId+"/picture",
+                fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                }
+            )
+                .success(function (response) {
+
+                    console.log('success', response);
+                })
+                .error(function (response) {
+                    console.log('error', response);
+                });
+
+
+
+
+
+
+
+
+
+
             var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
 
             // UPLOAD THE PHOTOS.
