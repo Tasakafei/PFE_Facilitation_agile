@@ -7,35 +7,7 @@ var app = angular.module('facilitation');
 app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams, $http) {
     var currentId = $routeParams.instanceId;
     $scope.instanceData = {};
-    //the image
-   // var u = $scope.uploadme;
-    $scope.uploadme;
-    //$scope.tableau= [];
-/*
-    $scope.uploadImage = function() {
-        var fd = new FormData();
-        var imgBlob = dataURItoBlob($scope.uploadme);
-        fd.append('file', imgBlob);
-        console.log("-----------");
-        console.log(imgBlob);
-        console.log("-------------");
-        $http.post(
-            "/api/v1/feedback/"+currentId+"/picture",
-            fd, {
-                transformRequest: angular.identity,
-                headers: {
-                    'Content-Type': undefined
-                }
-            }
-        )
-            .success(function (response) {
 
-                console.log('success', response);
-            })
-            .error(function (response) {
-                console.log('error', response);
-            });
-    }*/
     //you need this function to convert the dataURI
     function dataURItoBlob(dataURI) {
         var binary = atob(dataURI.split(',')[1]);
@@ -49,57 +21,39 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
         });
     }
 
+
+
+    $scope.imagesToDisplay = [];
     //Photo
-    /*document.getElementById('InputPhotos').addEventListener('change', function(){
+    document.getElementById('InputPhotos').addEventListener('change', function(){
         for(var i = 0; i < this.files.length; i++){
             var file =  this.files[i];
-            // Test only...
-            console.group("File "+i);
-            console.log("name : " + file.name);
-            console.log("size : " + file.size);
-            console.log("type : " + file.type);
-            console.log("date : " + file.lastModified);
-            console.groupEnd();
+
+            var reader = new FileReader();
+            reader.onload = function(loadEvent) {
+                $scope.$apply(function() {
+                    $scope.imagesToDisplay.push(loadEvent.target.result);
+                });
+            };
+            reader.readAsDataURL(this.files[i]);
         }
     }, false);
 
-
-*/
-   /* var formdata = new FormData();
-    $scope.getTheFiles = function ($files) {
-        angular.forEach($files, function (value, key) {
-            formdata.append(key, value);
-        });
-    };*/
-
-
     $scope.submit = function () {
-
         if ($scope.note_u && $scope.note_a) {
-
-            console.log($scope.note_u);
-            console.log($scope.note_a);
-            console.log($scope.com);
-
             var feedback = {
                 voteDimension1: $scope.note_u,
                 voteDimension2: $scope.note_a,
                 comment: $scope.com,
-                //photos: this.files
             };
-            console.log("=================");
-            console.log(this.files);
-            console.log("=================");
-
-
             var fd = new FormData();
-            var imgBlob = dataURItoBlob($scope.uploadme);
-            fd.append('file', imgBlob);
-            console.log("-----------");
-            console.log(imgBlob);
-            console.log("-------------");
+            for(var i = 0;i < $scope.imagesToDisplay.length ;i++) {
+                var imgBlob = dataURItoBlob($scope.imagesToDisplay[i]);
+                fd.append('photos', imgBlob);
+            }
+
             $http.post(
-                "/api/v1/feedback/"+currentId+"/picture",
+                "/api/v1/feedback/"+currentId+"/photos",
                 fd, {
                     transformRequest: angular.identity,
                     headers: {
@@ -126,32 +80,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
 
             var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
 
-            // UPLOAD THE PHOTOS.
-            /*var request = {
-                method: 'POST',
-                url: '/api/v1/feedback',
-                data: formdata,
-                headers: {
-                    'Content-Type': undefined
-                }
-            };
-            console.log("photo enregistée");
-            alert("photo enregistrée");
-
-            // SEND THE PHOTOS.
-            $http(request)
-                .success(function (d) {
-                    alert(d);
-                })
-                .error(function () {
-                });
-            //console.log("photo envoyée");
-            //alert("photo envoyée");*/
-
-
-
             res.success(function (data, status, headers, config) {
-                //$scope.message = data;
                 $scope.$emit('notify', {
                     type: 'success',
                     title: 'Feedback enregistré'
@@ -187,7 +116,7 @@ app.directive("fileread", [
                         scope.$apply(function() {
                             scope.fileread = loadEvent.target.result;
                         });
-                    }
+                    };
                     reader.readAsDataURL(changeEvent.target.files[0]);
                 });
             }
