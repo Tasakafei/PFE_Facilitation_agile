@@ -234,8 +234,12 @@ span#cinq {
 
 span#cinqb {
     position: absolute;
-    bottom: -17px;
+    bottom: -18px;
     left: 93%;
+}
+
+img#cross {
+    width: 20px;
 }
 
 
