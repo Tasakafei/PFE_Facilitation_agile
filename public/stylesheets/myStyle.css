@@ -209,32 +209,33 @@ img#pointer_div, #cross {
 
 span#amusement {
     position: absolute;
-    bottom: 15px;
+    bottom: -17px;
     left: 40%;
 }
 
 span#utilité {
     position: absolute;
     top: 47%;
-    left: 33px;
+    left: -9px;
+    transform: rotate(-90deg);
 }
 
 span#zero {
     position: absolute;
     bottom: 4px;
-    left: 24px;
+    left: 4px;
 }
 
 span#cinq {
     position: absolute;
     top: 0;
-    left: 30px;
+    left: 3px;
 }
 
 span#cinqb {
     position: absolute;
-    bottom: 4px;
-    left: 95%;
+    bottom: -17px;
+    left: 93%;
 }
 
 
