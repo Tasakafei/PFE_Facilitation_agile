@@ -7,6 +7,7 @@
         <div class="col-xs-12 no-padding">
             <h4 class="text-center">Noter l'atelier</h4><br />
             <form ng-submit="submit()" ng-controller="feedbackCtrl" class="form-horizontal col-xs-12">
+                <!--
                 <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Noter l'utililité</label>
                     <div class="col-sm-6 col-md-4 col-md-push-2">
@@ -35,7 +36,27 @@
                         </select>
                     </div>
                 </div>
+                -->
                 <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Note</label>
+                     <div class="col-sm-6 col-md-4 col-md-push-2">
+                         <img class="img-responsive" src="img/graphVote.png" id="pointer_div" onclick="point_it(event)">
+                         <img class="img-responsive" src="img/cross.png" id="cross" style="position:absolute;visibility:hidden;z-index:2;">
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Note d'amusement</label>
+                    <div class="col-sm-6 col-md-4 col-md-push-2">
+                        <div id="voteX"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Note d'utilité</label>
+                    <div class="col-sm-6 col-md-4 col-md-push-2">
+                        <div id="voteY"></div>
+                    </div>
+                </div>
+                 <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Commenter l'atelier</label>
                     <div class="col-sm-6 col-md-4 col-md-push-2">
                         <textarea type="text" ng-model="com" class="form-control" rows="3"></textarea>

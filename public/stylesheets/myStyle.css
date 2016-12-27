@@ -203,6 +203,17 @@ input[type=file] {
     padding-top: 7px;
 }
 
+img#pointer_div, #cross {
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    #voteX, #voteY {
+        padding-top: 7px;
+    }
+
+}
+
 /* --------- Form dropdown --------- */
 /*
 select {
