@@ -207,6 +207,37 @@ img#pointer_div, #cross {
     cursor: pointer;
 }
 
+span#amusement {
+    position: absolute;
+    bottom: 15px;
+    left: 40%;
+}
+
+span#utilité {
+    position: absolute;
+    top: 47%;
+    left: 33px;
+}
+
+span#zero {
+    position: absolute;
+    bottom: 4px;
+    left: 24px;
+}
+
+span#cinq {
+    position: absolute;
+    top: 0;
+    left: 30px;
+}
+
+span#cinqb {
+    position: absolute;
+    bottom: 4px;
+    left: 95%;
+}
+
+
 @media (min-width: 768px) {
     #voteX, #voteY {
         padding-top: 7px;
