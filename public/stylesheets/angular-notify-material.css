@@ -136,8 +136,16 @@
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards; }
 
-@media (max-width: 768px) {
+.angular-notify .title {
+  padding-right: 40px;
+}
+
+.angular-notify {
+  z-index: 1001;
+}
+
+@media (max-width: 767px) {
   .angular-notify {
-    width: 250px;
+    width: calc(100% - 32px);
   }
 }

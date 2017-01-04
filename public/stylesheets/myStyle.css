@@ -288,3 +288,14 @@ p#thank {
     background-color: #eaeaea;
     transition: 0.25s;
 }
+
+@media (max-width: 767px) and (min-height: 500px) {
+    .toggled div#page-content-wrapper {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        overflow: hidden;
+    }
+}
+
+
+
