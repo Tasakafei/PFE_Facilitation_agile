@@ -48,6 +48,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
                 voteDimension1: voteY,
                 voteDimension2: voteX,
                 comment: $scope.com,
+                photos: null
             };
             var fd = new FormData();
             for(var i = 0;i < $scope.imagesToDisplay.length ;i++) {
@@ -63,30 +64,28 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
                         'Content-Type': undefined
                     }
                 }
-            )
-                .success(function (response) {
+            ).success(function (response) {
+                feedback.photos = response.data;
+                var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
+                res.success(function (data, status, headers, config) {
+                    $scope.$emit('notify', {
+                        type: 'success',
+                        title: 'Feedback enregistré'
+                    });
 
-                    console.log('success', response);
-                })
-                .error(function (response) {
-                    console.log('error', response);
+                    //Redirection after vote
+                    var url = window.location.href;
+                    url = url.split("feedback");
+                    window.location.replace(url[0]+'thankYou');
                 });
-
-
-
-            var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
-
-            res.success(function (data, status, headers, config) {
-                $scope.$emit('notify', {
-                    type: 'success',
-                    title: 'Feedback enregistré'
-                });
-
-                //Redirection after vote
-                var url = window.location.href;
-                url = url.split("feedback");
-                window.location.replace(url[0]+'thankYou');
+            })
+            .error(function (response) {
+                console.log('error', response);
             });
+
+
+
+
 
         } else {
             $scope.$emit('notify', {

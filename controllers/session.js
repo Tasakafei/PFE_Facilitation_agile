@@ -1,9 +1,8 @@
-/************************************************
- * AUTHOR:         Alexandre Cazala             *
- * CREATION_DATE:  23/11/16                      *
- * EMAIL:          alexandre.cazala@gmail.com   *
- * LICENSE:        Apache 2.0                   *
- ***********************************************/
+/**
+ * Sessions controller (authentication)
+ * @author Alexandre Cazala <alexandre.cazala@gmail.com>
+ * @module controller/session
+ */
 'use strict';
 
 var mongoose = require('mongoose'),

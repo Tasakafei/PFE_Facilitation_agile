@@ -1,9 +1,3 @@
-/************************************************
- * AUTHOR:         Alexandre Cazala             *
- * CREATION_DATE:  23/11/16                      *
- * EMAIL:          alexandre.cazala@gmail.com   *
- * LICENSE:        Apache 2.0                   *
- ***********************************************/
 'use strict';
 
 var mongoose = require('mongoose'),
@@ -11,72 +5,142 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     ObjectId = mongoose.Types.ObjectId;
 
+
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 var Workshop = mongoose.model("Workshop");
 
 /**
- * Create user
- * requires: {username, password, email}
- * returns: {email, password}
+ * Controller users
+ * @module controller/user
  */
-exports.create = createImpl;
+module.exports = {
+    /**
+     * Create user
+     * @param req
+     * @param req.body {User} the complete User check moongoose schema for details
+     * @param res
+     * @param next {Function} callback
+     * @return email
+     * @return password
+     * @method
+     */
+    create: createImpl,
 
-/**
- *  Show profile
- *  returns {username, profile}
- */
-exports.show = showImpl;
+    /**
+     *  Show profile
+     *  @param req
+     *  @param req.params.userId {String} user Id of the profile asked
+     *  @param res
+     *  @param next {Function} callback
+     *  @return username
+     *  @return profile
+     *  @method
+     */
+    show: showImpl,
 
-/**
- *  Username exists
- *  returns {exists}
- */
-exports.exists = existsImpl;
+    /**
+     *  Check if the username exists.
+     *  @param req
+     *  @param req.params.username {String} Username to check if it exists
+     *  @param res
+     *  @param next {Function} callback
+     *  @return exists
+     *  @method
+     */
+    exists: existsImpl,
 
-/**
- * Add a workshops to favorites of the logged User;
- *
- */
-exports.addToFavoriteWorkshops = addToFavoriteWorkshopsImpl;
+    /**
+     * Add a workshops to favorites of the logged User
+     * The user has to be logged in the system.
+     * @param req
+     * @param req.body.workshop {String} ID of the workshop to add in the user favorites
+     * @param res
+     * @param next {Function} callback
+     * @method
+     */
+    addToFavoriteWorkshops: addToFavoriteWorkshopsImpl,
 
-/**
- * Retrieve favorites workshops from logged user
- * @type {getFavoriteWorkshopsImpl}
- * returns favorite_workshops
- */
-exports.getFavoriteWorkshops =  getFavoriteWorkshopsImpl;
+    /**
+     *  Retrieve favorites workshops from logged user.
+     *  The user has to be logged in the system.
+     *  @param req
+     *  @param res
+     *  @param next {Function} callback
+     *  @return {Array.<Workshop>}
+     *  @method
+     */
+    getFavoriteWorkshops: getFavoriteWorkshopsImpl,
 
-/**
- * Retrieve workshop instances of the user
- * @type {getWorkshopInstancesImpl}
- */
-exports.getWorkshopInstances = getWorkshopInstancesImpl;
+    /**
+     * Retrieve workshop instances of the user
+     * The user has to be logged in the system.
+     *  @param req
+     *  @param res
+     *  @param next {Function} callback
+     *  @return {Array.<WorkshopInstance>}
+     *  @method
+     */
+    getWorkshopInstances: getWorkshopInstancesImpl,
 
-/**
- * Instanciate a new workshopInstance
- * @type {addWorkshopInstanceImpl}
- */
-exports.addWorkshopInstance = addWorkshopInstanceImpl;
+    /**
+     * Instanciate a new workshopInstance and add the reference in the user's instances
+     * The user has to be logged in the system.
+     * @param req
+     * @param req.body.workshopId {String} id of the workshop
+     * @param res
+     * @param next {Function} callback
+     * @method
+     */
+    addWorkshopInstance: addWorkshopInstanceImpl,
 
-exports.getWorkshopInstance = getWorkshopInstanceImpl;
+    /**
+     *  Retrieve a specific workshop instance by id given in the URL.
+     *  The user has to be logged in the system.
+     *  @param req
+     *  @param req.params.instanceId {String}
+     *  @param res
+     *  @param next {Function} callback
+     *  @return {Array.<Workshop>}
+     *  @method
+     */
+    getWorkshopInstance: getWorkshopInstanceImpl,
 
-exports.deleteFavoriteWorkshops = deleteFavoriteWorkshopsImpl;
+    /**
+     *  Remove the reference of a registered workshop from the user favorites by id given in the URL.
+     *  The user has to be logged in.
+     *  @param req
+     *  @param res
+     *  @param next {Function} callback
+     *  @method
+     */
+    deleteFavoriteWorkshops: deleteFavoriteWorkshopsImpl,
 
-exports.deleteInstanceWorkshop = deleteInstanceWorkshopImpl;
+    /**
+     *  Delete a specific workshop instance by id given in the URL.
+     *  The user has to be logged in.
+     *  @param req
+     *  @param req.params.instanceId {String}
+     *  @param res
+     *  @param next
+     *  @return favorite_workshops
+     *  @method
+     */
+    deleteInstanceWorkshop: deleteInstanceWorkshopImpl,
 
-exports.unauthgetWorkshopInstances = unauthgetWorkshopInstancesImpl;
+    unauthgetWorkshopInstances: unauthgetWorkshopInstancesImpl,
 
-exports.unauthaddToFavoriteWorkshops = unauthaddToFavoriteWorkshopsImpl;
+    unauthaddToFavoriteWorkshops: unauthaddToFavoriteWorkshopsImpl,
 
-exports.unauthgetFavoriteWorkshops = unauthgetFavoriteWorkshopsImpl;
+    unauthgetFavoriteWorkshops: unauthgetFavoriteWorkshopsImpl,
 
-exports.unauthaddWorkshopInstance = unauthaddWorkshopInstanceImpl;
+    unauthaddWorkshopInstance: unauthaddWorkshopInstanceImpl,
 
-exports.unauthgetWorkshopInstance = unauthgetWorkshopInstanceImpl;
+    unauthgetWorkshopInstance: unauthgetWorkshopInstanceImpl,
 
-exports.unauthdeleteFavoriteWorkshops = unauthdeleteFavoriteWorkshopsImpl;
+    unauthdeleteFavoriteWorkshops: unauthdeleteFavoriteWorkshopsImpl,
 
-exports.unauthdeleteInstanceWorkshop = unauthdeleteInstanceWorkshopImpl;
+    unauthdeleteInstanceWorkshop: unauthdeleteInstanceWorkshopImpl
+};
 /*********************************************************
  * IMPLEMENTATION                                        *
  *********************************************************/
@@ -100,7 +164,6 @@ function createImpl(req, res, next) {
         });
     });
 }
-
 
 function showImpl(req, res, next) {
     var userId = req.params.userId;

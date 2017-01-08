@@ -1,11 +1,11 @@
-/************************************************
- * AUTHOR:         Alexandre Cazala             *
- * CREATION_DATE:  23/11/16                      *
- * EMAIL:          alexandre.cazala@gmail.com   *
- * LICENSE:        Apache 2.0                   *
- ***********************************************/
 'use strict';
 
+/**
+ * Controller of the catalogue (describe which action is allowed on the catalogue)
+ * @module controller/catalogue
+ * @author Alexandre Cazala <alexandre.cazala@gmail.com>
+ * @created_at 23/11/16
+ */
 
 var mongoose = require('mongoose');
 var Workshop = mongoose.model('Workshop');
@@ -13,21 +13,46 @@ var ObjectID = require('mongodb').ObjectID;
 
 var catalogue = require("../model/catalogue/catalogue.js");
 /*** INTERFACE ***/
-exports.getAllWorkshops = getAllWorkshopsImpl;
-exports.createNewWorkshop = createNewWorkshopImpl;
-exports.getWorkshop = getWorkshopImpl;
-exports.removeWorkshop = removeWorkshopImpl;
-
-
-/*** IMPLEMENTATION ***/
-
 /**
  * Implementation : Return all workshops
  * @param req
  * @param res
  * @param next
- * @return [Workshop]
+ * @method
  */
+exports.getAllWorkshops = getAllWorkshopsImpl;
+
+/**
+ * Implementation : Create a new workshop
+ * @param req
+ * @param res
+ * @param next
+ *
+ */
+exports.createNewWorkshop = createNewWorkshopImpl;
+
+/**
+ * Retrieve and return a specific workshop
+ * @param req
+ * @param res
+ * @param next
+ *
+ */
+exports.getWorkshop = getWorkshopImpl;
+
+/**
+ * Retrieve and return a specific workshop
+ *
+ * @param req
+ * @param res
+ * @param next
+ *
+ */
+exports.removeWorkshop = removeWorkshopImpl;
+
+
+/*** IMPLEMENTATION ***/
+
 function getAllWorkshopsImpl(req, res, next) {
     catalogue.getWorkshops().then(function (data) {
         res.json({
@@ -37,13 +62,6 @@ function getAllWorkshopsImpl(req, res, next) {
     });
 }
 
-/**
- * Implementation : Create a new workshop
- * @param req
- * @param res
- * @param next
- *
- */
 function createNewWorkshopImpl(req, res, next) {
     catalogue.saveWorkshop(req.body)
         .then(function (result) {
@@ -61,14 +79,7 @@ function createNewWorkshopImpl(req, res, next) {
         });
 }
 
-/**
- * Retrieve and return a specific workshop
- * @param req
- * @param res
- * @param next
- *
- * @return Workshop
- */
+
 function getWorkshopImpl(req, res, next) {
     var id = req.params.id;
     catalogue.getWorkshop(id).then(function (data) {
@@ -84,7 +95,6 @@ function getWorkshopImpl(req, res, next) {
                             data: data,
                             isFavorite: true
                         });
-                        console.log("isPresent");
                         return;
                     }
                 }
@@ -104,7 +114,6 @@ function getWorkshopImpl(req, res, next) {
 }
 
 function removeWorkshopImpl(req, res, next) {
-    console.log("DELETE WORKSHOP");
     var id = req.params.id;
     Workshop.remove({'_id': ObjectID(id)}, function (err) {
         if (err) {

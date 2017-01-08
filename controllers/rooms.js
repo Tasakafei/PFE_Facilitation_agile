@@ -1,7 +1,8 @@
 /**
- * Created by user on 23/11/16.
+ * Controller of socket io rooms (Real-time connection with the tab)
+ * @author Pierre Massanès <pierre.massanes@gmail.com>
+ * @module controller/rooms
  */
-
 module.exports = function (io) {
     'use strict';
 
