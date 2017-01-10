@@ -9,6 +9,9 @@ app.controller('homeCtrl', function ($scope, CatalogueDataProvider) {
     $scope.data = {};
     $scope.dataNote = [];
 
+    /**
+     * Put in the $scope.dataNote workshops with a note to display them on the first page
+     */
     CatalogueDataProvider.getWorkshops(function (dataResponse) {
         $scope.data = dataResponse;
 

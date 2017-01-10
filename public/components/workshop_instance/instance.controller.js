@@ -11,8 +11,22 @@ var app = angular.module('facilitation');
 app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams, $http, socket) {
 
     // Scope methods
+    /**
+     * Remove the workshop from the user's instances
+     * @type {deleteInstance}
+     */
     $scope.deleteInstance = deleteInstance;
+
+    /**
+     * Display the instance feedback QRCode
+     * @type {afficherQrcode}
+     */
     $scope.afficherQrcode = afficherQrcode;
+
+    /**
+     * Hide/display feedback
+     * @type {focusFeedback}
+     */
     $scope.focusFeedback= focusFeedback;
 
 

@@ -5,6 +5,10 @@
 app.controller('importationCtrl', function ($scope,$http) {
 
     // Scope methods
+    /**
+     * Import a workshop from a JSON file
+     * @type {importer}
+     */
     $scope.importer = importer;
 
     function importer() {

@@ -18,10 +18,34 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
     $scope.timingArray = "";
 
     // Scope methods
+    /**
+     * Return the label color
+     * @type {getLabelColorFct}
+     */
     $scope.getLabelColor = getLabelColorFct;
+
+    /**
+     * Add the workshop to the user's favorites
+     * @type {addToFavoriteFct}
+     */
     $scope.addToFavorite = addToFavoriteFct;
+
+    /**
+     * Add the workshop to the user's instances
+     * @type {addToInstancesFct}
+     */
     $scope.addToInstances = addToInstancesFct;
+
+    /**
+     * Delete a workshop
+     * @type {deleteWorkshop}
+     */
     $scope.deleteWorkshop = deleteWorkshop;
+
+    /**
+     * Remove the workshop from user's favorites
+     * @type {deleteFavorite}
+     */
     $scope.deleteFavorite = deleteFavorite;
 
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {

@@ -15,9 +15,28 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
     $scope.error = {};
 
     /* Scope Methods */
+    /**
+     * Display a modal to log in the user
+     * @type {logInFct}
+     */
     $scope.logIn = logInFct;
+
+    /**
+     * Display a modal to register the user
+     * @type {registerFct}
+     */
     $scope.register = registerFct;
+
+    /**
+     * Return the user status
+     * @type {isActive}
+     */
     $scope.isActive = isActive;
+
+    /**
+     * Log out the user
+     * @type {logOutFct}
+     */
     $scope.logOut = logOutFct;
 
     /* Implémentation */
