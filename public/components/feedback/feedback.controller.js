@@ -112,7 +112,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
 
     };
 
-    function point_it() {
+    function point_it(event) {
         pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
         pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
         $("#cross").css({top: (pos_y-12), left: (pos_x+2), position:'absolute'});
