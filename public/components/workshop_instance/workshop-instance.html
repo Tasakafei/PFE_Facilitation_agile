@@ -18,6 +18,47 @@
             </div>
         </div>
     </div>
+    <div class="col-xs-12 col-md-8">
+    <h4>Les commentaires :
+        <button id="button-facilitators" type="button" class="btn btn-default active" ng-click="focusFeedback('facilitators')">Facilitateurs</button>
+        <button id="button-participants" type="button" class="btn btn-default active" ng-click="focusFeedback('participants')">Participants</button></h4>
+        <div class="feedback-participants" ng-repeat="participants in workshopInstance.data.feedbacks.participants">
+            <div class="thumbnail" ng-if="participants.comment">
+                <div class="col-xs-6">
+                    <h4>Un participant</h4>
+                </div>
+                <div class="col-xs-6 com-start">
+                    <span>Note d'utilité : {{participants.voteDimension1}}/5</span><br/>
+                    <span>Note d'amusement: {{participants.voteDimension2}}/5</span>
+                </div>
+                <p class="com"> {{participants.comment}}</p>
+            </div>
+        </div>
+        <div class="feedback-facilitators" ng-repeat="facilitators in workshopInstance.data.feedbacks.facilitators">
+            <div class="thumbnail" ng-if="facilitators.comment">
+                <div class="col-xs-6">
+                    <h4>Un facilitateur</h4>
+                </div>
+                <div class="col-xs-6 com-start">
+                    <span>Note d'utilité : {{facilitators.voteDimension1}}/5</span><br/>
+                    <span>Note d'amusement : {{facilitators.voteDimension2}}/5</span>
+                </div>
+                <p class="com">{{facilitators.comment}}</p>
+            </div>
+        </div>
+        <div ng-if="!workshopInstance.data.feedbacks.participants[0].comment && !workshopInstance.data.feedbacks.facilitators[0].comment">
+            <p>Pas encore de commentaires</p>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <h4>Les photos : </h4>
+        <div ng-repeat="photos in workshopInstance.data.photos">
+            <img src="{{photos.filename}}">
+        </div>
+        <div ng-if="!workshopInstance.data.photos[0]">
+            <p>Pas encore de photos</p>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->

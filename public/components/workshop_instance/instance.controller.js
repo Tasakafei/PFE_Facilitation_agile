@@ -13,6 +13,8 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     // Scope methods
     $scope.deleteInstance = deleteInstance;
     $scope.afficherQrcode = afficherQrcode;
+    $scope.focusFeedback= focusFeedback;
+
 
     // Local vars
     var currentId = $routeParams.idInstance;
@@ -73,8 +75,19 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
         }
     }
 
+    function focusFeedback(type) {
+        if($('.feedback-'+type).css("display") == "block") {
+            $('#button-'+type).removeClass('active');
+            $('.feedback-'+type).css("display", "none");
+        } else {
+            $('#button-'+type).addClass('active');
+            $('.feedback-'+type).css("display", "block");
+        }
+    }
+
 
 });
 
 
 
+;

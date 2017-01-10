@@ -276,6 +276,15 @@ canvas.qrcode {
 .btn-right {
     float: right;
 }
+.com {
+    padding: 0 40px;
+    margin-top: 50px;
+}
+.feedback-participant, .feedback-facilitators {
+    display: block;
+}
+
+
 
 /* ThankYou */
 p#thank {
