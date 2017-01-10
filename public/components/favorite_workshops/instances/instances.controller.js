@@ -13,9 +13,16 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
     $scope.instances = [];
 
     // Scope methods
+    /**
+     * Return the label color
+     * @type {getLabelColor}
+     */
     $scope.getLabelColor = getLabelColor;
 
     getWorkshopsInstances();
+    /**
+     * Put in $scope.instances the instances workshops to display
+     */
     function getWorkshopsInstances() {
         FavoriteWorkshops.getInstancesWorkshop()
             .success(function(data, status, headers, config) {

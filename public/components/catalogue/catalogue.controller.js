@@ -11,11 +11,30 @@ var app = angular.module('facilitation');
 app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
 
     // Scope methods
+    /**
+     * Put in the scope workshops that the user is looking for from educational aims
+     * @type {searchEduc}
+     */
     $scope.searchEduc = searchEduc;
+    /**
+     * Put in the scope workshops that the user is looking for from the search bar
+     * @type {searchTitle}
+     */
     $scope.searchTitle = searchTitle;
+    /**
+     * Return the label color
+     * @type {getLabelColor}
+     */
     $scope.getLabelColor = getLabelColor;
+    /**
+     * Open the advanced search
+     * @type {dropDown}
+     */
     $scope.dropDown = dropDown;
-    $scope.rechercher = rechercher;
+    /**
+     * Close the advanced search
+     * @type {close}
+     */
     $scope.close = close;
 
     $scope.educational_aims_search = {
@@ -69,13 +88,6 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             return "label-default";
         }
 
-    };
-    function rechercher() {
-        $scope.$emit('notify', {
-            type: 'success',
-            title: 'recherche en cours',
-
-        });
     };
 
     var bool = false;

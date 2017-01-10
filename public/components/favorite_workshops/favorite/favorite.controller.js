@@ -13,10 +13,16 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
     $scope.favoriteWorkshops = [];
 
     // Scope methods
+    /**
+     * Return the label color
+     * @type {getLabelColor}
+     */
     $scope.getLabelColor = getLabelColor;
 
     getFavoriteWorkshops();
-
+    /**
+     * Put in $scope.favoriteWorkshops the favorites workshops to display
+     */
     function getFavoriteWorkshops() {
         FavoriteWorkshops.getFavoriteWorkshops()
             .success(function(data, status, headers, config) {
