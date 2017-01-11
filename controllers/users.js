@@ -344,7 +344,7 @@ function addWorkshopInstanceImpl(req, res, next) {
 }
 
 function getWorkshopInstanceImpl(req, res, next) {
-    var user = req.user;
+    //var user = req.user;
     var instanceId = req.params.instanceId;
     //var user = { username: req.body.username };
     WorkshopInstance.findOne(ObjectId(instanceId) , function (err, instanceWorkshop) {
