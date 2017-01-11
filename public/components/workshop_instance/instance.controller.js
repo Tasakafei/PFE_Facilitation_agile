@@ -37,9 +37,7 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     $scope.workshopInstance = "";
 
     FavoriteWorkshops.getWorkshopInstance(currentId).then(function (dataResponse) {
-
         $scope.workshopInstance = dataResponse.data;
-
     });
 
     socket.emit('join_room', currentId);

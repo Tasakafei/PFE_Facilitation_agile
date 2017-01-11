@@ -351,12 +351,7 @@ function getWorkshopInstanceImpl(req, res, next) {
         if (err) {
             return next(new Error('Failed to load User ' + user.username));
         }
-
-        if(user) {
-            res.json({status: "success", data: instanceWorkshop});
-        } else {
-            res.json({status: "error", data: "INSTANCE_NOT_FOUND"});
-        }
+        res.json({status: "success", data: instanceWorkshop});
     });
 }
 
