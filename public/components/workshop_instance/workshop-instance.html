@@ -53,7 +53,7 @@
     <div class="col-xs-12 col-md-4">
         <h4>Les photos : </h4>
         <div ng-repeat="photos in workshopInstance.data.photos">
-            <img class="img-responsive" src="uploads/{{photos.filename}}">
+            <a href="uploads/{{photos.filename}}"  target="_blank"><img class="img-responsive" src="uploads/{{photos.filename}}"></a>
         </div>
         <div ng-if="!workshopInstance.data.photos[0]">
             <p>Pas encore de photos</p>
