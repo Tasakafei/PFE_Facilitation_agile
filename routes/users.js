@@ -16,7 +16,7 @@ router.get('/favorites', auth.ensureAuthenticated,  users.getFavoriteWorkshops);
 router.delete('/favorites/:favoriteId', auth.ensureAuthenticated, users.deleteFavoriteWorkshops);
 router.post('/instances', auth.ensureAuthenticated, users.addWorkshopInstance);
 router.get('/instances', auth.ensureAuthenticated, users.getWorkshopInstances);
-router.get('/instances/:instanceId', auth.ensureAuthenticated, users.getWorkshopInstance);
+router.get('/instances/:instanceId', users.getWorkshopInstance);
 router.delete('/instances/:instanceId', auth.ensureAuthenticated, users.deleteInstanceWorkshop);
 
 /*** TEMPORARY ROUTES (TO_DELETE WHEN ACCOUNTS ARE INTEGRATED TO THE TAB) ***/
