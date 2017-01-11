@@ -3,7 +3,7 @@
  */
 var app = angular.module('facilitation');
 
-app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams, $http) {
+app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scope, $routeParams, $http) {
 
     /* Scope vars */
     $scope.instanceData = {};
@@ -13,6 +13,8 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, $scope, $routeParams,
     var currentId = $routeParams.instanceId;
     var voteX = -1;
     var voteY = -1;
+
+    tmpDataFactory.set(currentId);
 
     // Scope methods
     /**
