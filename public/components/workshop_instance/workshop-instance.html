@@ -3,18 +3,20 @@
     <div class="page-header">
         <h3>{{workshopInstance.data.title}}</h3>
     </div>
-    <div class="row">
-        <div class="col-md-6 col-xs-12 padding-b">
-            <timer></timer>
-        </div>
-        <div class="col-md-6 col-xs-12 padding-b">
-            <a href="/#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
+    <div ng-show="currentUser">
+        <div class="row">
+            <div class="col-md-6 col-xs-12 padding-b">
+                <timer></timer>
+            </div>
+            <div class="col-md-6 col-xs-12 padding-b">
+                <a href="/#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
 
-            <a data-toggle="modal" data-target="#confirmationModal"><button type="button" class="btn btn-danger btn-right" uib-tooltip="Supprimer l'instance" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a><br /><br />
+                <a data-toggle="modal" data-target="#confirmationModal"><button type="button" class="btn btn-danger btn-right" uib-tooltip="Supprimer l'instance" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a><br /><br />
 
-            <button type="button" class="btn btn-default" ng-click="afficherQrcode()">Afficher QRCode</button><br /><br />
-            <div ng-controller="qrcodeCtrl" class="qrcode-off">
-                <qrcode size="315" data="{{feedbackLink}}" href="{{feedbackLink}}"></qrcode>
+                <button type="button" class="btn btn-default" ng-click="afficherQrcode()">Afficher QRCode</button><br /><br />
+                <div ng-controller="qrcodeCtrl" class="qrcode-off">
+                    <qrcode size="315" data="{{feedbackLink}}" href="{{feedbackLink}}"></qrcode>
+                </div>
             </div>
         </div>
     </div>

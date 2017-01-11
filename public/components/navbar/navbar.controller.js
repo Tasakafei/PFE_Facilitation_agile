@@ -28,7 +28,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
     $scope.register = registerFct;
 
     /**
-     * Return the user status
+     * Return the active url
      * @type {isActive}
      */
     $scope.isActive = isActive;
