@@ -140,12 +140,12 @@
   padding-right: 40px;
 }
 
-.angular-notify {
-  z-index: 1001;
-}
-
 @media (max-width: 767px) {
   .angular-notify {
     width: calc(100% - 32px);
+  }
+
+  .angular-notify {
+    z-index: 1001;
   }
 }

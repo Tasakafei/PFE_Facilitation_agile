@@ -8,9 +8,7 @@ html {
 body {
     height: 100%;
 }
-.navbar.navbar-default {
-    z-index: 1000;
-}
+
 .dropdown-menu i.pull-right {
     padding-top: 3px;
 }
@@ -24,6 +22,11 @@ body {
     border-top: 1px solid #e5e5e5;
 }
 
+@media (max-width: 767px) {
+    .navbar.navbar-default {
+        z-index: 1000;
+    }
+}
 /* --------- Basic --------- */
 
 .label-purple {
