@@ -51,7 +51,7 @@ function getWorkshopsFct () {
 function getWorkshopFct (id) {
     return new Promise(function (resolve, reject) {
         var object = new ObjectID(id);
-        Workshop.find({_id: object}, function(req, res) {
+        Workshop.findOne({_id: object}, function(req, res) {
             res.computeGrades(function(gradeRes) {
                 res.grade = gradeRes;
                 resolve(res);

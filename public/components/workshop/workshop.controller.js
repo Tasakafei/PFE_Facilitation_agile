@@ -50,8 +50,8 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
-        var timingArray = dataResponse.data[0].content.steps.map(function(step, index){
-            var stepArray = dataResponse.data[0].content.steps.slice(0, index);
+        var timingArray = dataResponse.data.content.steps.map(function(step, index){
+            var stepArray = dataResponse.data.content.steps.slice(0, index);
             return stepArray.reduce(function (accumulateur, currentStep) {
                 if(currentStep.duration) return accumulateur + currentStep.duration;
                 else return accumulateur;
@@ -68,12 +68,12 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
         $scope.timingArray = timingArray;
 
 
-        for(var i=0; i < dataResponse.data[0].content.steps.length; i++) {
-            if(dataResponse.data[0].content.steps[i].duration) {
-                dataResponse.data[0].content.steps[i].duration = dataResponse.data[0].content.steps[i].duration + " minutes";
+        for(var i=0; i < dataResponse.data.content.steps.length; i++) {
+            if(dataResponse.data.content.steps[i].duration) {
+                dataResponse.data.content.steps[i].duration = dataResponse.data.content.steps[i].duration + " minutes";
             }
         }
-        $scope.workshop = dataResponse.data[0];
+        $scope.workshop = dataResponse.data;
 
         if(dataResponse.isFavorite) {
             $('.favorite-false').css("display", "none");
