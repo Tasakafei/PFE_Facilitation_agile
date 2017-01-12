@@ -46,29 +46,43 @@ var WorkshopInstanceSchema = new Schema({
         }
     }],
     workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true }
+},
+{
+    toJSON: {
+        virtuals:true
+    },
+    toObject: {
+        virtuals: true
+    }
 });
 
-/**
- * Methods
- */
-
-WorkshopInstanceSchema.methods = {
-    getMeanUserGrade: function(password) {
+WorkshopInstanceSchema
+    .virtual('grade.participants')
+    .get(function() {
         var total = 0;
         var nbVotes = this.feedbacks.participants.length;
         for ( var i = 0; i < nbVotes; ++i) {
-            total+= this.feedbacks.participants[i].vote;
+            total = total + (this.feedbacks.participants[i].voteDimension1 + this.feedbacks.participants[i].voteDimension1)/2 ;
+        }
+        if (nbVotes === 0) {
+            nbVotes = 1;
         }
         return (total / nbVotes);
-    },
-    getMeanFacilitatorGrade: function(password) {
+    });
+
+WorkshopInstanceSchema
+    .virtual('grade.facilitators')
+    .get(function() {
         var total = 0;
         var nbVotes = this.feedbacks.facilitators.length;
         for ( var i = 0; i < nbVotes; ++i) {
-            total+= this.feedbacks.facilitators[i].vote;
+            total = total + (this.feedbacks.facilitators[i].voteDimension1 + this.feedbacks.facilitators[i].voteDimension1)/2 ;
+
+        }
+        if (nbVotes === 0) {
+            nbVotes = 1;
         }
         return (total / nbVotes);
-    }
-};
+    });
 
 mongoose.model('WorkshopInstance', WorkshopInstanceSchema);

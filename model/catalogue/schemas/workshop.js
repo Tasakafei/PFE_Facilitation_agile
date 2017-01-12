@@ -38,31 +38,47 @@ var WorkshopSchema = new mongoose.Schema({
     instances: [{
         type: Schema.ObjectId,
         ref: 'WorkshopInstance'
-    }]
+    }],
+    grade: {
+        facilitators: Number,
+        participants: Number
+    }
+}, {
+    toJSON: {
+        virtuals:true
+    },
+    toObject: {
+        virtuals: true
+    }
 });
 
-
-/**
- * Methods
- */
-
-WorkshopSchema.methods = {
-
-    getMeanUserGrade: function(password) {
-        return new Promise(function (resolve, reject) {
-            var total = 0;
-
-            WorkshopInstance.find({
-                '_id': {$in: this.instances}
-            }, 'feedbacks.participants', function (err, docs) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(docs)
+WorkshopSchema.method('computeGrades', function(cb) {
+    WorkshopInstance.find({
+        '_id': {$in: this.instances}
+    }, function (err, docs) {
+        if (err) {
+            console.log(err);
+            return 0;
+        } else {
+            var totUserGrade = 0;
+            var totFacilitatorGrade = 0;
+            var denominator = docs.length;
+            if (denominator > 0) {
+                for (var instanceI = 0; instanceI < denominator; ++instanceI) {
+                    totFacilitatorGrade+= docs[instanceI].grade.facilitators;
+                    totUserGrade += docs[instanceI].grade.participants;
                 }
-            });
-        });
-    }
-};
+            }
 
+            if (denominator == 0) {
+                denominator = 1;
+            }
+            var grade = {
+                facilitators: totFacilitatorGrade / denominator,
+                participants: totUserGrade /denominator
+            };
+            cb(grade);
+        }
+    });
+});
 exports.Workshop = mongoose.model('Workshop', WorkshopSchema);

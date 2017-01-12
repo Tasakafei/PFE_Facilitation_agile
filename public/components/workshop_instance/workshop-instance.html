@@ -8,9 +8,12 @@
             <div class="col-md-6 col-xs-12 padding-b">
                 <timer></timer>
             </div>
+            <div>
+                <p>A l'arrache : moyenne calculée facilitator : {{workshopInstance.data.grade.facilitators}} </p>
+                <p>Moyenne calculée Participant : {{workshopInstance.data.grade.participants}}</p>
+            </div>
             <div class="col-md-6 col-xs-12 padding-b">
                 <a href="/#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
-
                 <a data-toggle="modal" data-target="#confirmationModal"><button type="button" class="btn btn-danger btn-right" uib-tooltip="Supprimer l'instance" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a><br /><br />
 
                 <button type="button" class="btn btn-default" ng-click="afficherQrcode()">Afficher QRCode</button><br /><br />

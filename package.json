@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "Promise": "^1.0.5",
+    "async": "^2.1.4",
     "bcrypt": "^0.8.7",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.2",

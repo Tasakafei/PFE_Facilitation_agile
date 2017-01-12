@@ -45,7 +45,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
     };
     function searchEduc(row) {
         var isSet = false;
-        for (var educ in row.workshop.content.educational_aims) {
+        for (var educ in row.content.educational_aims) {
             for (var toCheck in $scope.educational_aims_search) {
                 if ($scope.educational_aims_search[toCheck] != '') {
                     isSet = true;
@@ -59,7 +59,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
     };
 
     function searchTitle(row) {
-        return angular.lowercase(row.workshop.title).indexOf(angular.lowercase($scope.query) || '') !== -1;
+        return angular.lowercase(row.title).indexOf(angular.lowercase($scope.query) || '') !== -1;
     };
 
 
