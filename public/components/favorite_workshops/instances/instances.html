@@ -44,10 +44,13 @@
                                         <span ng-if="!workshop.grade.facilitators">Aucunes notes</span>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 no-padding padding-t">
+                                <div class="col-xs-12 col-sm-6 no-padding">
                                     <div>
                                         <!-- Temps de l'atelier -->
                                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{workshop.duration}}m
+                                    </div>
+                                    <div class="hidden-xs">
+                                        Nombre de fois joué : {{workshop.nb_time_played}}
                                     </div>
                                 </div>
                                 <!-- Detail -->

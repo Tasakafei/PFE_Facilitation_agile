@@ -27,7 +27,7 @@
                         <span class="label {{getLabelColor(category)}}">{{category}}</span>
                     </span><br /><br />
 
-                    Notes : <br />
+                    Notes :<br />
                     <div class="col-xs-12">
                         Participants :
                         <i ng-if="workshop.grade.participants"
@@ -43,6 +43,7 @@
                         <span ng-if="!workshop.grade.facilitators">Aucunes notes</span>
                     </div>
                     <br /><br /><br />
+                    Nombre de fois joué : {{workshop.nb_time_played}}<br />
                     Durée de l'atelier : {{workshop.duration}} minutes<br />
                     Auteur: {{workshop.author}}<br />
                     Source : <a class="link" target="_blank" href="{{workshop.content.source}}">{{workshop.content.source}}</a><br />

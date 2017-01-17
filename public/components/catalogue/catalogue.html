@@ -93,11 +93,14 @@
                                     <span ng-if="!elem.grade.facilitators">Aucunes notes</span>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 no-padding padding-t">
+                            <div class="col-xs-12 col-sm-6 no-padding">
                                 <div>
                                     <!-- Temps de l'atelier -->
                                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
                                     {{elem.duration}}m
+                                </div>
+                                <div class="hidden-xs">
+                                    Nombre de fois joué : {{elem.nb_time_played}}
                                 </div>
                             </div>
                             <!-- Detail -->
