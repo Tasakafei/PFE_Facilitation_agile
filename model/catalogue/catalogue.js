@@ -23,7 +23,7 @@ function saveWorkshopFct (workshop) {
         var newWorkshop = new Workshop(test);
         newWorkshop.save(function(err, data) {
             if (err) {
-                console.log(err);
+                console.error(err);
                 reject(err);
             }else {
                 resolve(data);
@@ -38,7 +38,6 @@ function getWorkshopsFct () {
             async.forEach(Object.keys(res),function (item, cb) {
                 res[item].computeGrades(function(gradeRes) {
                     res[item].grade = gradeRes;
-                    console.log(res[item]);
                     cb();
                 })
             }, function() {

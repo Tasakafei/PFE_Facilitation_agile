@@ -63,7 +63,7 @@ WorkshopSchema.method('computeGrades', function(cb) {
         '_id': {$in: this.instances}
     }, function (err, docs) {
         if (err) {
-            console.log(err);
+            console.error(err);
             return 0;
         } else {
             var totUserGrade = 0;
