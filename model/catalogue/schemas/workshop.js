@@ -52,6 +52,12 @@ var WorkshopSchema = new mongoose.Schema({
     }
 });
 
+WorkshopSchema
+    .virtual('nb_time_played')
+    .get(function() {
+        return this.instances.length;
+    });
+
 WorkshopSchema.method('computeGrades', function(cb) {
     WorkshopInstance.find({
         '_id': {$in: this.instances}
