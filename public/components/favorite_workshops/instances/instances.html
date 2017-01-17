@@ -29,22 +29,29 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 no-padding">
                                     <!-- Note -->
-                                    <div>
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    <div class="col-xs-12 no-padding">
+                                        Participants :
+                                        <i ng-if="workshop.grade.participants"
+                                           ng-class="{ 'fa fa-star': $index<=workshop.grade.participants, 'fa fa-star-o': $index>workshop.grade.participants }"
+                                           data-ng-repeat="i in [] | range:5"></i>
+                                        <span ng-if="!workshop.grade.participants">Aucunes notes</span>
+                                    </div>
+                                    <div class="col-xs-12 no-padding">
+                                        Facilitateurs :
+                                        <i ng-if="workshop.grade.facilitators"
+                                           ng-class="{ 'fa fa-star': $index<=workshop.grade.facilitators, 'fa fa-star-o': $index>workshop.grade.facilitators }"
+                                           data-ng-repeat="i in [] | range:5"></i>
+                                        <span ng-if="!workshop.grade.facilitators">Aucunes notes</span>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 no-padding">
+                                <div class="col-xs-12 col-sm-6 no-padding padding-t">
                                     <div>
                                         <!-- Temps de l'atelier -->
                                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{workshop.duration}}m
                                     </div>
                                 </div>
                                 <!-- Detail -->
-                                <p class="hidden-xs">{{workshop.synopsis}}</p>
+                                <p class="col-xs-12 hidden-xs no-padding padding-t">{{workshop.synopsis}}</p>
                             </div>
                         </div>
                     </a>

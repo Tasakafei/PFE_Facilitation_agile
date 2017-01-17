@@ -22,20 +22,31 @@
                 <div class="col-xs-12 col-sm-7 no-padding col-sm-pull-5">
                     <h4>Informations pratiques</h4>
                 </div>
-                <p class="lineHeight">
+                <span class="lineHeight">
                     <span ng-repeat="category in workshop.content.educational_aims | orderBy">
                         <span class="label {{getLabelColor(category)}}">{{category}}</span>
-                    </span><br />
-                   Note :
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> <br />
+                    </span><br /><br />
+
+                    Notes : <br />
+                    <div class="col-xs-12">
+                        Participants :
+                        <i ng-if="workshop.grade.participants"
+                           ng-class="{ 'fa fa-star': $index<=workshop.grade.participants, 'fa fa-star-o': $index>workshop.grade.participants }"
+                           data-ng-repeat="i in [] | range:5"></i>
+                        <span ng-if="!workshop.grade.participants">Aucunes notes</span>
+                    </div>
+                    <div class="col-xs-12">
+                        Facilitateurs :
+                        <i ng-if="workshop.grade.facilitators"
+                           ng-class="{ 'fa fa-star': $index<=workshop.grade.facilitators, 'fa fa-star-o': $index>workshop.grade.facilitators }"
+                           data-ng-repeat="i in [] | range:5"></i>
+                        <span ng-if="!workshop.grade.facilitators">Aucunes notes</span>
+                    </div>
+                    <br /><br /><br />
                     Durée de l'atelier : {{workshop.duration}} minutes<br />
                     Auteur: {{workshop.author}}<br />
                     Source : <a class="link" target="_blank" href="{{workshop.content.source}}">{{workshop.content.source}}</a><br />
-                </p>
+                </span>
             </div>
             <!-- Description -->
             <div class="col-xs-12" >
