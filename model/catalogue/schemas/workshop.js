@@ -6,12 +6,15 @@
  ***********************************************/
 var mongoose = require('mongoose');
 var WorkshopInstance = mongoose.model("WorkshopInstance");
+var User = mongoose.model("User");
+
+var ObjectID = require('mongodb').ObjectID;
 var Schema = mongoose.Schema;
 var Promise = require('promise');
 // Workshop
 var WorkshopSchema = new mongoose.Schema({
     title: String,
-    author: {type: String, default: "Anonyme"},
+    author: {type: String, default: "Anon"},
     photo : {type: String, default: "https://pfe-facilitation.herokuapp.com/img/default.jpg"},
     workshop_type: {type: String, default: "Production"},
     goals: [String],
@@ -58,6 +61,11 @@ WorkshopSchema
         return this.instances.length;
     });
 
+WorkshopSchema.pre('remove', function(callback) {
+    var id = new ObjectID(this._id);
+    User.update({"workshops_favorites._id": id}, {$pull: { "workshops_favorites": {"_id": id }}}).exec();
+    callback();
+});
 WorkshopSchema.method('computeGrades', function(cb) {
     WorkshopInstance.find({
         '_id': {$in: this.instances}

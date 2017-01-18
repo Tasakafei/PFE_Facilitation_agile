@@ -10,7 +10,7 @@
 var mongoose = require('mongoose');
 var Workshop = mongoose.model('Workshop');
 var ObjectID = require('mongodb').ObjectID;
-
+var async = require('async');
 var catalogue = require("../model/catalogue/catalogue.js");
 /*** INTERFACE ***/
 /**
@@ -86,23 +86,38 @@ function getWorkshopImpl(req, res, next) {
         if (data) {
             if (req.user) {
                 var user = req.user;
-                for (var i = 0; i < user.workshops_favorites.length; ++i) {
-                    var t1 = user.workshops_favorites[i]._id.toString();
+                async.each(user.workshops_favorites, function (item, callback) {
+                    var t1 = item._id.toString();
                     var t2 = data[0]._id.toString();
                     if (t1 == t2) {
+                        callback(true);
+                    }
+                    callback();
+                }, function (isFav) {
+                    if (isFav) {
+                        console.log("DATAAAA");
                         res.json({
                             state: "success",
                             data: data,
                             isFavorite: true
                         });
-                        return;
+                    } else {
+                        console.log("PAAS DATA");
+                        res.json({
+                            state: "success",
+                            data: data
+                        })
                     }
-                }
+                    return;
+                });
             }
-            res.json({
-                state: "success",
-                data: data
-            })
+            else {
+                console.log("PAAS DATA");
+                res.json({
+                    state: "success",
+                    data: data
+                })
+            }
         } else {
             res.json({
                 state: "error",
@@ -115,12 +130,18 @@ function getWorkshopImpl(req, res, next) {
 
 function removeWorkshopImpl(req, res, next) {
     var id = req.params.id;
-    Workshop.remove({'_id': ObjectID(id)}, function (err) {
+    catalogue.deleteWorkshop(id).then(function (data) {
+        res.json({state: "success", data: data})
+    }, function(err) {
+        console.error(err);
+        res.json({state: "error", data: err})
+    });
+    /*Workshop.remove({'_id': ObjectID(id)}, function (err) {
         if (err) {
             res.json({state: "error", data:err})
         }
         else {
             res.json({state: "success", data: "WORKSHOP_REMOVED"})
         }
-    })
+    })*/
 }

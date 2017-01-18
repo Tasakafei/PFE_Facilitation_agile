@@ -9,7 +9,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-var WorkshopInstance = mongoose.model("WorkshopInstance");
 
 var UserSchema = new Schema({
     email: {type: String, unique: true, required: true},
@@ -40,7 +39,7 @@ var UserSchema = new Schema({
         duration: Number,
         synopsis: {type: String, default: null},
         added_at: {type: Date, default: Date.now},
-        id: {
+        _id: {
             type: Schema.ObjectId,
             ref: 'WorkshopInstance',
             required: true
@@ -48,6 +47,9 @@ var UserSchema = new Schema({
     }]
 });
 
+UserSchema.pre('update', function() {
+   console.log("update")
+});
 /**
  * Virtuals
  */

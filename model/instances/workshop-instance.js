@@ -10,10 +10,6 @@ var ObjectId = mongoose.Types.ObjectId;
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 var Promise = require('promise');
 
-module.exports = {
-    addFeedback: addFeedbackImpl
-};
-
 function addFeedbackImpl (workshopInstanceId, feedback, user, photos) {
     return new Promise(function (resolve, reject) {
         WorkshopInstance.findOne(ObjectId(workshopInstanceId) , function(err, model) {
@@ -46,3 +42,27 @@ function addFeedbackImpl (workshopInstanceId, feedback, user, photos) {
         });
     })
 }
+
+function removeInstance(id) {
+    return new Promise(function (resolve, reject) {
+        var object = ObjectId(id);
+        console.log("HERE");
+        WorkshopInstance.findOne(object, function (req, res) {
+            res.remove(function(err) {
+                if (err) {
+                    reject(err)
+                } else {
+                    console.log("yo");
+
+                    Workshop.update({"instances": object}, {$pull: { "instances": object }}).exec(function() {
+                        resolve();
+                    });
+                }
+            });
+        });
+    })
+}
+module.exports = {
+    addFeedback: addFeedbackImpl,
+    removeInstance: removeInstance
+};

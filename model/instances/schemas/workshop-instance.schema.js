@@ -9,6 +9,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var User = mongoose.model("User");
+
+var ObjectID = require('mongodb').ObjectID;
 
 var WorkshopInstanceSchema = new Schema({
     status: String,
@@ -56,6 +59,13 @@ var WorkshopInstanceSchema = new Schema({
     }
 });
 
+
+WorkshopInstanceSchema.pre('remove', function(next) {
+    var id = new ObjectID(this._id);
+    User.update({"workshops_instances._id": id}, {$pull: { "workshops_instances": {"_id": id }}}).exec(function() {
+        next();
+    });
+});
 WorkshopInstanceSchema
     .virtual('grade.participants')
     .get(function() {

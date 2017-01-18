@@ -73,6 +73,7 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
                 dataResponse.data.content.steps[i].duration = dataResponse.data.content.steps[i].duration + " minutes";
             }
         }
+        console.log(dataResponse.data);
         $scope.workshop = dataResponse.data;
 
         if(dataResponse.isFavorite) {

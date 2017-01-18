@@ -11,12 +11,6 @@ var WorkshopInstance = mongoose.model("WorkshopInstance");
 var Promise = require('promise');
 var async = require('async');
 
-module.exports = {
-    saveWorkshop: saveWorkshopFct,
-    getWorkshops: getWorkshopsFct,
-    getWorkshop: getWorkshopFct
-};
-
 function saveWorkshopFct (workshop) {
     var test = workshop;
     return new Promise(function (resolve, reject) {
@@ -58,3 +52,30 @@ function getWorkshopFct (id) {
         });
     })
 }
+
+/**
+ * Supprime le Workshop correspondant à l'id en paramètre de la database
+ * @param id
+ */
+function deleteWorkshopFct (id) {
+    return new Promise(function (resolve, reject) {
+        var object = new ObjectID(id);
+
+        Workshop.findOne({}, function (req, res) {
+            res.remove(function(err) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve();
+                }
+            });
+        });
+    })
+}
+
+module.exports = {
+    saveWorkshop: saveWorkshopFct,
+    getWorkshops: getWorkshopsFct,
+    getWorkshop: getWorkshopFct,
+    deleteWorkshop: deleteWorkshopFct
+};

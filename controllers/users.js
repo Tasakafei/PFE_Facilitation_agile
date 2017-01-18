@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
 
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 var Workshop = mongoose.model("Workshop");
+var WorkshopInstances = require("../model/instances/workshop-instance");
 
 /**
  * Controller users
@@ -381,47 +382,13 @@ function deleteFavoriteWorkshopsImpl(req, res, next) {
 function deleteInstanceWorkshopImpl(req, res, next) {
     var user = req.user;
     var instanceId = req.params.instanceId;
-    User.findOneAndUpdate(
-        { username : user.username },
-        {
-            $pull: {
-                "workshops_instances": {
-                    _id: instanceId
-                }
-            }
-        },
-        { new: true , safe: true},
-        function(err, model) {
-            if (err) {
-                res.json({status: "error", data: err});
-            } else {
-                WorkshopInstance.remove({ _id: model._id }, function(err, model) {
-                    if (err) {
-                        res.json({status: "error", data: err});
-                    } else {
-                        Workshop.findOneAndUpdate(
-                            { _id: model.workshopId},
-                            {
-                                $pull: {
-                                    "workshops_instances": {
-                                        _id: instanceId
-                                    }
-                                }
-                            },
-                            { new: true , safe: true},
-                            function(err, model) {
-                                if (err) {
-                                    res.json({status: "error", data: err});
-                                } else {
-                                    res.json({status: "success", data: model})
-                                }
-                            }
-                        )
-                    }
-                });
-            }
-        }
-    );
+    WorkshopInstances.removeInstance(instanceId).then(function(data) {
+        console.log(data);
+        res.json({status: "success", data:"success"});
+    }, function(err) {
+        console.log(err);
+        res.json({status:"error", data: "success"});
+    });
 }
 
 function unauthdeleteFavoriteWorkshopsImpl(req, res, next) {

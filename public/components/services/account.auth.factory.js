@@ -8,8 +8,6 @@
 angular.module('facilitation')
     .factory('Auth', function Auth($location, $rootScope, Session, User, $cookieStore) {
         $rootScope.currentUser = $cookieStore.get('user') || null;
-        console.log("TEST");
-        console.log($rootScope.currentUser);
         $cookieStore.remove('user');
 
         return {
