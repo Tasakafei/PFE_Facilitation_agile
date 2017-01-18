@@ -9,6 +9,12 @@ app.controller('timerCtrl', function($scope, $interval, socket){
 
     var clock;
 
+    /**
+     * Zoom on the timer
+     * @type {focusTimer}
+     */
+    $scope.focusTimer = focusTimer;
+
     $scope.joinRoom = function(room){
         socket.emit('join_room', room);
     };
@@ -168,6 +174,36 @@ app.controller('timerCtrl', function($scope, $interval, socket){
 
     function stopSound() {
         audio.pause();
+    }
+
+    var boolean = true;
+    function focusTimer() {
+        if(boolean) {
+            $('#buttons').hide();
+            $('#commentaires').hide();
+            $('#photos').hide();
+            $('.clock').css("zoom", "250%");
+            console.log($('#timer'));
+            $('#timer').removeClass('col-md-6');
+            $('#timer').addClass('col-md-12 col-md-offset-1');
+
+            $('#timer .glyphicon').removeClass('glyphicon-resize-full');
+            $('#timer .glyphicon').addClass('glyphicon-resize-small');
+
+            boolean = false;
+        } else {
+            $('#timer').removeClass('col-md-12 col-md-offset-1');
+            $('#timer').addClass('col-md-6');
+            $('.clock').css("zoom", "100%");
+            $('#buttons').show()
+            $('#commentaires').show();
+            $('#photos').show();
+
+            $('#timer .glyphicon').removeClass('glyphicon-resize-small');
+            $('#timer .glyphicon').addClass('glyphicon-resize-full');
+
+            boolean = true;
+        }
     }
 
 });

@@ -5,7 +5,7 @@
     </div>
     <div ng-show="currentUser">
         <div class="row">
-            <div class="col-md-6 col-xs-12 padding-b">
+            <div id="timer" class="col-md-6 col-xs-12 padding-b">
                 <timer></timer>
             </div>
             <!--
@@ -14,7 +14,7 @@
                 <p>Moyenne calculée Participant : {{workshopInstance.data.grade.participants}}</p>
             </div>
             -->
-            <div class="col-md-6 col-xs-12 padding-b">
+            <div id="buttons" class="col-md-6 col-xs-12 padding-b">
                 <a href="/#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
                 <a data-toggle="modal" data-target="#confirmationModal"><button type="button" class="btn btn-danger btn-right" uib-tooltip="Supprimer l'instance" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a><br /><br />
 
@@ -25,10 +25,11 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-8">
-    <h4>Les commentaires :
-        <button id="button-facilitators" type="button" class="btn btn-default active" ng-click="focusFeedback('facilitators')">Facilitateurs</button>
-        <button id="button-participants" type="button" class="btn btn-default active" ng-click="focusFeedback('participants')">Participants</button></h4>
+    <div id="commentaires" class="col-xs-12 col-md-8">
+        <h4>Les commentaires :
+            <button id="button-facilitators" type="button" class="btn btn-default active" ng-click="focusFeedback('facilitators')">Facilitateurs</button>
+            <button id="button-participants" type="button" class="btn btn-default active" ng-click="focusFeedback('participants')">Participants</button>
+        </h4>
         <div class="feedback-participants" ng-repeat="participants in workshopInstance.data.feedbacks.participants">
             <div class="thumbnail" ng-if="participants.comment">
                 <div class="col-xs-6">
@@ -57,7 +58,7 @@
             <p>Pas encore de commentaires</p>
         </div>
     </div>
-    <div class="col-xs-12 col-md-4">
+    <div id="photos" class="col-xs-12 col-md-4">
         <h4>Les photos : </h4>
         <div ng-repeat="photos in workshopInstance.data.photos">
             <a href="uploads/{{photos.filename}}"  target="_blank"><img class="img-responsive" src="uploads/{{photos.filename}}"></a>

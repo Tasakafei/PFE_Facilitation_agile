@@ -287,6 +287,29 @@ canvas.qrcode {
     display: block;
 }
 
+div#timer {
+    position: relative;
+}
+
+#timer .glyphicon-resize-full {
+    position: absolute;
+    top: 0px;
+    left: 360px;
+}
+
+#timer .glyphicon-resize-small {
+    position: absolute;
+    top: 0px;
+    left: 900px;
+}
+
+#timer .glyphicon-resize-full:before {
+    font-size: 18px;
+}
+
+#timer .glyphicon-resize-small:before {
+    font-size: 40px;
+}
 
 
 /* ThankYou */
