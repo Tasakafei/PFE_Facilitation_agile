@@ -64,5 +64,16 @@ module.exports = function (io) {
             console.log('socket disconnected');
         });
 
+        //Start sound
+        socket.on('start_sound', function (room) {
+            console.log('socket start_sound');
+            io.to(room).emit('start_sound');
+        });
+
+        //Stop sound
+        socket.on('stop_sound', function (room) {
+            console.log('socket stop_sound');
+            io.to(room).emit('stop_sound');
+        });
     });
 };

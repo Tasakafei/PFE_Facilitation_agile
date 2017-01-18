@@ -43,6 +43,15 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         $scope.resetTimer();
     });
 
+    socket.on('start_sound', function () {
+        startSound();
+    });
+
+    socket.on('stop_sound', function () {
+        stopSound();
+    });
+
+
     var timer, ispaused = false;
     $scope.startTimer = function (timeAmount) {
         ispaused = false;
@@ -111,4 +120,16 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             return duration.format(format);
         }
     };
+
+    var audio;
+
+    function startSound() {
+        console.log("coucou");
+        audio = new Audio('../../../sound/ALARM-DANGER-WARNING_Sound_Effect.mp3');
+        audio.play();
+    }
+
+    function stopSound() {
+        audio.pause();
+    }
 });
