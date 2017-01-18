@@ -7,6 +7,8 @@ var app = angular.module('facilitation');
 
 app.controller('timerCtrl', function($scope, $interval, socket){
 
+    var clock;
+
     $scope.joinRoom = function(room){
         socket.emit('join_room', room);
     };
@@ -51,42 +53,77 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         stopSound();
     });
 
+    //Timer
+    $(document).ready(function() {
 
-    var timer, ispaused = false;
+        // Instantiate a counter
+        clock = new FlipClock($('.clock'), 0, {
+            clockFace: 'MinuteCounter',
+            autoStart: false,
+            countdown: true,
+            language: "french"
+        });
+
+    });
+
+
+    //var timer, ispaused = false;
     $scope.startTimer = function (timeAmount) {
+        /*
         ispaused = false;
         if(angular.isDefined(timer)) return;
         $scope.countDown = timeAmount;
         $scope.lastTimeAmount = timeAmount;
         runTimer();
+        */
+
+        //Init and start timer
+        clock.setTime(timeAmount);
+        clock.start();
     };
 
     $scope.pauseTimer = function () {
+        /*
         ispaused = true;
         stopTimer();
+        */
+        clock.stop();
     };
 
     $scope.resumeTimer = function(){
+        /*
         if(!ispaused) return;
         ispaused = false;
         runTimer();
+        */
+        clock.start();
     };
 
     $scope.resetTimer = function(){
+        /*
         ispaused = false;
         stopTimer();
         $scope.countDown = $scope.lastTimeAmount;
+        */
+        clock.reset();
     };
 
     $scope.restartTimer = function (timeAmount) {
+        /*
         stopTimer();
         if(timeAmount < 0) timeAmount = 0;
         $scope.startTimer(timeAmount);
+        */
+        //clock.stop();
+        //clock.reset();
+        clock.setTime(timeAmount);
     };
 
+    /*
     function runTimer(){
         timer = $interval(function(){
             $scope.countDown--;
+            clock.setTime($scope.countDown);
             if($scope.countDown <= 0){
                 $scope.countDown = 0;
                 stopTimer();
@@ -94,12 +131,14 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         }, 1000);
     };
 
+
     function stopTimer() {
         if (angular.isDefined(timer)) {
             $interval.cancel(timer);
             timer = undefined;
         }
     };
+     */
 
     $scope.humanizeDurationTimer = function(input, units) {
         // units is a string with possible values of y, M, w, d, h, m, s, ms
@@ -122,9 +161,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
     };
 
     var audio;
-
     function startSound() {
-        console.log("coucou");
         audio = new Audio('../../../sound/ALARM-DANGER-WARNING_Sound_Effect.mp3');
         audio.play();
     }
@@ -132,4 +169,5 @@ app.controller('timerCtrl', function($scope, $interval, socket){
     function stopSound() {
         audio.pause();
     }
+
 });
