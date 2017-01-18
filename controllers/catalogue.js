@@ -86,33 +86,33 @@ function getWorkshopImpl(req, res, next) {
         if (data) {
             if (req.user) {
                 var user = req.user;
-                async.each(user.workshops_favorites, function (item, callback) {
-                    var t1 = item._id.toString();
-                    var t2 = data[0]._id.toString();
-                    if (t1 == t2) {
-                        callback(true);
-                    }
-                    callback();
-                }, function (isFav) {
-                    if (isFav) {
-                        console.log("DATAAAA");
+                if (user.workshops_favorites !== []) {
+                    async.each(user.workshops_favorites, function (item, _callback) {
+                        var t1 = item._id.toString();
+                        var t2 = data._id.toString();
+                        if (t1 === t2) {
+                            _callback(true);
+                        } else {
+
+                            _callback(null);
+                        }
+                    }, function (isFav) {
                         res.json({
                             state: "success",
                             data: data,
-                            isFavorite: true
+                            isFavorite: isFav
                         });
-                    } else {
-                        console.log("PAAS DATA");
-                        res.json({
-                            state: "success",
-                            data: data
-                        })
-                    }
-                    return;
-                });
+
+                    });
+                } else {
+                    res.json({
+                        state: "success",
+                        data: data
+                    })
+                }
+
             }
             else {
-                console.log("PAAS DATA");
                 res.json({
                     state: "success",
                     data: data
