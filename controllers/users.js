@@ -204,6 +204,7 @@ function addToFavoriteWorkshopsImpl (req, res, next) {
         if (err) {
             res.json({status: "error", data: err});
         } else {
+            console.log(model);
             User.findOneAndUpdate(
                 { username : user.username },
                 {

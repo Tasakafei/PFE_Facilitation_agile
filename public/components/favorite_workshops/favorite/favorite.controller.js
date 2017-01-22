@@ -27,6 +27,7 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
         FavoriteWorkshops.getFavoriteWorkshops()
             .success(function(data, status, headers, config) {
             $scope.favoriteWorkshops = data;
+                console.log(data);
             })
             .error(function(data, status, headers, config) {
             alert( "failure message: " + JSON.stringify({data: data}));
