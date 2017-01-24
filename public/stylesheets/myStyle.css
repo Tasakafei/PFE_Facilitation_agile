@@ -293,7 +293,7 @@ div#timer {
 
 #timer .glyphicon-resize-full {
     position: absolute;
-    top: 0px;
+    top: 50px;
     left: 360px;
 }
 

@@ -190,6 +190,8 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('#timer .glyphicon').removeClass('glyphicon-resize-full');
             $('#timer .glyphicon').addClass('glyphicon-resize-small');
 
+            $('#timer > h4').css("display", "none");
+
             boolean = false;
         } else {
             $('#timer').removeClass('col-md-12 col-md-offset-1');
@@ -201,6 +203,8 @@ app.controller('timerCtrl', function($scope, $interval, socket){
 
             $('#timer .glyphicon').removeClass('glyphicon-resize-small');
             $('#timer .glyphicon').addClass('glyphicon-resize-full');
+
+            $('#timer > h4').css("display", "block");
 
             boolean = true;
         }

@@ -6,6 +6,7 @@
     <div ng-show="currentUser">
         <div class="row">
             <div id="timer" class="col-md-6 col-xs-12 padding-b">
+                <h4 style="margin-bottom: 40px">Chronomètre</h4>
                 <timer></timer>
             </div>
             <!--
@@ -15,6 +16,7 @@
             </div>
             -->
             <div id="buttons" class="col-md-6 col-xs-12 padding-b">
+                <h4>Feedback</h4> <br />
                 <a href="/#/feedback/{{workshopInstance.data._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a>
                 <a data-toggle="modal" data-target="#confirmationModal"><button type="button" class="btn btn-danger btn-right" uib-tooltip="Supprimer l'instance" tooltip-placement="top"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a><br /><br />
 
@@ -25,8 +27,8 @@
             </div>
         </div>
     </div>
-    <div id="commentaires" class="col-xs-12 col-md-8">
-        <h4>Les commentaires :
+    <div id="commentaires" class="col-xs-12 col-md-8 no-padding">
+        <h4>Les commentaires
             <button id="button-facilitators" type="button" class="btn btn-default active" ng-click="focusFeedback('facilitators')">Facilitateurs</button>
             <button id="button-participants" type="button" class="btn btn-default active" ng-click="focusFeedback('participants')">Participants</button>
         </h4>
@@ -59,7 +61,7 @@
         </div>
     </div>
     <div id="photos" class="col-xs-12 col-md-4">
-        <h4>Les photos : </h4>
+        <h4 style="line-height: 2.2 ">Les photos</h4>
         <div ng-repeat="photos in workshopInstance.data.photos">
             <a href="uploads/{{photos.filename}}"  target="_blank"><img class="img-responsive" src="uploads/{{photos.filename}}"></a>
         </div>
