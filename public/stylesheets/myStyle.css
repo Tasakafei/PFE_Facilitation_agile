@@ -311,6 +311,11 @@ div#timer {
     font-size: 40px;
 }
 
+#delete-instance {
+    position: relative;
+    top: -57px;
+}
+
 
 /* ThankYou */
 p#thank {

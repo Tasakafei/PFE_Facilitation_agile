@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Photos</label>
                     <div class="col-sm-6 col-md-4 col-md-push-2">
-                        <input id = "InputPhotos" name="file" multiple="multiple"/> <!--  accept="image/*" -->
+                        <input id = "InputPhotos" type="file" name="file" multiple="multiple"/> <!--  accept="image/*" -->
                         <img ng-repeat="image in imagesToDisplay" src="{{image}}" width="50%" alt="Image preview...">
 
 <!--
