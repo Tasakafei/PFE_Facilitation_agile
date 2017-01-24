@@ -8,6 +8,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
     /* Scope vars */
     $scope.instanceData = {};
     $scope.imagesToDisplay = [];
+    $scope.uploading = "";
 
     /* vars */
     var currentId = $routeParams.instanceId;
@@ -77,6 +78,8 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
                 var imgBlob = dataURItoBlob($scope.imagesToDisplay[i]);
                 fd.append('photos', imgBlob);
             }
+
+            $scope.uploading = "Envoie en cours, veuillez patienter...";
 
             $http.post(
                 "/api/v1/feedback/"+currentId+"/photos",
