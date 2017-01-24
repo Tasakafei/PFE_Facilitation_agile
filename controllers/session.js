@@ -38,10 +38,12 @@ exports.login = function (req, res, next) {
         var error = err || info;
         if (error) {
             console.log(error);
+            res.set('Access-Control-Allow-Origin','*');
             return res.json(400, error);
         }
         req.logIn(user, function(err) {
             if (err) { return res.send(err); }
+            res.set('Access-Control-Allow-Origin','*');
             res.json(req.user.user_info);
         });
     })(req, res, next);

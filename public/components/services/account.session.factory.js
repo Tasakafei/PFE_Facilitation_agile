@@ -8,7 +8,6 @@
 
 angular.module('facilitation')
     .factory('Session', function ($resource) {
-        // TODO : Change for a more specific access control
-        return $resource('/auth/session/', {}, {headers: { 'Access-Control-Allow-Origin': '*' }});
+        return $resource('/auth/session/');
     });
 
