@@ -313,9 +313,25 @@ div#timer {
 
 #delete-instance {
     position: relative;
-    top: -57px;
+    top: -40px;
 }
 
+#instance-detail {
+    position: relative;
+    top: -40px;
+    margin-right:20px;
+}
+
+.flip-clock-wrapper {
+    width: initial;
+}
+
+@media (max-width: 991px) {
+    #timer .glyphicon-resize-full {
+        display: none;
+    }
+
+}
 
 /* ThankYou */
 p#thank {

@@ -53,6 +53,10 @@ app.config(function($routeProvider, $locationProvider) {
       .when("/instances/:idInstance/qrcode", {
           templateUrl: "components/qrcode/qrcode.html",
           controller: "qrcodeCtrl"
+      })
+      .when("/instances/:idInstance/detail", {
+          templateUrl: "components/workshop_instance/workshop-instance-detail.html",
+          controller: "instanceCtrl"
       });
     // $locationProvider.html5Mode(true);
 });

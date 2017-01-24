@@ -37,7 +37,24 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     $scope.workshopInstance = "";
 
     FavoriteWorkshops.getWorkshopInstance(currentId).then(function (dataResponse) {
-        $scope.workshopInstance = dataResponse.data;
+        $scope.workshopInstance = dataResponse.data.data;
+
+        var timingArray = $scope.workshopInstance.steps.map(function(step, index){
+            var stepArray = $scope.workshopInstance.steps.slice(0, index);
+            return stepArray.reduce(function (accumulateur, currentStep) {
+                if(currentStep.duration.theorical) return accumulateur + currentStep.duration.theorical;
+                else return accumulateur;
+            }, 0);
+        });
+
+        for(var i = 0; i<timingArray.length; i++) {
+            var d = new Date(timingArray[i] * 60000); //en miniseconde
+            var time = d.toUTCString().split(" ")
+            time = time[4].split(":")
+
+            timingArray[i] =  time[0]+":"+time[1];
+        }
+        $scope.timingArray = timingArray;
     });
 
     socket.emit('join_room', currentId);
