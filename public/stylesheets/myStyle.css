@@ -266,7 +266,7 @@ select {
     background-position-x: calc(100% - 10px);
 }
 
-/* Instance */
+/* --------- Instance --------- */
 .qrcode-off {
     display: none;
 }
@@ -333,7 +333,7 @@ div#timer {
 
 }
 
-/* ThankYou */
+/* --------- ThankYou Page --------- */
 p#thank {
     margin-top: 37vh;
     transform: translateY(-50%);

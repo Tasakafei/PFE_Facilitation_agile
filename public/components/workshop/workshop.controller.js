@@ -48,8 +48,12 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
      */
     $scope.deleteFavorite = deleteFavorite;
 
+    /**
+     * Get the workshop to display
+     */
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
 
+        //Calculion of timing
         var timingArray = dataResponse.data.content.steps.map(function(step, index){
             var stepArray = dataResponse.data.content.steps.slice(0, index);
             return stepArray.reduce(function (accumulateur, currentStep) {
@@ -65,22 +69,25 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
             timingArray[i] =  time[0]+":"+time[1];
         }
+
+        //Put the timing into scope
         $scope.timingArray = timingArray;
 
-
+        //Add word "minutes" to duration
         for(var i=0; i < dataResponse.data.content.steps.length; i++) {
             if(dataResponse.data.content.steps[i].duration) {
                 dataResponse.data.content.steps[i].duration = dataResponse.data.content.steps[i].duration + " minutes";
             }
         }
-        //console.log(dataResponse.data);
+
+        //get the workshop data
         $scope.workshop = dataResponse.data;
 
+        //Display the write logo if it's a favorite
         if(dataResponse.isFavorite) {
             $('.favorite-false').css("display", "none");
             $('.favorite-true').css("display", "inline-block");
         }
-
     });
 
     function getLabelColorFct (label) {

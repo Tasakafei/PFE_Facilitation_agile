@@ -15,46 +15,81 @@ app.controller('timerCtrl', function($scope, $interval, socket){
      */
     $scope.focusTimer = focusTimer;
 
+    /**
+     *  Join the specified room (workshop)
+     * @param room
+     */
     $scope.joinRoom = function(room){
         socket.emit('join_room', room);
     };
 
+    /**
+     * Leave the specified room (workshop)
+     * @param room
+     */
     $scope.leaveRoom = function(room){
         socket.emit('leave_room', room);
     };
 
+    /**
+     *  When a new user arrived
+     */
     socket.on('new_user', function(msg){
         console.log(msg);
     });
 
+    /**
+     * When a user leave
+     */
     socket.on('lost_user', function(msg){
         console.log(msg);
     });
 
+    /**
+     * Dispatch the order to LAUNCH the timer
+     */
     socket.on('start_timer', function(duration){
         $scope.startTimer(duration);
     });
 
+    /**
+     * Dispatch the order to RESTART the timer
+     */
     socket.on('restart_timer', function (duration) {
         $scope.restartTimer(duration);
     });
 
+    /**
+     * Dispatch the order to RESUME the timer
+     */
     socket.on('resume_timer', function(){
         $scope.resumeTimer();
     });
 
+    /**
+     * Dispatch the order to PAUSE the timer
+     */
     socket.on('pause_timer', function(){
         $scope.pauseTimer();
     });
 
+    /**
+     * Dispatch the order to STOP the timer
+     */
     socket.on('stop_timer', function(){
         $scope.resetTimer();
     });
 
+    /**
+     * Dispatch the order to START the sound
+     */
     socket.on('start_sound', function () {
         startSound();
     });
 
+    /**
+     * Dispatch the order to STOP the sound
+     */
     socket.on('stop_sound', function () {
         stopSound();
     });
@@ -146,6 +181,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
     };
      */
 
+    /*
     $scope.humanizeDurationTimer = function(input, units) {
         // units is a string with possible values of y, M, w, d, h, m, s, ms
         if (input == 0) {
@@ -165,6 +201,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             return duration.format(format);
         }
     };
+    */
 
     var audio;
     function startSound() {
