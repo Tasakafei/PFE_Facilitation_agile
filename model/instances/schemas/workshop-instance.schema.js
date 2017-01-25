@@ -61,6 +61,7 @@ var WorkshopInstanceSchema = new Schema({
     educational_aims: [String],
     equipment: {type: String},
     logistics: [String],
+    author: String,
     participants_profil: [String],
     workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true }
 },
