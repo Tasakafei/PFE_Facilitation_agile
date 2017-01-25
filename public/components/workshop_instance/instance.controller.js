@@ -29,6 +29,12 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
      */
     $scope.focusFeedback= focusFeedback;
 
+    /**
+     * Return the label color
+     * @type {getLabelColorFct}
+     */
+    $scope.getLabelColor = getLabelColorFct;
+
 
     // Local vars
     var currentId = $routeParams.idInstance;
@@ -55,7 +61,35 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
             timingArray[i] =  time[0]+":"+time[1];
         }
         $scope.timingArray = timingArray;
+
+        //Add word "minutes" to duration
+        for(var i=0; i < $scope.workshopInstance.steps.length; i++) {
+            if($scope.workshopInstance.steps[i].duration.theorical) {
+                $scope.workshopInstance.steps[i].duration.theorical = $scope.workshopInstance.steps[i].duration.theorical + " minutes";
+            }
+        }
+
+        console.log($scope.workshopInstance);
     });
+
+    function getLabelColorFct (label) {
+        if(label == "Travail itératif") {
+            return "label-success";
+        } else if(label == "Amélioration continue") {
+            return "label-primary";
+        } else if(label == "Prévisions") {
+            return "label-info";
+        } else if(label == "Rétrospective") {
+            return "label-warning";
+        } else if(label == "TaF - WiP") {
+            return "label-purple"
+        } else if(label == "Lead time vs Throughput") {
+            return "label-yellow"
+        } else {
+            return "label-default";
+        }
+
+    }
 
     socket.emit('join_room', currentId);
 
