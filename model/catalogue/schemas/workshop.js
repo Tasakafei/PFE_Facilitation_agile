@@ -66,6 +66,51 @@ WorkshopSchema.pre('remove', function(callback) {
     User.update({"workshops_favorites._id": id}, {$pull: { "workshops_favorites": {"_id": id }}}).exec();
     callback();
 });
+
+// WorkshopSchema.post('find', function(result) {
+//     //console.log(this instanceof mongoose.Query); // true
+//     console.log(result);
+//
+//     console.log("------------\n\n\n\n\n\n\nHOHOHOHOHO-------------");
+// });
+
+WorkshopSchema.post('init', function (doc, next) {
+    console.log(doc);
+    console.log("-----------------");
+    WorkshopInstance.find({
+        '_id': {$in: this.instances}
+    }, function (err, docs) {
+        if (err) {
+            console.error(err);
+            return 0;
+        } else {
+            var totUserGrade = 0;
+            var totFacilitatorGrade = 0;
+            var denominator = docs.length;
+            if (denominator > 0) {
+                for (var instanceI = 0; instanceI < denominator; ++instanceI) {
+                    totFacilitatorGrade+= docs[instanceI].grade.facilitators;
+                    totUserGrade += docs[instanceI].grade.participants;
+                }
+            }
+
+            if (denominator == 0) {
+                denominator = 1;
+            }
+            var grade = {
+                facilitators: totFacilitatorGrade / denominator,
+                participants: totUserGrade /denominator
+            };
+            doc.grade = grade;
+            doc.save();
+            console.log("====================\n\n\n\n\n\n")
+            console.log(doc);
+            next();
+        }
+    });
+    console.log("\n\n\n\n\n-----------------");
+    // Transform doc as needed here.  "this" is also the doc.
+});
 WorkshopSchema.method('computeGrades', function(cb) {
     WorkshopInstance.find({
         '_id': {$in: this.instances}

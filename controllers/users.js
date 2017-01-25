@@ -110,7 +110,7 @@ function getFavoriteWorkshopsImpl(req, res, next) {
             return next(new Error('Failed to load User ' + username));
         }
         console.log(user);
-        
+
         if(user) {
             res.json(user.workshops_favorites);
         } else {
