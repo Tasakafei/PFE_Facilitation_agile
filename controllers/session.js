@@ -13,6 +13,7 @@ var mongoose = require('mongoose'),
  * returns info on authenticated user
  */
 exports.session = function (req, res) {
+    res.set('Access-Control-Allow-Origin','*');
     res.json(req.user.user_info);
 };
 
@@ -23,8 +24,10 @@ exports.session = function (req, res) {
 exports.logout = function (req, res) {
     if(req.user) {
         req.logout();
+        res.set('Access-Control-Allow-Origin','*');
         res.send(200);
     } else {
+        res.set('Access-Control-Allow-Origin','*');
         res.status(400).send("Not logged in");
     }
 };
