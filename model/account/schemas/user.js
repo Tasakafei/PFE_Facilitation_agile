@@ -20,30 +20,12 @@ var UserSchema = new Schema({
     guest: Boolean,
     provider: String,
     workshops_favorites: [{
-        added_at: {type: Date, default: Date.now},
-        title: String,
-        photo : {type: String, default: "../../img/default.jpg"},
-        educational_aims: [String],
-        duration: Number,
-        synopsis: {type: String, default: null},
-        _id: {
-            type: Schema.ObjectId,
-            ref: 'Workshop',
-            required: true
-        }
+        type: Schema.ObjectId,
+        ref: 'Workshop'
     }],
     workshops_instances: [{
-        title: {type: String, required: true},
-        photo : {type: String, default: "../../img/default.jpg"},
-        educational_aims: [String],
-        duration: Number,
-        synopsis: {type: String, default: null},
-        added_at: {type: Date, default: Date.now},
-        _id: {
-            type: Schema.ObjectId,
-            ref: 'WorkshopInstance',
-            required: true
-        }
+        type: Schema.ObjectId,
+        ref: 'WorkshopInstance'
     }]
 });
 

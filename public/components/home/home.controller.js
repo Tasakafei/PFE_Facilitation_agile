@@ -16,7 +16,6 @@ app.controller('homeCtrl', function ($scope, CatalogueDataProvider) {
         $scope.data = dataResponse.data;
 
         //workshop with a note
-        console.log(dataResponse);
         for(var i = 0; i < $scope.data.length; i++) {
             if($scope.data[i].grade.participants != 0 || $scope.data[i].grade.facilitators != 0) {
                 $scope.data[i].grade.participants = ($scope.data[i].grade.participants + $scope.data[i].grade.facilitators) /2;

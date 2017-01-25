@@ -16,7 +16,6 @@ var ObjectID = require('mongodb').ObjectID;
 var WorkshopInstanceSchema = new Schema({
     status: String,
     title: { type: String, required: true },
-    nbParticipants: { type: Number },
     facilitators: [{
         name: String,
         _id: { type: Schema.ObjectId, ref: 'User', required: true }
@@ -48,6 +47,21 @@ var WorkshopInstanceSchema = new Schema({
             practical: Number
         }
     }],
+    photo : {type: String},
+    workshop_type: {type: String},
+    goals: [String],
+    participants_max: {type: Number, default: -1},
+    participants_min: {type: Number, default: 3},
+    public_targeted: {type: String},
+    duration: Number,
+    synopsis: {type: String, default: null},
+    preparation_time: {type: Number, default: 30},
+    source: {type: String},
+    folklore: {type: String, default:null},
+    educational_aims: [String],
+    equipment: {type: String},
+    logistics: [String],
+    participants_profil: [String],
     workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true }
 },
 {
