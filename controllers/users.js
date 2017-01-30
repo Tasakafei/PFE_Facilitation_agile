@@ -155,6 +155,7 @@ function addWorkshopInstanceImpl(req, res, next) {
                             instance.title = workshop.title;
                             instance.participants_max = workshop.participants_max;
                             instance.participants_min = workshop.participants_min;
+                            
                             instance.author = workshop.author;
                             instance.source = workshop.content.source;
                             var facilitator = {

@@ -9,24 +9,33 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
 
+var fs = require('fs');
 var ObjectId = mongoose.Types.ObjectId;
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 
 var WorkshopInstance = require('../model/instances/workshop-instance');
 
-exports.UploadPhotos = UploadPhotosImpl;
-exports.addFeedbackToInstance = addFeedbackToInstanceImpl;
-
+var photo = require('../model/files/photo');
 function UploadPhotosImpl(req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
+
     for (var i = 0; i < req.files.length; ++i) {
         req.files[i] = { filename: req.files[i].filename};
+        photo.createPhoto(fs.readFileSync('public/uploads/'+req.files[i].filename), req.files[i].filename, "image/jpg", function(err, photo) {
+            if (err) {
+                console.log("ERROR");
+            }
+
+        });
     }
     return res.json({
         state: "success",
         data: req.files
     })
+
+
+
 }
 
 function addFeedbackToInstanceImpl (req, res, next) {
@@ -43,3 +52,6 @@ function addFeedbackToInstanceImpl (req, res, next) {
         });
         })
 }
+
+exports.UploadPhotos = UploadPhotosImpl;
+exports.addFeedbackToInstance = addFeedbackToInstanceImpl;
