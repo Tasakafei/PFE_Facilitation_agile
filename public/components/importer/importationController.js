@@ -11,9 +11,12 @@ app.controller('importationCtrl', function ($scope,$http) {
      */
     $scope.importer = importer;
 
+    $scope.getFields = getFields;
+
     $scope.inputStepTitle = "inputStepTitle";
     $scope.inputStepDuration = "inputStepDuration";
     $scope.stepsTextarea = "stepsTextarea";
+    $scope.stepsTextareaAncre = "steps-textarea-ancre"
     var cpt = 1;
 
     $('#folklore-textarea').wysihtml5({
@@ -55,6 +58,7 @@ app.controller('importationCtrl', function ($scope,$http) {
         $scope.inputStepTitle = "inputStepTitle-"+cpt;
         $scope.inputStepDuration = "inputStepDuration-"+cpt;
         $scope.stepsTextarea = "stepsTextarea-"+cpt;
+        $scope.stepsTextareaAncre = "steps-textarea-ancre-"+cpt;
         $scope.$apply();
 
         var html = $(".copy").html();
@@ -93,9 +97,70 @@ app.controller('importationCtrl', function ($scope,$http) {
         cpt--;
     });
 
-    function importer() {
 
-        console.log($('#folklore-textarea').val());
+    function getFields() {
+
+        /*
+        input = document.getElementById('inputPhoto');
+        if(input.files[0]) {
+            file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                console.log(reader.result); //this is an ArrayBuffer
+            };
+            reader.readAsDataURL(file);
+
+        }
+        */
+
+        var json = {};
+        var jsonContent = {};
+        var educArray = [];
+        json.title = document.getElementById('inputTitle').value;
+        json.author = document.getElementById('inputAuthor').value;
+        if(document.getElementById('inputPhoto').value != "") {
+            json.photo = document.getElementById('inputPhoto').value;
+        }
+        json.duration = document.getElementById('inputDuration').value;
+        json.synopsis = document.getElementById('inputSysnopsis').value;
+        jsonContent.source = document.getElementById('inputSource').value;
+        jsonContent.folklore = $('#folklore-textarea').val();
+        jsonContent.equipment = $('#equipment-textarea').val();
+        $(".labelCheckbox:checked").each(function(){
+            educArray.push($(this).val());
+        });
+
+        jsonContent.educational_aims = educArray;
+
+        var jsonArr = [];
+        jsonArr.push({
+            title: document.getElementById('inputStepTitle').value,
+            description: $('#steps-textarea').val(),
+            duration: document.getElementById('inputStepDuration').value
+        });
+
+        for (var y = 2; y <= cpt; y++) {
+            jsonArr.push({
+                title: document.getElementById('inputStepTitle-'+y).value,
+                description: $('#stepsTextarea-'+y).val(),
+                duration: document.getElementById('inputStepDuration-'+y).value
+            });
+        }
+
+        jsonContent.steps = jsonArr;
+        json.content = jsonContent;
+
+        //Post
+        //TODO vérifier les champs textes spéciaux
+        //TODO requiere titre ajout step
+        //TODO : required="required" au moins 1 sur les labels ?
+        postJSON(json);
+
+        window.top.window.scrollTo(0,0)
+    }
+
+    function importer() {
 
         var fichier = document.getElementById('InputJSON').files[0];
         var lecture = new FileReader();
@@ -112,22 +177,7 @@ app.controller('importationCtrl', function ($scope,$http) {
                 if( data.title && data.duration && data.synopsis && data.content.folklore && data.content.educational_aims && data.content.steps) {
 
                     //Post
-                    var res = $http.post('/api/v1/catalogue', donnees);
-                    res.success(function(data, status, headers, config) {
-                        $scope.message = data;
-
-                        $scope.$emit('notify', {
-                            type: 'success',
-                            title: 'L\'atelier a bien été importé.',
-                            content: '/#/catalogue/'+data.data._id +'$$Lien vers votre atelier'
-                        });
-                    });
-                    res.error(function(data, status, headers, config) {
-                        $scope.$emit('notify', {
-                            type: 'error',
-                            title: 'L\'atelier n\'a pas pu être importé.',
-                        });
-                    });
+                    postJSON(donnees);
                 } else {
                     $scope.$emit('notify', {
                         type: 'error',
@@ -144,5 +194,26 @@ app.controller('importationCtrl', function ($scope,$http) {
 
         }
         lecture.readAsText(fichier, 'UTF-8')
+    }
+
+
+    function postJSON(donnees) {
+        //Post
+        var res = $http.post('/api/v1/catalogue', donnees);
+        res.success(function(data, status, headers, config) {
+            $scope.message = data;
+
+            $scope.$emit('notify', {
+                type: 'success',
+                title: 'L\'atelier a bien été importé.',
+                content: '/#/catalogue/'+data.data._id +'$$Lien vers votre atelier'
+            });
+        });
+        res.error(function(data, status, headers, config) {
+            $scope.$emit('notify', {
+                type: 'error',
+                title: 'L\'atelier n\'a pas pu être importé.',
+            });
+        });
     }
 });

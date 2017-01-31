@@ -21,13 +21,13 @@
                     </div>
                 </div>
             </form>
-            <form class="form-horizontal col-xs-12">
+            <form class="form-horizontal col-xs-12" ng-submit="getFields()">
                 <h4>Écrire directement l'atelier</h4>
                 <!-- Title -->
                 <div class="form-group">
                     <label class="col-md-3 control-label">Titre</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="inputTitle" placeholder="Titre de l'atelier">
+                        <input required="required" type="text" class="form-control" id="inputTitle" placeholder="Titre de l'atelier">
                     </div>
                 </div>
                 <!-- Labels -->
@@ -36,27 +36,27 @@
                     <div class="col-md-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="">
+                                <input class="labelCheckbox" type="checkbox" value="Travail itératif">
                                 <span class="label label-success">Travail itératif</span>
                             </label>
                             <label>
-                                <input type="checkbox" value="">
+                                <input class="labelCheckbox" type="checkbox" value="Amélioration continue">
                                 <span class="label label-primary">Amélioration continue</span>
                             </label>
                             <label>
-                                <input type="checkbox" value="">
+                                <input class="labelCheckbox" type="checkbox" value="Prévisions">
                                 <span class="label label-info">Prévisions</span>
                             </label>
                             <label>
-                                <input type="checkbox" value="">
+                                <input class="labelCheckbox" type="checkbox" value="Rétrospective">
                                 <span class="label label-warning">Rétrospective</span>
                             </label>
                             <label>
-                                <input type="checkbox" value="">
+                                <input class="labelCheckbox" type="checkbox" value="TaF - WiP">
                                 <span class="label label-purple">TaF - WiP</span>
                             </label>
                             <label>
-                                <input type="checkbox" value="">
+                                <input class="labelCheckbox" type="checkbox" value="Lead time vs Throughput">
                                 <span class="label label-yellow">Lead time vs Throughput</span>
                             </label>
                         </div>
@@ -66,21 +66,21 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Durée</label>
                     <div class="col-md-9">
-                        <input type="number" class="form-control" id="inputDuration" placeholder="Durée de l'atelier (minutes)">
+                        <input required="required" type="number" class="form-control" id="inputDuration" placeholder="Durée de l'atelier (minutes)">
                     </div>
                 </div>
                 <!-- Author -->
                 <div class="form-group">
                     <label class="col-md-3 control-label">Auteur</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="inputAuthor" placeholder="Auteur de l'atelier">
+                        <input required="required" type="text" class="form-control" id="inputAuthor" placeholder="Auteur de l'atelier">
                     </div>
                 </div>
                 <!-- Source -->
                 <div class="form-group">
                     <label class="col-md-3 control-label">Source</label>
                     <div class="col-md-9">
-                        <input type="url" class="form-control" id="inputSource" placeholder="URL de la source">
+                        <input required="required" type="url" class="form-control" id="inputSource" placeholder="URL de la source">
                     </div>
                 </div>
                 <!-- Photo --> <!-- TODO : input file -->
@@ -88,24 +88,25 @@
                     <label class="col-md-3 control-label">Photo</label>
                     <div class="col-md-9">
                         <input type="url" class="form-control" id="inputPhoto" placeholder="URL de la photo">
+                        <!--input type="file" id="inputPhoto"-->
                     </div>
                 </div>
                 <!-- Synopsis -->
                 <div class="form-group">
                     <label class="col-md-3 control-label">Synopsis</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" rows="3" style="max-width: 100%" placeholder="Court texte affiché lors d'une recherche"></textarea>
+                        <textarea required="required" class="form-control" id="inputSysnopsis" rows="3" style="max-width: 100%" placeholder="Court texte affiché lors d'une recherche"></textarea>
                     </div>
                 </div>
                 <!-- Folklore -->
-                <div class="form-group">
+                <div class="form-group" id="folklore-textarea-ancre">
                     <label class="col-md-3 control-label">Folklore</label>
                     <div class="col-md-9">
                         <textarea id="folklore-textarea" placeholder="Description de l'atelier" style="width: 100%; border-color: #2c3e50; padding: 6px 12px; border-radius: 4px; outline: rgb(51, 51, 51) none 0px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"></textarea>
                     </div>
                 </div>
                 <!-- Equipment -->
-                <div class="form-group">
+                <div class="form-group" id="equipment-textarea-ancre">
                     <label class="col-md-3 control-label">Équipment</label>
                     <div class="col-md-9">
                         <textarea id="equipment-textarea" placeholder="Matériel & Setup de la salle" style="width: 100%; border-color: #2c3e50; padding: 6px 12px; border-radius: 4px; outline: rgb(51, 51, 51) none 0px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"></textarea>
@@ -119,10 +120,10 @@
                         </div>
                     </div>
                     <!-- Steps : title -->
-                    <div class="form-group">
+                    <div class="form-group" id="{{stepsTextareaAncre}}">
                         <label class="col-md-3 control-label">Titre</label>
                         <div class="input-group col-md-9 add-padding">
-                            <input type="text" name="addmore[]" class="form-control" id="inputStepTitle" placeholder="Titre de l'itération">
+                            <input required="required" type="text" name="addmore[]" class="form-control" id="inputStepTitle" placeholder="Titre de l'itération">
                             <span class="btn add-more input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
                         </div>
                     </div>
@@ -143,7 +144,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-default" ng-click="importer()" >Envoyer</button>
+                        <button type="submit" class="btn btn-default" >Envoyer</button>
                     </div>
                 </div>
             </form>
@@ -175,7 +176,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
