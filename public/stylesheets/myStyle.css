@@ -361,3 +361,16 @@ p#thank {
 .vertical-image {
     vertical-align: middle;
 }
+
+/* Importer */
+div#border-conducteur {
+    border-bottom: 1px solid;
+    position: relative;
+    top: 16px;
+}
+
+ul.wysihtml5-toolbar a.btn.wysihtml5-command-active {
+    color: #fff;
+    background-color: #2c3e50;
+    border-color: #1a242f;
+}

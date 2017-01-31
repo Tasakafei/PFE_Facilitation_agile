@@ -11,7 +11,91 @@ app.controller('importationCtrl', function ($scope,$http) {
      */
     $scope.importer = importer;
 
+    $scope.inputStepTitle = "inputStepTitle";
+    $scope.inputStepDuration = "inputStepDuration";
+    $scope.stepsTextarea = "stepsTextarea";
+    var cpt = 1;
+
+    $('#folklore-textarea').wysihtml5({
+        toolbar: {
+            "font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
+            "link": false, //Button to insert a link. Default true
+            "image": false, //Button to insert an image. Default true,
+            "color": false, //Button to change color of font
+            "blockquote": false, //Blockquote
+            "fa": true // Font Awesome icons
+        }
+    });
+
+    $('#equipment-textarea').wysihtml5({
+        toolbar: {
+            "font-styles": false,
+            "link": false,
+            "image": false,
+            "color": false,
+            "blockquote": false,
+            "fa": true
+        }
+    });
+
+    $('#steps-textarea').wysihtml5({
+        toolbar: {
+            "font-styles": false,
+            "link": false,
+            "image": false,
+            "color": false,
+            "blockquote": false,
+            "fa": true
+        }
+    });
+
+    $(".add-more").click(function(){
+        console.log("Add more");
+        cpt++;
+        $scope.inputStepTitle = "inputStepTitle-"+cpt;
+        $scope.inputStepDuration = "inputStepDuration-"+cpt;
+        $scope.stepsTextarea = "stepsTextarea-"+cpt;
+        $scope.$apply();
+
+        var html = $(".copy").html();
+        $(".after-add-more").after(html);
+
+        $('#stepsTextarea-'+cpt).wysihtml5({
+            toolbar: {
+                "font-styles": false,
+                "link": false,
+                "image": false,
+                "color": false,
+                "blockquote": false,
+                "fa": true
+            }
+        });
+
+        $(".after-add-more").addClass("last-after-add-more-"+cpt);
+        $(".after-add-more").removeClass("after-add-more");
+        $(".control-group:first").addClass("after-add-more");
+        $(".control-group:first").removeClass("control-group");
+
+        if(cpt >= 3) {
+            for(var i=0; i < document.getElementsByClassName("remove").length - 2; i++) {
+                document.getElementsByClassName("remove")[i].style.display = "none";
+            }
+        }
+    });
+
+    $("body").on("click",".remove",function(){
+
+        $(this).parents(".after-add-more").remove();
+        $(".last-after-add-more-"+cpt).addClass("after-add-more");
+        $(".last-after-add-more-"+cpt+" .remove").css("display", "table-cell");
+        $(".last-after-add-more-"+cpt).removeClass("last-after-add-more-"+cpt);
+
+        cpt--;
+    });
+
     function importer() {
+
+        console.log($('#folklore-textarea').val());
 
         var fichier = document.getElementById('InputJSON').files[0];
         var lecture = new FileReader();
