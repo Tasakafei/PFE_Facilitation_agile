@@ -26,13 +26,13 @@ function createImpl(req, res, next) {
 
     newUser.save(function(err) {
         if (err) {
-            console.log(err);
+            console.error(err);
             return res.status(400).json(err);
         }
 
         req.login(newUser, function(err) {
             if (err) {
-                console.log(err);
+                console.error(err);
                 return next(err);
             }
             return res.json(newUser.user_info);
@@ -78,7 +78,6 @@ function addToFavoriteWorkshopsImpl (req, res, next) {
         if (err) {
             res.json({status: "error", data: err});
         } else {
-            console.log(model);
             User.findOneAndUpdate(
                 { username : user.username },
                 {
@@ -109,7 +108,6 @@ function getFavoriteWorkshopsImpl(req, res, next) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
         }
-        console.log(user);
 
         if(user) {
             res.json(user.workshops_favorites);
@@ -262,10 +260,9 @@ function deleteInstanceWorkshopImpl(req, res, next) {
     var user = req.user;
     var instanceId = req.params.instanceId;
     WorkshopInstances.removeInstance(instanceId).then(function(data) {
-        console.log(data);
         res.json({status: "success", data:"success"});
     }, function(err) {
-        console.log(err);
+        console.error(err);
         res.json({status:"error", data: "success"});
     });
 }
@@ -449,13 +446,13 @@ function createImpl(req, res, next) {
 
     newUser.save(function(err) {
         if (err) {
-            console.log(err);
+            console.error(err);
             return res.status(400).json(err);
         }
 
         req.login(newUser, function(err) {
             if (err) {
-                console.log(err);
+                console.error(err);
                 return next(err);
             }
             return res.json(newUser.user_info);

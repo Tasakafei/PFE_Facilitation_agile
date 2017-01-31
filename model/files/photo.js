@@ -25,7 +25,6 @@ function createPhoto(img, filename, contentType, next) {
         if (err) {
             return next(err);
         }
-        console.log("Image saved");
         next(null, photo);
     })
 }
@@ -35,9 +34,8 @@ function instanciatePhotoFiles() {
         docs.forEach(function (doc) {
             fs.writeFile("public/uploads/"+doc.filename, doc.img.data, function(err) {
                 if(err) {
-                    return console.log(err);
+                    return console.error(err);
                 }
-                console.log("The file was saved!");
             });
         })
     })

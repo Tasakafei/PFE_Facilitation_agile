@@ -46,13 +46,11 @@ function addFeedbackImpl (workshopInstanceId, feedback, user, photos) {
 function removeInstance(id) {
     return new Promise(function (resolve, reject) {
         var object = ObjectId(id);
-        console.log("HERE");
         WorkshopInstance.findOne(object, function (req, res) {
             res.remove(function(err) {
                 if (err) {
                     reject(err)
                 } else {
-                    console.log("yo");
 
                     Workshop.update({"instances": object}, {$pull: { "instances": object }}).exec(function() {
                         resolve();
