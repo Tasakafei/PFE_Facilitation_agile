@@ -11,7 +11,6 @@ var passport = require('passport');
 
 var fs = require('fs');
 var ObjectId = mongoose.Types.ObjectId;
-var WorkshopInstance = mongoose.model("WorkshopInstance");
 
 var WorkshopInstance = require('../model/instances/workshop-instance');
 

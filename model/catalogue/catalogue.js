@@ -60,8 +60,7 @@ function getWorkshopFct (id) {
 function deleteWorkshopFct (id) {
     return new Promise(function (resolve, reject) {
         var object = new ObjectID(id);
-
-        Workshop.findOne({}, function (req, res) {
+        Workshop.findOne(object, function (req, res) {
             res.remove(function(err) {
                 if (err) {
                     reject(err)

@@ -45,30 +45,25 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
     };
     function searchEduc(row) {
         var isSet = false;
-        for (var educ in row.content.educational_aims) {
-            for (var toCheck in $scope.educational_aims_search) {
-                if ($scope.educational_aims_search[toCheck] != '') {
+        for (var educ = 0; educ < row.content.educational_aims.length; ++educ) {
+            for (var i = 0; i < $scope.educational_aims_search.length ; ++i) {
+                if ($scope.educational_aims_search[i] != '') {
                     isSet = true;
-                    if ($scope.educational_aims_search[toCheck] == row.workshop.content.educational_aims[educ]) {
+                    if ($scope.educational_aims_search[i] == row.workshop.content.educational_aims[educ]) {
                         return true;
                     }
                 }
             }
         }
         return isSet != true;
-    };
+    }
 
     function searchTitle(row) {
         return angular.lowercase(row.title).indexOf(angular.lowercase($scope.query) || '') !== -1;
-    };
+    }
 
-
-
-
-    //$scope.dataCatalogue = null;
     $scope.dataCatalogue = CatalogueDataProvider.getWorkshops(function (dataResponse) {
         $scope.data = dataResponse;
-        // VOILA !
     });
 
     function getLabelColor(label) {
@@ -87,8 +82,7 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
         } else {
             return "label-default";
         }
-
-    };
+    }
 
     var bool = false;
 
@@ -104,10 +98,11 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
             value1: 'paper',
             value2: 'YES'
         };
-    };
+    }
+
     function close() {
         $('#avancedSearch').removeClass('open');
         bool = false;
-    };
+    }
 });
 

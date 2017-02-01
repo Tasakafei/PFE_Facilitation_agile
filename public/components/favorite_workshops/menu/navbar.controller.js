@@ -15,6 +15,6 @@ app.controller('menuCtrl', function ($scope, $location) {
 
     function isActive(viewLocation) {
         return viewLocation === $location.path();
-    };
+    }
 });
 
