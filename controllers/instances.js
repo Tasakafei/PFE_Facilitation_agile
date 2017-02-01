@@ -11,7 +11,6 @@ var passport = require('passport');
 
 var fs = require('fs');
 var ObjectId = mongoose.Types.ObjectId;
-var WorkshopInstance = mongoose.model("WorkshopInstance");
 
 var WorkshopInstance = require('../model/instances/workshop-instance');
 
@@ -22,12 +21,6 @@ function UploadPhotosImpl(req, res, next) {
 
     for (var i = 0; i < req.files.length; ++i) {
         req.files[i] = { filename: req.files[i].filename};
-        photo.createPhoto(fs.readFileSync('public/uploads/'+req.files[i].filename), req.files[i].filename, "image/jpg", function(err, photo) {
-            if (err) {
-                console.log("ERROR");
-            }
-
-        });
     }
     return res.json({
         state: "success",

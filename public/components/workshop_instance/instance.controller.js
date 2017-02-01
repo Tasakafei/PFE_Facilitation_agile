@@ -55,21 +55,19 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
 
         for(var i = 0; i<timingArray.length; i++) {
             var d = new Date(timingArray[i] * 60000); //en miniseconde
-            var time = d.toUTCString().split(" ")
-            time = time[4].split(":")
+            var time = d.toUTCString().split(" ");
+            time = time[4].split(":");
 
             timingArray[i] =  time[0]+":"+time[1];
         }
         $scope.timingArray = timingArray;
 
         //Add word "minutes" to duration
-        for(var i=0; i < $scope.workshopInstance.steps.length; i++) {
-            if($scope.workshopInstance.steps[i].duration.theorical) {
-                $scope.workshopInstance.steps[i].duration.theorical = $scope.workshopInstance.steps[i].duration.theorical + " minutes";
+        for(var j=0; j < $scope.workshopInstance.steps.length; j++) {
+            if($scope.workshopInstance.steps[j].duration.theorical) {
+                $scope.workshopInstance.steps[j].duration.theorical = $scope.workshopInstance.steps[j].duration.theorical + " minutes";
             }
         }
-
-        console.log($scope.workshopInstance);
     });
 
     function getLabelColorFct (label) {
@@ -94,31 +92,20 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     socket.emit('join_room', currentId);
 
     function deleteInstance() {
-        /*
-        $scope.$emit('notify', {
-            type: 'warning',
-            title: 'La fonctionnalité n\'est pas encore disponible.'
-        });
-        */
-
         var res = $http.delete('/users/instances/'+currentId);
-        res.success(function(data, status, headers, config) {
-
+        res.success(function() {
             $scope.$emit('notify', {
                 type: 'success',
                 title: 'L\'instance de l\'atelier a bien été supprimée.',
             });
-
-            //Redirection after vote
             var url = window.location.href;
             url = url.split("instances");
             window.location.replace(url[0]+'instances');
-
         });
         res.error(function(data, status, headers, config) {
             $scope.$emit('notify', {
                 type: 'error',
-                title: 'L\'instance de l\'atelier n\'a pas pu être supprimée.',
+                title: 'L\'instance de l\'atelier n\'a pas pu être supprimée.'
             });
         });
 
@@ -150,7 +137,3 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
 
 
 });
-
-
-
-;

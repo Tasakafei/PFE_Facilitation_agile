@@ -29,9 +29,6 @@ var UserSchema = new Schema({
     }]
 });
 
-UserSchema.pre('update', function() {
-   console.log("update")
-});
 /**
  * Virtuals
  */

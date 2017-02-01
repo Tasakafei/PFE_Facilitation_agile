@@ -25,10 +25,10 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
      */
     function getWorkshopsInstances() {
         FavoriteWorkshops.getInstancesWorkshop()
-            .success(function(data, status, headers, config) {
+            .success(function(data) {
             $scope.instances = data;
             })
-            .error(function(data, status, headers, config) {
+            .error(function(data) {
             alert( "failure message: " + JSON.stringify({data: data}));
         });
     }
@@ -50,7 +50,7 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
             return "label-default";
         }
 
-    };
+    }
 });
 
 

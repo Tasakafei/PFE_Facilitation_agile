@@ -25,11 +25,11 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
      */
     function getFavoriteWorkshops() {
         FavoriteWorkshops.getFavoriteWorkshops()
-            .success(function(data, status, headers, config) {
+            .success(function(data) {
             $scope.favoriteWorkshops = data;
                 console.log(data);
             })
-            .error(function(data, status, headers, config) {
+            .error(function(data) {
             alert( "failure message: " + JSON.stringify({data: data}));
         });
     }
@@ -51,7 +51,7 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
             return "label-default";
         }
 
-    };
+    }
 });
 
 

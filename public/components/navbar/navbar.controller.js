@@ -94,17 +94,17 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
                     $scope.$emit('notify', {
                         type: 'success',
-                        title: 'Votre compte a bien été créé.',
+                        title: 'Votre compte a bien été créé.'
                     });
 
                 } else {
                     angular.forEach(err.errors, function(error, field) {
                         console.log("ERROR : " + error + " : "+ field);
-                    })
+                    });
 
                     $scope.$emit('notify', {
                         type: 'error',
-                        title: 'Votre compte n\'a pas pu être créé.',
+                        title: 'Votre compte n\'a pas pu être créé.'
                     });
                 }
             }
@@ -118,7 +118,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 //$location.path('/');
                 $scope.$emit('notify', {
                     type: 'info',
-                    title: 'Déconnecté !',
+                    title: 'Déconnecté !'
                 });
 
                 //Redirection with notif
@@ -130,7 +130,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
             } else {
                 $scope.$emit('notify', {
                     type: 'warning',
-                    title: 'Échec de déconnection !',
+                    title: 'Échec de déconnection !'
                 });
             }
         });
@@ -138,7 +138,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
     function isActive(viewLocation) {
         return viewLocation === $location.path();
-    };
+    }
 });
 
 

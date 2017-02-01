@@ -26,13 +26,13 @@ function createImpl(req, res, next) {
 
     newUser.save(function(err) {
         if (err) {
-            console.log(err);
+            console.error(err);
             return res.status(400).json(err);
         }
 
         req.login(newUser, function(err) {
             if (err) {
-                console.log(err);
+                console.error(err);
                 return next(err);
             }
             return res.json(newUser.user_info);
@@ -78,7 +78,6 @@ function addToFavoriteWorkshopsImpl (req, res, next) {
         if (err) {
             res.json({status: "error", data: err});
         } else {
-            console.log(model);
             User.findOneAndUpdate(
                 { username : user.username },
                 {
@@ -109,7 +108,6 @@ function getFavoriteWorkshopsImpl(req, res, next) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
         }
-        console.log(user);
 
         if(user) {
             res.json(user.workshops_favorites);
@@ -259,13 +257,11 @@ function deleteFavoriteWorkshopsImpl(req, res, next) {
 }
 
 function deleteInstanceWorkshopImpl(req, res, next) {
-    var user = req.user;
     var instanceId = req.params.instanceId;
     WorkshopInstances.removeInstance(instanceId).then(function(data) {
-        console.log(data);
         res.json({status: "success", data:"success"});
     }, function(err) {
-        console.log(err);
+        console.error(err);
         res.json({status:"error", data: "success"});
     });
 }
@@ -439,156 +435,3 @@ module.exports = {
 
     unauthdeleteInstanceWorkshop: unauthdeleteInstanceWorkshopImpl
 };
-/*********************************************************
- * IMPLEMENTATION                                        *
- *********************************************************/
-
-function createImpl(req, res, next) {
-    var newUser = new User(req.body);
-    newUser.provider = 'local';
-
-    newUser.save(function(err) {
-        if (err) {
-            console.log(err);
-            return res.status(400).json(err);
-        }
-
-        req.login(newUser, function(err) {
-            if (err) {
-                console.log(err);
-                return next(err);
-            }
-            return res.json(newUser.user_info);
-        });
-    });
-}
-
-module.exports = {
-    /**
-     * Create user
-     * @param req
-     * @param req.body {User} the complete User check moongoose schema for details
-     * @param res
-     * @param next {Function} callback
-     * @return email
-     * @return password
-     * @method
-     */
-    create: createImpl,
-
-    /**
-     *  Show profile
-     *  @param req
-     *  @param req.params.userId {String} user Id of the profile asked
-     *  @param res
-     *  @param next {Function} callback
-     *  @return username
-     *  @return profile
-     *  @method
-     */
-    show: showImpl,
-
-    /**
-     *  Check if the username exists.
-     *  @param req
-     *  @param req.params.username {String} Username to check if it exists
-     *  @param res
-     *  @param next {Function} callback
-     *  @return exists
-     *  @method
-     */
-    exists: existsImpl,
-
-    /**
-     * Add a workshops to favorites of the logged User
-     * The user has to be logged in the system.
-     * @param req
-     * @param req.body.workshop {String} ID of the workshop to add in the user favorites
-     * @param res
-     * @param next {Function} callback
-     * @method
-     */
-    addToFavoriteWorkshops: addToFavoriteWorkshopsImpl,
-
-    /**
-     *  Retrieve favorites workshops from logged user.
-     *  The user has to be logged in the system.
-     *  @param req
-     *  @param res
-     *  @param next {Function} callback
-     *  @return {Array.<Workshop>}
-     *  @method
-     */
-    getFavoriteWorkshops: getFavoriteWorkshopsImpl,
-
-    /**
-     * Retrieve workshop instances of the user
-     * The user has to be logged in the system.
-     *  @param req
-     *  @param res
-     *  @param next {Function} callback
-     *  @return {Array.<WorkshopInstance>}
-     *  @method
-     */
-    getWorkshopInstances: getWorkshopInstancesImpl,
-
-    /**
-     * Instanciate a new workshopInstance and add the reference in the user's instances
-     * The user has to be logged in the system.
-     * @param req
-     * @param req.body.workshopId {String} id of the workshop
-     * @param res
-     * @param next {Function} callback
-     * @method
-     */
-    addWorkshopInstance: addWorkshopInstanceImpl,
-
-    /**
-     *  Retrieve a specific workshop instance by id given in the URL.
-     *  The user has to be logged in the system.
-     *  @param req
-     *  @param req.params.instanceId {String}
-     *  @param res
-     *  @param next {Function} callback
-     *  @return {Array.<Workshop>}
-     *  @method
-     */
-    getWorkshopInstance: getWorkshopInstanceImpl,
-
-    /**
-     *  Remove the reference of a registered workshop from the user favorites by id given in the URL.
-     *  The user has to be logged in.
-     *  @param req
-     *  @param res
-     *  @param next {Function} callback
-     *  @method
-     */
-    deleteFavoriteWorkshops: deleteFavoriteWorkshopsImpl,
-
-    /**
-     *  Delete a specific workshop instance by id given in the URL.
-     *  The user has to be logged in.
-     *  @param req
-     *  @param req.params.instanceId {String}
-     *  @param res
-     *  @param next
-     *  @return favorite_workshops
-     *  @method
-     */
-    deleteInstanceWorkshop: deleteInstanceWorkshopImpl,
-
-    unauthgetWorkshopInstances: unauthgetWorkshopInstancesImpl,
-
-    unauthaddToFavoriteWorkshops: unauthaddToFavoriteWorkshopsImpl,
-
-    unauthgetFavoriteWorkshops: unauthgetFavoriteWorkshopsImpl,
-
-    unauthaddWorkshopInstance: unauthaddWorkshopInstanceImpl,
-
-    unauthgetWorkshopInstance: unauthgetWorkshopInstanceImpl,
-
-    unauthdeleteFavoriteWorkshops: unauthdeleteFavoriteWorkshopsImpl,
-
-    unauthdeleteInstanceWorkshop: unauthdeleteInstanceWorkshopImpl
-};
-
