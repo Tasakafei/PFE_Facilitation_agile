@@ -35,14 +35,14 @@ app.controller('timerCtrl', function($scope, $interval, socket){
      *  When a new user arrived
      */
     socket.on('new_user', function(msg){
-        console.log(msg);
+        console.error(msg);
     });
 
     /**
      * When a user leave
      */
     socket.on('lost_user', function(msg){
-        console.log(msg);
+        console.error(msg);
     });
 
     /**
