@@ -11,14 +11,23 @@ app.controller('importationCtrl', function ($scope,$http) {
      */
     $scope.importer = importer;
 
+    /**
+     * Get inputs, create a json and post it
+     * @type {getFields}
+     */
     $scope.getFields = getFields;
 
+    // Scope var
     $scope.inputStepTitle = "inputStepTitle";
     $scope.inputStepDuration = "inputStepDuration";
     $scope.stepsTextarea = "stepsTextarea";
-    $scope.stepsTextareaAncre = "steps-textarea-ancre"
+    $scope.stepsTextareaAncre = "steps-textarea-ancre";
+
     var cpt = 1;
 
+    /**
+     * Init a special text area (for the folklore here), in which you can formatting text
+     */
     $('#folklore-textarea').wysihtml5({
         toolbar: {
             "font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
@@ -30,6 +39,9 @@ app.controller('importationCtrl', function ($scope,$http) {
         }
     });
 
+    /**
+     * Init a special text area (for the equipment here), in which you can formatting text
+     */
     $('#equipment-textarea').wysihtml5({
         toolbar: {
             "font-styles": false,
@@ -41,6 +53,9 @@ app.controller('importationCtrl', function ($scope,$http) {
         }
     });
 
+    /**
+     * Init a special text area (for the steps here), in which you can formatting text
+     */
     $('#steps-textarea').wysihtml5({
         toolbar: {
             "font-styles": false,
@@ -52,8 +67,12 @@ app.controller('importationCtrl', function ($scope,$http) {
         }
     });
 
-    $(".add-more").click(function(){
-        console.log("Add more");
+    /**
+     * Add more steps
+     */
+    $("body").on('click', '.add-more', function(){
+
+        //modify the classes names, so we can get data for every new steps
         cpt++;
         $scope.inputStepTitle = "inputStepTitle-"+cpt;
         $scope.inputStepDuration = "inputStepDuration-"+cpt;
@@ -64,6 +83,7 @@ app.controller('importationCtrl', function ($scope,$http) {
         var html = $(".copy").html();
         $(".after-add-more").after(html);
 
+        //New special text area
         $('#stepsTextarea-'+cpt).wysihtml5({
             toolbar: {
                 "font-styles": false,
@@ -75,6 +95,7 @@ app.controller('importationCtrl', function ($scope,$http) {
             }
         });
 
+        //Move classes as we need to
         $(".after-add-more").addClass("last-after-add-more-"+cpt);
         $(".after-add-more").removeClass("after-add-more");
         $(".control-group:first").addClass("after-add-more");
@@ -87,6 +108,9 @@ app.controller('importationCtrl', function ($scope,$http) {
         }
     });
 
+    /**
+     * Remove steps (we can only remove the last one, so it's easier to get data)
+     */
     $("body").on("click",".remove",function(){
 
         $(this).parents(".after-add-more").remove();
@@ -99,20 +123,6 @@ app.controller('importationCtrl', function ($scope,$http) {
 
 
     function getFields() {
-
-        /*
-        input = document.getElementById('inputPhoto');
-        if(input.files[0]) {
-            file = input.files[0];
-            var reader = new FileReader();
-
-            reader.onloadend = function () {
-                console.log(reader.result); //this is an ArrayBuffer
-            };
-            reader.readAsDataURL(file);
-
-        }
-        */
 
         var json = {};
         var jsonContent = {};
@@ -196,7 +206,10 @@ app.controller('importationCtrl', function ($scope,$http) {
         lecture.readAsText(fichier, 'UTF-8')
     }
 
-
+    /**
+     * Post the json with the workshop on the server
+     * @param donnees
+     */
     function postJSON(donnees) {
         //Post
         var res = $http.post('/api/v1/catalogue', donnees);
