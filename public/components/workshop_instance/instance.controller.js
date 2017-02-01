@@ -137,7 +137,3 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
 
 
 });
-
-
-
-;
