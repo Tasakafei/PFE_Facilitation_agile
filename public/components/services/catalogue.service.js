@@ -17,8 +17,7 @@ app.service('CatalogueDataProvider', function ($http) {
             // With the data succesfully returned, call our callback
             callbackFunc(data);
         }).error(function(err){
-            console.log(err);
-            alert("error : echec de la récupération du catalogue !");
+            console.error(err);
         });
     };
 
@@ -31,7 +30,7 @@ app.service('CatalogueDataProvider', function ($http) {
         }).success(function(data) {
             callbackFunc(data)
         }).error(function() {
-            alert("error : workshop inexistant !")
+            console.error("workshop inexistant");
         })
     };
 });

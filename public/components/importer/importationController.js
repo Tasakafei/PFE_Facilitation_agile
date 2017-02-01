@@ -53,7 +53,6 @@ app.controller('importationCtrl', function ($scope,$http) {
     });
 
     $(".add-more").click(function(){
-        console.log("Add more");
         cpt++;
         $scope.inputStepTitle = "inputStepTitle-"+cpt;
         $scope.inputStepDuration = "inputStepDuration-"+cpt;

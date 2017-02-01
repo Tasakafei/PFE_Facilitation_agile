@@ -35,14 +35,12 @@ app.controller('timerCtrl', function($scope, $interval, socket){
      *  When a new user arrived
      */
     socket.on('new_user', function(msg){
-        console.log(msg);
     });
 
     /**
      * When a user leave
      */
     socket.on('lost_user', function(msg){
-        console.log(msg);
     });
 
     /**
@@ -220,7 +218,6 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('#commentaires').hide();
             $('#photos').hide();
             $('.clock').css("zoom", "250%");
-            console.log($('#timer'));
             $('#timer').removeClass('col-md-6');
             $('#timer').addClass('col-md-12 col-md-offset-1');
 

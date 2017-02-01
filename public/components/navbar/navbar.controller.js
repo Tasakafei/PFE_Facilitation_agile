@@ -66,7 +66,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
                 } else {
                     angular.forEach(err.errors, function(error, field) {
-                        console.log("ERROR : " + error + " : "+ field);
+                        console.error("ERROR : " + error + " : "+ field);
                     });
                     $scope.error.other = err.message;
 
@@ -99,7 +99,7 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
 
                 } else {
                     angular.forEach(err.errors, function(error, field) {
-                        console.log("ERROR : " + error + " : "+ field);
+                        console.error("ERROR : " + error + " : "+ field);
                     });
 
                     $scope.$emit('notify', {

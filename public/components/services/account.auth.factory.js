@@ -23,7 +23,7 @@ angular.module('facilitation')
                     $rootScope.currentUser = user;
                     return cb();
                 }, function(err) {
-                    console.log(err);
+                    console.error(err);
                     return cb(err.data);
                 });
             },
@@ -64,7 +64,6 @@ angular.module('facilitation')
                     oldPassword: oldPassword,
                     newPassword: newPassword
                 }, function(user) {
-                    console.log('password changed');
                     return cb();
                 }, function(err) {
                     return cb(err.data);
@@ -77,7 +76,6 @@ angular.module('facilitation')
                     email: email,
                     password: password
                 }, function(user) {
-                    console.log(user + 'removed');
                     return cb();
                 }, function(err) {
                     return cb(err.data);

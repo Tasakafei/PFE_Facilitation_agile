@@ -15,7 +15,6 @@ angular.module('facilitation')
                     email: email,
                     password: password
                 }, function(user) {
-                    console.log(user + 'removed');
                     return cb();
                 }, function(err) {
                     return cb(err.data);
