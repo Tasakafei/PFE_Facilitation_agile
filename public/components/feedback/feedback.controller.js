@@ -1,9 +1,15 @@
 /**
  * Created by lucas on 23/11/16.
  */
+
 var app = angular.module('facilitation');
 
 app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scope, $routeParams, $http) {
+
+
+
+
+
 
     /* Scope vars */
     $scope.instanceData = {};
@@ -63,6 +69,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
             $scope.imagesToDisplay.push(loadEvent.target.result);
         });
     }
+
 
     function submit() {
         if (voteX != -1 && voteY != -1) {
