@@ -53,15 +53,16 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
     document.getElementById('InputPhotos').addEventListener('change', function(){
         for(var i = 0; i < this.files.length; i++){
             var reader = new FileReader();
-            reader.onload = function(loadEvent) {
-                $scope.$apply(function() {
-                    $scope.imagesToDisplay.push(loadEvent.target.result);
-                });
-            };
+            reader.onload = onLoadFunction;
             reader.readAsDataURL(this.files[i]);
         }
     }, false);
 
+    function onLoadFunction(loadEvent) {
+        $scope.$apply(function() {
+            $scope.imagesToDisplay.push(loadEvent.target.result);
+        });
+    }
 
     function submit() {
         if (voteX != -1 && voteY != -1) {
