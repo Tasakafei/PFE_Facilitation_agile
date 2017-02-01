@@ -111,7 +111,11 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
                 });
             })
             .error(function (response) {
-                console.log('error', response);
+                $scope.$emit('notify', {
+                    type: 'error',
+                    title: 'Erreur lors de l\'ajout de Feedback'
+                });
+                console.error('error', response);
             });
 
         } else {

@@ -222,7 +222,6 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('.clock').css("zoom", "250%");
             $('.clock').css("-moz-transform", "scale(2.50)");
             $('.clock').css("-moz-transform-origin", "top left");
-            console.log($('#timer'));
             $('#timer').removeClass('col-md-6');
             $('#timer').addClass('col-md-12 col-md-offset-1');
 

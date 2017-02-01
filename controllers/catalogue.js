@@ -71,7 +71,7 @@ function createNewWorkshopImpl(req, res, next) {
             });
         })
         .then(function (error) {
-            console.log(error);
+            console.error(error);
             res.json({
                 state: "error",
                 data: error

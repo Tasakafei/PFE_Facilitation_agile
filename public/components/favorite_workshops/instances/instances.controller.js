@@ -29,7 +29,6 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
             $scope.instances = data;
             })
             .error(function(data) {
-            alert( "failure message: " + JSON.stringify({data: data}));
         });
     }
 

@@ -40,7 +40,7 @@ exports.login = function (req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         var error = err || info;
         if (error) {
-            console.log(error);
+            console.error(error);
             res.set('Access-Control-Allow-Origin','*');
             return res.json(400, error);
         }
