@@ -29,7 +29,7 @@ app.controller('favoriteCtrl', function ($scope, FavoriteWorkshops) {
             $scope.favoriteWorkshops = data;
             })
             .error(function(data) {
-            alert( "failure message: " + JSON.stringify({data: data}));
+            console.error(JSON.stringify({data: data}));
         });
     }
 
