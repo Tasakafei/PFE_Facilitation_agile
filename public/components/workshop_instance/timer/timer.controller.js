@@ -220,6 +220,8 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('#commentaires').hide();
             $('#photos').hide();
             $('.clock').css("zoom", "250%");
+            $('.clock').css("-moz-transform", "scale(2.50)");
+            $('.clock').css("-moz-transform-origin", "top left");
             console.log($('#timer'));
             $('#timer').removeClass('col-md-6');
             $('#timer').addClass('col-md-12 col-md-offset-1');
@@ -234,6 +236,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('#timer').removeClass('col-md-12 col-md-offset-1');
             $('#timer').addClass('col-md-6');
             $('.clock').css("zoom", "100%");
+            $('.clock').css("-moz-transform", "scale(1)");
             $('#buttons').show()
             $('#commentaires').show();
             $('#photos').show();
