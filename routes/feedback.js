@@ -18,7 +18,6 @@ cloudinary.config({
     api_secret: '6cUzujY9jEAx5n6FeEDV_pCj3YA'
 });
 
-var cloudinary = require('cloudinary');
 var cloudinaryStorage = require('multer-storage-cloudinary');
 
 
