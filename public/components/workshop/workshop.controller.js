@@ -64,8 +64,8 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
 
         for(var i = 0; i<timingArray.length; i++) {
             var d = new Date(timingArray[i]* 60000); //en miniseconde
-            var time = d.toUTCString().split(" ")
-            time = time[4].split(":")
+            var time = d.toUTCString().split(" ");
+            time = time[4].split(":");
 
             timingArray[i] =  time[0]+":"+time[1];
         }
@@ -74,9 +74,9 @@ app.controller('workshopCtrl', function ($scope, CatalogueDataProvider, Favorite
         $scope.timingArray = timingArray;
 
         //Add word "minutes" to duration
-        for(var i=0; i < dataResponse.data.content.steps.length; i++) {
-            if(dataResponse.data.content.steps[i].duration) {
-                dataResponse.data.content.steps[i].duration = dataResponse.data.content.steps[i].duration + " minutes";
+        for(var j=0; j < dataResponse.data.content.steps.length; j++) {
+            if(dataResponse.data.content.steps[j].duration) {
+                dataResponse.data.content.steps[j].duration = dataResponse.data.content.steps[j].duration + " minutes";
             }
         }
 

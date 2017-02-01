@@ -21,12 +21,6 @@ function UploadPhotosImpl(req, res, next) {
 
     for (var i = 0; i < req.files.length; ++i) {
         req.files[i] = { filename: req.files[i].filename};
-        photo.createPhoto(fs.readFileSync('public/uploads/'+req.files[i].filename), req.files[i].filename, "image/jpg", function(err, photo) {
-            if (err) {
-                console.error("ERROR");
-            }
-
-        });
     }
     return res.json({
         state: "success",

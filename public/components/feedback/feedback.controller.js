@@ -52,8 +52,6 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
      */
     document.getElementById('InputPhotos').addEventListener('change', function(){
         for(var i = 0; i < this.files.length; i++){
-            var file =  this.files[i];
-
             var reader = new FileReader();
             reader.onload = function(loadEvent) {
                 $scope.$apply(function() {
@@ -115,7 +113,7 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
             });
         }
 
-    };
+    }
 
     function point_it(event) {
         pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
