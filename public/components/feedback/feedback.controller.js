@@ -33,7 +33,6 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
      * Retrieve the current instance data
      */
     FavoriteWorkshops.getInstancesWorkshop(currentId).success(function(response) {
-        console.log(response);
         $scope.instanceData = response;
         response.data[0].facilitators.forEach(function(elem) {
             if (elem._id == $rootScope.currentUser._id) {
