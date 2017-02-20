@@ -30,5 +30,5 @@ var storage = cloudinaryStorage({
 
 var upload = multer({ storage: storage });
 
-router.post('/:instanceId/photos', upload.array('photos', 30), cloudinaryUploaderCtrl.UploadPhotos);
+router.post('/', upload.array('photos', 30), cloudinaryUploaderCtrl.UploadPhotos);
 module.exports = router;

@@ -51,7 +51,7 @@ app.use('/auth', auth);
 app.use('/users', users);
 app.use('/api/v1/catalogue', catalogue);
 app.use('/api/v1/feedback', feedback);
-app.use('/api/v1/uploader', cloudinaryUploader);
+app.use('/api/v1/photos-uploader', cloudinaryUploader);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

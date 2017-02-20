@@ -18,7 +18,7 @@ app.service('CloudinaryClient', function ($http) {
             fd.append('photos', imgBlob);
         }
         return $http.post(
-            "/api/v1/feedback/" + currentId + "/photos",
+            "/api/v1/photos-uploader",
             fd, {
                 transformRequest: angular.identity,
                 headers: {

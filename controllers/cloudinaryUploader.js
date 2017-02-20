@@ -4,14 +4,21 @@
  * EMAIL:          alexandre.cazala@gmail.com   *
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
+var async = require('async');
 function UploadPhotosImpl(req, res, next) {
-    for (var i = 0; i < req.files.length; ++i) {
-        req.files[i] = { filename: req.files[i].filename};
-    }
-    return res.json({
-        state: "success",
-        data: req.files
-    })
+    var files = [];
+    console.log(req.files);
+    async.each(req.files, function(file, callback) {
+        files.push({ filename: file.url});
+        callback();
+    }, function() {
+        req.files = files;
+        console.log(req.files);
+        return res.json({
+            state: "success",
+            data: req.files
+        })
+    });
 }
 
 exports.UploadPhotos = UploadPhotosImpl;

@@ -5,12 +5,6 @@
 var app = angular.module('facilitation');
 
 app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scope, $routeParams, $http) {
-
-
-
-
-
-
     /* Scope vars */
     $scope.instanceData = {};
     $scope.imagesToDisplay = [];
@@ -87,8 +81,17 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
 
             $scope.uploading = "Envoie en cours, veuillez patienter...";
 
+            // $http.post(
+            //     "/api/v1/feedback/"+currentId+"/photos",
+            //     fd, {
+            //         transformRequest: angular.identity,
+            //         headers: {
+            //             'Content-Type': undefined
+            //         }
+            //     }
+            // )
             $http.post(
-                "/api/v1/feedback/"+currentId+"/photos",
+                "/api/v1/photos-uploader",
                 fd, {
                     transformRequest: angular.identity,
                     headers: {
@@ -97,6 +100,9 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
                 }
             ).success(function (response) {
                 feedback.photos = response.data;
+                console.log(feedback.photos);
+                console.log("========");
+                console.log(response.data);
                 var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
                 res.success(function (data, status, headers, config) {
                     $scope.$emit('notify', {
