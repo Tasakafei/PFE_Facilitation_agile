@@ -11,7 +11,8 @@ var app = angular.module('facilitation', [
     'http-auth-interceptor',
     'angularNotify',
     'socketio.service',
-    'facilitation.qrcode'
+    'facilitation.qrcode',
+    'moment-picker'
 ]);
 
 app.config(function($routeProvider, $locationProvider) {

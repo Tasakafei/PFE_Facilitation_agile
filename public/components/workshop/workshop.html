@@ -13,7 +13,8 @@
             <!-- Info atelier -->
             <div class="col-xs-12 col-sm-7">
                 <div class="col-xs-12 col-sm-5 no-padding col-sm-push-7 text-right-sm" ng-controller="TooltipCtrl">
-                    <button type="button" class="btn btn-default" ng-click="addToInstances()" uib-tooltip="Ajouter pour lancer un atelier" tooltip-placement="top"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3"  uib-tooltip="Ajouter pour lancer un atelier" tooltip-placement="top" ><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
+                    <!--<button type="button" class="btn btn-default" ng-click="addToInstances()" uib-tooltip="Ajouter pour lancer un atelier" tooltip-placement="top" ><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button> -->
                     <button type="button" class="btn btn-default favorite-false" ng-click="addToFavorite()" uib-tooltip="Ajouter aux favoris" tooltip-placement="top"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
                     <button type="button" class="btn btn-default favorite-true" ng-click="deleteFavorite()" uib-tooltip="Retirer des favoris" tooltip-placement="top"><img style="width: 14px; padding-bottom: 4px;"src="../../img/coeur.png"></button>
 
@@ -127,6 +128,54 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Ajouter pour lancer un atelier </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal col-xs-10 col-xs-offset-1" >
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Avec qui </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Date et heure prévus </label>
+                            <div class="col-sm-9">
+
+                            <input class="form-control"
+                                   ng-model="ctrl.input"
+                                   ng-model-options="{ updateOn: 'blur' }"
+                                   placeholder="Select a date..."
+                                   moment-picker="ctrl.input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-sm-9">
+                                <button type="button" class="btn btn-default" ng-click="addToInstances()"> ajouter l'atelier</button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
