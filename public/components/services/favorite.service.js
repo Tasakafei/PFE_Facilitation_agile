@@ -49,7 +49,7 @@ app.service('FavoriteWorkshops', function ($http) {
     };
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.getWorkshopInstance = function(instanceId, callbackFunc) {
+    this.getWorkshopInstance = function(instanceId) {
         var req = {
             method: 'GET',
             url: '/users/instances/'+instanceId,

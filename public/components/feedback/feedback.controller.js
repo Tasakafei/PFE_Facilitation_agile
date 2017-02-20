@@ -4,9 +4,10 @@
 
 var app = angular.module('facilitation');
 
-app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmpDataFactory, $scope, $routeParams, $http) {
+app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmpDataFactory, $scope, $rootScope, $routeParams, $http) {
     /* Scope vars */
     $scope.instanceData = {};
+    $scope.isFacilitator = false;
     $scope.imagesToDisplay = [];
     $scope.uploading = "";
 
@@ -14,7 +15,6 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
     var currentId = $routeParams.instanceId;
     var voteX = -1;
     var voteY = -1;
-
     tmpDataFactory.set(currentId);
 
     // Scope methods
@@ -28,6 +28,19 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
      * @type {point_it}
      */
     $scope.point_it = point_it;
+
+    /**
+     * Retrieve the current instance data
+     */
+    FavoriteWorkshops.getInstancesWorkshop(currentId).success(function(response) {
+        console.log(response);
+        $scope.instanceData = response;
+        response.data[0].facilitators.forEach(function(elem) {
+            if (elem._id == $rootScope.currentUser._id) {
+                $scope.isFacilitator = true;
+            }
+        })
+    });
 
     /**
      * Display the uploaded photo

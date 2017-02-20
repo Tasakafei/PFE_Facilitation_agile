@@ -1,35 +1,22 @@
 <div class="container">
     <!-- Titre page -->
     <div class="page-header">
-        <h3>Noter un atelier</h3>
+        <h3>Noter L'atelier</h3>
     </div>
     <div class="row">
         <div class="col-xs-12 no-padding">
-            <h4 class="text-center">Noter l'atelier</h4><br />
             <form ng-submit="submit()" ng-controller="feedbackCtrl" class="form-horizontal col-xs-12">
                 <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Note</label>
                      <div class="col-sm-6 col-md-4 col-md-push-2">
                          <img class="img-responsive" src="img/graphVote.png" id="pointer_div" ng-click="point_it($event)">
                          <img class="img-responsive" src="img/cross.svg" id="cross" style="position:absolute;visibility:hidden;z-index:2;">
-                         <span id="amusement">Amusement</span>
-                         <span id="utilité">Utilité</span>
+                         <span id="amusement">{{ isFacilitator ? "Difficulté de mise en oeuvre" : "Amusement"}}</span>
+                         <span id="utilité">Pertinance/Utilité</span>
                          <span id="zero">0</span>
                          <span id="cinq">5</span>
                          <span id="cinqb">5</span>
                      </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Note d'amusement</label>
-                    <div class="col-sm-6 col-md-4 col-md-push-2">
-                        <div id="voteX"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Note d'utilité</label>
-                    <div class="col-sm-6 col-md-4 col-md-push-2">
-                        <div id="voteY"></div>
-                    </div>
                 </div>
                  <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Commenter l'atelier</label>
