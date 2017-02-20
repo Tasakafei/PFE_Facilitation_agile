@@ -30,24 +30,6 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
     $scope.point_it = point_it;
 
     /**
-     *  Convert the dataURI
-     * @param dataURI
-     * @returns {*}
-     */
-    //you need this function to convert the dataURI
-    function dataURItoBlob(dataURI) {
-        var binary = atob(dataURI.split(',')[1]);
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-        var array = [];
-        for (var i = 0; i < binary.length; i++) {
-            array.push(binary.charCodeAt(i));
-        }
-        return new Blob([new Uint8Array(array)], {
-            type: mimeString
-        });
-    }
-
-    /**
      * Display the uploaded photo
      */
     document.getElementById('InputPhotos').addEventListener('change', function(){
@@ -75,12 +57,11 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
             };
 
             $scope.uploading = "Envoie en cours, veuillez patienter...";
-
             CloudinaryClient.uploadPhotos($scope.imagesToDisplay)
                 .success(function (response) {
                     feedback.photos = response.data;
                     var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
-                    res.success(function (data, status, headers, config) {
+                    res.success(function () {
                         $scope.$emit('notify', {
                             type: 'success',
                             title: 'Feedback enregistré'

@@ -32,6 +32,7 @@ app.service('CloudinaryClient', function ($http) {
     PRIVATE FUNCTIONS
     */
     function dataURItoBlob(dataURI) {
+        console.log(dataURI);
         var binary = atob(dataURI.split(',')[1]);
         var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
         var array = [];

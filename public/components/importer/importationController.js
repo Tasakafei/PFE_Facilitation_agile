@@ -2,7 +2,7 @@
  * Created by user on 22/11/16.
  */
 
-app.controller('importationCtrl', function ($scope,$http, $location, Auth) {
+app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $location, Auth) {
 
     // Scope methods
     /**
@@ -22,9 +22,24 @@ app.controller('importationCtrl', function ($scope,$http, $location, Auth) {
     $scope.inputStepDuration = "inputStepDuration";
     $scope.stepsTextarea = "stepsTextarea";
     $scope.stepsTextareaAncre = "steps-textarea-ancre";
+    $scope.photo = [];
+
 
     var cpt = 1;
 
+    document.getElementById('inputPhotos').addEventListener('change', function(){
+        for(var i = 0; i < this.files.length; i++){
+            var reader = new FileReader();
+            reader.onload = onLoadFunction;
+            reader.readAsDataURL(this.files[i]);
+        }
+    }, false);
+
+    function onLoadFunction(loadEvent) {
+        $scope.$apply(function() {
+            $scope.photo.push(loadEvent.target.result);
+        });
+    }
     if (!Auth.isConnected()) {
         $location.path("/");
         $scope.$emit('notify', {
@@ -129,15 +144,14 @@ app.controller('importationCtrl', function ($scope,$http, $location, Auth) {
     });
 
 
-    function getFields() {
-
+    function prepareJSON(photo) {
         var json = {};
         var jsonContent = {};
         var educArray = [];
         json.title = document.getElementById('inputTitle').value;
         json.author = document.getElementById('inputAuthor').value;
-        if(document.getElementById('inputPhoto').value != "") {
-            json.photo = document.getElementById('inputPhoto').value;
+        if(photo) {
+            json.photo = photo;
         }
         json.duration = document.getElementById('inputDuration').value;
         json.synopsis = document.getElementById('inputSysnopsis').value;
@@ -175,6 +189,17 @@ app.controller('importationCtrl', function ($scope,$http, $location, Auth) {
         postJSON(json);
 
         window.top.window.scrollTo(0,0)
+    }
+    function getFields() {
+        if ($scope.photo) {
+            var reader = new FileReader();
+            CloudinaryClient.uploadPhotos($scope.photo)
+                .success(function(response) {
+                    prepareJSON(response.data[0].filename);
+                })
+        } else {
+            prepareJSON(null);
+        }
     }
 
     function importer() {
