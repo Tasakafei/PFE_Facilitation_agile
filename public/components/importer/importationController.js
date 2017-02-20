@@ -2,7 +2,7 @@
  * Created by user on 22/11/16.
  */
 
-app.controller('importationCtrl', function ($scope,$http) {
+app.controller('importationCtrl', function ($scope,$http, $location) {
 
     // Scope methods
     /**
@@ -25,6 +25,13 @@ app.controller('importationCtrl', function ($scope,$http) {
 
     var cpt = 1;
 
+    if ($scope.currentUser == null) {
+        $location.path("/");
+        $scope.$emit('notify', {
+            type: 'error',
+            title: 'Vous n\'avez pas les autorisations d\'accéder à cette page'
+        });
+    }
     /**
      * Init a special text area (for the folklore here), in which you can formatting text
      */
