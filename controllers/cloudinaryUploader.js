@@ -5,7 +5,7 @@
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
 var async = require('async');
-function UploadPhotosImpl(req, res, next) {
+function UploadPhotosImpl(req, res) {
     var files = [];
     async.each(req.files, function(file, callback) {
         files.push({ filename: file.url});

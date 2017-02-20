@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams, $http, socket, Auth, $location) {
+app.controller('instanceCtrl', function (LabelsService, $scope, FavoriteWorkshops, $routeParams, $http, socket, Auth, $location) {
 
     // Scope methods
     /**
@@ -54,13 +54,17 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
         var timingArray = $scope.workshopInstance.steps.map(function(step, index){
             var stepArray = $scope.workshopInstance.steps.slice(0, index);
             return stepArray.reduce(function (accumulateur, currentStep) {
-                if(currentStep.duration.theorical) return accumulateur + currentStep.duration.theorical;
-                else return accumulateur;
+                var tmp = 0;
+                if(currentStep.duration.theorical) {
+                    tmp = currentStep.duration.theorical;
+                }
+                return accumulateur + tmp;
+
             }, 0);
         });
 
         for(var i = 0; i<timingArray.length; i++) {
-            var d = new Date(timingArray[i] * 60000); //en miniseconde
+            var d = new Date(timingArray[i] * 60000); //en millisecondes
             var time = d.toUTCString().split(" ");
             time = time[4].split(":");
 
@@ -77,22 +81,7 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
     });
 
     function getLabelColorFct (label) {
-        if(label == "Travail itératif") {
-            return "label-success";
-        } else if(label == "Amélioration continue") {
-            return "label-primary";
-        } else if(label == "Prévisions") {
-            return "label-info";
-        } else if(label == "Rétrospective") {
-            return "label-warning";
-        } else if(label == "TaF - WiP") {
-            return "label-purple"
-        } else if(label == "Lead time vs Throughput") {
-            return "label-yellow"
-        } else {
-            return "label-default";
-        }
-
+        return LabelsService.getText(label);
     }
 
     socket.emit('join_room', currentId);

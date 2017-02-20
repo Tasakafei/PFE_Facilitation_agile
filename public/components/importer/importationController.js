@@ -192,7 +192,6 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
     }
     function getFields() {
         if ($scope.photo) {
-            var reader = new FileReader();
             CloudinaryClient.uploadPhotos($scope.photo)
                 .success(function(response) {
                     prepareJSON(response.data[0].filename);

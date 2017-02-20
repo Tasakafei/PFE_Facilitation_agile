@@ -14,7 +14,7 @@ angular.module('facilitation')
                 User.delete({
                     email: email,
                     password: password
-                }, function(user) {
+                }, function() {
                     return cb();
                 }, function(err) {
                     return cb(err.data);

@@ -72,9 +72,8 @@ function existsImpl (req, res, next) {
 
 function addToFavoriteWorkshopsImpl (req, res, next) {
     var user = req.user;
-    //var username = req.body.username;
     var workshop = req.body.workshop;
-    Workshop.findOne(ObjectId(workshop),  function(err, model) {
+    Workshop.findOne(ObjectId(workshop),  function(err) {
         if (err) {
             res.json({status: "error", data: err});
         } else {
@@ -258,7 +257,7 @@ function deleteFavoriteWorkshopsImpl(req, res, next) {
 
 function deleteInstanceWorkshopImpl(req, res, next) {
     var instanceId = req.params.instanceId;
-    WorkshopInstances.removeInstance(instanceId).then(function(data) {
+    WorkshopInstances.removeInstance(instanceId).then(function() {
         res.json({status: "success", data:"success"});
     }, function(err) {
         console.error(err);

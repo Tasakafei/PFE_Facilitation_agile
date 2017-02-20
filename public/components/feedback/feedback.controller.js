@@ -58,7 +58,6 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
         });
     }
 
-
     function submit() {
         if (voteX != -1 && voteY != -1) {
             var feedback = {
@@ -161,29 +160,5 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
     }
 
 });
-
-/**
- * Filereader
- */
-app.directive("fileread", [
-    function() {
-        return {
-            scope: {
-                fileread: "="
-            },
-            link: function(scope, element, attributes) {
-                element.bind("change", function(changeEvent) {
-                    var reader = new FileReader();
-                    reader.onload = function(loadEvent) {
-                        scope.$apply(function() {
-                            scope.fileread = loadEvent.target.result;
-                        });
-                    };
-                    reader.readAsDataURL(changeEvent.target.files[0]);
-                });
-            }
-        }
-    }
-]);
 
 

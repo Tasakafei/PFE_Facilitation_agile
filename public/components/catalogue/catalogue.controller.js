@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
+app.controller('catalogueCtrl', function (LabelsService, $scope, CatalogueDataProvider) {
 
     // Scope methods
     /**
@@ -67,21 +67,22 @@ app.controller('catalogueCtrl', function ($scope, CatalogueDataProvider) {
     });
 
     function getLabelColor(label) {
-        if (label == "Travail itératif") {
-            return "label-success";
-        } else if (label == "Amélioration continue") {
-            return "label-primary";
-        } else if (label == "Prévisions") {
-            return "label-info";
-        } else if (label == "Rétrospective") {
-            return "label-warning";
-        } else if (label == "TaF - WiP") {
-            return "label-purple"
-        } else if (label == "Lead time vs Throughput") {
-            return "label-yellow"
-        } else {
-            return "label-default";
-        }
+        // if (label == "Travail itératif") {
+        //     return "label-success";
+        // } else if (label == "Amélioration continue") {
+        //     return "label-primary";
+        // } else if (label == "Prévisions") {
+        //     return "label-info";
+        // } else if (label == "Rétrospective") {
+        //     return "label-warning";
+        // } else if (label == "TaF - WiP") {
+        //     return "label-purple"
+        // } else if (label == "Lead time vs Throughput") {
+        //     return "label-yellow"
+        // } else {
+        //     return "label-default";
+        // }
+        return LabelsService.getText(label);
     }
 
     var bool = false;
