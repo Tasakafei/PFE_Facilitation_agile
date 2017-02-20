@@ -21,14 +21,14 @@
                                     <div class="col-xs-12 col-md-6 no-padding">
                                         <h4 class="labelsTitle">{{workshop.title}}</h4>
                                     </div>
-                                    <div class="col-xs-12 col-md-6 padding-t labels no-padding">
+                                    <!--<div class="col-xs-12 col-md-6 padding-t labels no-padding">
                                        <span ng-repeat="category in workshop.educational_aims | orderBy" >
                                             <span class="label {{getLabelColor(category)}}">{{category}}</span>
                                         </span>
-                                    </div>
+                                    </div>-->
                                 </div>
-                                <div class="col-xs-12 col-sm-6 no-padding">
-                                    <!-- Note -->
+                                <!--<div class="col-xs-12 col-sm-6 no-padding">
+                                    &lt;!&ndash; Note &ndash;&gt;
                                     <div class="col-xs-12 no-padding">
                                         Participants :
                                         <i ng-if="workshop.grade.participants"
@@ -43,15 +43,15 @@
                                            data-ng-repeat="i in [] | range:5"></i>
                                         <span ng-if="!workshop.grade.facilitators">Aucunes notes</span>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 no-padding">
+                                </div>-->
+                               <!-- <div class="col-xs-12 col-sm-6 no-padding">
                                     <div>
-                                        <!-- Temps de l'atelier -->
+                                        &lt;!&ndash; Temps de l'atelier &ndash;&gt;
                                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{workshop.duration}}m
                                     </div>
-                                </div>
+                                </div>-->
                                 <!-- Detail -->
-                                <p class="col-xs-12 hidden-xs no-padding padding-t">{{workshop.synopsis}}</p>
+                                <!--<p class="col-xs-12 hidden-xs no-padding padding-t">{{workshop.synopsis}}</p>-->
                             </div>
                         </div>
                     </a>
