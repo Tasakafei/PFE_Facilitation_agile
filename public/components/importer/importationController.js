@@ -178,7 +178,6 @@ app.controller('importationCtrl', function ($scope,$http, $location, Auth) {
     }
 
     function importer() {
-
         var fichier = document.getElementById('InputJSON').files[0];
         var lecture = new FileReader();
         lecture.onloadend = function (evenement) {

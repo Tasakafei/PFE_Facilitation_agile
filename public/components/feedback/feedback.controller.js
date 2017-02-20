@@ -4,13 +4,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scope, $routeParams, $http) {
-
-
-
-
-
-
+app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmpDataFactory, $scope, $routeParams, $http) {
     /* Scope vars */
     $scope.instanceData = {};
     $scope.imagesToDisplay = [];
@@ -79,44 +73,32 @@ app.controller('feedbackCtrl', function(FavoriteWorkshops, tmpDataFactory, $scop
                 comment: $scope.com,
                 photos: null
             };
-            var fd = new FormData();
-            for(var i = 0;i < $scope.imagesToDisplay.length ;i++) {
-                var imgBlob = dataURItoBlob($scope.imagesToDisplay[i]);
-                fd.append('photos', imgBlob);
-            }
 
             $scope.uploading = "Envoie en cours, veuillez patienter...";
 
-            $http.post(
-                "/api/v1/feedback/"+currentId+"/photos",
-                fd, {
-                    transformRequest: angular.identity,
-                    headers: {
-                        'Content-Type': undefined
-                    }
-                }
-            ).success(function (response) {
-                feedback.photos = response.data;
-                var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
-                res.success(function (data, status, headers, config) {
-                    $scope.$emit('notify', {
-                        type: 'success',
-                        title: 'Feedback enregistré'
-                    });
+            CloudinaryClient.uploadPhotos($scope.imagesToDisplay)
+                .success(function (response) {
+                    feedback.photos = response.data;
+                    var res = FavoriteWorkshops.addFeedbackToInstance(feedback, currentId);
+                    res.success(function (data, status, headers, config) {
+                        $scope.$emit('notify', {
+                            type: 'success',
+                            title: 'Feedback enregistré'
+                        });
 
-                    //Redirection after vote
-                    var url = window.location.href;
-                    url = url.split("feedback");
-                    window.location.replace(url[0]+'thankYou');
+                        //Redirection after vote
+                        var url = window.location.href;
+                        url = url.split("feedback");
+                        window.location.replace(url[0]+'thankYou');
+                    });
+                })
+                .error(function (response) {
+                    $scope.$emit('notify', {
+                        type: 'error',
+                        title: 'Erreur lors de l\'ajout de Feedback'
+                    });
+                    console.error('error', response);
                 });
-            })
-            .error(function (response) {
-                $scope.$emit('notify', {
-                    type: 'error',
-                    title: 'Erreur lors de l\'ajout de Feedback'
-                });
-                console.error('error', response);
-            });
 
         } else {
             $scope.$emit('notify', {

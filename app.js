@@ -21,6 +21,7 @@ var auth = require('./routes/auth');
 var users = require('./routes/users');
 var catalogue = require('./routes/catalogue');
 var feedback = require('./routes/feedback');
+var cloudinaryUploader = require('./routes/cloudinaryUploader');
 var app = express();
 
 var photoModel = require('./model/files/photo');
@@ -50,8 +51,9 @@ app.use('/auth', auth);
 app.use('/users', users);
 app.use('/api/v1/catalogue', catalogue);
 app.use('/api/v1/feedback', feedback);
-// catch 404 and forward to error handler
+app.use('/api/v1/photos-uploader', cloudinaryUploader);
 
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

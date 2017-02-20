@@ -18,8 +18,9 @@ function addFeedbackImpl (workshopInstanceId, feedback, user, photos) {
             } else {
                 // On rajoute la photo à l'atelier
                 photos.forEach(function(photo) {
-                    //TODO Check if it is not null
-                    model.photos.push(photo);
+                    if (photo) {
+                        model.photos.push(photo);
+                    }
                 });
                 // Si l'utilisateur est connecté...
                 if (user) {
@@ -32,12 +33,12 @@ function addFeedbackImpl (workshopInstanceId, feedback, user, photos) {
                             return;
                         }
                     }
+                } else {
+                    // Sinon, on le considère en tant que participant seulement
+                    model.feedbacks.participants.push(feedback);
+                    model.save();
+                    resolve(model);
                 }
-                // Sinon, on le considère en tant que participant seulement
-
-                model.feedbacks.participants.push(feedback);
-                model.save();
-                resolve(model);
             }
         });
     })
