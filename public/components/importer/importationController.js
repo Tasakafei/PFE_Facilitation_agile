@@ -201,7 +201,6 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
             prepareJSON(null);
         }
     }
-
     function importer() {
         var fichier = document.getElementById('InputJSON').files[0];
         var lecture = new FileReader();
@@ -214,26 +213,22 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
 
                 var data = JSON.parse(donnees);
 
-                //Check if the JSON file got what we expect in
                 if( data.title && data.duration && data.synopsis && data.content.folklore && data.content.educational_aims && data.content.steps) {
-
-                    //Post
                     postJSON(donnees);
                 } else {
                     $scope.$emit('notify', {
                         type: 'error',
-                        title: 'Format de l\'atelier incomptatible.',
+                        title: 'Format de l\'atelier incomptatible.'
                     });
                 }
             }
             else {
                     $scope.$emit('notify', {
                         type: 'error',
-                        title: 'L\'atelier doit être en format JSON.',
+                        title: 'L\'atelier doit être en format JSON.'
                     });
             }
-
-        }
+        };
         lecture.readAsText(fichier, 'UTF-8')
     }
 
