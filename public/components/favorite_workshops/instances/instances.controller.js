@@ -18,7 +18,6 @@ app.controller('instancesCtrl', function ($scope, FavoriteWorkshops) {
      * @type {getLabelColor}
      */
     $scope.getLabelColor = getLabelColor;
-
     getWorkshopsInstances();
     /**
      * Put in $scope.instances the instances workshops to display

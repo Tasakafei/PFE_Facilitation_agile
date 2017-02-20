@@ -2,7 +2,7 @@
  * Created by user on 22/11/16.
  */
 
-app.controller('importationCtrl', function ($scope,$http, $location) {
+app.controller('importationCtrl', function ($scope,$http, $location, Auth) {
 
     // Scope methods
     /**
@@ -25,7 +25,7 @@ app.controller('importationCtrl', function ($scope,$http, $location) {
 
     var cpt = 1;
 
-    if ($scope.currentUser == null) {
+    if (!Auth.isConnected()) {
         $location.path("/");
         $scope.$emit('notify', {
             type: 'error',

@@ -57,6 +57,9 @@ angular.module('facilitation')
                 });
             },
 
+            isConnected: function() {
+                return !!$rootScope.currentUser;
+            },
             changePassword: function(email, oldPassword, newPassword, callback) {
                 var cb = callback || angular.noop;
                 User.update({

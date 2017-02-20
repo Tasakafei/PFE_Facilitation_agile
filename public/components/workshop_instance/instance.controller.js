@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams, $http, socket) {
+app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams, $http, socket, Auth, $location) {
 
     // Scope methods
     /**
@@ -34,13 +34,19 @@ app.controller('instanceCtrl', function ($scope, FavoriteWorkshops, $routeParams
      * @type {getLabelColorFct}
      */
     $scope.getLabelColor = getLabelColorFct;
-
-
     // Local vars
     var currentId = $routeParams.idInstance;
 
     // Scope vars
     $scope.workshopInstance = "";
+
+    if (!Auth.isConnected()) {
+        $location.path("/");
+        $scope.$emit('notify', {
+            type: 'error',
+            title: 'Vous n\'avez pas les autorisations d\'accéder à cette page'
+        });
+    }
 
     FavoriteWorkshops.getWorkshopInstance(currentId).then(function (dataResponse) {
         $scope.workshopInstance = dataResponse.data.data;
