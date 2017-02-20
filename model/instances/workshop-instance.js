@@ -17,9 +17,6 @@ function addFeedbackImpl (workshopInstanceId, feedback, user, photos) {
                 reject(err);
             } else {
                 // On rajoute la photo à l'atelier
-                console.log("============");
-                console.log(photos);
-                console.log("============");
                 photos.forEach(function(photo) {
                     if (photo) {
                         model.photos.push(photo);

@@ -1,4 +1,3 @@
-
 'use strict';
 
 /**
@@ -22,5 +21,4 @@ function addFeedbackToInstanceImpl (req, res) {
         })
 }
 
-exports.UploadPhotos = UploadPhotosImpl;
 exports.addFeedbackToInstance = addFeedbackToInstanceImpl;
