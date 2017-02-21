@@ -73,6 +73,8 @@ function existsImpl (req, res, next) {
 function addToFavoriteWorkshopsImpl (req, res) {
     var user = req.user;
     var workshop = req.body.workshop;
+    var user_dateC = req.body.user_date;
+    var user_groupC = req.body.user_group;
     Workshop.findOne(ObjectId(workshop),  function(err) {
         if (err) {
             res.json({status: "error", data: err});
@@ -220,6 +222,8 @@ function addWorkshopInstanceImpl(req, res) {
                             instance.participants_profil = workshop.content.participants_profil;
                             instance.preparation_time = workshop.preparation_time;
                             instance.public_targeted = workshop.public_targeted;
+                            instance.user_dateC=user_dateC;
+                            instance.user_groupC=user_groupC;
                             instance.save();
                             workshop.instances.push(instance._id);
                             workshop.save();
