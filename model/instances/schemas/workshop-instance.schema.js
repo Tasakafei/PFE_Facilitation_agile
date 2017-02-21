@@ -64,8 +64,9 @@ var WorkshopInstanceSchema = new Schema({
     author: {type: String, default:null},
     participants_profil: [String],
     workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true },
-    user_dateC:{type: String,default:'mm/dd/yyyy'},
-    user_groupC:{type:String,default:null}
+    user_dateC:{type: String,default:null},
+    user_groupC:{type:String,default:null},
+    user_heureC:{type:String,default:null}
 
 
 },

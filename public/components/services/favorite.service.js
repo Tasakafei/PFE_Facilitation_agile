@@ -49,14 +49,14 @@ app.service('FavoriteWorkshops', function ($http) {
     };
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.addWorkshopInstance = function(username, workshop, group,date) {
+    this.addWorkshopInstance = function(username, workshop, group,date,heure) {
         var req = {
             method: 'POST',
             url: '/users/instances',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { workshopId: workshop, user_group: group, user_date: date}
+            data: { workshopId: workshop, user_group: group, user_date: date,user_heure:heure}
         };
         return $http(req);
 
