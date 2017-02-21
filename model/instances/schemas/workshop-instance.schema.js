@@ -63,7 +63,11 @@ var WorkshopInstanceSchema = new Schema({
     logistics: [String],
     author: {type: String, default:null},
     participants_profil: [String],
-    workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true }
+    workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true },
+    user_dateC:{type: Date},
+    user_groupC:{type:String,default:null}
+
+
 },
 {
     toJSON: {
