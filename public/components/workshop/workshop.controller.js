@@ -155,7 +155,7 @@ app.controller('workshopCtrl', function (LabelsService, $scope, CatalogueDataPro
             $scope.$emit('notify', {
                 type: 'success',
                 title: 'L\'atelier a bien été ajouté.',
-                content: '/#/instances $$Voir mes ateliers préparés'
+                content: '/#/instances $$Voir mon agenda'
             });
         });
         res.error(function(data, status, headers, config) {
