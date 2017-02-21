@@ -27,7 +27,7 @@ function saveWorkshopFct (workshop) {
 }
 
 function getWorkshopsFct () {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
         Workshop.find({}, function(req, res) {
             async.forEach(Object.keys(res),function (item, cb) {
                 res[item].computeGrades(function(gradeRes) {
@@ -42,7 +42,7 @@ function getWorkshopsFct () {
 }
 
 function getWorkshopFct (id) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
         var object = new ObjectID(id);
         Workshop.findOne({_id: object}, function(req, res) {
             res.computeGrades(function(gradeRes) {

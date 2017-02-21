@@ -46,7 +46,11 @@ UserSchema
 UserSchema
     .virtual('user_info')
     .get(function () {
-        return { '_id': this._id, 'username': this.username, 'email': this.email };
+        return {
+            '_id': this._id,
+            'username': this.username,
+            'email': this.email
+        };
     });
 
 /**
@@ -64,8 +68,12 @@ UserSchema.path('email').validate(function (email) {
 
 UserSchema.path('email').validate(function(value, respond) {
     mongoose.models["User"].findOne({email: value}, function(err, user) {
-        if(err) throw err;
-        if(user) return respond(false);
+        if(err) {
+            throw err;
+        }
+        if(user) {
+            return respond(false);
+        }
         respond(true);
 
     });
@@ -73,8 +81,12 @@ UserSchema.path('email').validate(function(value, respond) {
 
 UserSchema.path('username').validate(function(value, respond) {
     mongoose.models["User"].findOne({username: value}, function(err, user) {
-        if(err) throw err;
-        if(user) return respond(false);
+        if(err) {
+            throw err;
+        }
+        if(user) {
+            return respond(false);
+        }
         respond(true);
     });
 }, 'The specified username is already in use.');
@@ -123,7 +135,9 @@ UserSchema.methods = {
      */
 
     encryptPassword: function(password) {
-        if (!password || !this.salt) return '';
+        if (!password || !this.salt) {
+            return '';
+        }
         var salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
     }

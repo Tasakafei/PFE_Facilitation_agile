@@ -10,7 +10,6 @@ var app = angular.module('facilitation');
 
 app.controller('instanceCtrl', function (LabelsService, $scope, FavoriteWorkshops, $routeParams, $http, socket, Auth, $location) {
 
-    // Scope methods
     /**
      * Remove the workshop from the user's instances
      * @type {deleteInstance}
@@ -34,10 +33,8 @@ app.controller('instanceCtrl', function (LabelsService, $scope, FavoriteWorkshop
      * @type {getLabelColorFct}
      */
     $scope.getLabelColor = getLabelColorFct;
-    // Local vars
-    var currentId = $routeParams.idInstance;
 
-    // Scope vars
+    var currentId = $routeParams.idInstance;
     $scope.workshopInstance = "";
 
     if (!Auth.isConnected()) {
@@ -64,7 +61,7 @@ app.controller('instanceCtrl', function (LabelsService, $scope, FavoriteWorkshop
         });
 
         for(var i = 0; i<timingArray.length; i++) {
-            var d = new Date(timingArray[i] * 60000); //en millisecondes
+            var d = new Date(timingArray[i] * 60000);
             var time = d.toUTCString().split(" ");
             time = time[4].split(":");
 
@@ -72,7 +69,7 @@ app.controller('instanceCtrl', function (LabelsService, $scope, FavoriteWorkshop
         }
         $scope.timingArray = timingArray;
 
-        //Add word "minutes" to duration
+        /** Add word "minutes" to duration **/
         for(var j=0; j < $scope.workshopInstance.steps.length; j++) {
             if($scope.workshopInstance.steps[j].duration.theorical) {
                 $scope.workshopInstance.steps[j].duration.theorical = $scope.workshopInstance.steps[j].duration.theorical + " minutes";

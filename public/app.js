@@ -15,7 +15,7 @@ var app = angular.module('facilitation', [
     'moment-picker'
 ]);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function($routeProvider) {
   $routeProvider
       .when("/", {
           templateUrl: "components/home/home.html"

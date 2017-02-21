@@ -45,7 +45,9 @@ exports.login = function (req, res, next) {
             return res.json(400, error);
         }
         req.logIn(user, function(err) {
-            if (err) { return res.send(err); }
+            if (err) {
+                return res.send(err);
+            }
             res.set('Access-Control-Allow-Origin','*');
             res.json(req.user.user_info);
         });

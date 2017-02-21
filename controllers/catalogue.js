@@ -53,7 +53,7 @@ exports.removeWorkshop = removeWorkshopImpl;
 
 /*** IMPLEMENTATION ***/
 
-function getAllWorkshopsImpl(req, res, next) {
+function getAllWorkshopsImpl(req, res) {
     catalogue.getWorkshops().then(function (data) {
         res.json({
             state: "success",
@@ -62,7 +62,7 @@ function getAllWorkshopsImpl(req, res, next) {
     });
 }
 
-function createNewWorkshopImpl(req, res, next) {
+function createNewWorkshopImpl(req, res) {
     catalogue.saveWorkshop(req.body)
         .then(function (result) {
             return res.json({
@@ -80,7 +80,7 @@ function createNewWorkshopImpl(req, res, next) {
 }
 
 
-function getWorkshopImpl(req, res, next) {
+function getWorkshopImpl(req, res) {
     var id = req.params.id;
     catalogue.getWorkshop(id).then(function (data) {
         if (data) {
@@ -128,7 +128,7 @@ function getWorkshopImpl(req, res, next) {
 
 }
 
-function removeWorkshopImpl(req, res, next) {
+function removeWorkshopImpl(req, res) {
     var id = req.params.id;
     catalogue.deleteWorkshop(id).then(function (data) {
         res.json({state: "success", data: data})

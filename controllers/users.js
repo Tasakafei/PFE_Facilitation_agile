@@ -70,7 +70,7 @@ function existsImpl (req, res, next) {
     });
 }
 
-function addToFavoriteWorkshopsImpl (req, res, next) {
+function addToFavoriteWorkshopsImpl (req, res) {
     var user = req.user;
     var workshop = req.body.workshop;
     Workshop.findOne(ObjectId(workshop),  function(err) {
@@ -88,7 +88,7 @@ function addToFavoriteWorkshopsImpl (req, res, next) {
                     }
                 },
                 { safe: true, new: true },
-                function(err, model) {
+                function(err) {
                     if (err) {
                         res.json({status: "error", data: err});
                     } else {
@@ -118,7 +118,6 @@ function getFavoriteWorkshopsImpl(req, res, next) {
 
 function getWorkshopInstancesImpl(req, res, next) {
     var user = req.user;
-    //var user = { username: req.body.username };
     User.findOne({ username : user.username }).populate('workshops_instances').exec(function (err, userData) {
         if (err) {
             return next(new Error('Failed to load User ' + user.username));
@@ -131,7 +130,7 @@ function getWorkshopInstancesImpl(req, res, next) {
     });
 }
 
-function addWorkshopInstanceImpl(req, res, next) {
+function addWorkshopInstanceImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshopId;
     if (!user) {
@@ -203,7 +202,7 @@ function addWorkshopInstanceImpl(req, res, next) {
                                     }
                                 },
                                 { safe: true, new: true },
-                                function(err, model) {
+                                function(err) {
                                     if (err) {
                                         res.json({status: "error", data: err});
                                     } else {
@@ -221,9 +220,7 @@ function addWorkshopInstanceImpl(req, res, next) {
 }
 
 function getWorkshopInstanceImpl(req, res, next) {
-    //var user = req.user;
     var instanceId = req.params.instanceId;
-    //var user = { username: req.body.username };
     WorkshopInstance.findOne(ObjectId(instanceId) , function (err, instanceWorkshop) {
         if (err) {
             return next(new Error('Failed to load User ' + user.username));
@@ -232,7 +229,7 @@ function getWorkshopInstanceImpl(req, res, next) {
     });
 }
 
-function deleteFavoriteWorkshopsImpl(req, res, next) {
+function deleteFavoriteWorkshopsImpl(req, res) {
     var user = req.user;
     var favoriteId = req.params.favoriteId;
     User.findOneAndUpdate(
@@ -245,7 +242,7 @@ function deleteFavoriteWorkshopsImpl(req, res, next) {
             }
         },
         { new: true , safe: true},
-        function(err, model) {
+        function(err) {
             if (err) {
                 res.json({status: "error", data: err});
             } else {
@@ -255,7 +252,7 @@ function deleteFavoriteWorkshopsImpl(req, res, next) {
     );
 }
 
-function deleteInstanceWorkshopImpl(req, res, next) {
+function deleteInstanceWorkshopImpl(req, res) {
     var instanceId = req.params.instanceId;
     WorkshopInstances.removeInstance(instanceId).then(function() {
         res.json({status: "success", data:"success"});

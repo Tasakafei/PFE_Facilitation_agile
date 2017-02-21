@@ -6,8 +6,7 @@
  ***********************************************/
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    passportLocalMongoose = require('passport-local-mongoose'),
-    bcrypt = require('bcrypt-nodejs');
+    passportLocalMongoose = require('passport-local-mongoose')
 
 var Account = new Schema({
     username: String,
