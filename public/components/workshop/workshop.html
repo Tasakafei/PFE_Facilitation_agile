@@ -128,7 +128,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -139,13 +138,16 @@
             <div class="modal-body">
                 <div class="row">
                     <form class="form-horizontal col-xs-10 col-xs-offset-1" >
+
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Avec qui </label>
+
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Avec qui ...">
+                                <label class="col-sm-3 control-label">Avec qui </label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="Avec qui ..." ng-model="user_gr">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <br>
 
                             <div class="col-sm-9">
                                 <label class="col-sm-3 control-label">Date prévue </label>
@@ -158,6 +160,7 @@
                                            placeholder="Select a date"
                                            ng-model="ctrl.datepicker"
                                            ng-model-options="{ updateOn: 'blur' }"
+                                           ng-model="user_d"
                                     >
                                 </div>
                             </div>
@@ -176,7 +179,7 @@
                             </div>
 
 
-                            </div>
+                        </div>
                         <div class="form-group">
 
                             <div class="col-sm-9">
