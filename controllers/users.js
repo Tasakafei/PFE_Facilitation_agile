@@ -73,8 +73,6 @@ function existsImpl (req, res, next) {
 function addToFavoriteWorkshopsImpl (req, res) {
     var user = req.user;
     var workshop = req.body.workshop;
-    var user_dateC = req.body.user_date;
-    var user_groupC = req.body.user_group;
     Workshop.findOne(ObjectId(workshop),  function(err) {
         if (err) {
             res.json({status: "error", data: err});
@@ -167,6 +165,8 @@ function getEventsImpl(req, res) {
 function addWorkshopInstanceImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshopId;
+    var user_dateC = req.body.user_date;
+    var user_groupC = req.body.user_group;
     if (!user) {
         res.status("404").json({status: "error", data: "NOT_FOUND"});
     } else {
