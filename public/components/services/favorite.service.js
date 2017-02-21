@@ -63,19 +63,7 @@ app.service('FavoriteWorkshops', function ($http) {
     };
 
 
-    delete $http.defaults.headers.common['X-Requested-With'];
-    this.addWorkshopInstance = function(username, workshop) {
-        var req = {
-            method: 'POST',
-            url: '/users/instances',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: { workshopId: workshop }
-        };
-        return $http(req);
 
-    };
 
     this.addFeedbackToInstance = function(feedback, instanceId) {
         var req = {
