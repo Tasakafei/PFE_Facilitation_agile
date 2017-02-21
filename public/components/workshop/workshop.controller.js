@@ -148,7 +148,7 @@ app.controller('workshopCtrl', function (LabelsService, $scope, CatalogueDataPro
 
     function addToInstancesFct() {
         if ($scope.currentUser) {
-        var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId);
+        var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId,$scope.user_gr,$scope.ctrl.datepicker,$scope.ctrl.timepicker);
 
         res.success(function(data, status, headers, config) {
             $scope.message = data;

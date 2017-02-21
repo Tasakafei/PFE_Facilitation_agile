@@ -165,6 +165,9 @@ function getEventsImpl(req, res) {
 function addWorkshopInstanceImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshopId;
+    var user_dateC = req.body.user_date;
+    var user_groupC = req.body.user_group;
+    var user_heureC=req.body.user_heure;
     if (!user) {
         res.status("404").json({status: "error", data: "NOT_FOUND"});
     } else {
@@ -220,6 +223,9 @@ function addWorkshopInstanceImpl(req, res) {
                             instance.participants_profil = workshop.content.participants_profil;
                             instance.preparation_time = workshop.preparation_time;
                             instance.public_targeted = workshop.public_targeted;
+                            instance.user_dateC=user_dateC;
+                            instance.user_groupC=user_groupC;
+                            instance.user_heureC=user_heureC;
                             instance.save();
                             workshop.instances.push(instance._id);
                             workshop.save();

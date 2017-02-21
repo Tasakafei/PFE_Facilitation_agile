@@ -49,32 +49,21 @@ app.service('FavoriteWorkshops', function ($http) {
     };
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.getWorkshopInstance = function(instanceId) {
-        var req = {
-            method: 'GET',
-            url: '/users/instances/'+instanceId,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-        return $http(req);
-
-    };
-
-
-    delete $http.defaults.headers.common['X-Requested-With'];
-    this.addWorkshopInstance = function(username, workshop) {
+    this.addWorkshopInstance = function(username, workshop, group,date,heure) {
         var req = {
             method: 'POST',
             url: '/users/instances',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { workshopId: workshop }
+            data: { workshopId: workshop, user_group: group, user_date: date,user_heure:heure}
         };
         return $http(req);
 
     };
+
+
+
 
     this.addFeedbackToInstance = function(feedback, instanceId) {
         var req = {
