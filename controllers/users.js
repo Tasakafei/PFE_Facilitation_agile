@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 var Workshop = mongoose.model("Workshop");
 var WorkshopInstances = require("../model/instances/workshop-instance");
-
+var Events = require('../model/events/event');
 /**
  * Controller users
  * @module controller/user
@@ -130,6 +130,38 @@ function getWorkshopInstancesImpl(req, res, next) {
     });
 }
 
+function getEventsImpl(req, res) {
+    if (req.user) {
+        var today = Date.now();
+        User.findOne({ username: req.user.username})
+            .populate({
+                path: 'workshops_instances',
+                match: { begin_at: {$gte: today}},
+                options: {
+                    sort: {begin_at: 'desc'}
+                }
+            })
+            .populate({
+                path: 'workshops_events',
+                match: { begin_at: {$gte: today}},
+                options: {
+                    sort: {begin_at: 'desc'}
+                }
+            })
+            .exec(function(err, userData) {
+                if (err) {
+                    res.json({status:"error", data: "Failed to populate User " + user.username});
+                } else {
+                    var agenda = userData.workshops_events.concat(userData.workshops_instances);
+                    console.log("CONCATENATION DES EVENEMENTS => RESULTAT :");
+                    console.log(agenda);
+                    res.json({status: "success", data: agenda})
+                }
+            })
+    } else {
+        res.json({status: "error", data: "USER_NOT_FOUND"});
+    }
+}
 function addWorkshopInstanceImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshopId;
@@ -219,6 +251,31 @@ function addWorkshopInstanceImpl(req, res) {
     }
 }
 
+function addWorkshopEventImpl(req, res) {
+    if (req.user) {
+        Events.createEvent(req.event, function (err, event) {
+            User.findOneAndUpdate({username: req.user.username},
+                {
+                    $push: {
+                        "workshops_events": {
+                            _id: event._id
+                        }
+                    }
+                }, {
+                    safe: true,
+                    new: true
+                }, function (err) {
+                    if (err) {
+                        res.json({status: "error", data: err});
+                    } else {
+                        res.json({status: "success", data: "success"})
+                    }
+                })
+        })
+    } else {
+        res.json({status: "error", data: "USER_NOT_AUTHENTICATED"});
+    }
+}
 function getWorkshopInstanceImpl(req, res, next) {
     var instanceId = req.params.instanceId;
     WorkshopInstance.findOne(ObjectId(instanceId) , function (err, instanceWorkshop) {
@@ -372,6 +429,7 @@ module.exports = {
      */
     getWorkshopInstances: getWorkshopInstancesImpl,
 
+    getEvents: getEventsImpl,
     /**
      * Instanciate a new workshopInstance and add the reference in the user's instances
      * The user has to be logged in the system.
@@ -383,6 +441,7 @@ module.exports = {
      */
     addWorkshopInstance: addWorkshopInstanceImpl,
 
+    addWorkshopEvent: addWorkshopEventImpl,
     /**
      *  Retrieve a specific workshop instance by id given in the URL.
      *  The user has to be logged in the system.

@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 
 require('./model/files/schemas/photo');
-require('./model/mongo_connection');
+require('./model/events/schemas/event.schema');
 require('./model/mongo_connection');
 require('./model/account/schemas/user');
 require('./model/instances/schemas/workshop-instance.schema');
@@ -22,6 +22,7 @@ var users = require('./routes/users');
 var catalogue = require('./routes/catalogue');
 var feedback = require('./routes/feedback');
 var cloudinaryUploader = require('./routes/cloudinaryUploader');
+var dbCleaner = require('./routes/db.dev');
 var app = express();
 
 var photoModel = require('./model/files/photo');
@@ -52,6 +53,7 @@ app.use('/users', users);
 app.use('/api/v1/catalogue', catalogue);
 app.use('/api/v1/feedback', feedback);
 app.use('/api/v1/photos-uploader', cloudinaryUploader);
+app.use('/api/v1/db-cleaner', dbCleaner);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

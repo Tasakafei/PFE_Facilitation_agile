@@ -26,6 +26,10 @@ var UserSchema = new Schema({
     workshops_instances: [{
         type: Schema.ObjectId,
         ref: 'WorkshopInstance'
+    }],
+    workshops_events: [{
+        type: Schema.ObjectId,
+        ref: 'Event'
     }]
 });
 
@@ -117,7 +121,6 @@ UserSchema.methods = {
     /**
      * Authenticate - check if the passwords are the same
      */
-
     authenticate: function(plainText) {
         return this.encryptPassword(plainText) === this.hashedPassword;
     },
@@ -125,7 +128,6 @@ UserSchema.methods = {
     /**
      * Make salt
      */
-
     makeSalt: function() {
         return crypto.randomBytes(16).toString('base64');
     },
@@ -133,7 +135,6 @@ UserSchema.methods = {
     /**
      * Encrypt password
      */
-
     encryptPassword: function(password) {
         if (!password || !this.salt) {
             return '';
@@ -141,7 +142,6 @@ UserSchema.methods = {
         var salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
     }
-
 };
 
 mongoose.model('User', UserSchema);
