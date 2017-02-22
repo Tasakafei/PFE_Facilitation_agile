@@ -11,14 +11,23 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     var y = date.getFullYear();
 
     $scope.newEvent = {};
-    $scope.events = [];
+    $scope.workshopEvents= [];
+    $scope.events = {
+        color: 'red',
+        events: []
+    };
     /** Récupération des événements **/
     EventsService.getEvents()
         .success(function(events) {
             events.data.forEach(function (event) {
                 var end = new Date(event.begin_at);
                 end.setMinutes(end.getMinutes() + event.duration);
-                $scope.events.push({title: event.title, start: new Date(event.begin_at), end: end});
+                console.log(event);
+                var color;
+                if (event.workshopId) {
+                    color = "green";
+                }
+                $scope.workshopEvents.push({title: event.title, start: new Date(event.begin_at), end: end, color: color});
             });
         });
 
@@ -37,7 +46,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     };
 
     $scope.addEvent = function(event) {
-        $scope.events.push(event);
+        $scope.events.events.push(event);
     };
     /* remove event */
     $scope.remove = function(index) {
@@ -63,6 +72,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
 
     /** When you click on an empty space **/
     $scope.addNewEvent = function (date) {
+        $scope.newEvent = {};
         var tmp = date._d;
         console.log(""+tmp.getHours()+":"+tmp.getMinutes());
         $scope.newEvent.hours_begin_at = ""+tmp.getHours()+":"+tmp.getMinutes();
@@ -87,14 +97,15 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         EventsService.addEvent(event);
         $scope.addEvent({title: event.title, start: event.begin_at, end: end_at_date});
         $('#newEventModal').modal('hide');
+        $scope.newEvent = {};
     };
     /* config object */
     $scope.uiConfig = {
         calendar:{
             height: 450,
-            editable: true,
+            editable: false,
             header:{
-                left: 'agendaWeek agendaDay',
+                left: 'agendaMonth agendaWeek agendaDay',
                 center: 'title',
                 right: 'today prev,next'
             },
@@ -105,7 +116,5 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
             dayClick: $scope.addNewEvent
         }
     };
-
-
-    $scope.eventSources = [$scope.events];
+    $scope.eventSources = [$scope.events, $scope.workshopEvents];
 });
