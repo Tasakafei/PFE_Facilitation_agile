@@ -20,7 +20,7 @@ router.get('/instances/:instanceId', users.getWorkshopInstance);
 router.post('/events', auth.ensureAuthenticated, users.addWorkshopEvent);
 router.get('/events', auth.ensureAuthenticated, users.getEvents);
 router.delete('/instances/:instanceId', auth.ensureAuthenticated, users.deleteInstanceWorkshop);
-router.put('/profile', auth.ensureAuthenticated,users.changePassword);
+router.put('/users', auth.ensureAuthenticated,users.update);
 
 /*** TEMPORARY ROUTES (TO_DELETE WHEN ACCOUNTS ARE INTEGRATED TO THE TAB) ***/
 router.post('/unauth/:username/favorites', users.unauthaddToFavoriteWorkshops);

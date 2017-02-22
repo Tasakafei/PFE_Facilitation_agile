@@ -8,21 +8,84 @@
         <div class="row">
             <!-- Résultat -->
             <div class="col-xs-12 no-padding">
-                <div>Pseudo : {{name}}</div>
-                <div>Email : {{email}}</div>
+                <div>Email : {{email}}
+
+                </div>
+
             </div>
         </div>
+
         <div class="row">
-            <div class="col-xs-12 text-center">
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal4"  uib-tooltip="modifier" tooltip-placement="top" >
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-        </button>
+            <!-- Résultat -->
+            <div class="col-xs-12 no-padding">
+                <div>Pseudo : {{name}}
+                    <button type="button" class="btn btn-default"  ng-click="showme1=true;showme=flase" aria-label="Toggle ngShow">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                     </button>
+                </div>
+                <div class="check-element animate-show-hide" ng-show="showme1">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input type="text" ng-model="pseudo" class="form-control"  placeholder="pseudo">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-default"  >
+                        envoyer
+                    </button>
+
+                </div>
             </div>
         </div>
+
+
+        <div class="row">
+            <!-- Résultat -->
+            <div class="col-xs-12 no-padding">
+                <div>
+                    Modifier le mot de passe<button type="button" class="btn btn-default"  ng-click="showme=true;showme1=flase" aria-label="Toggle ngShow">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="check-element animate-show-hide" ng-show="showme">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input type="text" ng-model="password_" class="form-control"  placeholder="Mod de passe">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-default"  ng-click="modifier()" >
+                        envoyer
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
-<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -59,7 +122,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
 
