@@ -259,7 +259,7 @@ function addWorkshopInstanceImpl(req, res) {
 
 function addWorkshopEventImpl(req, res) {
     if (req.user) {
-        Events.createEvent(req.event, function (err, event) {
+        Events.createEvent(req.body, function (err, event) {
             User.findOneAndUpdate({username: req.user.username},
                 {
                     $push: {
@@ -350,22 +350,28 @@ function unauthgetFavoriteWorkshopsImpl(req, res, next) {
 
 function unauthaddWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
-    res.set('Access-Control-Allow-Origin','*');
     return addWorkshopInstanceImpl(req, res, next);
 }
 
 function unauthgetWorkshopInstanceImpl(req, res, next) {
     req.user = { username: req.body.username};
-    res.set('Access-Control-Allow-Origin','*');
     return getWorkshopInstanceImpl(req, res, next);
 }
 
 function unauthdeleteInstanceWorkshopImpl(req, res, next) {
     req.user = { username: req.params.username};
-    res.set('Access-Control-Allow-Origin','*');
     return deleteInstanceWorkshopImpl(req, res, next);
 }
 
+function unauthGetEventsImpl(req, res, next) {
+    req.user = { username: req.params.username};
+    return getEventsImpl(req, res, next);
+}
+
+function unauthPostEventImpl(req, res, next) {
+    req.user = { username: req.params.username};
+    return addWorkshopEventImpl(req, res, next);
+}
 module.exports = {
     /**
      * Create user
@@ -494,5 +500,7 @@ module.exports = {
 
     unauthdeleteFavoriteWorkshops: unauthdeleteFavoriteWorkshopsImpl,
 
-    unauthdeleteInstanceWorkshop: unauthdeleteInstanceWorkshopImpl
+    unauthdeleteInstanceWorkshop: unauthdeleteInstanceWorkshopImpl,
+    unauthPostEvent: unauthPostEventImpl,
+    unauthGetEvents: unauthGetEventsImpl
 };

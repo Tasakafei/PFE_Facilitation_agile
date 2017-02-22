@@ -17,6 +17,8 @@ router.delete('/favorites/:favoriteId', auth.ensureAuthenticated, users.deleteFa
 router.post('/instances', auth.ensureAuthenticated, users.addWorkshopInstance);
 router.get('/instances', auth.ensureAuthenticated, users.getWorkshopInstances);
 router.get('/instances/:instanceId', users.getWorkshopInstance);
+router.post('/events', auth.ensureAuthenticated, users.addWorkshopEvent);
+router.get('/events', auth.ensureAuthenticated, users.getEvents);
 router.delete('/instances/:instanceId', auth.ensureAuthenticated, users.deleteInstanceWorkshop);
 
 /*** TEMPORARY ROUTES (TO_DELETE WHEN ACCOUNTS ARE INTEGRATED TO THE TAB) ***/
@@ -27,5 +29,7 @@ router.get('/unauth/:username/instances', users.unauthgetWorkshopInstances);
 router.get('/unauth/:username/instances/:instanceId', users.unauthgetWorkshopInstance);
 router.delete('/unauth/:username/favorites/:favoriteId', users.unauthdeleteFavoriteWorkshops);
 router.delete('/unauth/:username/instances/:instanceId', users.unauthdeleteInstanceWorkshop);
+router.post('/unauth/:username/event/', users.unauthPostEvent);
+router.get('/unauth/:username/events/', users.unauthGetEvents);
 
 module.exports = router;

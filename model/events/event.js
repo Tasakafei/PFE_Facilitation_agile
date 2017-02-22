@@ -9,12 +9,15 @@ var mongoose = require('mongoose');
 var Event = mongoose.model('Event');
 
 function createEvent(event, callback) {
-    var tmp = new Event(event, data);
-    tmp.save(function(err) {
+    var tmp = new Event(event);
+    tmp.save(function(err, data) {
+        // console.log(data);
+        // console.error(err);
+        console.log(event);
         if (err) {
             callback(err)
         } else {
-            callback(null, data)
+            callback(null,data)
         }
     })
 }
