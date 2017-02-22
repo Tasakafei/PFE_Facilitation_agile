@@ -9,15 +9,19 @@
     <title>Serious Game</title>
 
     <!-- Notif -->
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/angular-notify-material.css" id="notifyTheme">
     <link rel="stylesheet" href="bower_components/flipclock/compiled/flipclock.css">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css" />
     <link rel="stylesheet" href="stylesheets/simple-sidebar.css" />
     <link rel="stylesheet" href="bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.min.css" />
     <link rel="stylesheet" href="stylesheets/myStyle.css" />
     <link rel="stylesheet" href="stylesheets/myTheme.css" />
     <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.css" rel="stylesheet">
+
     <!--<base href="/">-->
     <!--<link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css" />-->
   </head>
@@ -32,6 +36,11 @@
         <p>Serious game - 2016</p>
       </div>
     </div>
+    <script src="libraries/jquery.min.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="bower_components/fullcalendar/dist/gcal.js"></script>
+
     <script src="libraries/angular.min.js"></script>
     <script src="libraries/angular-route.min.js"></script>
     <script src="libraries/angular-sanitize.min.js"></script>
@@ -44,7 +53,18 @@
     <script src="bower_components/humanize-duration/humanize-duration.js"></script>
     <script src="bower_components/angularjs-humanize-duration/src/angular-humanize-duration.js"></script>
 
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+    <script src="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.js"></script>
+
     <script src="libraries/angular-timer.min.js"></script>
+
+    <script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="bower_components/fullcalendar/dist/gcal.js"></script>
+    <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+    <!--<script src="components/favorite_workshops/calendar/calendar.module.js"></script>-->
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+
 
     <script src="app.js"></script>
     <script src="main.controller.js"></script>
@@ -63,6 +83,7 @@
     <script src="components/services/account.user.factory.js"></script>
     <script src="components/services/tmpDataFactory.factory.js"></script>
     <script src="components/services/cloudinary.service.js"></script>
+    <script src="components/services/events.service.js"></script>
 
     <script src="components/catalogue/catalogue.controller.js"></script>
     <script src="components/workshop/workshop.controller.js"></script>
@@ -81,7 +102,7 @@
 
     <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
 
-    <script src="libraries/jquery.min.js"></script>
+    <script src="components/favorite_workshops/calendar/calendar.controller.js"></script>
     <!-- https://github.com/cheiron1990/angular-notify -->
     <script src="libraries/angular-notify.js"></script>
     <script src="libraries/bootstrap.js"></script>
@@ -95,11 +116,6 @@
     <script src="libraries/socket.io.min.js"></script>
     <script src="components/services/socketio.service.js"></script>
 
-
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
-    <script src="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.js"></script>
-    <link href="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.css" rel="stylesheet">
 
 
 

@@ -64,12 +64,9 @@ var WorkshopInstanceSchema = new Schema({
     author: {type: String, default:null},
     participants_profil: [String],
     workshopId: { type: Schema.ObjectId, ref: 'Workshop', required: true },
-    user_dateC:{type: String,default:null},
-    user_groupC:{type:String,default:null},
-    user_heureC:{type:String,default:null}
-
-
-},
+    begin_at:{type: Date, required: true},
+    group:{type:String, required: true}
+    },
 {
     toJSON: {
         virtuals:true

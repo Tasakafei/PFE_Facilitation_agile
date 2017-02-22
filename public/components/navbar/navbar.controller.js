@@ -51,19 +51,15 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 $('#myModal').modal('hide');
 
                 if (!err) {
-                    //$location.path('/');
-
                     $scope.$emit('notify', {
                         type: 'success',
                         title: 'Vous avez bien été connecté !'
                     });
-
                     //Redirection with notif
                     var url = window.location.href;
                     var url2 = url.split("catalogue");
                     window.location.replace(url2[0]);
                     window.location.replace(url);
-
                 } else {
                     angular.forEach(err.errors, function(error, field) {
                         console.error("ERROR : " + error + " : "+ field);

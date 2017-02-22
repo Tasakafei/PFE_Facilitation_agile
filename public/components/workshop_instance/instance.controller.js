@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('instanceCtrl', function (LabelsService, $scope, FavoriteWorkshops, $routeParams, $http, socket, Auth, $location) {
+app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $routeParams, $http, socket, Auth, $location) {
 
     /**
      * Remove the workshop from the user's instances
@@ -45,7 +45,7 @@ app.controller('instanceCtrl', function (LabelsService, $scope, FavoriteWorkshop
         });
     }
 
-    FavoriteWorkshops.getWorkshopInstance(currentId).then(function (dataResponse) {
+    EventsService.getWorkshopInstance(currentId).then(function (dataResponse) {
         $scope.workshopInstance = dataResponse.data.data;
 
         var timingArray = $scope.workshopInstance.steps.map(function(step, index){

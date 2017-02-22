@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('instancesCtrl', function (LabelsService, $scope, FavoriteWorkshops) {
+app.controller('instancesCtrl', function (LabelsService, $scope, EventsService) {
 
     $scope.instances = [];
 
@@ -23,7 +23,7 @@ app.controller('instancesCtrl', function (LabelsService, $scope, FavoriteWorksho
      * Put in $scope.instances the instances workshops to display
      */
     function getWorkshopsInstances() {
-        FavoriteWorkshops.getInstancesWorkshop()
+        EventsService.getInstancesWorkshop()
             .success(function(data) {
             $scope.instances = data;
             })

@@ -136,14 +136,12 @@ function getEventsImpl(req, res) {
         User.findOne({ username: req.user.username})
             .populate({
                 path: 'workshops_instances',
-                match: { begin_at: {$gte: today}},
                 options: {
                     sort: {begin_at: 'desc'}
                 }
             })
             .populate({
                 path: 'workshops_events',
-                match: { begin_at: {$gte: today}},
                 options: {
                     sort: {begin_at: 'desc'}
                 }
@@ -165,9 +163,9 @@ function getEventsImpl(req, res) {
 function addWorkshopInstanceImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshopId;
-    var user_dateC = req.body.user_date;
-    var user_groupC = req.body.user_group;
-    var user_heureC=req.body.user_heure;
+    var tokens = req.body.user_date.split("-").concat(req.body.user_heure.split(":"));
+    var begin_at_date = new Date(parseInt(tokens[0],10), parseInt(tokens[1],10) - 1, parseInt(tokens[2],10), parseInt(tokens[3],10)+1, parseInt(tokens[4],10));
+    var group = req.body.user_group;
     if (!user) {
         res.status("404").json({status: "error", data: "NOT_FOUND"});
     } else {
@@ -223,9 +221,8 @@ function addWorkshopInstanceImpl(req, res) {
                             instance.participants_profil = workshop.content.participants_profil;
                             instance.preparation_time = workshop.preparation_time;
                             instance.public_targeted = workshop.public_targeted;
-                            instance.user_dateC=user_dateC;
-                            instance.user_groupC=user_groupC;
-                            instance.user_heureC=user_heureC;
+                            instance.begin_at = begin_at_date;
+                            instance.group = group;
                             instance.save();
                             workshop.instances.push(instance._id);
                             workshop.save();
