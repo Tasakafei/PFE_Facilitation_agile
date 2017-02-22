@@ -22,27 +22,29 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
             events.data.forEach(function (event) {
                 var end = new Date(event.begin_at);
                 end.setMinutes(end.getMinutes() + event.duration);
-                console.log(event);
                 var color;
                 if (event.workshopId) {
                     color = "green";
                 }
-                $scope.workshopEvents.push({title: event.title, start: new Date(event.begin_at), end: end, color: color});
+                $scope.workshopEvents.push({_id: event._id, title: event.title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration});
             });
         });
 
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
-        console.log("HOOOOOOOO");
-        console.log(date.title + ' was clicked ');
     };
+
     /* alert on Drop */
     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
-        console.log('Event Droped to make dayDelta ' + delta);
+        var elem = {begin_at: event.start._d};
+        EventsService.updateWorkshopInstance(event._id,elem);
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-        console.log('Event Resized to make dayDelta ' + delta);
+        var newDuration = event.duration + delta/60000;
+        var elem = {duration: newDuration};
+        event.duration = newDuration;
+        EventsService.updateWorkshopInstance(event._id,elem);
     };
 
     $scope.addEvent = function(event) {
@@ -74,8 +76,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     $scope.addNewEvent = function (date) {
         $scope.newEvent = {};
         var tmp = date._d;
-        console.log(""+tmp.getHours()+":"+tmp.getMinutes());
-        $scope.newEvent.hours_begin_at = ""+tmp.getHours()+":"+tmp.getMinutes();
+        $scope.newEvent.hours_begin_at = ""+(tmp.getHours()-1)+":"+tmp.getMinutes();
         $scope.newEvent.begin_at = tmp;
         $('#newEventModal').modal('show');
     };
@@ -103,9 +104,9 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     $scope.uiConfig = {
         calendar:{
             height: 450,
-            editable: false,
+            editable: true,
             header:{
-                left: 'agendaMonth agendaWeek agendaDay',
+                left: 'month agendaWeek agendaDay',
                 center: 'title',
                 right: 'today prev,next'
             },

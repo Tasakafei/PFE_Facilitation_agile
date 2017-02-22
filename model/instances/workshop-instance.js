@@ -44,7 +44,7 @@ function addFeedbackImpl (workshopInstanceId, feedback, user, photos) {
     })
 }
 
-function removeInstance(id) {
+function removeInstanceImpl(id) {
     return new Promise(function (resolve, reject) {
         var object = ObjectId(id);
         WorkshopInstance.findOne(object, function (req, res) {
@@ -61,7 +61,24 @@ function removeInstance(id) {
         });
     })
 }
+
+function updateInstanceImpl(id, data) {
+    return new Promise(function (resolve, reject) {
+        WorkshopInstance.update(
+            {_id : ObjectId(id)},
+            data,
+            {safe: true, multi: false},
+            function (err, instanceUpdated) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(instanceUpdated);
+                }
+            });
+    });
+}
 module.exports = {
     addFeedback: addFeedbackImpl,
-    removeInstance: removeInstance
+    removeInstance: removeInstanceImpl,
+    updateInstance: updateInstanceImpl
 };

@@ -167,8 +167,6 @@ function getEventsImpl(req, res) {
                     res.json({status:"error", data: "Failed to populate User " + user.username});
                 } else {
                     var agenda = userData.workshops_events.concat(userData.workshops_instances);
-                    console.log("CONCATENATION DES EVENEMENTS => RESULTAT :");
-                    console.log(agenda);
                     res.json({status: "success", data: agenda})
                 }
             })
@@ -338,49 +336,15 @@ function deleteInstanceWorkshopImpl(req, res) {
     });
 }
 
-function unauthdeleteFavoriteWorkshopsImpl(req, res, next) {
-    req.user = { username: req.params.username};
-    return deleteFavoriteWorkshopsImpl(req, res, next);
-}
-function unauthgetWorkshopInstancesImpl(req, res, next) {
-    req.user = { username: req.params.username};
-    return getWorkshopInstancesImpl(req, res, next);
-}
-
-function unauthaddToFavoriteWorkshopsImpl(req, res, next) {
-    req.user = { username: req.body.username};
-    return addToFavoriteWorkshopsImpl(req, res, next);
+function updateWorkshopInstanceImpl(req, res) {
+    WorkshopInstances.updateInstance(req.params.instanceId, req.body).then(function(data) {
+        res.json({status: "success", data: data});
+    }, function (err) {
+        console.error(err);
+        res.json({status:"error", data: "success"})
+    });
 }
 
-function unauthgetFavoriteWorkshopsImpl(req, res, next) {
-    req.user = { username: req.params.username};
-    return getFavoriteWorkshopsImpl(req, res, next);
-}
-
-function unauthaddWorkshopInstanceImpl(req, res, next) {
-    req.user = { username: req.body.username};
-    return addWorkshopInstanceImpl(req, res, next);
-}
-
-function unauthgetWorkshopInstanceImpl(req, res, next) {
-    req.user = { username: req.body.username};
-    return getWorkshopInstanceImpl(req, res, next);
-}
-
-function unauthdeleteInstanceWorkshopImpl(req, res, next) {
-    req.user = { username: req.params.username};
-    return deleteInstanceWorkshopImpl(req, res, next);
-}
-
-function unauthGetEventsImpl(req, res, next) {
-    req.user = { username: req.params.username};
-    return getEventsImpl(req, res, next);
-}
-
-function unauthPostEventImpl(req, res, next) {
-    req.user = { username: req.params.username};
-    return addWorkshopEventImpl(req, res, next);
-}
 module.exports = {
     /**
      * Create user
@@ -498,19 +462,5 @@ module.exports = {
      */
     deleteInstanceWorkshop: deleteInstanceWorkshopImpl,
 
-    unauthgetWorkshopInstances: unauthgetWorkshopInstancesImpl,
-
-    unauthaddToFavoriteWorkshops: unauthaddToFavoriteWorkshopsImpl,
-
-    unauthgetFavoriteWorkshops: unauthgetFavoriteWorkshopsImpl,
-
-    unauthaddWorkshopInstance: unauthaddWorkshopInstanceImpl,
-
-    unauthgetWorkshopInstance: unauthgetWorkshopInstanceImpl,
-
-    unauthdeleteFavoriteWorkshops: unauthdeleteFavoriteWorkshopsImpl,
-
-    unauthdeleteInstanceWorkshop: unauthdeleteInstanceWorkshopImpl,
-    unauthPostEvent: unauthPostEventImpl,
-    unauthGetEvents: unauthGetEventsImpl
+    updateWorkshopInstance: updateWorkshopInstanceImpl
 };

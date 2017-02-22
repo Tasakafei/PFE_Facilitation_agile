@@ -55,9 +55,20 @@ app.service('EventsService', function ($http) {
             data: { workshopId: workshop }
         };
         return $http(req);
-
     };
 
+    this.updateWorkshopInstance = function(id, instance) {
+        var req = {
+            method: 'PUT',
+            url: '/users/instances/'+id,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: instance
+        };
+        return $http(req);
+
+    };
     this.addEvent = function(event) {
         var req = {
             method: 'POST',
@@ -69,6 +80,7 @@ app.service('EventsService', function ($http) {
         };
         return $http(req);
     };
+
 
     this.addFeedbackToInstance = function(feedback, instanceId) {
         var req = {
