@@ -17,6 +17,6 @@ router.get('/clean', function (req, res, next) {
     mongoose.model("Event").collection.drop();
     mongoose.model("User").collection.drop();
     mongoose.model("WorkshopInstance").collection.drop();
-    res.json("OK");
+    res.json("Sauvage a cassé la DB, les données ont été supprimées");
 });
 module.exports = router;
