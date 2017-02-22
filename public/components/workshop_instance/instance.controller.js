@@ -37,14 +37,6 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
     var currentId = $routeParams.idInstance;
     $scope.workshopInstance = "";
 
-    if (!Auth.isConnected()) {
-        $location.path("/");
-        $scope.$emit('notify', {
-            type: 'error',
-            title: 'Vous n\'avez pas les autorisations d\'accéder à cette page'
-        });
-    }
-
     EventsService.getWorkshopInstance(currentId).then(function (dataResponse) {
         $scope.workshopInstance = dataResponse.data.data;
 
