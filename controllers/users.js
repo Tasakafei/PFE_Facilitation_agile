@@ -357,7 +357,7 @@ module.exports = {
      * @method
      */
     create: createImpl,
-    changePassword:updateUserImp,
+    update:updateUserImp,
 
     /**
      *  Show profile
