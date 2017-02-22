@@ -2,3 +2,52 @@
     <menu></menu>
     <div ui-calendar="uiConfig.calendar" id="calendar" class="span8 calendar" ng-model="eventSources" calendar="calendar"></div>
 </div>
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+<!-- Modal -->
+<div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Rajouter un nouvel événement standard</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal col-xs-10 col-xs-offset-1" >
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Titre *</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Pause, Introduction, Ice breaker, ..." ng-model="newEvent.title" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Infos supplémentaires ?" ng-model="newEvent.title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Heure début *</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" ng-model="newEvent.hours_begin_at" placeholder="8:40" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Heure fin *</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" ng-model="newEvent.hours_end_at" placeholder="9:00" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" ng-click="validateEvent()">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+</div>

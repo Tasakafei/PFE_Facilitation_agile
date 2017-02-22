@@ -59,20 +59,13 @@ app.service('EventsService', function ($http) {
     };
 
     this.addEvent = function(event) {
-        var test = {
-            title: "Sauvage",
-            photo : "https://pfe-facilitation.herokuapp.com/img/sauvage.jpg",
-            description: "Coucou sauvage",
-            duration: "30",
-            begin_at: Date.now()
-        };
         var req = {
             method: 'POST',
-            url: '/users/instances',
+            url: '/users/events',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: test
+            data: event
         };
         return $http(req);
     };

@@ -11,10 +11,10 @@ var Event = mongoose.model('Event');
 function createEvent(event, callback) {
     var tmp = new Event(event);
     tmp.save(function(err, data) {
-        // console.log(data);
-        // console.error(err);
         console.log(event);
         if (err) {
+            console.log("ERROR");
+            console.log(err);
             callback(err)
         } else {
             callback(null,data)
