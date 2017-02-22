@@ -327,24 +327,20 @@ function deleteInstanceWorkshopImpl(req, res) {
 
 function unauthdeleteFavoriteWorkshopsImpl(req, res, next) {
     req.user = { username: req.params.username};
-    res.set('Access-Control-Allow-Origin','*');
     return deleteFavoriteWorkshopsImpl(req, res, next);
 }
 function unauthgetWorkshopInstancesImpl(req, res, next) {
     req.user = { username: req.params.username};
-    res.set('Access-Control-Allow-Origin','*');
     return getWorkshopInstancesImpl(req, res, next);
 }
 
 function unauthaddToFavoriteWorkshopsImpl(req, res, next) {
     req.user = { username: req.body.username};
-    res.set('Access-Control-Allow-Origin','*');
     return addToFavoriteWorkshopsImpl(req, res, next);
 }
 
 function unauthgetFavoriteWorkshopsImpl(req, res, next) {
     req.user = { username: req.params.username};
-    res.set('Access-Control-Allow-Origin','*');
     return getFavoriteWorkshopsImpl(req, res, next);
 }
 

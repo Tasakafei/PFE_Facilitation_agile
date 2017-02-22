@@ -13,7 +13,6 @@ var mongoose = require('mongoose'),
  * returns info on authenticated user
  */
 exports.session = function (req, res) {
-    res.header('Access-Control-Allow-Origin','*');
     res.json(req.user.user_info);
 };
 
@@ -24,10 +23,8 @@ exports.session = function (req, res) {
 exports.logout = function (req, res) {
     if(req.user) {
         req.logout();
-        res.set('Access-Control-Allow-Origin','*');
         res.send(200);
     } else {
-        res.set('Access-Control-Allow-Origin','*');
         res.status(400).send("Not logged in");
     }
 };
@@ -41,14 +38,12 @@ exports.login = function (req, res, next) {
         var error = err || info;
         if (error) {
             console.error(error);
-            res.header('Access-Control-Allow-Origin','*');
             return res.json(400, error);
         }
         req.logIn(user, function(err) {
             if (err) {
                 return res.send(err);
             }
-            res.header('Access-Control-Allow-Origin','*');
             res.json(req.user.user_info);
         });
     })(req, res, next);

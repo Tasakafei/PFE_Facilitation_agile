@@ -133,57 +133,39 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Saisir le groupe,la date et l'heure </h4>
+                <h4 class="modal-title" id="myModalLabel">Ajouter à mon agenda</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <form class="form-horizontal col-xs-10 col-xs-offset-1" >
-
                         <div class="form-group">
-
+                            <label class="col-sm-3 control-label">Avec qui</label>
                             <div class="col-sm-9">
-                                <label class="col-sm-3 control-label">Avec qui </label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="Avec qui ..." ng-model="user_gr">
-                                </div>
+                                <input type="text" class="form-control" placeholder="Nom du groupe, entreprise, promotion, ..." ng-model="user_gr">
                             </div>
-                            <br>
-
-                            <div class="col-sm-9">
-                                <label class="col-sm-3 control-label">Date prévue </label>
-
-                                <div class="col-sm-9"
-                                     moment-picker="ctrl.datepicker"
-                                     moment-picker="ctrl.locale" locale="fr"
-                                     format="YYYY-MM-DD">
-                                    <input type= "text" class="form-control"
-                                           placeholder="Select a date"
-                                           ng-model="ctrl.datepicker"
-                                           ng-model-options="{ updateOn: 'blur' }"
-
-                                    >
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <label class="col-sm-3 control-label">Heure prévue </label>
-
-                                <div class="col-sm-9"
-                                     moment-picker="ctrl.timepicker"
-                                     moment-picker="ctrl.locale" locale="fr"
-                                     format="HH:mm">
-                                    <input class="form-control"
-                                           placeholder="Select a time"
-                                           ng-model="ctrl.timepicker"
-                                           ng-model-options="{ updateOn: 'blur' }">
-                                </div>
-                            </div>
-
-
                         </div>
                         <div class="form-group">
-
+                            <label class="col-sm-3 control-label">Date prévue</label>
+                            <div class="col-sm-9"
+                                 moment-picker="ctrl.datepicker"
+                                 moment-picker="ctrl.locale" locale="fr"
+                                 format="YYYY-MM-DD">
+                                <input type= "text" class="form-control"
+                                       placeholder="Sélectionnez une date"
+                                       ng-model="ctrl.datepicker"
+                                       ng-model-options="{ updateOn: 'blur' }"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Heure prévue</label>
                             <div class="col-sm-9">
-                                <button type="button" class="btn btn-default " ng-click="addToInstances()"> ajouter l'atelier</button>
+                                <input type="time" class="form-control" ng-model="inputTime">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12 text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addToInstances()">Ajouter l'atelier</button>
                             </div>
                         </div>
                     </form>
