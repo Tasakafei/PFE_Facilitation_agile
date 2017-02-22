@@ -38,9 +38,11 @@
     <div id="commentaires" class="col-xs-12 col-md-8 no-padding">
         <h4>Les commentaires
             </h4>
-        <button id="button-facilitators" type="button" class="btn btn-default active" ng-click="focusFeedback('facilitators')">Facilitateurs</button>
-        <button id="button-participants" type="button" class="btn btn-default active" ng-click="focusFeedback('participants')">Participants</button>
-        <br /><br />
+        <span ng-hide="!workshopInstance.feedbacks.participants[0].comment && !workshopInstance.feedbacks.facilitators[0].comment">
+            <button id="button-facilitators" type="button" class="btn btn-default active" ng-click="focusFeedback('facilitators')">Facilitateurs</button>
+            <button id="button-participants" type="button" class="btn btn-default active" ng-click="focusFeedback('participants')">Participants</button>
+         <br /><br />
+        </span>
         <div class="feedback-participants" ng-repeat="participants in workshopInstance.feedbacks.participants">
             <div class="thumbnail" ng-if="participants.comment">
                 <div class="col-xs-6">
