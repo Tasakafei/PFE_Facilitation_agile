@@ -10,6 +10,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     var m = date.getMonth();
     var y = date.getFullYear();
 
+    $scope.newEvent = {};
     $scope.events = [];
     /** Récupération des événements **/
     EventsService.getEvents()
@@ -35,13 +36,8 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         console.log('Event Resized to make dayDelta ' + delta);
     };
 
-    $scope.addEvent = function() {
-        $scope.events.push({
-            title: 'Open Sesame',
-            start: new Date(y, m, 28),
-            end: new Date(y, m, 29),
-            className: ['openSesame']
-        });
+    $scope.addEvent = function(event) {
+        $scope.events.push(event);
     };
     /* remove event */
     $scope.remove = function(index) {
@@ -65,11 +61,38 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         $compile(element)($scope);
     };
 
+    /** When you click on an empty space **/
+    $scope.addNewEvent = function (date) {
+        var tmp = date._d;
+        console.log(""+tmp.getHours()+":"+tmp.getMinutes());
+        $scope.newEvent.hours_begin_at = ""+tmp.getHours()+":"+tmp.getMinutes();
+        $scope.newEvent.begin_at = tmp;
+        $('#newEventModal').modal('show');
+    };
+
+    $scope.validateEvent = function () {
+        var begin = $scope.newEvent.hours_begin_at.split(":");
+        $scope.newEvent.begin_at.setHours(begin[0]);
+        $scope.newEvent.begin_at.setMinutes(begin[1]);
+        var end =$scope.newEvent.hours_end_at.split(":");
+        var duration = (parseInt(end[0],10) * 60 + parseInt(end[1],10)) - (parseInt(begin[0],10)*60 +parseInt(begin[1],10));
+        var event = {
+            title: $scope.newEvent.title,
+            description: $scope.newEvent.description,
+            duration: duration,
+            begin_at: $scope.newEvent.begin_at
+        };
+        var end_at_date = new Date(event.begin_at);
+        end_at_date.setMinutes(end_at_date.getMinutes() + event.duration);
+        EventsService.addEvent(event);
+        $scope.addEvent({title: event.title, start: event.begin_at, end: end_at_date});
+        $('#newEventModal').modal('hide');
+    };
     /* config object */
     $scope.uiConfig = {
         calendar:{
             height: 450,
-            editable: false,
+            editable: true,
             header:{
                 left: 'agendaWeek agendaDay',
                 center: 'title',
@@ -78,7 +101,8 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
             eventClick: $scope.alertOnEventClick,
             eventDrop: $scope.alertOnDrop,
             eventResize: $scope.alertOnResize,
-            eventRender: $scope.eventRender
+            eventRender: $scope.eventRender,
+            dayClick: $scope.addNewEvent
         }
     };
 
