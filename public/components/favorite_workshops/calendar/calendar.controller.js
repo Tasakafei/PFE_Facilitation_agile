@@ -26,7 +26,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
                 if (event.workshopId) {
                     color = "green";
                 }
-                $scope.workshopEvents.push({_id: event._id, title: event.title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration});
+                $scope.workshopEvents.push({_id: event._id, title: "["+event.group+"]"+event.title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration});
             });
         });
 

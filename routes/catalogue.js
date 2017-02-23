@@ -13,5 +13,4 @@ router.get('/:id', catalogueController.getWorkshop);
 /** DELETE a specific workshop **/
 router.delete('/:id', catalogueController.removeWorkshop);
 
-
 module.exports = router;
