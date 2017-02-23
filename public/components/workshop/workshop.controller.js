@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('workshopCtrl', function (LabelsService, $scope, CatalogueDataProvider, FavoriteWorkshops, $routeParams, $http) {
+app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $scope, CatalogueDataProvider, FavoriteWorkshops, $routeParams, $http) {
 
     // Local vars
     var currentId = $routeParams.catalogueId;
@@ -178,17 +178,22 @@ app.controller('workshopCtrl', function (LabelsService, $scope, CatalogueDataPro
 
     function deleteWorkshop() {
         var res = $http.delete('/api/v1/catalogue/'+currentId);
-        res.success(function(data, status, headers, config) {
+
+        res.success(function() {
 
             $scope.$emit('notify', {
                 type: 'success',
-                title: 'L\'atelier a bien été supprimé.',
+                title: 'L\'atelier a bien été supprimé.'
             });
 
             //Redirection
-            var url = window.location.href;
-            url = url.split("catalogue");
-            window.location.replace(url[0]+'catalogue');
+            //var url = window.location.href;
+            //url = url.split("catalogue");
+            $timeout(function() {
+                $location.path('/');
+            }, 100);
+
+            //window.location.replace(url[0]+'catalogue');
 
         });
         res.error(function(data, status, headers, config) {
