@@ -87,8 +87,8 @@ app.run(function ($rootScope, $location, Auth) {
     });
 
     // On catching 401 errors, redirect to the login page.
-    $rootScope.$on('event:auth-loginRequired', function() {
-        $location.path('/');
-        return false;
-    });
+    // $rootScope.$on('event:auth-loginRequired', function() {
+    //     $location.path('/');
+    //     return false;
+    // });
 });
