@@ -17,6 +17,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         events: []
     };
 
+
     var retrieveAllEvents = function () {
         $scope.workshopEvents = [];
         EventsService.getEvents()
