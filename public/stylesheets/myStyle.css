@@ -316,6 +316,25 @@ div#timer {
     font-size: 40px;
 }
 
+#timer .progress-wrapper{
+    position: relative;
+    margin: auto;
+    font-size: 21px;
+}
+
+#timer .progress{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 9em;
+    font-size:1em;
+    text-align: center;
+    font-weight: 100;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 #delete-instance {
     position: relative;
     top: -40px;

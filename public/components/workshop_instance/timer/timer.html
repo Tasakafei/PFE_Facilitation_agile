@@ -1,19 +1,11 @@
 <div>
-    <!--{{humanizeDurationTimer(countDown,'s')}} -->
-    <!--
-    <br />
-    <button ng-click="startTimer(30)">Start your timer bro</button>
-    <button ng-click="resetTimer()">Stop the timer dude</button>
-    <button ng-click="pauseTimer()">Pause the timer pal</button>
-    <button ng-click="resumeTimer()">Resume the timer fella</button>
-    <button ng-click="resetTimer()">Reset the timer nigga</button>
-    <br />
-    <button ng-click="joinRoom()">Connect to room</button>
-    <button ng-click="leaveRoom()">Leave room</button>
-    -->
     <a href="" ng-click="focusTimer()">
         <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
-        <div class="clock" style="margin:2em;"></div>
+        <div class="progress-wrapper">
+            <div class="progress">
+                {{humanizeDurationTimer(countDown,'s')}}
+            </div>
+            <round-progress max="lastTimeAmount" current="countDown" clockwise="false" color="#2c3e50" class="text-center"></round-progress>
+        </div>
     </a>
-
 </div>

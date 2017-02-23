@@ -14,7 +14,8 @@ var app = angular.module('facilitation', [
     'facilitation.qrcode',
     'moment-picker',
     'ui.calendar',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angular-svg-round-progress'
 ]);
 
 app.config(function($routeProvider) {
