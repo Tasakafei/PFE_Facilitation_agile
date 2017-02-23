@@ -7,7 +7,10 @@ var app = angular.module('facilitation');
 
 app.controller('timerCtrl', function($scope, $interval, socket){
 
-    var clock;
+    var ispaused;
+    var timer;
+
+    $scope.countDown = 0;
 
     /**
      * Zoom on the timer
@@ -94,77 +97,42 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         stopSound();
     });
 
-    //Timer
-    $(document).ready(function() {
-
-        // Instantiate a counter
-        clock = new FlipClock($('.clock'), 0, {
-            clockFace: 'MinuteCounter',
-            autoStart: false,
-            countdown: true,
-            language: "french"
-        });
-
-    });
-
-
     //var timer, ispaused = false;
     $scope.startTimer = function (timeAmount) {
-        /*
         ispaused = false;
         if(angular.isDefined(timer)) return;
         $scope.countDown = timeAmount;
         $scope.lastTimeAmount = timeAmount;
         runTimer();
-        */
-
-        //Init and start timer
-        clock.setTime(timeAmount);
-        clock.start();
     };
 
     $scope.pauseTimer = function () {
-        /*
         ispaused = true;
         stopTimer();
-        */
-        clock.stop();
     };
 
     $scope.resumeTimer = function(){
-        /*
         if(!ispaused) return;
         ispaused = false;
         runTimer();
-        */
-        clock.start();
     };
 
     $scope.resetTimer = function(){
-        /*
         ispaused = false;
         stopTimer();
         $scope.countDown = $scope.lastTimeAmount;
-        */
-        clock.reset();
     };
 
     $scope.restartTimer = function (timeAmount) {
-        /*
         stopTimer();
         if(timeAmount < 0) timeAmount = 0;
         $scope.startTimer(timeAmount);
-        */
-        //clock.stop();
-        //clock.reset();
-        clock.setTime(timeAmount);
     };
 
-    /*
+
     function runTimer(){
         timer = $interval(function(){
             $scope.countDown--;
-            clock.setTime($scope.countDown);
             if($scope.countDown <= 0){
                 $scope.countDown = 0;
                 stopTimer();
@@ -179,9 +147,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             timer = undefined;
         }
     };
-     */
 
-    /*
     $scope.humanizeDurationTimer = function(input, units) {
         // units is a string with possible values of y, M, w, d, h, m, s, ms
         if (input == 0) {
@@ -201,7 +167,6 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             return duration.format(format);
         }
     };
-    */
 
     var audio;
     function startSound() {
@@ -219,11 +184,11 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('#buttons').hide();
             $('#commentaires').hide();
             $('#photos').hide();
-            $('.clock').css("zoom", "250%");
-            $('.clock').css("-moz-transform", "scale(2.50)");
-            $('.clock').css("-moz-transform-origin", "top left");
+            $('.progress-wrapper').css("zoom", "200%");
+            $('.progress-wrapper').css("-moz-transform", "scale(2)");
+            $('.progress-wrapper').css("-moz-transform-origin", "50% 0%");
             $('#timer').removeClass('col-md-6');
-            $('#timer').addClass('col-md-12 col-md-offset-1');
+            $('#timer').addClass('col-md-12');
 
             $('#timer .glyphicon').removeClass('glyphicon-resize-full');
             $('#timer .glyphicon').addClass('glyphicon-resize-small');
@@ -232,10 +197,10 @@ app.controller('timerCtrl', function($scope, $interval, socket){
 
             boolean = false;
         } else {
-            $('#timer').removeClass('col-md-12 col-md-offset-1');
+            $('#timer').removeClass('col-md-12');
             $('#timer').addClass('col-md-6');
-            $('.clock').css("zoom", "100%");
-            $('.clock').css("-moz-transform", "scale(1)");
+            $('.progress-wrapper').css("zoom", "100%");
+            $('.progress-wrapper').css("-moz-transform", "scale(1)");
             $('#buttons').show()
             $('#commentaires').show();
             $('#photos').show();
