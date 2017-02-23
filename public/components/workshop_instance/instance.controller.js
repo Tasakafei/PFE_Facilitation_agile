@@ -92,6 +92,10 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
     $scope.updateInstance = function () {
         EventsService.updateWorkshopInstance($scope.workshopInstance._id, $scope.workshopInstance);
         $scope.setEdition("");
+        $scope.$emit('notify', {
+            type: 'success',
+            title: 'Atelier mis à jour'
+        });
     };
     EventsService.getWorkshopInstance(currentId).then(function (dataResponse) {
         $scope.workshopInstance = dataResponse.data.data;
