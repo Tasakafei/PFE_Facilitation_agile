@@ -11,6 +11,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
     var timer;
 
     $scope.countDown = 0;
+    $scope.instructions = "";
 
     /**
      * Zoom on the timer
@@ -51,8 +52,9 @@ app.controller('timerCtrl', function($scope, $interval, socket){
     /**
      * Dispatch the order to LAUNCH the timer
      */
-    socket.on('start_timer', function(duration){
-        $scope.startTimer(duration);
+    socket.on('start_timer', function(timerInfo){
+        $scope.startTimer(timerInfo.duration);
+        $scope.instructionsDescription = timerInfo.instructionsDescription;
     });
 
     /**
@@ -187,31 +189,49 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('.progress-wrapper').css("zoom", "200%");
             $('.progress-wrapper').css("-moz-transform", "scale(2)");
             $('.progress-wrapper').css("-moz-transform-origin", "50% 0%");
-            $('#timer').removeClass('col-md-6');
-            $('#timer').addClass('col-md-12');
 
-            $('#timer .glyphicon').removeClass('glyphicon-resize-full');
-            $('#timer .glyphicon').addClass('glyphicon-resize-small');
+            $('#timer-in').removeClass('col-md-4');
+            $('#timer-in').addClass('col-md-5');
+            $('#instructions-in').removeClass('col-md-8');
+            $('#instructions-in').addClass('col-md-7');
+
+            $('#timer #resize').removeClass('glyphicon-resize-full');
+            $('#timer #resize').addClass('glyphicon-resize-small');
+
+            $('#timer #close').css("display", "block");
 
             $('#timer > h4').css("display", "none");
 
+            $('#instructions-in .instructions').css("font-size", "18px");
+
+            $('')
+
             boolean = false;
         } else {
-            $('#timer').removeClass('col-md-12');
-            $('#timer').addClass('col-md-6');
+
+            $('#timer-in').addClass('col-md-12');
+            $('#timer-in').removeClass('col-md-5');
+            $('#timer-in').addClass('col-md-4');
+            $('#instructions-in').removeClass('col-md-7');
+            $('#instructions-in').addClass('col-md-8');
+
             $('.progress-wrapper').css("zoom", "100%");
             $('.progress-wrapper').css("-moz-transform", "scale(1)");
             $('#buttons').show()
             $('#commentaires').show();
             $('#photos').show();
 
-            $('#timer .glyphicon').removeClass('glyphicon-resize-small');
-            $('#timer .glyphicon').addClass('glyphicon-resize-full');
+            $('#timer #resize').removeClass('glyphicon-resize-small');
+            $('#timer #resize').addClass('glyphicon-resize-full');
+
+            $('#timer #close').css("display", "none");
 
             $('#timer > h4').css("display", "block");
+
+            $('#instructions-in .instructions').css("font-size", "14px");
+            $('#instructions-in').css("display", "block");
 
             boolean = true;
         }
     }
-
 });
