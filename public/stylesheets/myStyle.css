@@ -299,13 +299,18 @@ div#timer {
 #timer .glyphicon-resize-full {
     position: absolute;
     top: 50px;
-    left: 360px;
 }
 
 #timer .glyphicon-resize-small {
     position: absolute;
-    top: 0px;
-    left: 900px;
+    top: 50px;
+    left: 0px;
+}
+
+#timer span#close {
+    position: absolute;
+    top: 12px;
+    left: 103px;
 }
 
 #timer .glyphicon-resize-full:before {

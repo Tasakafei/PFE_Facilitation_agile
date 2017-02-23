@@ -1,11 +1,18 @@
-<div>
-    <a href="" ng-click="focusTimer()">
-        <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+<a href="" ng-click="focusTimer()">
+    <div id="timer-in" class="col-md-4 col-xs-12 no-padding">
+        <h4 style="margin-bottom: 40px">Chronomètre</h4>
+        <span id="resize" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
         <div class="progress-wrapper">
             <div class="progress">
                 {{humanizeDurationTimer(countDown,'s')}}
             </div>
             <round-progress max="lastTimeAmount" current="countDown" clockwise="false" color="#2c3e50" class="text-center"></round-progress>
         </div>
-    </a>
-</div>
+    </div>
+
+    <div id="instructions-in" class="col-md-8 col-xs-12 no-padding">
+        <h4 style="margin-bottom: 40px">Instructions</h4>
+         <div class="instructions" ng-if="instructionsDescription" ng-bind-html="instructionsDescription"></div>
+        <div class="instructions" ng-if="!instructionsDescription">Pas encore d'instructions</div>
+    </div>
+</a>
