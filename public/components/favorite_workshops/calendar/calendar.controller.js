@@ -23,10 +23,14 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
                 var end = new Date(event.begin_at);
                 end.setMinutes(end.getMinutes() + event.duration);
                 var color;
+                var url;
                 if (event.workshopId) {
                     color = "green";
+                    url = "http://"+window.location.host+"/#/instances/"+event._id;
+
+                    console.log(url);
                 }
-                $scope.workshopEvents.push({_id: event._id, title: "["+event.group+"]"+event.title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration});
+                $scope.workshopEvents.push({_id: event._id, title: "["+event.group+"]"+event.title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration, url:url});
             });
         });
 
