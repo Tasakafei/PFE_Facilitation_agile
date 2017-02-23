@@ -51,7 +51,6 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
             EventsService.updateWorkshopInstance(event._id,elem);
         } else {
             EventsService.updateEvent(event._id, elem);
-            console.log("yo");
         }
     };
     /* alert on Resize */
@@ -60,7 +59,8 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         var elem = {duration: newDuration};
         event.duration = newDuration;
         if (event.type === "workshop") {
-            EventsService.updateWorkshopInstance(event._id,elem);
+            revertFunc();
+            // EventsService.updateWorkshopInstance(event._id,elem);
         } else {
             EventsService.updateEvent(event._id, elem);
         }
