@@ -118,6 +118,10 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         $('#newEventModal').modal('hide');
         $scope.newEvent = {};
         retrieveAllEvents();
+        $scope.$emit('notify', {
+            type: 'success',
+            title: 'Evenement '+event.title+' rajouté avec succès'
+        });
     };
     /* config object */
     $scope.uiConfig = {
