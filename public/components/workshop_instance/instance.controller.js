@@ -37,21 +37,18 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
     var currentId = $routeParams.idInstance;
     $scope.workshopInstance = "";
 
-    EventsService.getWorkshopInstance(currentId).then(function (dataResponse) {
-        $scope.workshopInstance = dataResponse.data.data;
 
-        var timingArray = $scope.workshopInstance.steps.map(function(step, index){
-            var stepArray = $scope.workshopInstance.steps.slice(0, index);
-            return stepArray.reduce(function (accumulateur, currentStep) {
+    function updateTimings () {
+        var steps = $scope.workshopInstance.steps;
+        var timingArray = steps.map(function(step, index) {
+            return steps.slice(0, index).reduce(function (accumulateur, currentStep) {
                 var tmp = 0;
-                if(currentStep.duration.theorical) {
+                if (currentStep.duration.theorical) {
                     tmp = currentStep.duration.theorical;
                 }
                 return accumulateur + tmp;
-
             }, 0);
         });
-
         for(var i = 0; i<timingArray.length; i++) {
             var d = new Date(timingArray[i] * 60000);
             var time = d.toUTCString().split(" ");
@@ -60,15 +57,46 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
             timingArray[i] =  time[0]+":"+time[1];
         }
         $scope.timingArray = timingArray;
+    }
 
-        /** Add word "minutes" to duration **/
-        for(var j=0; j < $scope.workshopInstance.steps.length; j++) {
-            if($scope.workshopInstance.steps[j].duration.theorical) {
-                $scope.workshopInstance.steps[j].duration.theorical = $scope.workshopInstance.steps[j].duration.theorical + " minutes";
-            }
-        }
+    $scope.$watch('workshopInstance.steps', function (newVal, oldVal) {
+        if (newVal) {
+            updateTimings(newVal)
+        }}, true);
+    var sortableEle;
+    var fixHelper = function(e, ui) {
+        ui.children().each(function() {
+            $(this).width($(this).width());
+        });
+        return ui;
+    };
+    $scope.addStep = function() {
+        console.log($scope.workshopInstance.steps);
+        $scope.workshopInstance.steps.push({
+            description: "nouvelle itération",
+            duration: {
+                practical: -1,
+                theorical: 5
+            },
+            timing: {
+                practical: -1
+            },
+            title: "nouvelle itération"
+        })
+    };
+
+    $scope.deleteStep=function (rank) {
+        $scope.workshopInstance.steps.splice(rank, 1);
+    };
+
+    $scope.updateInstance = function () {
+        EventsService.updateWorkshopInstance($scope.workshopInstance._id, $scope.workshopInstance);
+        $scope.setEdition("");
+    };
+    EventsService.getWorkshopInstance(currentId).then(function (dataResponse) {
+        $scope.workshopInstance = dataResponse.data.data;
+        updateTimings($scope.workshopInstance.steps);
     });
-
     function getLabelColorFct (label) {
         return LabelsService.getText(label);
     }
@@ -119,5 +147,12 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
         }
     }
 
-
+    $scope.whichEdition = "";
+    $scope.setEdition = function (name) {
+        if ($scope.whichEdition == name) {
+            $scope.whichEdition = "";
+        } else {
+            $scope.whichEdition = name;
+        }
+    }
 });
