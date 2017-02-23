@@ -141,3 +141,7 @@ a:focus.link, a:hover.link, .close {
 .angular-notify-success:before {
     content: url("https://pfe-facilitation.herokuapp.com/img/check.svg");
 }
+
+.thumbnail {
+    background-color: rgba(28, 38, 77, 0.04);
+}
