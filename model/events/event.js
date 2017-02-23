@@ -10,11 +10,17 @@ var Event = mongoose.model('Event');
 
 function createEvent(event, callback) {
     var tmp = new Event(event);
+    tmp.steps = [];
+    tmp.steps.push({
+        title: tmp.title,
+        description: tmp.description,
+        duration: {
+            theorical: tmp.duration
+        }
+    });
     tmp.save(function(err, data) {
         console.log(event);
         if (err) {
-            console.log("ERROR");
-            console.log(err);
             callback(err)
         } else {
             callback(null,data)

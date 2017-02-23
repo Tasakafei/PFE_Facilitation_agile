@@ -11,7 +11,15 @@ var EventSchema = new mongoose.Schema({
         photo : String,
         description: String,
         duration: {type: Number, required: true},
-        begin_at: {type: Date, require: true}
+        begin_at: {type: Date, require: true},
+        steps: [{
+                title: String,
+                description: String,
+                duration: {
+                        theorical: Number,
+                        practical: Number
+                }
+        }]
     });
 
 
