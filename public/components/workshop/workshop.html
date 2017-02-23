@@ -137,11 +137,11 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="form-horizontal col-xs-10 col-xs-offset-1" >
+                    <form class="form-horizontal col-xs-10 col-xs-offset-1" ng-submit="addToInstances()">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Avec qui</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Nom du groupe, entreprise, promotion, ..." ng-model="user_gr">
+                                <input required="required" type="text" class="form-control" placeholder="Nom du groupe, entreprise, promotion, ..." ng-model="user_gr">
                             </div>
                         </div>
                         <div class="form-group">
@@ -150,7 +150,7 @@
                                  moment-picker="ctrl.datepicker"
                                  moment-picker="ctrl.locale" locale="fr"
                                  format="YYYY-MM-DD">
-                                <input type= "text" class="form-control"
+                                <input type= "text" class="form-control" required="required"
                                        placeholder="Sélectionnez une date"
                                        ng-model="ctrl.datepicker"
                                        ng-model-options="{ updateOn: 'blur' }"
@@ -160,12 +160,12 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Heure prévue</label>
                             <div class="col-sm-9">
-                                <input type="time" class="form-control" ng-model="inputTime" placeholder="09:42">
+                                <input required="required" type="time" class="form-control" ng-model="inputTime" placeholder="09:42">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12 text-center">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addToInstances()">Ajouter l'atelier</button>
+                                <button type="submit" class="btn btn-default">Ajouter l'atelier</button>
                             </div>
                         </div>
                     </form>

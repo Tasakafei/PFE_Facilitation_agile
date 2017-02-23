@@ -152,6 +152,8 @@ app.controller('workshopCtrl', function (LabelsService, $scope, CatalogueDataPro
             var time = $scope.inputTime.getHours()+":"+$scope.inputTime.getMinutes();
             var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId,$scope.user_gr,$scope.ctrl.datepicker,time);
 
+            $('#myModal3').modal('hide');
+
             res.success(function(data, status, headers, config) {
                 $scope.message = data;
                 $scope.$emit('notify', {
