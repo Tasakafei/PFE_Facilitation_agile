@@ -184,14 +184,14 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
 
         //Post
         //TODO vérifier les champs textes spéciaux
-        //TODO requiere titre ajout step
+        //TODO requiere titre lors de l'ajout d'une step
         //TODO : required="required" au moins 1 sur les labels ?
         postJSON(json);
 
         window.top.window.scrollTo(0,0)
     }
     function getFields() {
-        if ($scope.photo) {
+        if ($scope.photo[0]) {
             CloudinaryClient.uploadPhotos($scope.photo)
                 .success(function(response) {
                     prepareJSON(response.data[0].filename);

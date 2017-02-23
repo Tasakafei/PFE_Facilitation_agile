@@ -16,7 +16,8 @@ var app = angular.module('facilitation', [
     'ui.calendar',
     'simditor',
     'ui',
-    'ui.sortable'
+    'ui.sortable',
+    'angular-svg-round-progress'
 ]);
 
 app.config(function($routeProvider) {

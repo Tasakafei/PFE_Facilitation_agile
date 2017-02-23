@@ -12,15 +12,16 @@ var app = angular.module('facilitation');
 
 app.controller('profilCtrl', function( $scope,$location,Auth) {
 
-    $scope.modifier = modifierFct;
+    $scope.modifierPseudo = modifierPseudoFct;
+    $scope.modifierEmail=modifierEmailFct;
     $scope.profile = {};
     $scope.user = {};
     $scope.error = {};
+   if($scope.currentUser.username == null || $scope.currentUser.email == null){
+      $scope.name = " ";
+      $scope.email =" ";
 
-    /**
-     * Put the feedback access link in the $scope
-     * @type {getUrl}
-     */
+   }
     if($scope.currentUser) {
         $scope.name = $scope.currentUser.username;
         $scope.email = $scope.currentUser.email;
@@ -30,21 +31,17 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
         $scope.email =" ";
 
     }
-    function modifierFct() {
-        Auth.changePseudo({
-               // email:$scope.currentUser.email,
-               // oldPassword:$scope.currentUser.password,
-                newPseudo:$scope.pseudo
+    console.log("currentUser ",$scope.currentUser.username);
 
+    function modifierPseudoFct() {
+        Auth.updateUser({
+
+                username:$scope.pseudo
 
             },
             function(err) {
                 $scope.errors = {};
-                console.log("pseudo ",$scope.pseudo);
-
-
-                if (!err) {
-                    //$location.path('/');
+                if (err) {
                     console.log("pseudo ",$scope.pseudo);
 
                     $scope.$emit('notify', {
@@ -67,10 +64,32 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
 
     }
 
+    function modifierEmailFct() {
+        Auth.updateUser({
+                email: $scope.email_
+        },
+            function(err) {
+                $scope.errors = {};
+                if (err) {
+                    $scope.$emit('notify', {
+                        type: 'success',
+                        title: 'Votre email a bien été modifier.'
+                    });
 
+                } else {
+                    angular.forEach(err.errors, function(error, field) {
+                        console.error("ERROR : " + error + " : "+ field);
+                    });
 
+                    $scope.$emit('notify', {
+                        type: 'error',
+                        title: 'Votre email n\'a pas pu être modifier.'
+                    });
+                }
+            }
+        );
 
-
+    }
 
 
 
