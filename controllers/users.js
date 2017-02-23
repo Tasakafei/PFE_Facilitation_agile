@@ -353,6 +353,15 @@ function updateWorkshopInstanceImpl(req, res) {
     });
 }
 
+function updateEventImpl(req, res) {
+    Events.updateEvent(req.params.eventId, req.body, function (err, data) {
+        if (err) {
+            res.json({status: "error", data: err});
+        } else {
+            res.json({status: "success", data: data});
+        }
+    })
+}
 module.exports = {
     /**
      * Create user
@@ -470,5 +479,7 @@ module.exports = {
      */
     deleteInstanceWorkshop: deleteInstanceWorkshopImpl,
 
-    updateWorkshopInstance: updateWorkshopInstanceImpl
+    updateWorkshopInstance: updateWorkshopInstanceImpl,
+
+    updateEvent: updateEventImpl
 };

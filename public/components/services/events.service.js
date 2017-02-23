@@ -81,6 +81,19 @@ app.service('EventsService', function ($http) {
         return $http(req);
     };
 
+    this.updateEvent = function(id, event) {
+        var req = {
+            method: 'PUT',
+            url: '/users/events/'+id,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: event
+        };
+        return $http(req);
+
+    };
+
 
     this.addFeedbackToInstance = function(feedback, instanceId) {
         var req = {

@@ -17,36 +17,52 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         events: []
     };
 
-    EventsService.getEvents()
-        .success(function(events) {
-            events.data.forEach(function (event) {
-                var end = new Date(event.begin_at);
-                end.setMinutes(end.getMinutes() + event.duration);
-                var color;
-                var url;
-                var title = event.title;
-                if (event.workshopId) {
-                    color = "green";
-                    url = "http://"+window.location.host+"/#/instances/"+event._id;
-                    title = "["+event.group+"]\n"+title;
-                }
-                $scope.workshopEvents.push({_id: event._id, title: title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration, url:url});
+    var retrieveAllEvents = function () {
+        $scope.workshopEvents = [];
+        EventsService.getEvents()
+            .success(function(events) {
+                events.data.forEach(function (event) {
+                    var end = new Date(event.begin_at);
+                    end.setMinutes(end.getMinutes() + event.duration);
+                    var color;
+                    var url;
+                    var title = event.title;
+                    var type = "standard";
+                    if (event.workshopId) {
+                        color = "green";
+                        url = "http://"+window.location.host+"/#/instances/"+event._id;
+                        title = "["+event.group+"]\n"+title;
+                        type = "workshop";
+                    }
+                    $scope.workshopEvents.push({_id: event._id, title: title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration, url:url, type:type});
+                });
             });
-        });
+    };
+
+    retrieveAllEvents();
 
     $scope.alertOnEventClick = function( date, jsEvent, view){
     };
 
     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
         var elem = {begin_at: event.start._d};
-        EventsService.updateWorkshopInstance(event._id,elem);
+        if (event.type === "workshop") {
+            EventsService.updateWorkshopInstance(event._id,elem);
+        } else {
+            EventsService.updateEvent(event._id, elem);
+            console.log("yo");
+        }
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
         var newDuration = event.duration + delta/60000;
         var elem = {duration: newDuration};
         event.duration = newDuration;
-        EventsService.updateWorkshopInstance(event._id,elem);
+        if (event.type === "workshop") {
+            EventsService.updateWorkshopInstance(event._id,elem);
+        } else {
+            EventsService.updateEvent(event._id, elem);
+        }
     };
 
     $scope.addEvent = function(event) {
@@ -100,6 +116,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         $scope.addEvent({title: event.title, start: event.begin_at, end: end_at_date});
         $('#newEventModal').modal('hide');
         $scope.newEvent = {};
+        retrieveAllEvents();
     };
     /* config object */
     $scope.uiConfig = {
