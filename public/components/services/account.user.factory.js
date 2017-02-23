@@ -10,11 +10,8 @@ angular.module('facilitation')
     .factory('User', function ($resource) {
         return $resource('/auth/users/:id/', {},
             {
-                'updatePseudo': {
+                'updateUserInfo': {
                     method:'PUT'
-                },
-                'updateEmail' : {
-                    method: 'PUT'
                 }
             });
     });

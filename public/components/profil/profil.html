@@ -9,18 +9,18 @@
             <!-- Résultat -->
             <div class="col-xs-12 no-padding">
                 <div>Email : {{email}}
-                    <button  type="button" class="btn btn-default"  ng-click="showme=true;showme=flase" aria-label="Toggle ngShow">
+                    <button  type="button" class="btn btn-default"  ng-click="showme=true;showme1=flase" aria-label="Toggle ngShow">
                         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="check-element animate-show-hide" ng-show="showme">
                     <div class="form-group">
                         <div class="col-sm-9">
-                            <input type="text" ng-model="email" class="form-control"  placeholder="Nouveau Email ...">
+                            <input type="text" ng-model="email_" class="form-control"  placeholder="Nouveau Email ...">
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-default"  ng-click="showme=false" >
+                    <button type="button" class="btn btn-default"  ng-click="modifierEmail();showme=false" >
                         envoyer
                     </button>
 

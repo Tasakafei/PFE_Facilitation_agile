@@ -23,7 +23,7 @@ router.get('/events', auth.ensureAuthenticated, users.getEvents);
 router.put('/events/:eventId', auth.ensureAuthenticated, users.updateEvent);
 router.delete('/instances/:instanceId', auth.ensureAuthenticated, users.deleteInstanceWorkshop);
 
-router.put('/auth/users/:id', auth.ensureAuthenticated,users.updatePseudo);
+router.put('/auth/users/:id', auth.ensureAuthenticated,users.updateUserInfo);
 
 
 

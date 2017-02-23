@@ -13,7 +13,7 @@ var app = angular.module('facilitation');
 app.controller('profilCtrl', function( $scope,$location,Auth) {
 
     $scope.modifierPseudo = modifierPseudoFct;
-    //$scope.modifierModDePasse=modifierModDePasseFct;
+    $scope.modifierEmail=modifierEmailFct;
     $scope.profile = {};
     $scope.user = {};
     $scope.error = {};
@@ -34,17 +34,14 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
     console.log("currentUser ",$scope.currentUser.username);
 
     function modifierPseudoFct() {
-        Auth.changePseudo({
+        Auth.updateUser({
 
-                newPseudo:$scope.pseudo
+                username:$scope.pseudo
 
             },
             function(err) {
                 $scope.errors = {};
-                console.log("pseudo ",$scope.pseudo);
-
-
-                if (!err) {
+                if (err) {
                     console.log("pseudo ",$scope.pseudo);
 
                     $scope.$emit('notify', {
@@ -67,6 +64,32 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
 
     }
 
+    function modifierEmailFct() {
+        Auth.updateUser({
+                email: $scope.email_
+        },
+            function(err) {
+                $scope.errors = {};
+                if (err) {
+                    $scope.$emit('notify', {
+                        type: 'success',
+                        title: 'Votre email a bien été modifier.'
+                    });
+
+                } else {
+                    angular.forEach(err.errors, function(error, field) {
+                        console.error("ERROR : " + error + " : "+ field);
+                    });
+
+                    $scope.$emit('notify', {
+                        type: 'error',
+                        title: 'Votre email n\'a pas pu être modifier.'
+                    });
+                }
+            }
+        );
+
+    }
 
 
 

@@ -8,8 +8,8 @@ var session = require('../controllers/session');
 router.post('/users', users.create);
 router.get('/users/:userId', users.show);
 
-router.put('/users', users.updatePseudo);
-router.put('/users/:id', auth.ensureAuthenticated,users.updatePseudo);
+router.put('/users', users.updateUserInfo);
+router.put('/users/:id', auth.ensureAuthenticated,users.updateUserInfo);
 
 
 // Check if username is available

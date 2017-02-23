@@ -60,26 +60,15 @@ angular.module('facilitation')
             isConnected: function() {
                 return !!$rootScope.currentUser;
             },
-            changePseudo: function(newPseudo, callback) {
+            updateUser: function(newInfo, callback) {
                 var cb = callback || angular.noop;
-                User.updatePseudo({
-                    username: newPseudo
-                }, function(user) {
-                    return cb();
+                User.updateUserInfo(newInfo, function(user) {
+                    return cb(user);
                 }, function(err) {
                     return cb(err.data);
                 });
             },
-            changeEmail: function(newEmail, callback) {
-                var cb = callback || angular.noop;
-                User.updateEmail({
-                    email: newEmail
-                }, function(user) {
-                    return cb();
-                }, function(err) {
-                    return cb(err.data);
-                });
-            },
+
 
             removeUser: function(email, password, callback) {
                 var cb = callback || angular.noop;

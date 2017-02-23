@@ -39,12 +39,10 @@ function createImpl(req, res, next) {
         });
     });
 }
-function updateUserPseudoImp(req,res){
+function updateUserInfoImp(req,res){
     var user = req.user;
-    console.log("user",user.username);
-    console.log("param_pseudo",req.body.username);
-
-    User.findOneAndUpdate({username: user.username}, {username: req.body.username.newPseudo},
+   // console.log(req.body);
+    User.findOneAndUpdate({_id: user._id}, req.body,
         function (err, user) {
             if (err) {
                 console.log(err);
@@ -55,8 +53,6 @@ function updateUserPseudoImp(req,res){
             }
 
         });
-
-
 }
 
 /*function UpdateUserMdpImp(req,res){
@@ -390,7 +386,7 @@ module.exports = {
      * @method
      */
     create: createImpl,
-    updatePseudo:updateUserPseudoImp,
+    updateUserInfo:updateUserInfoImp,
     //updateMdp:UpdateUserMdpImp,
 
     /**
