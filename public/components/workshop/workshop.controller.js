@@ -149,23 +149,23 @@ app.controller('workshopCtrl', function (LabelsService, $scope, CatalogueDataPro
     function addToInstancesFct() {
         if ($scope.currentUser) {
 
-        var time = $scope.inputTime.getHours()+":"+$scope.inputTime.getMinutes();
-        var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId,$scope.user_gr,$scope.ctrl.datepicker,time);
+            var time = $scope.inputTime.getHours()+":"+$scope.inputTime.getMinutes();
+            var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId,$scope.user_gr,$scope.ctrl.datepicker,time);
 
-        res.success(function(data, status, headers, config) {
-            $scope.message = data;
-            $scope.$emit('notify', {
-                type: 'success',
-                title: 'L\'atelier a bien été ajouté.',
-                content: '/#/instances $$Voir mon agenda'
+            res.success(function(data, status, headers, config) {
+                $scope.message = data;
+                $scope.$emit('notify', {
+                    type: 'success',
+                    title: 'L\'atelier a bien été ajouté.',
+                    content: '/#/instances $$Voir mon agenda'
+                });
             });
-        });
-        res.error(function(data, status, headers, config) {
-            $scope.$emit('notify', {
-                type: 'error',
-                title: 'L\'atelier n\'a pas pu être ajouté.'
+            res.error(function(data, status, headers, config) {
+                $scope.$emit('notify', {
+                    type: 'error',
+                    title: 'L\'atelier n\'a pas pu être ajouté.'
+                });
             });
-        });
         } else {
             $scope.$emit('notify', {
                 type: 'info',
