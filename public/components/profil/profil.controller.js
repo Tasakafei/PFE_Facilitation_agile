@@ -31,23 +31,25 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
 
     }
     function modifierFct() {
-        Auth.changePassword({
-                email:$scope.currentUser.email,
-                oldPassword:$scope.currentUser.password,
-                newPassword:$scope.password_
+        Auth.changePseudo({
+               // email:$scope.currentUser.email,
+               // oldPassword:$scope.currentUser.password,
+                newPseudo:$scope.pseudo
+
 
             },
             function(err) {
                 $scope.errors = {};
+                console.log("pseudo ",$scope.pseudo);
 
-                $('#myModal4').modal('hide');
 
                 if (!err) {
                     //$location.path('/');
+                    console.log("pseudo ",$scope.pseudo);
 
                     $scope.$emit('notify', {
                         type: 'success',
-                        title: 'Votre compte a bien été créé.'
+                        title: 'Votre pseudo a bien été modifier.'
                     });
 
                 } else {
@@ -57,12 +59,12 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
 
                     $scope.$emit('notify', {
                         type: 'error',
-                        title: 'Votre compte n\'a pas pu être créé.'
+                        title: 'Votre pseudo n\'a pas pu être modifier.'
                     });
                 }
             }
         );
-        $scope.user = {};
+
     }
 
 

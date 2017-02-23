@@ -21,6 +21,6 @@ router.get('/instances/:instanceId', users.getWorkshopInstance);
 router.post('/events', auth.ensureAuthenticated, users.addWorkshopEvent);
 router.get('/events', auth.ensureAuthenticated, users.getEvents);
 router.delete('/instances/:instanceId', auth.ensureAuthenticated, users.deleteInstanceWorkshop);
-router.put('/users', auth.ensureAuthenticated,users.update);
+router.put('/auth/users/:id', auth.ensureAuthenticated,users.update);
 
 module.exports = router;

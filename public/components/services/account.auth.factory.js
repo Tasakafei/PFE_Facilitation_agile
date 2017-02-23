@@ -60,12 +60,12 @@ angular.module('facilitation')
             isConnected: function() {
                 return !!$rootScope.currentUser;
             },
-            changePassword: function(email, oldPassword, newPassword, callback) {
+            changePseudo: function(newPseudo, callback) {
                 var cb = callback || angular.noop;
                 User.update({
-                    email: email,
-                    oldPassword: oldPassword,
-                    newPassword: newPassword
+                    //email: email,
+                    //oldPassword: oldPassword,
+                    newPseudo: newPseudo
                 }, function(user) {
                     return cb();
                 }, function(err) {
