@@ -7,6 +7,7 @@
 
 var mongoose = require('mongoose');
 var Event = mongoose.model('Event');
+var ObjectId = mongoose.Types.ObjectId;
 
 function createEvent(event, callback) {
     var tmp = new Event(event);
@@ -28,6 +29,21 @@ function createEvent(event, callback) {
     })
 }
 
+function updateEventImpl(id, data, callback) {
+    Event.update(
+        {_id : ObjectId(id)},
+        data,
+        {safe: true, multi: false},
+        function (err, instanceUpdated) {
+            if (err) {
+                callback(err);
+            } else {
+                callback(null,instanceUpdated);
+            }
+        });
+}
+
 module.exports = {
-    createEvent: createEvent
+    createEvent: createEvent,
+    updateEvent: updateEventImpl
 };
