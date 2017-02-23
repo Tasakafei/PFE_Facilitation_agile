@@ -12,15 +12,16 @@ var app = angular.module('facilitation');
 
 app.controller('profilCtrl', function( $scope,$location,Auth) {
 
-    $scope.modifier = modifierFct;
+    $scope.modifierPseudo = modifierPseudoFct;
+    //$scope.modifierModDePasse=modifierModDePasseFct;
     $scope.profile = {};
     $scope.user = {};
     $scope.error = {};
+   if($scope.currentUser.username == null || $scope.currentUser.email == null){
+      $scope.name = " ";
+      $scope.email =" ";
 
-    /**
-     * Put the feedback access link in the $scope
-     * @type {getUrl}
-     */
+   }
     if($scope.currentUser) {
         $scope.name = $scope.currentUser.username;
         $scope.email = $scope.currentUser.email;
@@ -30,12 +31,12 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
         $scope.email =" ";
 
     }
-    function modifierFct() {
-        Auth.changePseudo({
-               // email:$scope.currentUser.email,
-               // oldPassword:$scope.currentUser.password,
-                newPseudo:$scope.pseudo
+    console.log("currentUser ",$scope.currentUser.username);
 
+    function modifierPseudoFct() {
+        Auth.changePseudo({
+
+                newPseudo:$scope.pseudo
 
             },
             function(err) {
@@ -44,7 +45,6 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
 
 
                 if (!err) {
-                    //$location.path('/');
                     console.log("pseudo ",$scope.pseudo);
 
                     $scope.$emit('notify', {
@@ -66,10 +66,6 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
         );
 
     }
-
-
-
-
 
 
 

@@ -7,9 +7,10 @@ var session = require('../controllers/session');
 /*** User routes ***/
 router.post('/users', users.create);
 router.get('/users/:userId', users.show);
-router.put('/users', users.update);
 
-router.put('/users/:id', auth.ensureAuthenticated,users.update);
+router.put('/users', users.updatePseudo);
+router.put('/users/:id', auth.ensureAuthenticated,users.updatePseudo);
+
 
 // Check if username is available
 router.get('/check_username/:username', users.exists);

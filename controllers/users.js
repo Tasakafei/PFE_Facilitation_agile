@@ -39,31 +39,47 @@ function createImpl(req, res, next) {
         });
     });
 }
-function updateUserImp(req,res,next){
+function updateUserPseudoImp(req,res){
+    var user = req.user;
+    console.log("user",user.username);
+    console.log("param_pseudo",req.body.username);
 
-    console.log("pseudo",req.params.newPseudo);
-    console.log("username",req.params.username);
+    User.findOneAndUpdate({username: user.username}, {username: req.body.username.newPseudo},
+        function (err, user) {
+            if (err) {
+                console.log(err);
+                return next(new Error('Failed to load User ' + username));
+            } else {
+                console.log(user);
+                res.json({status: "success", data: user});
+            }
 
-
-    User.update({username:req.params.newPseudo},
-
-
-    function (err, user) {
-        if (err) {
-            return next(new Error('Failed to load User ' + username));
-        }
-
-        if(user) {
-            res.json({exists: true});
-
-        } else {
-            res.json({exists: false});
-        }
-
-    });
+        });
 
 
 }
+
+/*function UpdateUserMdpImp(req,res){
+
+    var user = req.user;
+   // console.log("user",user.username);
+    console.log("param_mdp",req.body.password.newPasswd);
+
+    User.findOneAndUpdate({username:user.username}, {email: req.body.password.newPasswd},
+        function (err, user) {
+            if (err) {
+                console.log(err);
+                return next(new Error('Failed to load User ' + username));
+            } else {
+                console.log(user);
+                res.json({status: "success", data: user});
+            }
+
+        });
+
+
+
+}*/
 function showImpl(req, res, next) {
     var userId = req.params.userId;
 
@@ -374,7 +390,8 @@ module.exports = {
      * @method
      */
     create: createImpl,
-    update:updateUserImp,
+    updatePseudo:updateUserPseudoImp,
+    //updateMdp:UpdateUserMdpImp,
 
     /**
      *  Show profile

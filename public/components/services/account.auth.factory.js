@@ -62,10 +62,8 @@ angular.module('facilitation')
             },
             changePseudo: function(newPseudo, callback) {
                 var cb = callback || angular.noop;
-                User.update({
-                    //email: email,
-                    //oldPassword: oldPassword,
-                    newPseudo: newPseudo
+                User.updatePseudo({
+                    username: newPseudo
                 }, function(user) {
                     return cb();
                 }, function(err) {
