@@ -15,8 +15,6 @@ var app = angular.module('facilitation', [
     'moment-picker',
     'ui.calendar',
     'simditor',
-    'ui',
-    'ui.sortable',
     'angular-svg-round-progress'
 ]);
 

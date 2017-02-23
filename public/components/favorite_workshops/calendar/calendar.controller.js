@@ -120,7 +120,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         retrieveAllEvents();
         $scope.$emit('notify', {
             type: 'success',
-            title: 'Événement \"'+event.title+'\" rajouté avec succès'
+            title: 'Évenement \"'+event.title+'\" rajouté avec succès'
         });
     };
     /* config object */
