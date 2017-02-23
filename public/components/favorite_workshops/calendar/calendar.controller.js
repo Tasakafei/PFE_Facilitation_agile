@@ -24,13 +24,13 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
                 end.setMinutes(end.getMinutes() + event.duration);
                 var color;
                 var url;
+                var title = event.title;
                 if (event.workshopId) {
                     color = "green";
                     url = "http://"+window.location.host+"/#/instances/"+event._id;
-
-                    console.log(url);
+                    title = "["+event.group+"]\n"+title;
                 }
-                $scope.workshopEvents.push({_id: event._id, title: "["+event.group+"]"+event.title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration, url:url});
+                $scope.workshopEvents.push({_id: event._id, title: title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration, url:url});
             });
         });
 
