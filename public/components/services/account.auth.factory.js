@@ -70,6 +70,16 @@ angular.module('facilitation')
                     return cb(err.data);
                 });
             },
+            changeEmail: function(newEmail, callback) {
+                var cb = callback || angular.noop;
+                User.updateEmail({
+                    email: newEmail
+                }, function(user) {
+                    return cb();
+                }, function(err) {
+                    return cb(err.data);
+                });
+            },
 
             removeUser: function(email, password, callback) {
                 var cb = callback || angular.noop;

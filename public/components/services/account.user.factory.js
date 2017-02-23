@@ -13,8 +13,8 @@ angular.module('facilitation')
                 'updatePseudo': {
                     method:'PUT'
                 },
-                /*'updateMdp' : {
+                'updateEmail' : {
                     method: 'PUT'
-                }*/
+                }
             });
     });
