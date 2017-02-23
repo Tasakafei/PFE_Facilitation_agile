@@ -16,7 +16,7 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         color: 'red',
         events: []
     };
-    /** Récupération des événements **/
+
     EventsService.getEvents()
         .success(function(events) {
             events.data.forEach(function (event) {
@@ -34,11 +34,9 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
             });
         });
 
-    /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
     };
 
-    /* alert on Drop */
     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
         var elem = {begin_at: event.start._d};
         EventsService.updateWorkshopInstance(event._id,elem);
@@ -54,22 +52,21 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     $scope.addEvent = function(event) {
         $scope.events.events.push(event);
     };
-    /* remove event */
+
     $scope.remove = function(index) {
         $scope.events.splice(index,1);
     };
-    /* Change View */
+
     $scope.changeView = function(view,calendar) {
         uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
     };
-    /* Change View */
+
     $scope.renderCalender = function(calendar) {
         if(uiCalendarConfig.calendars[calendar]){
             uiCalendarConfig.calendars[calendar].fullCalendar('render');
         }
     };
 
-    /* Render Tooltip */
     $scope.eventRender = function( event, element, view ) {
         element.attr({'tooltip': event.title,
             'tooltip-append-to-body': true});
