@@ -72,6 +72,7 @@ app.controller('catalogueCtrl', function (LabelsService, $scope, CatalogueDataPr
     }
 
     function searchTitle(row) {
+        return angular.lowercase(row.title).indexOf(angular.lowercase($scope.query) || '') !== -1;
     }
 
     $scope.dataCatalogue = CatalogueDataProvider.getWorkshops(function (dataResponse) {
