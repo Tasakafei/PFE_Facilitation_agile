@@ -84,6 +84,28 @@
                         </tr>
                 </tbody> </table>
             </div>
+            <div class="col-xs-12" >
+                <h4>Instructions de l'atelier</h4>
+                <table class="table table-bordered table-striped">
+                    <colgroup>
+                        <col class="col-xs-1">
+                        <col class="col-xs-2">
+                        <col class="col-xs-9">
+                    </colgroup>
+                    <thead><tr>
+                        <th class="text-center">Timing</th>
+                        <th class="text-center">Phase</th>
+                        <th class="text-center">Instructions</th>
+                    </tr>
+                    </thead> <tbody>
+                <tr ng-repeat="step in workshop.content.steps">
+                    <td class="text-center">{{timingArray[$index]}}</td>
+                    <td class="text-center">{{step.title}}<br />{{step.duration}}</td>
+                    <td ng-if="step.instructions" ng-bind-html="step.instructions| to_trusted"></td>
+                    <td ng-if="!step.instructions" class="text-center">Pas d'instructions</td>
+                </tr>
+                </tbody> </table>
+            </div>
         </div>
         <!--<div class="col-xs-8">
             <h4>Les commentaires : </h4>

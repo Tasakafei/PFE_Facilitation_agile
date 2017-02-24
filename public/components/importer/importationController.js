@@ -21,6 +21,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
     $scope.inputStepTitle = "inputStepTitle";
     $scope.inputStepDuration = "inputStepDuration";
     $scope.stepsTextarea = "stepsTextarea";
+    $scope.instructionsTextarea = "instructionsTextarea";
     $scope.stepsTextareaAncre = "steps-textarea-ancre";
     $scope.photo = [];
 
@@ -89,6 +90,17 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
         }
     });
 
+    $('#instructions-textarea').wysihtml5({
+        toolbar: {
+            "font-styles": false,
+            "link": false,
+            "image": false,
+            "color": false,
+            "blockquote": false,
+            "fa": true
+        }
+    });
+
     /**
      * Add more steps
      */
@@ -99,6 +111,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
         $scope.inputStepTitle = "inputStepTitle-"+cpt;
         $scope.inputStepDuration = "inputStepDuration-"+cpt;
         $scope.stepsTextarea = "stepsTextarea-"+cpt;
+        $scope.instructionsTextarea = "instructionsTextarea-"+cpt;
         $scope.stepsTextareaAncre = "steps-textarea-ancre-"+cpt;
         $scope.$apply();
 
@@ -116,6 +129,18 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
                 "fa": true
             }
         });
+
+        $('#instructionsTextarea-'+cpt).wysihtml5({
+            toolbar: {
+                "font-styles": false,
+                "link": false,
+                "image": false,
+                "color": false,
+                "blockquote": false,
+                "fa": true
+            }
+        });
+
 
         //Move classes as we need to
         $(".after-add-more").addClass("last-after-add-more-"+cpt);
@@ -168,6 +193,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
         jsonArr.push({
             title: document.getElementById('inputStepTitle').value,
             description: $('#steps-textarea').val(),
+            instructions: $('#instructions-textarea-').val(),
             duration: document.getElementById('inputStepDuration').value
         });
 
@@ -175,6 +201,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
             jsonArr.push({
                 title: document.getElementById('inputStepTitle-'+y).value,
                 description: $('#stepsTextarea-'+y).val(),
+                instructions: $('#instructionsTextarea-'+y).val(),
                 duration: document.getElementById('inputStepDuration-'+y).value
             });
         }

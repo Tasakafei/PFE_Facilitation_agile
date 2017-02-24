@@ -29,7 +29,8 @@ var WorkshopSchema = new mongoose.Schema({
             title: String,
             description: {type: String, default: null},
             timing: Number,
-            duration: Number
+            duration: Number,
+            instructions: {type: String, default: null}
         }],
         source: {type: String, default: "Aucune source"},
         folklore: {type: String, default:null},

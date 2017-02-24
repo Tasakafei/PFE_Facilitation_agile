@@ -45,7 +45,8 @@ var WorkshopInstanceSchema = new Schema({
         duration: {
             theorical: Number,
             practical: Number
-        }
+        },
+        instructions: {type: String, default: null}
     }],
     photo : {type: String},
     workshop_type: {type: String},

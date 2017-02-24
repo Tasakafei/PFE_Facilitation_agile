@@ -265,6 +265,7 @@ function addWorkshopInstanceImpl(req, res) {
                                 instance.steps[i] = {
                                     title: wsStep.title,
                                     description: wsStep.description,
+                                    instructions: wsStep.instructions,
                                     timing: {
                                         theorical: wsStep.timing,
                                         practical: -1
