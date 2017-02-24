@@ -23,7 +23,6 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
         // $("#calendar").fullCalendar('rerender');
         EventsService.getEvents()
             .success(function(events) {
-                console.log(events.data);
                 events.data.forEach(function (event) {
                     var end = new Date(event.begin_at);
                     end.setMinutes(end.getMinutes() + event.duration);
@@ -38,6 +37,7 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
                         type = "workshop";
                     }
                     var u =  new Date(event.begin_at);
+                    console.log(u.getTimezoneOffset());
                     u.setMinutes(u.getMinutes() + u.getTimezoneOffset());
                     $scope.workshopEvents.push({_id: event._id, title: title, start: u, end: end, color: color, duration: event.duration, url:url, type:type});
                 });

@@ -87,13 +87,12 @@ function getWorkshopImpl(req, res) {
                 var user = req.user;
                 if (user.workshops_favorites !== []) {
                     async.each(user.workshops_favorites, function (item, _callback) {
-                        var t1 = item._id.toString();
-                        var t2 = data._id.toString();
+                        var t1 = ''+item._id;
+                        var t2 = ''+data._id;
                         if (t1 === t2) {
                             _callback(true);
                         } else {
-
-                            _callback(null);
+                            _callback();
                         }
                     }, function (isFav) {
                         res.json({
@@ -101,7 +100,6 @@ function getWorkshopImpl(req, res) {
                             data: data,
                             isFavorite: isFav
                         });
-
                     });
                 } else {
                     res.json({
@@ -135,12 +133,4 @@ function removeWorkshopImpl(req, res) {
         console.error(err);
         res.json({state: "error", data: err})
     });
-    /*Workshop.remove({'_id': ObjectID(id)}, function (err) {
-        if (err) {
-            res.json({state: "error", data:err})
-        }
-        else {
-            res.json({state: "success", data: "WORKSHOP_REMOVED"})
-        }
-    })*/
 }
