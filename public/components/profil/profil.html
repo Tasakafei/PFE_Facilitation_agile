@@ -3,7 +3,7 @@
     <!-- Titre page -->
     <div id="page-content-wrapper">
         <div class="page-header">
-            <h3>Votre profile</h3>
+            <h3>Votre profil</h3>
         </div>
         <div class="row">
             <!-- Résultat -->
@@ -31,52 +31,52 @@
 
 <div class="row">
     <button  type="button" class="btn btn-default"  ng-click="showme=true;showme1=false;showme2=false" aria-label="Toggle ngShow">
-        changer email
+        Changer d'email
     </button>
     <button  type="button" class="btn btn-default"  ng-click="showme1=true;showme=false;showme2=false" aria-label="Toggle ngShow">
-        changer pseudo
+        Changer de pseudo
     </button>
 
     <button  type="button" class="btn btn-default"  ng-click="showme2=true;showme=false;showme1=false" aria-label="Toggle ngShow">
-        changer mot de passe
+        Changer de mot de passe
     </button>
 
 </div>
 
         <div class="check-element animate-show-hide" ng-show="showme">
             <div class="form-group">
-                <div class="col-sm-5" >
-                    <input type="text" ng-model="email_" class="form-control"  placeholder="Nouveau email ...">
+                <div class="col-xs-5" >
+                    <input type="text" ng-model="email_" class="form-control"  placeholder="Nouvelle adresse email">
                 </div>
             </div>
 
             <button type="button" class="btn btn-default"  ng-click="modifierEmail();showme=false" >
-                envoyer
+                Envoyer
             </button>
 
         </div>
 
         <div class="check-element animate-show-hide" ng-show="showme1">
             <div class="form-group">
-                <div class="col-sm-5">
-                    <input type="text" ng-model="pseudo" class="form-control"  placeholder="Nouveau pseudo ...">
+                <div class="col-xs-5">
+                    <input type="text" ng-model="pseudo" class="form-control"  placeholder="Nouveau pseudo">
                 </div>
             </div>
 
             <button type="button" class="btn btn-default"  ng-click="modifierPseudo();showme1=false" >
-                envoyer
+                Envoyer
             </button>
 
         </div>
         <div class="check-element animate-show-hide" ng-show="showme2">
             <div class="form-group">
-                <div class="col-sm-5">
-                    <input type="text" ng-model="password_" class="form-control"  placeholder="Nouveau mot de passe ...">
+                <div class="col-xs-5">
+                    <input type="text" ng-model="password_" class="form-control"  placeholder="Nouveau mot de passe">
                 </div>
             </div>
 
             <button type="button" class="btn btn-default"  ng-click="modifierMotPasse();showme2=false" >
-                envoyer
+                Envoyer
             </button>
 
         </div>
