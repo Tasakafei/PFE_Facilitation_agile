@@ -43,19 +43,32 @@ app.controller('catalogueCtrl', function (LabelsService, $scope, CatalogueDataPr
         value3: '',
         value4: ''
     };
+
+    function getCleanedValues(map) {
+        var values = Object.values(map);
+        var test = [];
+        values.forEach(function (v){
+            if (v != "") {
+                test.push(v);
+            }
+        });
+        return test;
+    }
     function searchEduc(row) {
-        var isSet = false;
-        for (var educ = 0; educ < row.content.educational_aims.length; ++educ) {
-            for (var i = 0; i < $scope.educational_aims_search.length ; ++i) {
-                if ($scope.educational_aims_search[i] != '') {
-                    isSet = true;
-                    if ($scope.educational_aims_search[i] == row.workshop.content.educational_aims[educ]) {
-                        return true;
-                    }
+        var values = getCleanedValues($scope.educational_aims_search);
+        if (values.length == 0) {
+            return true;
+        } else {
+            for (var i = 0; i < values.length; ++i) {
+                var elem = values[i];
+                console.log(row.content.educational_aims.includes(elem));
+                if (!row.content.educational_aims.includes(elem)) {
+                    return false;
                 }
             }
+            return true;
         }
-        return isSet != true;
+
     }
 
     function searchTitle(row) {
