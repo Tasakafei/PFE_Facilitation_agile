@@ -193,7 +193,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
         jsonArr.push({
             title: document.getElementById('inputStepTitle').value,
             description: $('#steps-textarea').val(),
-            instructions: $('#instructions-textarea-').val(),
+            instructions: $('#instructions-textarea').val(),
             duration: document.getElementById('inputStepDuration').value
         });
 
