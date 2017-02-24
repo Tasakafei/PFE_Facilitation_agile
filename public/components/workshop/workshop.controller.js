@@ -160,7 +160,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
                 $scope.$emit('notify', {
                     type: 'success',
                     title: 'L\'atelier a bien été ajouté.',
-                    content: '/#/instances $$Voir mon agenda'
+                    content: '/#/calendar $$Voir mon agenda'
                 });
             });
             res.error(function(data, status, headers, config) {
