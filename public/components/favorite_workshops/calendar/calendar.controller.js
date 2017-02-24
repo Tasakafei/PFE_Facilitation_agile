@@ -20,12 +20,11 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
 
     var retrieveAllEvents = function () {
         $scope.workshopEvents = [];
-        // $("#calendar").fullCalendar('rerender');
         EventsService.getEvents()
             .success(function(events) {
                 events.data.forEach(function (event) {
                     var end = new Date(event.begin_at);
-                    end.setMinutes(end.getMinutes() + event.duration);
+                    end.setMinutes(end.getMinutes() + event.duration +end.getTimezoneOffset());
                     var color;
                     var url;
                     var title = event.title;
@@ -37,7 +36,6 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
                         type = "workshop";
                     }
                     var u =  new Date(event.begin_at);
-                    console.log(u.getTimezoneOffset());
                     u.setMinutes(u.getMinutes() + u.getTimezoneOffset());
                     $scope.workshopEvents.push({_id: event._id, title: title, start: u, end: end, color: color, duration: event.duration, url:url, type:type});
                 });
@@ -45,9 +43,6 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
     };
 
     retrieveAllEvents();
-
-    $scope.alertOnEventClick = function( date, jsEvent, view){
-    };
 
     $scope.alertOnDrop = function(event){
         var elem = {begin_at: event.start._d};
@@ -80,20 +75,22 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
     };
 
     $scope.changeView = function(view,calendar) {
+        retrieveAllEvents();
+        console.log($scope.eventSources);
         uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+        retrieveAllEvents();
     };
 
     $scope.renderCalender = function(calendar) {
+        retrieveAllEvents();
+        console.log($scope.eventSources);
         if(uiCalendarConfig.calendars[calendar]){
             uiCalendarConfig.calendars[calendar].fullCalendar('render');
         }
+        retrieveAllEvents();
     };
 
-    $scope.eventRender = function( event, element, view ) {
-        element.attr({'tooltip': event.title,
-            'tooltip-append-to-body': true});
-        $compile(element)($scope);
-    };
+
 
     /** When you click on an empty space **/
     $scope.addNewEvent = function (date) {
@@ -143,10 +140,8 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
                 center: 'title',
                 right: 'today prev,next'
             },
-            eventClick: $scope.alertOnEventClick,
             eventDrop: $scope.alertOnDrop,
             eventResize: $scope.alertOnResize,
-            eventRender: $scope.eventRender,
             dayClick: $scope.addNewEvent
         }
     };
