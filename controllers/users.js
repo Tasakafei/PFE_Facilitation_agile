@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
     ObjectId = mongoose.Types.ObjectId;
 
 
+
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 var Workshop = mongoose.model("Workshop");
 var WorkshopInstances = require("../model/instances/workshop-instance");
@@ -41,7 +42,13 @@ function createImpl(req, res, next) {
 }
 function updateUserInfoImp(req,res){
     var user = req.user;
-   // console.log(req.body);
+
+//console.log("mot de passe",bcrypt.hashSync(user.hashedPassword, bcrypt.genSaltSync(8), null));
+    var newEncrypt = user.encryptPassword("ward");
+   // console.log("mot de passe",newEncrypt);
+    console.log("le mot de passe est : ",req.body.password);
+
+if(req.body.password == null) {
     User.findOneAndUpdate({_id: user._id}, req.body,
         function (err, user) {
             if (err) {
@@ -52,7 +59,25 @@ function updateUserInfoImp(req,res){
                 res.json({status: "success", data: user});
             }
 
-        });
+        }
+    );
+}else{
+    console.log("le mot de passe est : ",req.body.password);
+    User.findOneAndUpdate({_id: user._id}, {hashedPassword: user.encryptPassword(req.body.password)},
+        function (err, user) {
+            if (err) {
+                console.log(err);
+                return next(new Error('Failed to load User ' + username));
+            } else {
+                console.log(user);
+                res.json({status: "success", data: user});
+            }
+
+        }
+    );
+
+}
+
 }
 
 /*function UpdateUserMdpImp(req,res){

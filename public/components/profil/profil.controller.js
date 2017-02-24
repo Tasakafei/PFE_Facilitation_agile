@@ -14,6 +14,7 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
 
     $scope.modifierPseudo = modifierPseudoFct;
     $scope.modifierEmail=modifierEmailFct;
+    $scope.modifierMotPasse=modifierMotPasseFct;
     $scope.profile = {};
     $scope.user = {};
     $scope.error = {};
@@ -25,6 +26,7 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
     if($scope.currentUser) {
         $scope.name = $scope.currentUser.username;
         $scope.email = $scope.currentUser.email;
+        $scope.password = $scope.currentUser.password;
     }
     else{
         $scope.name = " ";
@@ -84,6 +86,33 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
                     $scope.$emit('notify', {
                         type: 'error',
                         title: 'Votre email n\'a pas pu être modifier.'
+                    });
+                }
+            }
+        );
+
+    }
+
+    function modifierMotPasseFct() {
+        Auth.updateUser({
+                password: $scope.password_
+            },
+            function(err) {
+                $scope.errors = {};
+                if (err) {
+                    $scope.$emit('notify', {
+                        type: 'success',
+                        title: 'Votre password a bien été modifier.'
+                    });
+
+                } else {
+                    angular.forEach(err.errors, function(error, field) {
+                        console.error("ERROR : " + error + " : "+ field);
+                    });
+
+                    $scope.$emit('notify', {
+                        type: 'error',
+                        title: 'Votre password n\'a pas pu être modifier.'
                     });
                 }
             }

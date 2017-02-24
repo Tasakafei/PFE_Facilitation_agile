@@ -24,23 +24,28 @@
 
             </div>
         </div>
+
         <br>
 
 
 
 <div class="row">
-    <button  type="button" class="btn btn-default"  ng-click="showme=true;showme1=false" aria-label="Toggle ngShow">
+    <button  type="button" class="btn btn-default"  ng-click="showme=true;showme1=false;showme2=false" aria-label="Toggle ngShow">
         changer email
     </button>
-    <button  type="button" class="btn btn-default"  ng-click="showme1=true;showme=false" aria-label="Toggle ngShow">
+    <button  type="button" class="btn btn-default"  ng-click="showme1=true;showme=false;showme2=false" aria-label="Toggle ngShow">
         changer pseudo
+    </button>
+
+    <button  type="button" class="btn btn-default"  ng-click="showme2=true;showme=false;showme1=false" aria-label="Toggle ngShow">
+        changer mot de passe
     </button>
 
 </div>
 
         <div class="check-element animate-show-hide" ng-show="showme">
             <div class="form-group">
-                <div class="col-sm-9">
+                <div class="col-sm-5" >
                     <input type="text" ng-model="email_" class="form-control"  placeholder="Nouveau Email ...">
                 </div>
             </div>
@@ -53,12 +58,24 @@
 
         <div class="check-element animate-show-hide" ng-show="showme1">
             <div class="form-group">
-                <div class="col-sm-9">
+                <div class="col-sm-5">
                     <input type="text" ng-model="pseudo" class="form-control"  placeholder="Nouveau pseudo ...">
                 </div>
             </div>
 
             <button type="button" class="btn btn-default"  ng-click="modifierPseudo();showme1=false" >
+                envoyer
+            </button>
+
+        </div>
+        <div class="check-element animate-show-hide" ng-show="showme2">
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <input type="text" ng-model="password_" class="form-control"  placeholder="Nouveau mot de passe ...">
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-default"  ng-click="modifierMotPasse();showme2=false" >
                 envoyer
             </button>
 
