@@ -39,17 +39,40 @@ function createImpl(req, res, next) {
         });
     });
 }
+
+/*   update info user */
+
 function updateUserInfoImp(req,res){
     var user = req.user;
-    User.findOneAndUpdate({_id: user._id}, req.body,
-        function (err, user) {
+    /*  email or pseudo */
+    if(req.body.password == null) {
+        User.findOneAndUpdate({_id: user._id}, req.body,
+         function (err, user) {
             if (err) {
                 return next(new Error('Failed to load User ' + username));
             } else {
                 res.json({status: "success", data: user});
             }
 
-        });
+          }
+    );
+}else{
+        /*  password */
+    User.findOneAndUpdate({_id: user._id}, {hashedPassword: user.encryptPassword(req.body.password)},
+        function (err, user) {
+            if (err) {
+                console.log(err);
+                return next(new Error('Failed to load User ' + username));
+            } else {
+                console.log(user);
+                res.json({status: "success", data: user});
+            }
+
+        }
+    );
+
+}
+
 }
 
 /*function UpdateUserMdpImp(req,res){
@@ -259,7 +282,6 @@ function addWorkshopInstanceImpl(req, res) {
                             instance.status = "CREATED";
                             for (var i = 0; i < workshop.content.steps.length; ++i) {
                                 var wsStep = workshop.content.steps[i];
-                                console.log(wsStep);
                                 instance.steps[i] = {
                                     title: wsStep.title,
                                     description: wsStep.description,
