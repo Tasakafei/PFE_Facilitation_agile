@@ -4,7 +4,7 @@
  * EMAIL:          alexandre.cazala@gmail.com   *
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
-angular.module('facilitation').controller('calendarCtrl', function (EventsService, $scope, $compile, uiCalendarConfig) {
+angular.module('facilitation').controller('calendarCtrl', function ($route, $timeout, EventsService, $scope, $compile, uiCalendarConfig) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -20,8 +20,10 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
 
     var retrieveAllEvents = function () {
         $scope.workshopEvents = [];
+        // $("#calendar").fullCalendar('rerender');
         EventsService.getEvents()
             .success(function(events) {
+                console.log(events.data);
                 events.data.forEach(function (event) {
                     var end = new Date(event.begin_at);
                     end.setMinutes(end.getMinutes() + event.duration);
@@ -35,7 +37,9 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
                         title = "["+event.group+"]\n"+title;
                         type = "workshop";
                     }
-                    $scope.workshopEvents.push({_id: event._id, title: title, start: new Date(event.begin_at), end: end, color: color, duration: event.duration, url:url, type:type});
+                    var u =  new Date(event.begin_at);
+                    u.setMinutes(u.getMinutes() + u.getTimezoneOffset());
+                    $scope.workshopEvents.push({_id: event._id, title: title, start: u, end: end, color: color, duration: event.duration, url:url, type:type});
                 });
             });
     };
@@ -45,9 +49,10 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     $scope.alertOnEventClick = function( date, jsEvent, view){
     };
 
-    $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+    $scope.alertOnDrop = function(event){
         var elem = {begin_at: event.start._d};
         if (event.type === "workshop") {
+
             EventsService.updateWorkshopInstance(event._id,elem);
         } else {
             EventsService.updateEvent(event._id, elem);
@@ -94,7 +99,8 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
     $scope.addNewEvent = function (date) {
         $scope.newEvent = {};
         var tmp = date._d;
-        $scope.newEvent.hours_begin_at = ""+(tmp.getHours()-1)+":"+tmp.getMinutes();
+        tmp.setMinutes(tmp.getMinutes() + tmp.getTimezoneOffset());
+        $scope.newEvent.hours_begin_at = ""+(tmp.getHours())+":"+tmp.getMinutes();
         $scope.newEvent.begin_at = tmp;
         $('#newEventModal').modal('show');
     };
@@ -118,6 +124,10 @@ angular.module('facilitation').controller('calendarCtrl', function (EventsServic
         $('#newEventModal').modal('hide');
         $scope.newEvent = {};
         retrieveAllEvents();
+
+        // $timeout(function() {
+        //     $route.reload();
+        // }, 300);
         $scope.$emit('notify', {
             type: 'success',
             title: 'Évenement \"'+event.title+'\" rajouté avec succès'

@@ -13,13 +13,15 @@ app.controller('homeCtrl', function ($scope, CatalogueDataProvider) {
      * Put in the $scope.dataNote workshops with a note to display them on the first page
      */
     CatalogueDataProvider.getWorkshops(function (dataResponse) {
-        $scope.data = dataResponse.data;
+        var response = dataResponse.data;
+        $scope.data = [];
 
         //workshop with a note
-        for(var i = 0; i < $scope.data.length; i++) {
-            if($scope.data[i].grade.participants != 0 || $scope.data[i].grade.facilitators != 0) {
-                $scope.data[i].grade.participants = ($scope.data[i].grade.participants + $scope.data[i].grade.facilitators) /2;
-                $scope.dataNote.push($scope.data[i]);
+        for(var i = 0; i < response.length; i++) {
+            if(response[i].grade.participants != 0 || response[i].grade.facilitators != 0) {
+                response[i].grade.participants = (response[i].grade.participants + response[i].grade.facilitators) /2;
+                $scope.data.push(response[i]);
+                console.log($scope.data);
             }
         }
 

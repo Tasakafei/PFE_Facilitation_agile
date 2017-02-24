@@ -4,7 +4,7 @@
         <h3>Les meilleurs jeux agiles</h3>
     </div>
     <div class="row">
-        <div ng-repeat="elem in dataNote | orderBy:'grade.participants':true|limitTo:9" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-lg-4 padding-t-b">
+        <div ng-repeat="elem in data | limitTo:3" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-lg-4 padding-t-b">
             <a href="/#/catalogue/{{elem._id}}">
                 <img ng-src="{{elem.photo}}" class="img-thumbnail center-block">
                 <p class="workshopTitle text-center">{{elem.title}}</p>
