@@ -40,17 +40,15 @@ function createImpl(req, res, next) {
         });
     });
 }
+
+/*   update info user */
+
 function updateUserInfoImp(req,res){
     var user = req.user;
-
-//console.log("mot de passe",bcrypt.hashSync(user.hashedPassword, bcrypt.genSaltSync(8), null));
-    var newEncrypt = user.encryptPassword("ward");
-   // console.log("mot de passe",newEncrypt);
-    console.log("le mot de passe est : ",req.body.password);
-
-if(req.body.password == null) {
-    User.findOneAndUpdate({_id: user._id}, req.body,
-        function (err, user) {
+    /*  email or pseudo */
+    if(req.body.password == null) {
+        User.findOneAndUpdate({_id: user._id}, req.body,
+         function (err, user) {
             if (err) {
                 console.log(err);
                 return next(new Error('Failed to load User ' + username));
@@ -59,10 +57,10 @@ if(req.body.password == null) {
                 res.json({status: "success", data: user});
             }
 
-        }
+          }
     );
 }else{
-    console.log("le mot de passe est : ",req.body.password);
+        /*  password */
     User.findOneAndUpdate({_id: user._id}, {hashedPassword: user.encryptPassword(req.body.password)},
         function (err, user) {
             if (err) {

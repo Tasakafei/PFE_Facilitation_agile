@@ -12,12 +12,32 @@ var app = angular.module('facilitation');
 
 app.controller('profilCtrl', function( $scope,$location,Auth) {
 
+
+    // Scope methods
+    /**
+     * Update the pseudo
+     * @type {modifierPseudo}
+     */
     $scope.modifierPseudo = modifierPseudoFct;
+
+
+    /**
+     * Update the email
+     * @type {modifierEmail}
+     */
     $scope.modifierEmail=modifierEmailFct;
+
+    /**
+     * Update the password
+     * @type {modifierMotPasse}
+     */
     $scope.modifierMotPasse=modifierMotPasseFct;
+
+    // Scope variables
     $scope.profile = {};
     $scope.user = {};
     $scope.error = {};
+
    if($scope.currentUser.username == null || $scope.currentUser.email == null){
       $scope.name = " ";
       $scope.email =" ";
