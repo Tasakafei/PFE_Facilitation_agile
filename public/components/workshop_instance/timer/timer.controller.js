@@ -54,6 +54,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
      */
     socket.on('start_timer', function(timerInfo){
         $scope.startTimer(timerInfo.duration);
+        console.log(timerInfo);
         $scope.instructions = timerInfo.instructions;
     });
 

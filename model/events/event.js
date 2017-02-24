@@ -20,7 +20,6 @@ function createEvent(event, callback) {
         }
     });
     tmp.save(function(err, data) {
-        console.log(event);
         if (err) {
             callback(err)
         } else {

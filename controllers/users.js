@@ -41,14 +41,11 @@ function createImpl(req, res, next) {
 }
 function updateUserInfoImp(req,res){
     var user = req.user;
-   // console.log(req.body);
     User.findOneAndUpdate({_id: user._id}, req.body,
         function (err, user) {
             if (err) {
-                console.log(err);
                 return next(new Error('Failed to load User ' + username));
             } else {
-                console.log(user);
                 res.json({status: "success", data: user});
             }
 
@@ -262,6 +259,7 @@ function addWorkshopInstanceImpl(req, res) {
                             instance.status = "CREATED";
                             for (var i = 0; i < workshop.content.steps.length; ++i) {
                                 var wsStep = workshop.content.steps[i];
+                                console.log(wsStep);
                                 instance.steps[i] = {
                                     title: wsStep.title,
                                     description: wsStep.description,

@@ -15,6 +15,7 @@ function saveWorkshopFct (workshop) {
     var test = workshop;
     return new Promise(function (resolve, reject) {
         var newWorkshop = new Workshop(test);
+        console.log(newWorkshop.content.steps);
         newWorkshop.save(function(err, data) {
             if (err) {
                 console.error(err);
