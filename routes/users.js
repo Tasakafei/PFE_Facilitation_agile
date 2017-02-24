@@ -20,6 +20,7 @@ router.put('/instances/:instanceId', auth.ensureAuthenticated, users.updateWorks
 router.get('/instances/:instanceId', users.getWorkshopInstance);
 router.post('/events', auth.ensureAuthenticated, users.addWorkshopEvent);
 router.get('/events', auth.ensureAuthenticated, users.getEvents);
+router.get('/events/planned', auth.ensureAuthenticated, users.getPlannedEvents);
 router.put('/events/:eventId', auth.ensureAuthenticated, users.updateEvent);
 router.delete('/instances/:instanceId', auth.ensureAuthenticated, users.deleteInstanceWorkshop);
 

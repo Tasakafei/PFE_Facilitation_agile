@@ -194,6 +194,37 @@ function getEventsImpl(req, res) {
         res.json({status: "error", data: "USER_NOT_FOUND"});
     }
 }
+
+function getPlannedEventsImpl(req, res) {
+    if (req.user) {
+        var today = Date.now();
+        User.findOne({ username: req.user.username})
+            .populate({
+                path: 'workshops_instances',
+                match: { $gte: today},
+                options: {
+                    sort: {begin_at: 'desc'}
+                }
+            })
+            .populate({
+                path: 'workshops_events',
+                match: { $gte: today},
+                options: {
+                    sort: {begin_at: 'desc'}
+                }
+            })
+            .exec(function(err, userData) {
+                if (err) {
+                    res.json({status:"error", data: "Failed to populate User " + user.username});
+                } else {
+                    var agenda = userData.workshops_events.concat(userData.workshops_instances);
+                    res.json({status: "success", data: agenda})
+                }
+            })
+    } else {
+        res.json({status: "error", data: "USER_NOT_FOUND"});
+    }
+}
 function addWorkshopInstanceImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshopId;
@@ -446,6 +477,8 @@ module.exports = {
     getWorkshopInstances: getWorkshopInstancesImpl,
 
     getEvents: getEventsImpl,
+
+    getPlannedEvents: getPlannedEventsImpl,
     /**
      * Instanciate a new workshopInstance and add the reference in the user's instances
      * The user has to be logged in the system.
