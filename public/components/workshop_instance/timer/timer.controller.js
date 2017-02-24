@@ -188,7 +188,7 @@ app.controller('timerCtrl', function($scope, $interval, socket){
             $('#commentaires').hide();
             $('#photos').hide();
             $('.progress-wrapper').css("zoom", "200%");
-            $('.progress-wrapper').css("-moz-transform", "scale(2)");
+            $('.progress-wrapper').css("-moz-transform", "scale(1.7)");
             $('.progress-wrapper').css("-moz-transform-origin", "50% 0%");
 
             $('#timer-in').removeClass('col-md-4');
