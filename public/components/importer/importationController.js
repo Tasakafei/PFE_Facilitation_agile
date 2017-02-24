@@ -25,15 +25,6 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
     $scope.stepsTextareaAncre = "steps-textarea-ancre";
     $scope.photo = [];
 
-    //TODO : dirty fix, because of cache bug with the function $("body").on('click', '.add-more', function()
-    //TODO : How to see the bug : go to import page, then go on an other, go back to import page, add a step...
-    $scope.$on('$viewContentLoaded', function() {
-        if(window.location.hash == '#/importer') {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
-    });
-
     var cpt = 1;
 
     document.getElementById('inputPhotos').addEventListener('change', function(){
