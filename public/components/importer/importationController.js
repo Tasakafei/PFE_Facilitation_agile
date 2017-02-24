@@ -25,6 +25,14 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
     $scope.stepsTextareaAncre = "steps-textarea-ancre";
     $scope.photo = [];
 
+    //TODO : dirty fix, because of cache bug with the function $("body").on('click', '.add-more', function()
+    //TODO : How to see the bug : go to import page, then go on an other, go back to import page, add a step...
+    $scope.$on('$viewContentLoaded', function() {
+        if(window.location.hash == '#/importer') {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    });
 
     var cpt = 1;
 
@@ -130,7 +138,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
             }
         });
 
-        $('#instructionsTextarea-'+cpt).wysihtml5({
+        $('#instructionsTextarea-' + cpt).wysihtml5({
             toolbar: {
                 "font-styles": false,
                 "link": false,
@@ -141,15 +149,14 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
             }
         });
 
-
         //Move classes as we need to
-        $(".after-add-more").addClass("last-after-add-more-"+cpt);
+        $(".after-add-more").addClass("last-after-add-more-" + cpt);
         $(".after-add-more").removeClass("after-add-more");
         $(".control-group:first").addClass("after-add-more");
         $(".control-group:first").removeClass("control-group");
 
-        if(cpt >= 3) {
-            for(var i=0; i < document.getElementsByClassName("remove").length - 2; i++) {
+        if (cpt >= 3) {
+            for (var i = 0; i < document.getElementsByClassName("remove").length - 2; i++) {
                 document.getElementsByClassName("remove")[i].style.display = "none";
             }
         }
