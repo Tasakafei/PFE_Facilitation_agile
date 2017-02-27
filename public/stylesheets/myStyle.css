@@ -144,6 +144,8 @@ p.workshopTitle {
 .search .img-padding {
     padding-top: 10px;
     padding-bottom: 10px;
+    max-height: 188px;
+    margin: 0 auto;
 }
 
 @media (max-width: 768px) {
