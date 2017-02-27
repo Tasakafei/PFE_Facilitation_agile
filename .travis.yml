@@ -19,6 +19,9 @@ env:
 install:
   - npm install
 
+services:
+  - mongodb
+
 script:
 - cd scripts
 - . environment_variables_script.sh
