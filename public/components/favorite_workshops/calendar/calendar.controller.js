@@ -5,11 +5,6 @@
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
 angular.module('facilitation').controller('calendarCtrl', function ($route, $timeout, EventsService, $scope, $compile, uiCalendarConfig) {
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
     $scope.newEvent = {};
     $scope.workshopEvents= [];
     $scope.events = {
@@ -76,14 +71,12 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
 
     $scope.changeView = function(view,calendar) {
         retrieveAllEvents();
-        console.log($scope.eventSources);
         uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
         retrieveAllEvents();
     };
 
     $scope.renderCalender = function(calendar) {
         retrieveAllEvents();
-        console.log($scope.eventSources);
         if(uiCalendarConfig.calendars[calendar]){
             uiCalendarConfig.calendars[calendar].fullCalendar('render');
         }

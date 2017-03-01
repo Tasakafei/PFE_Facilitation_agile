@@ -7,10 +7,9 @@
 'use strict';
 
 
-
 var app = angular.module('facilitation');
 
-app.controller('profilCtrl', function( $scope,$location,Auth) {
+app.controller('profilCtrl', function ($scope, $location, Auth) {
 
 
     // Scope methods
@@ -25,55 +24,48 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
      * Update the email
      * @type {modifierEmail}
      */
-    $scope.modifierEmail=modifierEmailFct;
+    $scope.modifierEmail = modifierEmailFct;
 
     /**
      * Update the password
      * @type {modifierMotPasse}
      */
-    $scope.modifierMotPasse=modifierMotPasseFct;
+    $scope.modifierMotPasse = modifierMotPasseFct;
 
     // Scope variables
     $scope.profile = {};
     $scope.user = {};
     $scope.error = {};
 
-   if($scope.currentUser.username == null || $scope.currentUser.email == null){
-      $scope.name = " ";
-      $scope.email =" ";
+    if ($scope.currentUser.username == null || $scope.currentUser.email == null) {
+        $scope.name = " ";
+        $scope.email = " ";
+    }
 
-   }
-    if($scope.currentUser) {
+    if ($scope.currentUser) {
         $scope.name = $scope.currentUser.username;
         $scope.email = $scope.currentUser.email;
         $scope.password = $scope.currentUser.password;
-    }
-    else{
+    } else {
         $scope.name = " ";
-        $scope.email =" ";
-
+        $scope.email = " ";
     }
-    console.log("currentUser ",$scope.currentUser.username);
 
     function modifierPseudoFct() {
         Auth.updateUser({
-
-                username:$scope.pseudo
-
+                username: $scope.pseudo
             },
-            function(err) {
+            function (err) {
                 $scope.errors = {};
                 if (err) {
-                    console.log("pseudo ",$scope.pseudo);
-
                     $scope.$emit('notify', {
                         type: 'success',
                         title: 'Votre pseudo a bien été modifier.'
                     });
 
                 } else {
-                    angular.forEach(err.errors, function(error, field) {
-                        console.error("ERROR : " + error + " : "+ field);
+                    angular.forEach(err.errors, function (error, field) {
+                        console.error("ERROR : " + error + " : " + field);
                     });
 
                     $scope.$emit('notify', {
@@ -83,26 +75,23 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
                 }
             }
         );
-
     }
 
     function modifierEmailFct() {
         Auth.updateUser({
                 email: $scope.email_
-        },
-            function(err) {
+            },
+            function (err) {
                 $scope.errors = {};
                 if (err) {
                     $scope.$emit('notify', {
                         type: 'success',
                         title: 'Votre email a bien été modifier.'
                     });
-
                 } else {
-                    angular.forEach(err.errors, function(error, field) {
-                        console.error("ERROR : " + error + " : "+ field);
+                    angular.forEach(err.errors, function (error, field) {
+                        console.error("ERROR : " + error + " : " + field);
                     });
-
                     $scope.$emit('notify', {
                         type: 'error',
                         title: 'Votre email n\'a pas pu être modifier.'
@@ -110,26 +99,23 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
                 }
             }
         );
-
     }
 
     function modifierMotPasseFct() {
         Auth.updateUser({
                 password: $scope.password_
             },
-            function(err) {
+            function (err) {
                 $scope.errors = {};
                 if (err) {
                     $scope.$emit('notify', {
                         type: 'success',
                         title: 'Votre password a bien été modifier.'
                     });
-
                 } else {
-                    angular.forEach(err.errors, function(error, field) {
-                        console.error("ERROR : " + error + " : "+ field);
+                    angular.forEach(err.errors, function (error, field) {
+                        console.error("ERROR : " + error + " : " + field);
                     });
-
                     $scope.$emit('notify', {
                         type: 'error',
                         title: 'Votre password n\'a pas pu être modifier.'
@@ -137,10 +123,5 @@ app.controller('profilCtrl', function( $scope,$location,Auth) {
                 }
             }
         );
-
     }
-
-
-
-
 });

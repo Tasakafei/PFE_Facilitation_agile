@@ -21,7 +21,6 @@ app.controller('homeCtrl', function ($scope, CatalogueDataProvider) {
             if(response[i].grade.participants != 0 || response[i].grade.facilitators != 0) {
                 response[i].grade.participants = (response[i].grade.participants + response[i].grade.facilitators) /2;
                 $scope.data.push(response[i]);
-                console.log($scope.data);
             }
         }
 

@@ -61,10 +61,9 @@ function updateUserInfoImp(req,res){
     User.findOneAndUpdate({_id: user._id}, {hashedPassword: user.encryptPassword(req.body.password)},
         function (err, user) {
             if (err) {
-                console.log(err);
+                console.error(err);
                 return next(new Error('Failed to load User ' + username));
             } else {
-                console.log(user);
                 res.json({status: "success", data: user});
             }
 
@@ -188,7 +187,6 @@ function getWorkshopInstancesImpl(req, res, next) {
 
 function getEventsImpl(req, res) {
     if (req.user) {
-        var today = Date.now();
         User.findOne({ username: req.user.username})
             .populate({
                 path: 'workshops_instances',
