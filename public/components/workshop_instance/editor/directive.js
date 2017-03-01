@@ -3,7 +3,7 @@
     'use strict';
 
     var Simditor = window.Simditor;
-    var directives = angular.module('simditor',[]);
+    var directives = angular.module('simditor', []);
 
     directives.directive('simditor', function () {
         return {

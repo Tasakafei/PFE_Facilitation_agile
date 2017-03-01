@@ -5,7 +5,7 @@
  */
 
 angular.module('facilitation.qrcode', [])
-    .directive('qrcode', ['$window', function($window) {
+    .directive('qrcode', ['$window', function ($window) {
 
         var canvas2D = !!$window.CanvasRenderingContext2D,
             levels = {
@@ -14,7 +14,7 @@ angular.module('facilitation.qrcode', [])
                 'Q': 'Quartile',
                 'H': 'High'
             },
-            draw = function(context, qr, modules, tile) {
+            draw = function (context, qr, modules, tile) {
                 for (var row = 0; row < modules; row++) {
                     for (var col = 0; col < modules; col++) {
                         var w = (Math.ceil((col + 1) * tile) - Math.floor(col * tile)),
@@ -30,7 +30,7 @@ angular.module('facilitation.qrcode', [])
         return {
             restrict: 'E',
             template: '<canvas class="qrcode"></canvas>',
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
                 var domElement = element[0],
                     $canvas = element.find('canvas'),
                     canvas = $canvas[0],
@@ -48,13 +48,13 @@ angular.module('facilitation.qrcode', [])
                     tile,
                     qr,
                     $img,
-                    setVersion = function(value) {
+                    setVersion = function (value) {
                         version = Math.max(1, Math.min(parseInt(value, 10), 40)) || 5;
                     },
-                    setErrorCorrectionLevel = function(value) {
+                    setErrorCorrectionLevel = function (value) {
                         errorCorrectionLevel = value in levels ? value : 'M';
                     },
-                    setData = function(value) {
+                    setData = function (value) {
                         if (!value) {
                             return;
                         }
@@ -65,7 +65,7 @@ angular.module('facilitation.qrcode', [])
 
                         try {
                             qr.make();
-                        } catch(e) {
+                        } catch (e) {
                             error = e.message;
                             return;
                         }
@@ -73,12 +73,12 @@ angular.module('facilitation.qrcode', [])
                         error = false;
                         modules = qr.getModuleCount();
                     },
-                    setSize = function(value) {
+                    setSize = function (value) {
                         size = parseInt(value, 10) || modules * 2;
                         tile = size / modules;
                         canvas.width = canvas.height = size;
                     },
-                    render = function() {
+                    render = function () {
                         if (!qr) {
                             return;
                         }
@@ -136,7 +136,7 @@ angular.module('facilitation.qrcode', [])
                 setErrorCorrectionLevel(attrs.errorCorrectionLevel);
                 setSize(attrs.size);
 
-                attrs.$observe('version', function(value) {
+                attrs.$observe('version', function (value) {
                     if (!value) {
                         return;
                     }
@@ -147,7 +147,7 @@ angular.module('facilitation.qrcode', [])
                     render();
                 });
 
-                attrs.$observe('errorCorrectionLevel', function(value) {
+                attrs.$observe('errorCorrectionLevel', function (value) {
                     if (!value) {
                         return;
                     }
@@ -158,7 +158,7 @@ angular.module('facilitation.qrcode', [])
                     render();
                 });
 
-                attrs.$observe('data', function(value) {
+                attrs.$observe('data', function (value) {
                     if (!value) {
                         return;
                     }
@@ -168,7 +168,7 @@ angular.module('facilitation.qrcode', [])
                     render();
                 });
 
-                attrs.$observe('size', function(value) {
+                attrs.$observe('size', function (value) {
                     if (!value) {
                         return;
                     }
@@ -177,7 +177,7 @@ angular.module('facilitation.qrcode', [])
                     render();
                 });
 
-                attrs.$observe('href', function(value) {
+                attrs.$observe('href', function (value) {
                     if (!value) {
                         return;
                     }

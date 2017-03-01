@@ -8,12 +8,12 @@
 app.service('CloudinaryClient', function ($http) {
 
     /*
-    PUBLIC FUNCTIONS
+     PUBLIC FUNCTIONS
      */
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.uploadPhotos = function(photos) {
+    this.uploadPhotos = function (photos) {
         var fd = new FormData();
-        for(var i = 0;i < photos.length ;i++) {
+        for (var i = 0; i < photos.length; i++) {
             var imgBlob = dataURItoBlob(photos[i]);
             fd.append('photos', imgBlob);
         }
@@ -29,8 +29,8 @@ app.service('CloudinaryClient', function ($http) {
     };
 
     /*
-    PRIVATE FUNCTIONS
-    */
+     PRIVATE FUNCTIONS
+     */
     function dataURItoBlob(dataURI) {
         var binary = atob(dataURI.split(',')[1]);
         var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];

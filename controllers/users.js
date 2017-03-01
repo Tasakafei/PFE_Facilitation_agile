@@ -1,11 +1,9 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-    passport = require('passport'),
-    ObjectId = mongoose.Types.ObjectId;
-
-
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
+var passport = require('passport');
+var ObjectId = mongoose.Types.ObjectId;
 var WorkshopInstance = mongoose.model("WorkshopInstance");
 var Workshop = mongoose.model("Workshop");
 var WorkshopInstances = require("../model/instances/workshop-instance");
@@ -24,13 +22,13 @@ function createImpl(req, res, next) {
     var newUser = new User(req.body);
     newUser.provider = 'local';
 
-    newUser.save(function(err) {
+    newUser.save(function (err) {
         if (err) {
             console.error(err);
             return res.status(400).json(err);
         }
 
-        req.login(newUser, function(err) {
+        req.login(newUser, function (err) {
             if (err) {
                 console.error(err);
                 return next(err);
@@ -42,59 +40,35 @@ function createImpl(req, res, next) {
 
 /*   update info user */
 
-function updateUserInfoImp(req,res){
+function updateUserInfoImp(req, res) {
     var user = req.user;
     /*  email or pseudo */
-    if(req.body.password == null) {
+    if (req.body.password == null) {
         User.findOneAndUpdate({_id: user._id}, req.body,
-         function (err, user) {
-            if (err) {
-                return next(new Error('Failed to load User ' + username));
-            } else {
-                res.json({status: "success", data: user});
+            function (err, user) {
+                if (err) {
+                    return next(new Error('Failed to load User ' + username));
+                } else {
+                    res.json({status: "success", data: user});
+                }
             }
-
-          }
-    );
-}else{
+        );
+    } else {
         /*  password */
-    User.findOneAndUpdate({_id: user._id}, {hashedPassword: user.encryptPassword(req.body.password)},
-        function (err, user) {
-            if (err) {
-                console.error(err);
-                return next(new Error('Failed to load User ' + username));
-            } else {
-                res.json({status: "success", data: user});
+        User.findOneAndUpdate({_id: user._id}, {hashedPassword: user.encryptPassword(req.body.password)},
+            function (err, user) {
+                if (err) {
+                    console.error(err);
+                    return next(new Error('Failed to load User ' + username));
+                } else {
+                    res.json({status: "success", data: user});
+                }
+
             }
-
-        }
-    );
-
+        );
+    }
 }
 
-}
-
-/*function UpdateUserMdpImp(req,res){
-
-    var user = req.user;
-   // console.log("user",user.username);
-    console.log("param_mdp",req.body.password.newPasswd);
-
-    User.findOneAndUpdate({username:user.username}, {email: req.body.password.newPasswd},
-        function (err, user) {
-            if (err) {
-                console.log(err);
-                return next(new Error('Failed to load User ' + username));
-            } else {
-                console.log(user);
-                res.json({status: "success", data: user});
-            }
-
-        });
-
-
-
-}*/
 function showImpl(req, res, next) {
     var userId = req.params.userId;
 
@@ -103,21 +77,21 @@ function showImpl(req, res, next) {
             return next(new Error('Failed to load User'));
         }
         if (user) {
-            res.send({username: user.username, profile: user.profile });
+            res.send({username: user.username, profile: user.profile});
         } else {
             res.send(404, 'USER_NOT_FOUND')
         }
     });
 }
 
-function existsImpl (req, res, next) {
+function existsImpl(req, res, next) {
     var username = req.params.username;
-    User.findOne({ username : username }, function (err, user) {
+    User.findOne({username: username}, function (err, user) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
         }
 
-        if(user) {
+        if (user) {
             res.json({exists: true});
         } else {
             res.json({exists: false});
@@ -125,25 +99,24 @@ function existsImpl (req, res, next) {
     });
 }
 
-function addToFavoriteWorkshopsImpl (req, res) {
+function addToFavoriteWorkshopsImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshop;
-    Workshop.findOne(ObjectId(workshop),  function(err) {
+    Workshop.findOne(ObjectId(workshop), function (err) {
         if (err) {
             res.json({status: "error", data: err});
         } else {
             User.findOneAndUpdate(
-                { username : user.username },
+                {username: user.username},
                 {
-                    $push:
-                    {"workshops_favorites":
-                    {
-                        _id: ObjectId(workshop)
-                    }
+                    $push: {
+                        "workshops_favorites": {
+                            _id: ObjectId(workshop)
+                        }
                     }
                 },
-                { safe: true, new: true },
-                function(err) {
+                {safe: true, new: true},
+                function (err) {
                     if (err) {
                         res.json({status: "error", data: err});
                     } else {
@@ -158,26 +131,26 @@ function addToFavoriteWorkshopsImpl (req, res) {
 
 function getFavoriteWorkshopsImpl(req, res, next) {
     var user = req.user;
-    User.findOne({ username : user.username }).populate('workshops_favorites').exec(function (err, user) {
+    User.findOne({username: user.username}).populate('workshops_favorites').exec(function (err, user) {
         if (err) {
             return next(new Error('Failed to load User ' + username));
         }
 
-        if(user) {
+        if (user) {
             res.json(user.workshops_favorites);
         } else {
-            res.json({status:"error", data: "USER_NOT_FOUND"});
+            res.json({status: "error", data: "USER_NOT_FOUND"});
         }
     });
 }
 
 function getWorkshopInstancesImpl(req, res, next) {
     var user = req.user;
-    User.findOne({ username : user.username }).populate('workshops_instances').exec(function (err, userData) {
+    User.findOne({username: user.username}).populate('workshops_instances').exec(function (err, userData) {
         if (err) {
             return next(new Error('Failed to load User ' + user.username));
         }
-        if(user) {
+        if (user) {
             res.json({status: "success", data: userData.workshops_instances});
         } else {
             res.json({status: "error", data: "USER_NOT_FOUND"});
@@ -187,7 +160,7 @@ function getWorkshopInstancesImpl(req, res, next) {
 
 function getEventsImpl(req, res) {
     if (req.user) {
-        User.findOne({ username: req.user.username})
+        User.findOne({username: req.user.username})
             .populate({
                 path: 'workshops_instances',
                 options: {
@@ -200,9 +173,9 @@ function getEventsImpl(req, res) {
                     sort: {begin_at: 'desc'}
                 }
             })
-            .exec(function(err, userData) {
+            .exec(function (err, userData) {
                 if (err) {
-                    res.json({status:"error", data: "Failed to populate User " + user.username});
+                    res.json({status: "error", data: "Failed to populate User " + user.username});
                 } else {
                     var agenda = userData.workshops_events.concat(userData.workshops_instances);
                     res.json({status: "success", data: agenda})
@@ -213,41 +186,11 @@ function getEventsImpl(req, res) {
     }
 }
 
-function getPlannedEventsImpl(req, res) {
-    if (req.user) {
-        var today = Date.now();
-        User.findOne({ username: req.user.username})
-            .populate({
-                path: 'workshops_instances',
-                match: { $gte: today},
-                options: {
-                    sort: {begin_at: 'desc'}
-                }
-            })
-            .populate({
-                path: 'workshops_events',
-                match: { $gte: today},
-                options: {
-                    sort: {begin_at: 'desc'}
-                }
-            })
-            .exec(function(err, userData) {
-                if (err) {
-                    res.json({status:"error", data: "Failed to populate User " + user.username});
-                } else {
-                    var agenda = userData.workshops_events.concat(userData.workshops_instances);
-                    res.json({status: "success", data: agenda})
-                }
-            })
-    } else {
-        res.json({status: "error", data: "USER_NOT_FOUND"});
-    }
-}
 function addWorkshopInstanceImpl(req, res) {
     var user = req.user;
     var workshop = req.body.workshopId;
     var tokens = req.body.user_date.split("-").concat(req.body.user_heure.split(":"));
-    var begin_at_date = new Date(parseInt(tokens[0],10), parseInt(tokens[1],10) - 1, parseInt(tokens[2],10), parseInt(tokens[3],10)+1, parseInt(tokens[4],10));
+    var begin_at_date = new Date(parseInt(tokens[0], 10), parseInt(tokens[1], 10) - 1, parseInt(tokens[2], 10), parseInt(tokens[3], 10) + 1, parseInt(tokens[4], 10));
     var group = req.body.user_group;
     if (!user) {
         res.status("404").json({status: "error", data: "NOT_FOUND"});
@@ -258,7 +201,7 @@ function addWorkshopInstanceImpl(req, res) {
                 if (err) {
                     res.json({status: "error", data: err});
                 } else {
-                    mongoose.model("Workshop").findOne({_id: ObjectId(workshop)}, function(err, workshop) {
+                    mongoose.model("Workshop").findOne({_id: ObjectId(workshop)}, function (err, workshop) {
                         if (err) {
                             throw err;
                         }
@@ -267,7 +210,7 @@ function addWorkshopInstanceImpl(req, res) {
                             instance.title = workshop.title;
                             instance.participants_max = workshop.participants_max;
                             instance.participants_min = workshop.participants_min;
-                            
+
                             instance.author = workshop.author;
                             instance.source = workshop.content.source;
                             var facilitator = {
@@ -311,17 +254,16 @@ function addWorkshopInstanceImpl(req, res) {
                             workshop.instances.push(instance._id);
                             workshop.save();
                             User.findOneAndUpdate(
-                                { username : user.username },
+                                {username: user.username},
                                 {
-                                    $push:
-                                    { "workshops_instances":
-                                        {
+                                    $push: {
+                                        "workshops_instances": {
                                             _id: instance._id
                                         }
                                     }
                                 },
-                                { safe: true, new: true },
-                                function(err) {
+                                {safe: true, new: true},
+                                function (err) {
                                     if (err) {
                                         res.json({status: "error", data: err});
                                     } else {
@@ -365,7 +307,7 @@ function addWorkshopEventImpl(req, res) {
 }
 function getWorkshopInstanceImpl(req, res, next) {
     var instanceId = req.params.instanceId;
-    WorkshopInstance.findOne(ObjectId(instanceId) , function (err, instanceWorkshop) {
+    WorkshopInstance.findOne(ObjectId(instanceId), function (err, instanceWorkshop) {
         if (err) {
             return next(new Error('Failed to load User ' + user.username));
         }
@@ -377,7 +319,7 @@ function deleteFavoriteWorkshopsImpl(req, res) {
     var user = req.user;
     var favoriteId = req.params.favoriteId;
     User.findOneAndUpdate(
-        { username : user.username },
+        {username: user.username},
         {
             $pull: {
                 "workshops_favorites": {
@@ -385,8 +327,8 @@ function deleteFavoriteWorkshopsImpl(req, res) {
                 }
             }
         },
-        { new: true , safe: true},
-        function(err) {
+        {new: true, safe: true},
+        function (err) {
             if (err) {
                 res.json({status: "error", data: err});
             } else {
@@ -398,20 +340,20 @@ function deleteFavoriteWorkshopsImpl(req, res) {
 
 function deleteInstanceWorkshopImpl(req, res) {
     var instanceId = req.params.instanceId;
-    WorkshopInstances.removeInstance(instanceId).then(function() {
-        res.json({status: "success", data:"success"});
-    }, function(err) {
+    WorkshopInstances.removeInstance(instanceId).then(function () {
+        res.json({status: "success", data: "success"});
+    }, function (err) {
         console.error(err);
-        res.json({status:"error", data: "success"});
+        res.json({status: "error", data: "success"});
     });
 }
 
 function updateWorkshopInstanceImpl(req, res) {
-    WorkshopInstances.updateInstance(req.params.instanceId, req.body).then(function(data) {
+    WorkshopInstances.updateInstance(req.params.instanceId, req.body).then(function (data) {
         res.json({status: "success", data: data});
     }, function (err) {
         console.error(err);
-        res.json({status:"error", data: "success"})
+        res.json({status: "error", data: "success"})
     });
 }
 
@@ -436,7 +378,7 @@ module.exports = {
      * @method
      */
     create: createImpl,
-    updateUserInfo:updateUserInfoImp,
+    updateUserInfo: updateUserInfoImp,
     //updateMdp:UpdateUserMdpImp,
 
     /**
@@ -497,7 +439,6 @@ module.exports = {
 
     getEvents: getEventsImpl,
 
-    getPlannedEvents: getPlannedEventsImpl,
     /**
      * Instanciate a new workshopInstance and add the reference in the user's instances
      * The user has to be logged in the system.

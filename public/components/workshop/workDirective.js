@@ -1,7 +1,7 @@
 /**
  * Created by user on 20/02/17.
  */
-(function() {
+(function () {
     angular
         .module('facilitation')
         .directive('moment-picker', [function () {

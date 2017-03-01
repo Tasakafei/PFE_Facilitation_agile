@@ -40,12 +40,12 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
     $scope.logOut = logOutFct;
 
     /* Implémentation */
-    function logInFct () {
+    function logInFct() {
         Auth.login('password', {
                 'email': $scope.user.email,
                 'password': $scope.user.password
             },
-            function(err) {
+            function (err) {
                 $scope.errors = {};
 
                 $('#myModal').modal('hide');
@@ -61,8 +61,8 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                     window.location.replace(url2[0]);
                     window.location.replace(url);
                 } else {
-                    angular.forEach(err.errors, function(error, field) {
-                        console.error("ERROR : " + error + " : "+ field);
+                    angular.forEach(err.errors, function (error, field) {
+                        console.error("ERROR : " + error + " : " + field);
                     });
                     $scope.error.other = err.message;
 
@@ -80,13 +80,12 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                 username: $scope.user.username,
                 password: $scope.user.password
             },
-            function(err) {
+            function (err) {
                 $scope.errors = {};
 
                 $('#myModal2').modal('hide');
 
                 if (!err) {
-                    //$location.path('/');
 
                     $scope.$emit('notify', {
                         type: 'success',
@@ -94,8 +93,8 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
                     });
 
                 } else {
-                    angular.forEach(err.errors, function(error, field) {
-                        console.error("ERROR : " + error + " : "+ field);
+                    angular.forEach(err.errors, function (error, field) {
+                        console.error("ERROR : " + error + " : " + field);
                     });
 
                     $scope.$emit('notify', {
@@ -109,9 +108,8 @@ app.controller('navBarCtrl', function ($scope, $location, Auth) {
     }
 
     function logOutFct() {
-        Auth.logout(function(err) {
-            if(!err) {
-                //$location.path('/');
+        Auth.logout(function (err) {
+            if (!err) {
                 $scope.$emit('notify', {
                     type: 'info',
                     title: 'Déconnecté !'

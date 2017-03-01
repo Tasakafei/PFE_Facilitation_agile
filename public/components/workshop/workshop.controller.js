@@ -53,28 +53,28 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
      */
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
         //Calculion of timing
-        var timingArray = dataResponse.data.content.steps.map(function(step, index){
+        var timingArray = dataResponse.data.content.steps.map(function (step, index) {
             var stepArray = dataResponse.data.content.steps.slice(0, index);
             return stepArray.reduce(function (accumulateur, currentStep) {
-                if(currentStep.duration) return accumulateur + currentStep.duration;
+                if (currentStep.duration) return accumulateur + currentStep.duration;
                 else return accumulateur;
             }, 0);
         });
 
-        for(var i = 0; i<timingArray.length; i++) {
-            var d = new Date(timingArray[i]* 60000); //en miniseconde
+        for (var i = 0; i < timingArray.length; i++) {
+            var d = new Date(timingArray[i] * 60000); //en miniseconde
             var time = d.toUTCString().split(" ");
             time = time[4].split(":");
 
-            timingArray[i] =  time[0]+":"+time[1];
+            timingArray[i] = time[0] + ":" + time[1];
         }
 
         //Put the timing into scope
         $scope.timingArray = timingArray;
 
         //Add word "minutes" to duration
-        for(var j=0; j < dataResponse.data.content.steps.length; j++) {
-            if(dataResponse.data.content.steps[j].duration) {
+        for (var j = 0; j < dataResponse.data.content.steps.length; j++) {
+            if (dataResponse.data.content.steps[j].duration) {
                 dataResponse.data.content.steps[j].duration = dataResponse.data.content.steps[j].duration + " minutes";
             }
         }
@@ -83,13 +83,13 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
         $scope.workshop = dataResponse.data;
 
         //Display the write logo if it's a favorite
-        if(dataResponse.isFavorite) {
+        if (dataResponse.isFavorite) {
             $('.favorite-false').css("display", "none");
             $('.favorite-true').css("display", "inline-block");
         }
     });
 
-    function getLabelColorFct (label) {
+    function getLabelColorFct(label) {
         return LabelsService.getText(label);
     }
 
@@ -124,8 +124,8 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
     }
 
     function deleteFavorite() {
-        var res = $http.delete('/users/favorites/'+currentId);
-        res.success(function(data, status, headers, config) {
+        var res = $http.delete('/users/favorites/' + currentId);
+        res.success(function (data, status, headers, config) {
 
             $scope.$emit('notify', {
                 type: 'success',
@@ -136,7 +136,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
             $('.favorite-true').css("display", "none");
 
         });
-        res.error(function(data, status, headers, config) {
+        res.error(function (data, status, headers, config) {
             $scope.$emit('notify', {
                 type: 'error',
                 title: 'L\'atelier n\'a pas pu être retiré de vos favoris.',
@@ -148,12 +148,12 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
     function addToInstancesFct() {
         if ($scope.currentUser) {
 
-            var time = $scope.inputTime.getHours()+":"+$scope.inputTime.getMinutes();
-            var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId,$scope.user_gr,$scope.ctrl.datepicker,time);
+            var time = $scope.inputTime.getHours() + ":" + $scope.inputTime.getMinutes();
+            var res = FavoriteWorkshops.addWorkshopInstance($scope.currentUser.username, currentId, $scope.user_gr, $scope.ctrl.datepicker, time);
 
             $('#myModal3').modal('hide');
 
-            res.success(function(data, status, headers, config) {
+            res.success(function (data, status, headers, config) {
                 $scope.message = data;
                 $scope.$emit('notify', {
                     type: 'success',
@@ -161,7 +161,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
                     content: '/#/calendar $$Voir mon agenda'
                 });
             });
-            res.error(function(data, status, headers, config) {
+            res.error(function (data, status, headers, config) {
                 $scope.$emit('notify', {
                     type: 'error',
                     title: 'L\'atelier n\'a pas pu être ajouté.'
@@ -176,9 +176,9 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
     }
 
     function deleteWorkshop() {
-        var res = $http.delete('/api/v1/catalogue/'+currentId);
+        var res = $http.delete('/api/v1/catalogue/' + currentId);
 
-        res.success(function() {
+        res.success(function () {
 
             $scope.$emit('notify', {
                 type: 'success',
@@ -186,19 +186,16 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
             });
 
             //Redirection
-            //var url = window.location.href;
-            //url = url.split("catalogue");
-            $timeout(function() {
+            $timeout(function () {
                 $location.path('/');
             }, 100);
 
-            //window.location.replace(url[0]+'catalogue');
 
         });
-        res.error(function(data, status, headers, config) {
+        res.error(function () {
             $scope.$emit('notify', {
                 type: 'error',
-                title: 'L\'atelier n\'a pas pu être supprimé.',
+                title: 'L\'atelier n\'a pas pu être supprimé.'
             });
         });
     }
@@ -206,13 +203,13 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
 });
 
 /* To interpret HTML balise in JSON */
-app.filter('to_trusted', ['$sce', function($sce){
-    return function(text) {
+app.filter('to_trusted', ['$sce', function ($sce) {
+    return function (text) {
         return $sce.trustAsHtml(text);
     };
 }]);
 
-var dateTimePicker = function() {
+var dateTimePicker = function () {
     return {
         restrict: "A",
         require: "ngModel",

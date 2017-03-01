@@ -9,21 +9,21 @@ var app = angular.module('facilitation');
 app.service('FavoriteWorkshops', function ($http) {
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.addToFavoriteWorkshops = function(username, workshopId) {
+    this.addToFavoriteWorkshops = function (username, workshopId) {
         var req = {
             method: 'POST',
             url: '/users/favorites',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { workshop: workshopId }
+            data: {workshop: workshopId}
         };
         return $http(req);
     };
 
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.getFavoriteWorkshops = function(callbackFunc) {
+    this.getFavoriteWorkshops = function (callbackFunc) {
         var req = {
             method: 'GET',
             url: '/users/favorites',
@@ -36,7 +36,7 @@ app.service('FavoriteWorkshops', function ($http) {
     };
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.getInstancesWorkshop = function(callbackFunc) {
+    this.getInstancesWorkshop = function (callbackFunc) {
         var req = {
             method: 'GET',
             url: '/users/instances',
@@ -49,30 +49,28 @@ app.service('FavoriteWorkshops', function ($http) {
     };
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.addWorkshopInstance = function(username, workshop, group,date,heure) {
+    this.addWorkshopInstance = function (username, workshop, group, date, heure) {
         var req = {
             method: 'POST',
             url: '/users/instances',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { workshopId: workshop, user_group: group, user_date: date,user_heure:heure}
+            data: {workshopId: workshop, user_group: group, user_date: date, user_heure: heure}
         };
         return $http(req);
 
     };
 
 
-
-
-    this.addFeedbackToInstance = function(feedback, instanceId) {
+    this.addFeedbackToInstance = function (feedback, instanceId) {
         var req = {
             method: 'POST',
-            url: '/api/v1/feedback/'+instanceId,
+            url: '/api/v1/feedback/' + instanceId,
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { feedback: feedback }
+            data: {feedback: feedback}
         };
         return $http(req);
     }

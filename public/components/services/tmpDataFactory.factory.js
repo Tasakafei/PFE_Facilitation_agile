@@ -3,11 +3,13 @@
  */
 
 var app = angular.module('facilitation');
-app.factory('tmpDataFactory', function() {
+app.factory('tmpDataFactory', function () {
     var savedData = null;
+
     function set(data) {
         savedData = data;
     }
+
     function get() {
         return savedData;
     }

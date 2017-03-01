@@ -25,12 +25,12 @@ app.controller('favoriteCtrl', function (LabelsService, $scope, FavoriteWorkshop
      */
     function getFavoriteWorkshops() {
         FavoriteWorkshops.getFavoriteWorkshops()
-            .success(function(data) {
-            $scope.favoriteWorkshops = data;
+            .success(function (data) {
+                $scope.favoriteWorkshops = data;
             })
-            .error(function(data) {
-            console.error(JSON.stringify({data: data}));
-        });
+            .error(function (data) {
+                console.error(JSON.stringify({data: data}));
+            });
     }
 
     function getLabelColor(label) {

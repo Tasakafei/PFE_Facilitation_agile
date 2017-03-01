@@ -4,7 +4,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmpDataFactory, $scope, $rootScope, $routeParams, $http) {
+app.controller('feedbackCtrl', function (CloudinaryClient, FavoriteWorkshops, tmpDataFactory, $scope, $rootScope, $routeParams) {
     /* Scope vars */
     $scope.instanceData = {};
     $scope.isFacilitator = false;
@@ -32,9 +32,9 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
     /**
      * Retrieve the current instance data
      */
-    FavoriteWorkshops.getInstancesWorkshop(currentId).success(function(response) {
+    FavoriteWorkshops.getInstancesWorkshop(currentId).success(function (response) {
         $scope.instanceData = response;
-        response.data[0].facilitators.forEach(function(elem) {
+        response.data[0].facilitators.forEach(function (elem) {
             if (elem._id == $rootScope.currentUser._id) {
                 $scope.isFacilitator = true;
             }
@@ -44,8 +44,8 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
     /**
      * Display the uploaded photo
      */
-    document.getElementById('InputPhotos').addEventListener('change', function(){
-        for(var i = 0; i < this.files.length; i++){
+    document.getElementById('InputPhotos').addEventListener('change', function () {
+        for (var i = 0; i < this.files.length; i++) {
             var reader = new FileReader();
             reader.onload = onLoadFunction;
             reader.readAsDataURL(this.files[i]);
@@ -53,7 +53,7 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
     }, false);
 
     function onLoadFunction(loadEvent) {
-        $scope.$apply(function() {
+        $scope.$apply(function () {
             $scope.imagesToDisplay.push(loadEvent.target.result);
         });
     }
@@ -81,7 +81,7 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
                         //Redirection after vote
                         var url = window.location.href;
                         url = url.split("feedback");
-                        window.location.replace(url[0]+'thankYou');
+                        window.location.replace(url[0] + 'thankYou');
                     });
                 })
                 .error(function (response) {
@@ -102,11 +102,11 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
     }
 
     function point_it(event) {
-        pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
-        pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
-        $("#cross").css({top: (pos_y-12), left: (pos_x+2), position:'absolute'});
+        var pos_x = event.offsetX ? (event.offsetX) : event.pageX - document.getElementById("pointer_div").offsetLeft;
+        var pos_y = event.offsetY ? (event.offsetY) : event.pageY - document.getElementById("pointer_div").offsetTop;
+        $("#cross").css({top: (pos_y - 12), left: (pos_x + 2), position: 'absolute'});
 
-        document.getElementById("cross").style.visibility = "visible" ;
+        document.getElementById("cross").style.visibility = "visible";
 
         var height = $('#pointer_div').height();
         var width = $('#pointer_div').width();
@@ -114,45 +114,8 @@ app.controller('feedbackCtrl', function(CloudinaryClient, FavoriteWorkshops, tmp
         var x = 100 * pos_x / height;
         var y = 100 * pos_y / width;
 
-        // x
-        if(x > 0 && x <= 16.6) {
-            voteX = 0;
-        }
-        else if (x > 16.6 && x <= 33.33) {
-            voteX = 1;
-        }
-        else if (x > 33.33 && x <= 50) {
-            voteX = 2;
-        }
-        else if (x > 50 && x <= 66.6) {
-            voteX = 3;
-        }
-        else if (x > 66.66 && x <= 83.33) {
-            voteX = 4;
-        }
-        else if (x > 83.33 && x <= 100) {
-            voteX = 5;
-        }
-
-        // y
-        if(y > 0 && y <= 16.6) {
-            voteY = 5;
-        }
-        else if (y > 16.6 && y <= 33.33) {
-            voteY = 4;
-        }
-        else if (y > 33.33 && y <= 50) {
-            voteY = 3;
-        }
-        else if (y > 50 && y <= 66.6) {
-            voteY = 2;
-        }
-        else if (y > 66.66 && y <= 83.33) {
-            voteY = 1;
-        }
-        else if (y > 83.33 && y <= 100) {
-            voteY = 0;
-        }
+        voteX = Math.floor(x / 16.7);
+        voteY = Math.floor(y / 16.7);
 
         $('#voteX').html(voteX);
         $('#voteY').html(voteY);

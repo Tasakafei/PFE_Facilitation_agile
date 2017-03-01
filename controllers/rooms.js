@@ -50,10 +50,6 @@ module.exports = function (io) {
             io.to(room).emit('end_of_instance');
         });
 
-        // Case when the socket is disconnected
-        socket.on('disconnect', function () {
-        });
-
         //Start sound
         socket.on('start_sound', function (room) {
             io.to(room).emit('start_sound');

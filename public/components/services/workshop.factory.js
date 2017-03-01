@@ -9,14 +9,14 @@
 angular.module('facilitation')
     .factory('Favorites', function ($resource) {
         return {
-            addToFavorite: function(email, password, callback) {
+            addToFavorite: function (email, password, callback) {
                 var cb = callback || angular.noop;
                 User.delete({
                     email: email,
                     password: password
-                }, function() {
+                }, function () {
                     return cb();
-                }, function(err) {
+                }, function (err) {
                     return cb(err.data);
                 });
             }

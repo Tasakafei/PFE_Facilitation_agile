@@ -5,4 +5,5 @@
 var app = angular.module('facilitation');
 
 /* Tooltips */
-app.controller('TooltipCtrl', function ($scope, $sce) {});
+app.controller('TooltipCtrl', function ($scope, $sce) {
+});

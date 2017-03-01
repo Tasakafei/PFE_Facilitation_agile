@@ -9,7 +9,7 @@ var app = angular.module('facilitation');
 app.service('EventsService', function ($http) {
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.getInstancesWorkshop = function(callbackFunc) {
+    this.getInstancesWorkshop = function () {
         var req = {
             method: 'GET',
             url: '/users/instances',
@@ -20,7 +20,7 @@ app.service('EventsService', function ($http) {
         return $http(req);
     };
 
-    this.getEvents = function() {
+    this.getEvents = function () {
         var req = {
             method: 'GET',
             url: '/users/events',
@@ -31,10 +31,10 @@ app.service('EventsService', function ($http) {
         return $http(req);
     };
 
-    this.getWorkshopInstance = function(instanceId) {
+    this.getWorkshopInstance = function (instanceId) {
         var req = {
             method: 'GET',
-            url: '/users/instances/'+instanceId,
+            url: '/users/instances/' + instanceId,
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -45,22 +45,22 @@ app.service('EventsService', function ($http) {
 
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.addWorkshopInstance = function(username, workshop) {
+    this.addWorkshopInstance = function (username, workshop) {
         var req = {
             method: 'POST',
             url: '/users/instances',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { workshopId: workshop }
+            data: {workshopId: workshop}
         };
         return $http(req);
     };
 
-    this.updateWorkshopInstance = function(id, instance) {
+    this.updateWorkshopInstance = function (id, instance) {
         var req = {
             method: 'PUT',
-            url: '/users/instances/'+id,
+            url: '/users/instances/' + id,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -69,7 +69,7 @@ app.service('EventsService', function ($http) {
         return $http(req);
 
     };
-    this.addEvent = function(event) {
+    this.addEvent = function (event) {
         var req = {
             method: 'POST',
             url: '/users/events',
@@ -81,10 +81,10 @@ app.service('EventsService', function ($http) {
         return $http(req);
     };
 
-    this.updateEvent = function(id, event) {
+    this.updateEvent = function (id, event) {
         var req = {
             method: 'PUT',
-            url: '/users/events/'+id,
+            url: '/users/events/' + id,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -95,14 +95,14 @@ app.service('EventsService', function ($http) {
     };
 
 
-    this.addFeedbackToInstance = function(feedback, instanceId) {
+    this.addFeedbackToInstance = function (feedback, instanceId) {
         var req = {
             method: 'POST',
-            url: '/api/v1/feedback/'+instanceId,
+            url: '/api/v1/feedback/' + instanceId,
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: { feedback: feedback }
+            data: {feedback: feedback}
         };
         return $http(req);
     }

@@ -2,7 +2,7 @@
  * Created by user on 22/11/16.
  */
 
-app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $location, Auth) {
+app.controller('importationCtrl', function (CloudinaryClient, $scope, $http, $location, Auth) {
 
     // Scope methods
     /**
@@ -27,8 +27,8 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
 
     var cpt = 1;
 
-    document.getElementById('inputPhotos').addEventListener('change', function(){
-        for(var i = 0; i < this.files.length; i++){
+    document.getElementById('inputPhotos').addEventListener('change', function () {
+        for (var i = 0; i < this.files.length; i++) {
             var reader = new FileReader();
             reader.onload = onLoadFunction;
             reader.readAsDataURL(this.files[i]);
@@ -36,10 +36,11 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
     }, false);
 
     function onLoadFunction(loadEvent) {
-        $scope.$apply(function() {
+        $scope.$apply(function () {
             $scope.photo.push(loadEvent.target.result);
         });
     }
+
     if (!Auth.isConnected()) {
         $location.path("/");
         $scope.$emit('notify', {
@@ -47,10 +48,8 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
             title: 'Vous n\'avez pas les autorisations d\'accéder à cette page'
         });
     }
-    /**
-     * Init a special text area (for the folklore here), in which you can formatting text
-     */
-    $('#folklore-textarea').wysihtml5({
+
+    var toolbarConfig = {
         toolbar: {
             "font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
             "link": false, //Button to insert a link. Default true
@@ -59,66 +58,43 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
             "blockquote": false, //Blockquote
             "fa": true // Font Awesome icons
         }
-    });
+    };
+    /**
+     * Init a special text area (for the folklore here), in which you can formatting text
+     */
+    $('#folklore-textarea').wysihtml5(toolbarConfig);
 
     /**
      * Init a special text area (for the equipment here), in which you can formatting text
      */
-    $('#equipment-textarea').wysihtml5({
-        toolbar: {
-            "font-styles": false,
-            "link": false,
-            "image": false,
-            "color": false,
-            "blockquote": false,
-            "fa": true
-        }
-    });
+    $('#equipment-textarea').wysihtml5(toolbarConfig);
 
     /**
      * Init a special text area (for the steps here), in which you can formatting text
      */
-    $('#steps-textarea').wysihtml5({
-        toolbar: {
-            "font-styles": false,
-            "link": false,
-            "image": false,
-            "color": false,
-            "blockquote": false,
-            "fa": true
-        }
-    });
+    $('#steps-textarea').wysihtml5(toolbarConfig);
 
-    $('#instructions-textarea').wysihtml5({
-        toolbar: {
-            "font-styles": false,
-            "link": false,
-            "image": false,
-            "color": false,
-            "blockquote": false,
-            "fa": true
-        }
-    });
+    $('#instructions-textarea').wysihtml5(toolbarConfig);
 
     /**
      * Add more steps
      */
-    $("body").on('click', '.add-more', function(){
+    $("body").on('click', '.add-more', function () {
 
         //modify the classes names, so we can get data for every new steps
         cpt++;
-        $scope.inputStepTitle = "inputStepTitle-"+cpt;
-        $scope.inputStepDuration = "inputStepDuration-"+cpt;
-        $scope.stepsTextarea = "stepsTextarea-"+cpt;
-        $scope.instructionsTextarea = "instructionsTextarea-"+cpt;
-        $scope.stepsTextareaAncre = "steps-textarea-ancre-"+cpt;
+        $scope.inputStepTitle = "inputStepTitle-" + cpt;
+        $scope.inputStepDuration = "inputStepDuration-" + cpt;
+        $scope.stepsTextarea = "stepsTextarea-" + cpt;
+        $scope.instructionsTextarea = "instructionsTextarea-" + cpt;
+        $scope.stepsTextareaAncre = "steps-textarea-ancre-" + cpt;
         $scope.$apply();
 
         var html = $(".copy").html();
         $(".after-add-more").after(html);
 
         //New special text area
-        $('#stepsTextarea-'+cpt).wysihtml5({
+        $('#stepsTextarea-' + cpt).wysihtml5({
             toolbar: {
                 "font-styles": false,
                 "link": false,
@@ -156,12 +132,12 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
     /**
      * Remove steps (we can only remove the last one, so it's easier to get data)
      */
-    $("body").on("click",".remove",function(){
+    $("body").on("click", ".remove", function () {
 
         $(this).parents(".after-add-more").remove();
-        $(".last-after-add-more-"+cpt).addClass("after-add-more");
-        $(".last-after-add-more-"+cpt+" .remove").css("display", "table-cell");
-        $(".last-after-add-more-"+cpt).removeClass("last-after-add-more-"+cpt);
+        $(".last-after-add-more-" + cpt).addClass("after-add-more");
+        $(".last-after-add-more-" + cpt + " .remove").css("display", "table-cell");
+        $(".last-after-add-more-" + cpt).removeClass("last-after-add-more-" + cpt);
 
         cpt--;
     });
@@ -173,7 +149,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
         var educArray = [];
         json.title = document.getElementById('inputTitle').value;
         json.author = document.getElementById('inputAuthor').value;
-        if(photo) {
+        if (photo) {
             json.photo = photo;
         }
         json.duration = document.getElementById('inputDuration').value;
@@ -181,7 +157,7 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
         jsonContent.source = document.getElementById('inputSource').value;
         jsonContent.folklore = $('#folklore-textarea').val();
         jsonContent.equipment = $('#equipment-textarea').val();
-        $(".labelCheckbox:checked").each(function(){
+        $(".labelCheckbox:checked").each(function () {
             educArray.push($(this).val());
         });
 
@@ -197,34 +173,30 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
 
         for (var y = 2; y <= cpt; y++) {
             jsonArr.push({
-                title: document.getElementById('inputStepTitle-'+y).value,
-                description: $('#stepsTextarea-'+y).val(),
-                instructions: $('#instructionsTextarea-'+y).val(),
-                duration: document.getElementById('inputStepDuration-'+y).value
+                title: document.getElementById('inputStepTitle-' + y).value,
+                description: $('#stepsTextarea-' + y).val(),
+                instructions: $('#instructionsTextarea-' + y).val(),
+                duration: document.getElementById('inputStepDuration-' + y).value
             });
         }
 
         jsonContent.steps = jsonArr;
         json.content = jsonContent;
-
-        //Post
-        //TODO vérifier les champs textes spéciaux
-        //TODO requiere titre lors de l'ajout d'une step
-        //TODO : required="required" au moins 1 sur les labels ?
         postJSON(json);
-
-        window.top.window.scrollTo(0,0)
+        window.top.window.scrollTo(0, 0)
     }
+
     function getFields() {
         if ($scope.photo[0]) {
             CloudinaryClient.uploadPhotos($scope.photo)
-                .success(function(response) {
+                .success(function (response) {
                     prepareJSON(response.data[0].filename);
                 })
         } else {
             prepareJSON(null);
         }
     }
+
     function importer() {
         var fichier = document.getElementById('InputJSON').files[0];
         var lecture = new FileReader();
@@ -233,11 +205,11 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
             var type = fichier.name.split(".");
 
             //Check if the file is a JSON
-            if(type[1] == "json") {
+            if (type[1] == "json") {
 
                 var data = JSON.parse(donnees);
 
-                if( data.title && data.duration && data.synopsis && data.content.folklore && data.content.educational_aims && data.content.steps) {
+                if (data.title && data.duration && data.synopsis && data.content.folklore && data.content.educational_aims && data.content.steps) {
                     postJSON(donnees);
                 } else {
                     $scope.$emit('notify', {
@@ -247,10 +219,10 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
                 }
             }
             else {
-                    $scope.$emit('notify', {
-                        type: 'error',
-                        title: 'L\'atelier doit être en format JSON.'
-                    });
+                $scope.$emit('notify', {
+                    type: 'error',
+                    title: 'L\'atelier doit être en format JSON.'
+                });
             }
         };
         lecture.readAsText(fichier, 'UTF-8')
@@ -263,16 +235,16 @@ app.controller('importationCtrl', function (CloudinaryClient, $scope,$http, $loc
     function postJSON(donnees) {
         //Post
         var res = $http.post('/api/v1/catalogue', donnees);
-        res.success(function(data, status, headers, config) {
+        res.success(function (data) {
             $scope.message = data;
 
             $scope.$emit('notify', {
                 type: 'success',
                 title: 'L\'atelier a bien été importé.',
-                content: '/#/catalogue/'+data.data._id +'$$Lien vers votre atelier'
+                content: '/#/catalogue/' + data.data._id + '$$Lien vers votre atelier'
             });
         });
-        res.error(function(data, status, headers, config) {
+        res.error(function () {
             $scope.$emit('notify', {
                 type: 'error',
                 title: 'L\'atelier n\'a pas pu être importé.',

@@ -12,7 +12,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-router.get('/clean', function (req, res, next) {
+router.get('/clean', function (req, res) {
     mongoose.model("Workshop").collection.drop();
     mongoose.model("Event").collection.drop();
     mongoose.model("User").collection.drop();

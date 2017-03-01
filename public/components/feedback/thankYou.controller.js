@@ -4,7 +4,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('thankYouCtrl', function(tmpDataFactory, $scope) {
+app.controller('thankYouCtrl', function (tmpDataFactory, $scope) {
 
     var instanceId = tmpDataFactory.get();
 

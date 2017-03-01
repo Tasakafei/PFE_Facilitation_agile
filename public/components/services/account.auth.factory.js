@@ -12,72 +12,72 @@ angular.module('facilitation')
 
         return {
 
-            login: function(provider, user, callback) {
+            login: function (provider, user, callback) {
                 var cb = callback || angular.noop;
                 Session.save({
                     provider: provider,
                     email: user.email,
                     password: user.password,
                     rememberMe: user.rememberMe
-                }, function(user) {
+                }, function (user) {
                     $rootScope.currentUser = user;
                     return cb();
-                }, function(err) {
+                }, function (err) {
                     console.error(err);
                     return cb(err.data);
                 });
             },
 
-            logout: function(callback) {
+            logout: function (callback) {
                 var cb = callback || angular.noop;
-                Session.delete(function(res) {
+                Session.delete(function (res) {
                         $rootScope.currentUser = null;
                         return cb();
                     },
-                    function(err) {
+                    function (err) {
                         return cb(err.data);
                     });
             },
 
-            createUser: function(userinfo, callback) {
+            createUser: function (userinfo, callback) {
                 var cb = callback || angular.noop;
                 User.save(userinfo,
-                    function(user) {
+                    function (user) {
                         $rootScope.currentUser = user;
                         return cb();
                     },
-                    function(err) {
+                    function (err) {
                         return cb(err.data);
                     });
             },
 
-            currentUser: function() {
-                Session.get(function(user) {
+            currentUser: function () {
+                Session.get(function (user) {
                     $rootScope.currentUser = user;
                 });
             },
 
-            isConnected: function() {
+            isConnected: function () {
                 return !!$rootScope.currentUser;
             },
-            updateUser: function(newInfo, callback) {
+            updateUser: function (newInfo, callback) {
                 var cb = callback || angular.noop;
-                User.updateUserInfo(newInfo, function(user) {
+                User.updateUserInfo(newInfo, function (user) {
                     return cb(user);
-                }, function(err) {
+                }, function (err) {
                     return cb(err.data);
                 });
             },
 
 
-            removeUser: function(email, password, callback) {
+            removeUser: function (email, password, callback) {
                 var cb = callback || angular.noop;
                 User.delete({
                     email: email,
                     password: password
-                }, function() {
+                }, function () {
                     return cb();
-                }, function(err) {
+                }, function (err) {
                     return cb(err.data);
                 });
             }

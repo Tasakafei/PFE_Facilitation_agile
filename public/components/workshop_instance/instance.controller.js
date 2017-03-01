@@ -8,7 +8,7 @@
 
 var app = angular.module('facilitation');
 
-app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $routeParams, $http, socket, Auth, $location) {
+app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $routeParams, $http, socket) {
 
     /**
      * Remove the workshop from the user's instances
@@ -26,7 +26,7 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
      * Hide/display feedback
      * @type {focusFeedback}
      */
-    $scope.focusFeedback= focusFeedback;
+    $scope.focusFeedback = focusFeedback;
 
     /**
      * Return the label color
@@ -38,9 +38,9 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
     $scope.workshopInstance = "";
 
 
-    function updateTimings () {
+    function updateTimings() {
         var steps = $scope.workshopInstance.steps;
-        var timingArray = steps.map(function(step, index) {
+        var timingArray = steps.map(function (step, index) {
             return steps.slice(0, index).reduce(function (accumulateur, currentStep) {
                 var tmp = 0;
                 if (currentStep.duration.theorical) {
@@ -49,21 +49,22 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
                 return accumulateur + tmp;
             }, 0);
         });
-        for(var i = 0; i<timingArray.length; i++) {
+        for (var i = 0; i < timingArray.length; i++) {
             var d = new Date(timingArray[i] * 60000);
             var time = d.toUTCString().split(" ");
             time = time[4].split(":");
 
-            timingArray[i] =  time[0]+":"+time[1];
+            timingArray[i] = time[0] + ":" + time[1];
         }
         $scope.timingArray = timingArray;
     }
 
-    $scope.$watch('workshopInstance.steps', function (newVal, oldVal) {
+    $scope.$watch('workshopInstance.steps', function (newVal) {
         if (newVal) {
             updateTimings()
-        }}, true);
-    $scope.addStep = function() {
+        }
+    }, true);
+    $scope.addStep = function () {
         $scope.workshopInstance.steps.push({
             description: "nouvelle itération",
             duration: {
@@ -77,7 +78,7 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
         })
     };
 
-    $scope.deleteStep=function (rank) {
+    $scope.deleteStep = function (rank) {
         $scope.workshopInstance.steps.splice(rank, 1);
     };
 
@@ -93,24 +94,24 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
         $scope.workshopInstance = dataResponse.data.data;
         updateTimings();
     });
-    function getLabelColorFct (label) {
+    function getLabelColorFct(label) {
         return LabelsService.getText(label);
     }
 
     socket.emit('join_room', currentId);
 
     function deleteInstance() {
-        var res = $http.delete('/users/instances/'+currentId);
-        res.success(function() {
+        var res = $http.delete('/users/instances/' + currentId);
+        res.success(function () {
             $scope.$emit('notify', {
                 type: 'success',
                 title: 'L\'instance de l\'atelier a bien été supprimée.',
             });
             var url = window.location.href;
             url = url.split("instances");
-            window.location.replace(url[0]+'instances');
+            window.location.replace(url[0] + 'instances');
         });
-        res.error(function(data, status, headers, config) {
+        res.error(function (data, status, headers, config) {
             $scope.$emit('notify', {
                 type: 'error',
                 title: 'L\'instance de l\'atelier n\'a pas pu être supprimée.'
@@ -120,9 +121,10 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
     }
 
     var bool = true;
+
     function afficherQrcode() {
 
-        if(bool) {
+        if (bool) {
             $('.qrcode-off').addClass('qrcode-on');
             $('.qrcode-on').removeClass('qrcode-off');
             bool = false;
@@ -134,12 +136,12 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
     }
 
     function focusFeedback(type) {
-        if($('.feedback-'+type).css("display") == "block") {
-            $('#button-'+type).removeClass('active');
-            $('.feedback-'+type).css("display", "none");
+        if ($('.feedback-' + type).css("display") == "block") {
+            $('#button-' + type).removeClass('active');
+            $('.feedback-' + type).css("display", "none");
         } else {
-            $('#button-'+type).addClass('active');
-            $('.feedback-'+type).css("display", "block");
+            $('#button-' + type).addClass('active');
+            $('.feedback-' + type).css("display", "block");
         }
     }
 

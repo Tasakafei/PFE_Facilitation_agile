@@ -6,7 +6,7 @@
  ***********************************************/
 angular.module('facilitation').controller('calendarCtrl', function ($route, $timeout, EventsService, $scope, $compile, uiCalendarConfig) {
     $scope.newEvent = {};
-    $scope.workshopEvents= [];
+    $scope.workshopEvents = [];
     $scope.events = {
         color: 'red',
         events: []
@@ -16,73 +16,80 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
     var retrieveAllEvents = function () {
         $scope.workshopEvents = [];
         EventsService.getEvents()
-            .success(function(events) {
+            .success(function (events) {
                 events.data.forEach(function (event) {
                     var end = new Date(event.begin_at);
-                    end.setMinutes(end.getMinutes() + event.duration +end.getTimezoneOffset());
+                    end.setMinutes(end.getMinutes() + event.duration + end.getTimezoneOffset());
                     var color;
                     var url;
                     var title = event.title;
                     var type = "standard";
                     if (event.workshopId) {
                         color = "green";
-                        url = "http://"+window.location.host+"/#/instances/"+event._id;
-                        title = "["+event.group+"]\n"+title;
+                        url = "http://" + window.location.host + "/#/instances/" + event._id;
+                        title = "[" + event.group + "]\n" + title;
                         type = "workshop";
                     }
-                    var u =  new Date(event.begin_at);
+                    var u = new Date(event.begin_at);
                     u.setMinutes(u.getMinutes() + u.getTimezoneOffset());
-                    $scope.workshopEvents.push({_id: event._id, title: title, start: u, end: end, color: color, duration: event.duration, url:url, type:type});
+                    $scope.workshopEvents.push({
+                        _id: event._id,
+                        title: title,
+                        start: u,
+                        end: end,
+                        color: color,
+                        duration: event.duration,
+                        url: url,
+                        type: type
+                    });
                 });
             });
     };
 
     retrieveAllEvents();
 
-    $scope.alertOnDrop = function(event){
+    $scope.alertOnDrop = function (event) {
         var elem = {begin_at: event.start._d};
         if (event.type === "workshop") {
 
-            EventsService.updateWorkshopInstance(event._id,elem);
+            EventsService.updateWorkshopInstance(event._id, elem);
         } else {
             EventsService.updateEvent(event._id, elem);
         }
     };
     /* alert on Resize */
-    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-        var newDuration = event.duration + delta/60000;
+    $scope.alertOnResize = function (event, delta, revertFunc) {
+        var newDuration = event.duration + delta / 60000;
         var elem = {duration: newDuration};
         event.duration = newDuration;
         if (event.type === "workshop") {
             revertFunc();
-            // EventsService.updateWorkshopInstance(event._id,elem);
         } else {
             EventsService.updateEvent(event._id, elem);
         }
     };
 
-    $scope.addEvent = function(event) {
+    $scope.addEvent = function (event) {
         $scope.events.events.push(event);
     };
 
-    $scope.remove = function(index) {
-        $scope.events.splice(index,1);
+    $scope.remove = function (index) {
+        $scope.events.splice(index, 1);
     };
 
-    $scope.changeView = function(view,calendar) {
+    $scope.changeView = function (view, calendar) {
         retrieveAllEvents();
-        uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+        uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
         retrieveAllEvents();
     };
 
-    $scope.renderCalender = function(calendar) {
+    $scope.renderCalender = function (calendar) {
         retrieveAllEvents();
-        if(uiCalendarConfig.calendars[calendar]){
+        if (uiCalendarConfig.calendars[calendar]) {
             uiCalendarConfig.calendars[calendar].fullCalendar('render');
         }
         retrieveAllEvents();
     };
-
 
 
     /** When you click on an empty space **/
@@ -90,7 +97,7 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
         $scope.newEvent = {};
         var tmp = date._d;
         tmp.setMinutes(tmp.getMinutes() + tmp.getTimezoneOffset());
-        $scope.newEvent.hours_begin_at = ""+(tmp.getHours())+":"+tmp.getMinutes();
+        $scope.newEvent.hours_begin_at = "" + (tmp.getHours()) + ":" + tmp.getMinutes();
         $scope.newEvent.begin_at = tmp;
         $('#newEventModal').modal('show');
     };
@@ -99,8 +106,8 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
         var begin = $scope.newEvent.hours_begin_at.split(":");
         $scope.newEvent.begin_at.setHours(begin[0]);
         $scope.newEvent.begin_at.setMinutes(begin[1]);
-        var end =$scope.newEvent.hours_end_at.split(":");
-        var duration = (parseInt(end[0],10) * 60 + parseInt(end[1],10)) - (parseInt(begin[0],10)*60 +parseInt(begin[1],10));
+        var end = $scope.newEvent.hours_end_at.split(":");
+        var duration = (parseInt(end[0], 10) * 60 + parseInt(end[1], 10)) - (parseInt(begin[0], 10) * 60 + parseInt(begin[1], 10));
         var event = {
             title: $scope.newEvent.title,
             description: $scope.newEvent.description,
@@ -114,21 +121,17 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
         $('#newEventModal').modal('hide');
         $scope.newEvent = {};
         retrieveAllEvents();
-
-        // $timeout(function() {
-        //     $route.reload();
-        // }, 300);
         $scope.$emit('notify', {
             type: 'success',
-            title: 'Évenement \"'+event.title+'\" rajouté avec succès'
+            title: 'Évenement \"' + event.title + '\" rajouté avec succès'
         });
     };
     /* config object */
     $scope.uiConfig = {
-        calendar:{
+        calendar: {
             height: 450,
             editable: true,
-            header:{
+            header: {
                 left: 'month agendaWeek agendaDay',
                 center: 'title',
                 right: 'today prev,next'
