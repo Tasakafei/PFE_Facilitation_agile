@@ -11,7 +11,7 @@ angular.module('facilitation')
         return $resource('/auth/users/:id/', {},
             {
                 'updateUserInfo': {
-                    method:'PUT'
+                    method: 'PUT'
                 }
             });
     });

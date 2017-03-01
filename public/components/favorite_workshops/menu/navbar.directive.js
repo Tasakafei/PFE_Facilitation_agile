@@ -4,7 +4,7 @@
  * EMAIL:          alexandre.cazala@gmail.com   *
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
-(function() {
+(function () {
     angular
         .module('facilitation')
         .directive('menu', [function () {
@@ -13,7 +13,7 @@
                 templateUrl: '/components/favorite_workshops/menu/menu.html',
                 controller: 'menuCtrl'
             };
-    }]);
+        }]);
 })();
 
 

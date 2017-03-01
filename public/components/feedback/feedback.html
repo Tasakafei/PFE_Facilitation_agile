@@ -8,18 +8,20 @@
             <form ng-submit="submit()" ng-controller="feedbackCtrl" class="form-horizontal col-xs-12">
                 <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Note</label>
-                     <div class="col-sm-6 col-md-4 col-md-push-2">
-                         <img class="img-responsive" src="img/graphVote.png" id="pointer_div" ng-click="point_it($event)">
-                         <img class="img-responsive" src="img/cross.svg" id="cross" style="position:absolute;visibility:hidden;z-index:2;">
-                         <span id="amusement">{{ isFacilitator ? "Difficulté de mise en oeuvre" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amusement"}}</span>
-                         <span id="utilité">Pertinance/Utilité</span>
-                         <span id="zero">0</span>
-                         <span id="cinq">5</span>
-                         <span id="cinqb">5</span>
-                     </div>
+                    <div class="col-sm-6 col-md-4 col-md-push-2">
+                        <img class="img-responsive" src="img/graphVote.png" id="pointer_div"
+                             ng-click="point_it($event)">
+                        <img class="img-responsive" src="img/cross.svg" id="cross"
+                             style="position:absolute;visibility:hidden;z-index:2;">
+                        <span id="amusement">{{ isFacilitator ? "Difficulté de mise en oeuvre" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amusement"}}</span>
+                        <span id="utilité">Pertinance/Utilité</span>
+                        <span id="zero">0</span>
+                        <span id="cinq">5</span>
+                        <span id="cinqb">5</span>
+                    </div>
                 </div>
-                <br />
-                 <div class="form-group">
+                <br/>
+                <div class="form-group">
                     <label class="col-sm-4 col-md-3 col-md-push-2 control-label">Commenter l'atelier</label>
                     <div class="col-sm-6 col-md-4 col-md-push-2">
                         <textarea type="text" ng-model="com" class="form-control" rows="3"></textarea>
@@ -33,8 +35,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-12 text-center"><br />
-                        <button id="submit" value="Submit" type="submit" class="btn btn-default" >Envoyer</button>
+                    <div class="col-md-12 text-center"><br/>
+                        <button id="submit" value="Submit" type="submit" class="btn btn-default">Envoyer</button>
                     </div>
                 </div>
                 <p ng-if="uploading != ''" class="text-center">{{uploading}}</p>

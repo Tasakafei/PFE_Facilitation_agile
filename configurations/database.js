@@ -7,5 +7,5 @@
 
 module.exports = {
     port: process.env.PORT || 3000,
-    db: (process.env.NODE_ENV === "test"?"mongodb://localhost/pfe_facilitation_agile_test":false) || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/pfe_facilitation_agile'
+    db: (process.env.NODE_ENV === "test"?"mongodb://localhost/pfe_facilitation_agile_test":false) || process.env.MONGOLAB_URI || 'mongodb://localhost/pfe_facilitation_agile'
 };

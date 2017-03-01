@@ -3,12 +3,14 @@
     <div class="page-header">
         <h3 style="margin-right: 110px;">{{workshopInstance.title}}</h3>
         <a data-toggle="modal" data-target="#confirmationModal">
-            <button id="delete-instance" type="button" class="btn btn-danger btn-right" uib-tooltip="Supprimer l'instance" tooltip-placement="top">
+            <button id="delete-instance" type="button" class="btn btn-danger btn-right"
+                    uib-tooltip="Supprimer l'instance" tooltip-placement="top">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
         </a>
         <a href="/#/instances/{{workshopInstance._id}}/detail">
-            <button id="instance-detail" type="button" class="btn btn-default btn-right" uib-tooltip="Détail de l'instance" tooltip-placement="top">
+            <button id="instance-detail" type="button" class="btn btn-default btn-right"
+                    uib-tooltip="Détail de l'instance" tooltip-placement="top">
                 <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
             </button>
         </a>
@@ -25,9 +27,12 @@
             </div>
             -->
             <div id="buttons" class="col-md-6 col-xs-12 padding-b">
-                <h4>Feedback</h4> <br />
-                <a href="/#/feedback/{{workshopInstance._id}}"><button type="button" class="btn btn-default">Donner un feedback</button></a><br /><br/>
-                <button type="button" class="btn btn-default" ng-click="afficherQrcode()">Afficher QRCode</button><br /><br />
+                <h4>Feedback</h4> <br/>
+                <a href="/#/feedback/{{workshopInstance._id}}">
+                    <button type="button" class="btn btn-default">Donner un feedback</button>
+                </a><br/><br/>
+                <button type="button" class="btn btn-default" ng-click="afficherQrcode()">Afficher QRCode</button>
+                <br/><br/>
                 <div ng-controller="qrcodeCtrl" class="qrcode-off">
                     <qrcode size="315" data="{{feedbackLink}}" href="{{feedbackLink}}"></qrcode>
                 </div>
@@ -36,11 +41,13 @@
     </div>
     <div id="commentaires" class="col-xs-12 col-md-8 no-padding">
         <h4>Les commentaires
-            </h4>
+        </h4>
         <span ng-hide="!workshopInstance.feedbacks.participants[0].comment && !workshopInstance.feedbacks.facilitators[0].comment">
-            <button id="button-facilitators" type="button" class="btn btn-default active" ng-click="focusFeedback('facilitators')">Facilitateurs</button>
-            <button id="button-participants" type="button" class="btn btn-default active" ng-click="focusFeedback('participants')">Participants</button>
-         <br /><br />
+            <button id="button-facilitators" type="button" class="btn btn-default active"
+                    ng-click="focusFeedback('facilitators')">Facilitateurs</button>
+            <button id="button-participants" type="button" class="btn btn-default active"
+                    ng-click="focusFeedback('participants')">Participants</button>
+         <br/><br/>
         </span>
         <div class="feedback-participants" ng-repeat="participants in workshopInstance.feedbacks.participants">
             <div class="thumbnail" ng-if="participants.comment">
@@ -73,7 +80,7 @@
     <div id="photos" class="col-xs-12 col-md-4">
         <h4>Les photos</h4>
         <div ng-repeat="photos in workshopInstance.photos">
-            <a href="{{photos.filename}}"  target="_blank"><img class="img-responsive" src="{{photos.filename}}"></a>
+            <a href="{{photos.filename}}" target="_blank"><img class="img-responsive" src="{{photos.filename}}"></a>
         </div>
         <div ng-if="!workshopInstance.photos[0]">
             <p>Pas encore de photos</p>
@@ -87,14 +94,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel2">Supprimer l'instance de l'atelier</h4>
             </div>
             <div class="modal-body text-center">
                 <p>Êtes vous sûr(e) de vouloir supprimer <b>l'instance</b> de cet atelier ?</p><br/>
                 <button data-dismiss="modal" type="button" class="btn btn-default">Non</button>
                 <span class="add-padding"></span>
-                <button data-dismiss="modal" type="button" class="btn btn-default" ng-click="deleteInstance()">Oui</button>
+                <button data-dismiss="modal" type="button" class="btn btn-default" ng-click="deleteInstance()">Oui
+                </button>
                 <br/>
             </div>
         </div>

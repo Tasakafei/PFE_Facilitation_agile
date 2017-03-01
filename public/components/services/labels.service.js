@@ -16,7 +16,7 @@ app.service('LabelsService', function () {
         "Lead time vs Throughput": "label-yellow"
     };
 
-    this.getText = function(label) {
+    this.getText = function (label) {
         return labels[label] ? labels[label] : "label-default";
     }
 });

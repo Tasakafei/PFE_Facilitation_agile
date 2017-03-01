@@ -47,13 +47,14 @@ app.controller('catalogueCtrl', function (LabelsService, $scope, CatalogueDataPr
     function getCleanedValues(map) {
         var values = Object.values(map);
         var test = [];
-        values.forEach(function (v){
+        values.forEach(function (v) {
             if (v != "") {
                 test.push(v);
             }
         });
         return test;
     }
+
     function searchEduc(row) {
         var values = getCleanedValues($scope.educational_aims_search);
         if (values.length == 0) {

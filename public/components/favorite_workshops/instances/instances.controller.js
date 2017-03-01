@@ -24,8 +24,8 @@ app.controller('instancesCtrl', function (LabelsService, $scope, EventsService) 
      */
     function getWorkshopsInstances() {
         EventsService.getInstancesWorkshop()
-            .success(function(data) {
-            $scope.instances = data;
+            .success(function (data) {
+                $scope.instances = data;
 
                 for (var i = 0; i < $scope.instances.data.length; i++) {
                     var d = new Date($scope.instances.data[i].begin_at);

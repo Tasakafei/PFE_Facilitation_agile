@@ -17,9 +17,9 @@ app.controller('homeCtrl', function ($scope, CatalogueDataProvider) {
         $scope.data = [];
 
         //workshop with a note
-        for(var i = 0; i < response.length; i++) {
-            if(response[i].grade.participants != 0 || response[i].grade.facilitators != 0) {
-                response[i].grade.participants = (response[i].grade.participants + response[i].grade.facilitators) /2;
+        for (var i = 0; i < response.length; i++) {
+            if (response[i].grade.participants != 0 || response[i].grade.facilitators != 0) {
+                response[i].grade.participants = (response[i].grade.participants + response[i].grade.facilitators) / 2;
                 $scope.data.push(response[i]);
             }
         }

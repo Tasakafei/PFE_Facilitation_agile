@@ -19,9 +19,9 @@
                 <span class="lineHeight">
                     <span ng-repeat="category in workshopInstance.educational_aims | orderBy">
                         <span class="label {{getLabelColor(category)}}">{{category}}</span>
-                    </span><br /><br />
+                    </span><br/><br/>
 
-                    Notes :<br />
+                    Notes :<br/>
                     <div class="col-xs-12">
                         Participants :
                         <i ng-if="workshopInstance.grade.participants"
@@ -36,27 +36,36 @@
                            data-ng-repeat="i in [] | range:5"></i>
                         <span ng-if="!workshopInstance.grade.facilitators">Aucunes notes</span>
                     </div>
-                    <br /><br /><br />
-                    Durée de l'atelier : {{workshopInstance.duration}} minutes<br />
-                    Auteur: {{workshopInstance.author}}<br />
-                    Source : <a class="link" target="_blank" href="{{workshopInstance.source}}">{{workshopInstance.source}}</a><br />
+                    <br/><br/><br/>
+                    Durée de l'atelier : {{workshopInstance.duration}} minutes<br/>
+                    Auteur: {{workshopInstance.author}}<br/>
+                    Source : <a class="link" target="_blank" href="{{workshopInstance.source}}">{{workshopInstance.source}}</a><br/>
                 </span>
             </div>
             <!-- Description -->
-            <div class="col-xs-12 editable" >
-                <h4><i class="fa fa-check" ng-show="whichEdition=='description'" ng-click="updateInstance()"></i><i class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='description'" ng-click="setEdition('description')"></i> Description de l'atelier <div class="line center-block"></div></h4>
+            <div class="col-xs-12 editable">
+                <h4><i class="fa fa-check" ng-show="whichEdition=='description'" ng-click="updateInstance()"></i><i
+                        class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='description'"
+                        ng-click="setEdition('description')"></i> Description de l'atelier
+                    <div class="line center-block"></div>
+                </h4>
                 <div simditor ng-model="workshopInstance.folklore" ng-show="whichEdition=='description'"></div>
-                <p class="text-justify" ng-hide="whichEdition=='description'" ng-bind-html="workshopInstance.folklore | to_trusted"></p>
+                <p class="text-justify" ng-hide="whichEdition=='description'"
+                   ng-bind-html="workshopInstance.folklore | to_trusted"></p>
             </div>
             <!-- Materiel -->
             <div class="col-xs-12 editable">
-                <h4><i class="fa fa-check" ng-show="whichEdition=='materiel'" ng-click="updateInstance()"></i><i class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='materiel'" ng-click="setEdition('materiel')"></i> Matériel & Setup de la salle</h4>
+                <h4><i class="fa fa-check" ng-show="whichEdition=='materiel'" ng-click="updateInstance()"></i><i
+                        class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='materiel'"
+                        ng-click="setEdition('materiel')"></i> Matériel & Setup de la salle</h4>
                 <div simditor ng-model="workshopInstance.equipment" ng-show="whichEdition=='materiel'"></div>
                 <div ng-hide="whichEdition=='materiel'" ng-bind-html="workshopInstance.equipment | to_trusted"></div>
             </div>
             <!-- Conducteur -->
-            <div class="col-xs-12 editable" >
-                <h4><i class="fa fa-check" ng-show="whichEdition=='conducteur'" ng-click="updateInstance()"></i><i class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='conducteur'" ng-click="setEdition('conducteur')"></i> Conducteur de l'atelier</h4>
+            <div class="col-xs-12 editable">
+                <h4><i class="fa fa-check" ng-show="whichEdition=='conducteur'" ng-click="updateInstance()"></i><i
+                        class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='conducteur'"
+                        ng-click="setEdition('conducteur')"></i> Conducteur de l'atelier</h4>
                 <!--<div simditor ng-model="workshopInstance.steps" ng-show="whichEdition=='conducteur'"></div>-->
 
                 <table class="table table-bordered table-striped">
@@ -65,43 +74,53 @@
                         <col class="col-xs-2">
                         <col class="col-xs-9">
                     </colgroup>
-                    <thead><tr>
+                    <thead>
+                    <tr>
                         <th class="text-center">Timing</th>
                         <th class="text-center">Phase</th>
                         <th class="text-center">Description</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="step in workshopInstance.steps">
-                            <td class="text-center" ><p ng-if="step.title">{{timingArray[$index]}}</p></td>
-                            <td class="text-center" ng-hide="whichEdition == 'conducteur'"><p ng-if="step.title">{{step.title}}<br />{{step.duration.theorical}} minutes</p></td>
-                            <td class="text-center" ng-show="whichEdition == 'conducteur'"><input type="text" ng-model="step.title"/><br /><input type="number" ng-model="step.duration.theorical"></td>
-                            <td ng-bind-html="step.description | to_trusted" ng-hide="whichEdition == 'conducteur'"></td>
-                            <td ng-show="whichEdition == 'conducteur'">
-                                <div simditor ng-model="step.description"></div>
-                            </td>
-                            <td ng-show="whichEdition == 'conducteur'"><i class="fa fa-2x fa-trash" style="color: darkred; vertical-align: middle" ng-click="deleteStep($index)"></i></td>
-                        </tr>
-                        <tr ng-show="whichEdition == 'conducteur'" ng-click="addStep()">
-                            <td style="border: none"></td>
-                            <td style="border: none"></td>
-                            <td style="text-align: center; border:none; color: forestgreen;"><i class="fa fa-4x fa-plus-square" style="color: forestgreen;"></i></td>
-                            <td></td>
-                        </tr>
+                    <tr ng-repeat="step in workshopInstance.steps">
+                        <td class="text-center"><p ng-if="step.title">{{timingArray[$index]}}</p></td>
+                        <td class="text-center" ng-hide="whichEdition == 'conducteur'"><p ng-if="step.title">
+                            {{step.title}}<br/>{{step.duration.theorical}} minutes</p></td>
+                        <td class="text-center" ng-show="whichEdition == 'conducteur'"><input type="text"
+                                                                                              ng-model="step.title"/><br/><input
+                                type="number" ng-model="step.duration.theorical"></td>
+                        <td ng-bind-html="step.description | to_trusted" ng-hide="whichEdition == 'conducteur'"></td>
+                        <td ng-show="whichEdition == 'conducteur'">
+                            <div simditor ng-model="step.description"></div>
+                        </td>
+                        <td ng-show="whichEdition == 'conducteur'"><i class="fa fa-2x fa-trash"
+                                                                      style="color: darkred; vertical-align: middle"
+                                                                      ng-click="deleteStep($index)"></i></td>
+                    </tr>
+                    <tr ng-show="whichEdition == 'conducteur'" ng-click="addStep()">
+                        <td style="border: none"></td>
+                        <td style="border: none"></td>
+                        <td style="text-align: center; border:none; color: forestgreen;"><i
+                                class="fa fa-4x fa-plus-square" style="color: forestgreen;"></i></td>
+                        <td></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
 
             <!-- Instructions -->
-            <div class="col-xs-12 editable" >
-                <h4><i class="fa fa-check" ng-show="whichEdition=='instructions'" ng-click="updateInstance()"></i><i class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='instructions'" ng-click="setEdition('instructions')"></i> Conducteur de l'atelier</h4>
+            <div class="col-xs-12 editable">
+                <h4><i class="fa fa-check" ng-show="whichEdition=='instructions'" ng-click="updateInstance()"></i><i
+                        class="fa fa-pencil icon-edit-instance" ng-hide="whichEdition=='instructions'"
+                        ng-click="setEdition('instructions')"></i> Conducteur de l'atelier</h4>
                 <table class="table table-bordered table-striped">
                     <colgroup>
                         <col class="col-xs-1">
                         <col class="col-xs-2">
                         <col class="col-xs-9">
                     </colgroup>
-                    <thead><tr>
+                    <thead>
+                    <tr>
                         <th class="text-center">Timing</th>
                         <th class="text-center">Phase</th>
                         <th class="text-center">Instructions</th>
@@ -109,19 +128,25 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="step in workshopInstance.steps">
-                        <td class="text-center" ><p ng-if="step.title">{{timingArray[$index]}}</p></td>
-                        <td class="text-center" ng-hide="whichEdition == 'instructions'"><p ng-if="step.title">{{step.title}}<br />{{step.duration.theorical}} minutes</p></td>
-                        <td class="text-center" ng-show="whichEdition == 'instructions'"><input type="text" ng-model="step.title"/><br /><input type="number" ng-model="step.duration.theorical"></td>
+                        <td class="text-center"><p ng-if="step.title">{{timingArray[$index]}}</p></td>
+                        <td class="text-center" ng-hide="whichEdition == 'instructions'"><p ng-if="step.title">
+                            {{step.title}}<br/>{{step.duration.theorical}} minutes</p></td>
+                        <td class="text-center" ng-show="whichEdition == 'instructions'"><input type="text"
+                                                                                                ng-model="step.title"/><br/><input
+                                type="number" ng-model="step.duration.theorical"></td>
                         <td ng-bind-html="step.instructions | to_trusted" ng-hide="whichEdition == 'instructions'"></td>
                         <td ng-show="whichEdition == 'instructions'">
                             <div simditor ng-model="step.instructions"></div>
                         </td>
-                        <td ng-show="whichEdition == 'instructions'"><i class="fa fa-2x fa-trash" style="color: darkred; vertical-align: middle" ng-click="deleteStep($index)"></i></td>
+                        <td ng-show="whichEdition == 'instructions'"><i class="fa fa-2x fa-trash"
+                                                                        style="color: darkred; vertical-align: middle"
+                                                                        ng-click="deleteStep($index)"></i></td>
                     </tr>
                     <tr ng-show="whichEdition == 'instructions'" ng-click="addStep()">
                         <td style="border: none"></td>
                         <td style="border: none"></td>
-                        <td style="text-align: center; border:none; color: forestgreen;"><i class="fa fa-4x fa-plus-square" style="color: forestgreen;"></i></td>
+                        <td style="text-align: center; border:none; color: forestgreen;"><i
+                                class="fa fa-4x fa-plus-square" style="color: forestgreen;"></i></td>
                         <td></td>
                     </tr>
                     </tbody>

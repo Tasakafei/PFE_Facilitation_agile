@@ -47,7 +47,8 @@
                 </span>
                 <input type="text" ng-model="query" class="form-control" placeholder="Rechercher...">
                 <span class="input-group-btn">
-                    <button class="btn btn-default"type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default" type="button"><span
+                            class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
         </div>
@@ -56,12 +57,12 @@
     <div class="row">
         <!-- Résultat -->
         <div class="col-xs-12 no-padding">
-            <div ng-repeat="elem in data.data |filter : searchTitle | filter: searchEduc " >
+            <div ng-repeat="elem in data.data |filter : searchTitle | filter: searchEduc ">
                 <a href="/#/catalogue/{{elem._id}}">
                     <div class="col-xs-12 thumbnail">
                         <!-- Photo -->
                         <div class="col-xs-4 col-sm-3 no-padding-r">
-                            <img class="img-responsive img-padding"  ng-src="{{elem.photo}}">
+                            <img class="img-responsive img-padding" ng-src="{{elem.photo}}">
                         </div>
                         <div class="col-xs-8 col-sm-9">
                             <!-- Titre -->
@@ -70,10 +71,10 @@
                                     <h4 class="labelsTitle">{{elem.title}}</h4>
                                 </div>
                                 <div class="col-xs-12 col-md-6 padding-t labels no-padding">
-                                    <span ng-repeat="category in elem.content.educational_aims | orderBy" >
+                                    <span ng-repeat="category in elem.content.educational_aims | orderBy">
                                             <span class="label {{getLabelColor(category)}}">{{category}}</span>
                                     </span>
-                                 </div>
+                                </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 no-padding">
                                 <!-- Note -->
