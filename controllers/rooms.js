@@ -22,7 +22,6 @@ module.exports = function (io) {
 
         // Dispatch in the specified room the order to LAUNCH the timer
         socket.on('launch_timer', function(timerInfo){
-            console.log(timerInfo);
             io.to(timerInfo.workshop).emit('start_timer', timerInfo);
         });
 
