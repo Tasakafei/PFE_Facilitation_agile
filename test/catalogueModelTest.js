@@ -5,23 +5,22 @@
 var chai = require('chai');
 var expect = chai.expect;
 
+var app = require('../app');
 var async = require('async');
 
 var mongoose = require('mongoose');
-var config = require('../configurations/database');
-mongoose.connect(config.db);
 
 require('../model/account/schemas/user');
 require('../model/instances/schemas/workshop-instance.schema');
 require('../model/catalogue/schemas/workshop');
-var catalogueController = require("../controllers/catalogue");
 var catalogue = require("../model/catalogue/catalogue.js");
 
 var defaultWorkshops;
 var workshopToSave;
 var isEnvironmentOk = true;
 
-describe('Test catalogue ', function(){
+describe('Test catalogue model ', function(){
+
     describe('In an empty database',function(){
         afterEach(function () {
             mongoose.model("Workshop").collection.drop();
