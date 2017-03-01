@@ -61,17 +61,9 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
 
     $scope.$watch('workshopInstance.steps', function (newVal, oldVal) {
         if (newVal) {
-            updateTimings(newVal)
+            updateTimings()
         }}, true);
-    var sortableEle;
-    var fixHelper = function(e, ui) {
-        ui.children().each(function() {
-            $(this).width($(this).width());
-        });
-        return ui;
-    };
     $scope.addStep = function() {
-        console.log($scope.workshopInstance.steps);
         $scope.workshopInstance.steps.push({
             description: "nouvelle itération",
             duration: {
@@ -99,7 +91,7 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
     };
     EventsService.getWorkshopInstance(currentId).then(function (dataResponse) {
         $scope.workshopInstance = dataResponse.data.data;
-        updateTimings($scope.workshopInstance.steps);
+        updateTimings();
     });
     function getLabelColorFct (label) {
         return LabelsService.getText(label);

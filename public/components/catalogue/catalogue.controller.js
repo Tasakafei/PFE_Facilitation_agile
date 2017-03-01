@@ -61,7 +61,6 @@ app.controller('catalogueCtrl', function (LabelsService, $scope, CatalogueDataPr
         } else {
             for (var i = 0; i < values.length; ++i) {
                 var elem = values[i];
-                console.log(row.content.educational_aims.includes(elem));
                 if (!row.content.educational_aims.includes(elem)) {
                     return false;
                 }

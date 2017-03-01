@@ -54,7 +54,6 @@ app.controller('timerCtrl', function($scope, $interval, socket){
      */
     socket.on('start_timer', function(timerInfo){
         $scope.startTimer(timerInfo.duration);
-        console.log(timerInfo);
         $scope.instructions = timerInfo.instructions;
     });
 
@@ -132,7 +131,6 @@ app.controller('timerCtrl', function($scope, $interval, socket){
         $scope.startTimer(timeAmount);
     };
 
-
     function runTimer(){
         timer = $interval(function(){
             $scope.countDown--;
@@ -141,15 +139,14 @@ app.controller('timerCtrl', function($scope, $interval, socket){
                 stopTimer();
             }
         }, 1000);
-    };
-
+    }
 
     function stopTimer() {
         if (angular.isDefined(timer)) {
             $interval.cancel(timer);
             timer = undefined;
         }
-    };
+    }
 
     $scope.humanizeDurationTimer = function(input, units) {
         // units is a string with possible values of y, M, w, d, h, m, s, ms

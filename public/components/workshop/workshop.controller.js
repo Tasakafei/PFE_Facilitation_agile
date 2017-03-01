@@ -52,8 +52,6 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
      * Get the workshop to display
      */
     CatalogueDataProvider.getWorkshop(currentId, function (dataResponse) {
-        console.log(dataResponse);
-        console.log("========");
         //Calculion of timing
         var timingArray = dataResponse.data.content.steps.map(function(step, index){
             var stepArray = dataResponse.data.content.steps.slice(0, index);

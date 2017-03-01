@@ -71,14 +71,12 @@ angular.module('facilitation').controller('calendarCtrl', function ($route, $tim
 
     $scope.changeView = function(view,calendar) {
         retrieveAllEvents();
-        console.log($scope.eventSources);
         uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
         retrieveAllEvents();
     };
 
     $scope.renderCalender = function(calendar) {
         retrieveAllEvents();
-        console.log($scope.eventSources);
         if(uiCalendarConfig.calendars[calendar]){
             uiCalendarConfig.calendars[calendar].fullCalendar('render');
         }
