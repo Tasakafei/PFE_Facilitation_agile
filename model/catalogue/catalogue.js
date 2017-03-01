@@ -65,7 +65,7 @@ function deleteWorkshopFct (id) {
                 if (err) {
                     reject(err)
                 } else {
-                    resolve();
+                    resolve(res);
                 }
             });
         });
