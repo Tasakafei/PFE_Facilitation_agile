@@ -10,7 +10,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 
-require('./model/files/schemas/photo');
 require('./model/events/schemas/event.schema');
 require('./model/mongo_connection');
 require('./model/account/schemas/user');
@@ -25,9 +24,6 @@ var cloudinaryUploader = require('./routes/cloudinaryUploader');
 var dbCleaner = require('./routes/db.dev');
 var app = express();
 
-var photoModel = require('./model/files/photo');
-
-photoModel.instanciatePhotoFiles();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

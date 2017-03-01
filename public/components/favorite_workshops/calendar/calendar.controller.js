@@ -5,11 +5,6 @@
  * LICENSE:        Apache 2.0                   *
  ***********************************************/
 angular.module('facilitation').controller('calendarCtrl', function ($route, $timeout, EventsService, $scope, $compile, uiCalendarConfig) {
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
     $scope.newEvent = {};
     $scope.workshopEvents= [];
     $scope.events = {

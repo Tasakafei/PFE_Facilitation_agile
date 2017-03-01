@@ -188,7 +188,6 @@ function getWorkshopInstancesImpl(req, res, next) {
 
 function getEventsImpl(req, res) {
     if (req.user) {
-        var today = Date.now();
         User.findOne({ username: req.user.username})
             .populate({
                 path: 'workshops_instances',
