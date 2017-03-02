@@ -111,7 +111,7 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
             url = url.split("instances");
             window.location.replace(url[0] + 'instances');
         });
-        res.error(function (data, status, headers, config) {
+        res.error(function () {
             $scope.$emit('notify', {
                 type: 'error',
                 title: 'L\'instance de l\'atelier n\'a pas pu être supprimée.'

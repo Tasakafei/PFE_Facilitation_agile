@@ -114,8 +114,9 @@ app.controller('feedbackCtrl', function (CloudinaryClient, FavoriteWorkshops, tm
         var x = 100 * pos_x / height;
         var y = 100 * pos_y / width;
 
+
         voteX = Math.floor(x / 16.7);
-        voteY = Math.floor(y / 16.7);
+        voteY = Math.abs(Math.floor(y / 16.7) - 5);
 
         $('#voteX').html(voteX);
         $('#voteY').html(voteY);

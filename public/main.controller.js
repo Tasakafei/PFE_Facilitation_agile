@@ -8,7 +8,10 @@
 'use strict';
 
 angular.module('facilitation')
-    .controller('MainCtrl', function ($scope) {
+    .controller('MainCtrl', function () {
+        /**
+         * This controller is empty because we add dynamically some properties to access them from everywhere
+         */
     })
     .filter('range', function() {
         return function(input, total) {

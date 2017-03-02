@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('facilitation')
-    .factory('Favorites', function ($resource) {
+    .factory('Favorites', function () {
         return {
             addToFavorite: function (email, password, callback) {
                 var cb = callback || angular.noop;

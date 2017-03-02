@@ -56,8 +56,11 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
         var timingArray = dataResponse.data.content.steps.map(function (step, index) {
             var stepArray = dataResponse.data.content.steps.slice(0, index);
             return stepArray.reduce(function (accumulateur, currentStep) {
-                if (currentStep.duration) return accumulateur + currentStep.duration;
-                else return accumulateur;
+                if (currentStep.duration){
+                    return accumulateur + currentStep.duration;
+                } else {
+                    return accumulateur;
+                }
             }, 0);
         });
 
@@ -94,10 +97,9 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
     }
 
     function addToFavoriteFct() {
-
         if ($scope.currentUser) {
             var res = FavoriteWorkshops.addToFavoriteWorkshops($scope.currentUser.username, currentId);
-            res.success(function (data, status, headers, config) {
+            res.success(function (data) {
                 $scope.message = data;
 
                 $('.favorite-false').css("display", "none");
@@ -109,7 +111,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
                     content: '/#/favoriteWorkshops $$Voir mes ateliers favoris'
                 });
             });
-            res.error(function (data, status, headers, config) {
+            res.error(function () {
                 $scope.$emit('notify', {
                     type: 'error',
                     title: 'L\'atelier n\'a pas pu être ajouté.'
@@ -125,7 +127,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
 
     function deleteFavorite() {
         var res = $http.delete('/users/favorites/' + currentId);
-        res.success(function (data, status, headers, config) {
+        res.success(function () {
 
             $scope.$emit('notify', {
                 type: 'success',
@@ -136,7 +138,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
             $('.favorite-true').css("display", "none");
 
         });
-        res.error(function (data, status, headers, config) {
+        res.error(function () {
             $scope.$emit('notify', {
                 type: 'error',
                 title: 'L\'atelier n\'a pas pu être retiré de vos favoris.',
@@ -153,7 +155,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
 
             $('#myModal3').modal('hide');
 
-            res.success(function (data, status, headers, config) {
+            res.success(function (data) {
                 $scope.message = data;
                 $scope.$emit('notify', {
                     type: 'success',
@@ -161,7 +163,7 @@ app.controller('workshopCtrl', function ($timeout, $location, LabelsService, $sc
                     content: '/#/calendar $$Voir mon agenda'
                 });
             });
-            res.error(function (data, status, headers, config) {
+            res.error(function () {
                 $scope.$emit('notify', {
                     type: 'error',
                     title: 'L\'atelier n\'a pas pu être ajouté.'
@@ -208,23 +210,5 @@ app.filter('to_trusted', ['$sce', function ($sce) {
         return $sce.trustAsHtml(text);
     };
 }]);
-
-var dateTimePicker = function () {
-    return {
-        restrict: "A",
-        require: "ngModel",
-        link: function (scope, element, attrs, ngModelCtrl) {
-            var parent = $(element).parent();
-            var dtp = parent.datetimepicker({
-                format: "LL",
-                showTodayButton: true
-            });
-            dtp.on("dp.change", function (e) {
-                ngModelCtrl.$setViewValue(moment(e.date).format("LL"));
-                scope.$apply();
-            });
-        }
-    };
-};
 
 

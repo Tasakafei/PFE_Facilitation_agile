@@ -6,8 +6,10 @@
 module.exports = function (io) {
     'use strict';
 
+    function redirectMessage(room, message) {
+        io.to(room).emit(message);
+    }
     io.on('connection', function (socket) {
-
         // Join the specified room (workshop)
         socket.on('join_room', function(room){
             socket.join(room);
@@ -32,27 +34,27 @@ module.exports = function (io) {
 
         // Dispatch in the specified room the order to PAUSE the timer
         socket.on('pause_timer', function(room){
-            io.to(room).emit('pause_timer');
+            redirectMessage(room, 'pause_timer');
         });
 
         // Dispatch in the specified room the order to RESUME the timer
         socket.on('resume_timer', function(room){
-            io.to(room).emit('resume_timer');
+            redirectMessage(room, 'resume_timer');
         });
 
         // Dispatch in the specified room the order to STOP the timer
         socket.on('stop_timer', function(room){
-            io.to(room).emit('stop_timer');
+            redirectMessage(room, 'stop_timer');
         });
 
         // Dispatch in the specified room the information that the instance is finished
         socket.on('end_of_instance', function(room){
-            io.to(room).emit('end_of_instance');
+            redirectMessage(room, 'end_of_instance');
         });
 
         //Start sound
         socket.on('start_sound', function (room) {
-            io.to(room).emit('start_sound');
+            redirectMessage(room, 'start_sound');
         });
 
         //Stop sound

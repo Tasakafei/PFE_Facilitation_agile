@@ -30,7 +30,7 @@ angular.module('facilitation')
 
             logout: function (callback) {
                 var cb = callback || angular.noop;
-                Session.delete(function (res) {
+                Session.delete(function () {
                         $rootScope.currentUser = null;
                         return cb();
                     },

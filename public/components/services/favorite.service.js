@@ -23,7 +23,7 @@ app.service('FavoriteWorkshops', function ($http) {
 
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.getFavoriteWorkshops = function (callbackFunc) {
+    this.getFavoriteWorkshops = function () {
         var req = {
             method: 'GET',
             url: '/users/favorites',
@@ -36,7 +36,7 @@ app.service('FavoriteWorkshops', function ($http) {
     };
 
     delete $http.defaults.headers.common['X-Requested-With'];
-    this.getInstancesWorkshop = function (callbackFunc) {
+    this.getInstancesWorkshop = function () {
         var req = {
             method: 'GET',
             url: '/users/instances',
