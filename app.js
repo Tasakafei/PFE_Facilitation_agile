@@ -36,7 +36,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/')));
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:8100");
+    // TODO : I suggest to change "localhost:8100" to a real domain set with a proxy in the ionic app
+    var allowedOrigins = ["http://localhost:8100", "http://10.212.100.185:8100"];
+    var origin = req.headers.origin;
+    if(allowedOrigins.indexOf(origin) > -1){
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Methods","PUT, GET, POST, DELETE, OPTIONS");
