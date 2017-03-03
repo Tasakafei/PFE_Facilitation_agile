@@ -109,7 +109,9 @@ app.controller('instanceCtrl', function (LabelsService, $scope, EventsService, $
             });
             var url = window.location.href;
             url = url.split("instances");
-            window.location.replace(url[0] + 'instances');
+            $timeout(function () {
+                window.location.replace(url[0] + 'instances');
+            }, 100);
         });
         res.error(function () {
             $scope.$emit('notify', {
